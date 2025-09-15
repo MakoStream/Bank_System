@@ -11,10 +11,14 @@
 
 using namespace std;
 
-
+// Enums: cardStatus, cardType, balanceType
+// Description: Enumerations for card availability, card types, and balance currencies
+// Requirements: none
+// Required for: User class, commands, DB operations
 enum cardStatus { AVAILABLE, BLOCKED };
 enum cardType { DEPOSITE, DEFAULT, CREDIT };
 enum balanceType { UAH, DLR, EUR };
+
 
 extern std::unordered_map<std::string, cardType> cardMap;
 extern std::unordered_map<std::string, balanceType> balanceMap;
@@ -23,6 +27,11 @@ extern std::unordered_map<std::string, balanceType> balanceMap;
 // 1 euro = 1.17 dollar = 48.37 uah 
 // 1 uah = 0.024 dollar = 0.021 euro
 
+
+// Class: User
+// Description: Represents a bank system user with credentials, balance, card info, and status
+// Requirements: <string>, <fstream>, cardType, balanceType, cardStatus
+// Required for: DB operations, commands, sessions
 class User {  // Дані користувача
     int id;
     char login[32];
