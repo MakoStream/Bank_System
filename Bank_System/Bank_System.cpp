@@ -12,6 +12,11 @@
 
 using namespace std;
 
+
+// Function: split
+// Description: Splits a string into words separated by whitespace and returns them as a vector
+// Requirements: <string>, <sstream>, <vector>
+// Required for: main loop input parsing in main()
 vector<string> split(const string& input) {
     vector<string> tokens;
     istringstream iss(input);
@@ -24,14 +29,24 @@ vector<string> split(const string& input) {
 
 Logger logger; // глобально
 
+
+
+// Function: signalHandler
+// Description: Handles system signals (SIGINT, SIGABRT, SIGTERM) and logs termination
+// Requirements: <csignal>, Logger
+// Required for: main()
 void signalHandler(int signal) {
     logger.write("Програма завершилася сигналом " + std::to_string(signal));
     exit(signal);
 }
+
+// Function: onExit
+// Description: Called automatically at normal program exit to log termination
+// Requirements: Logger
+// Required for: main()
 void onExit() {
     logger.write("Програма завершилася");
 }
-
 
 
 
@@ -52,6 +67,11 @@ class Admin {  // Дані адміністратора
 
 
 
+
+// Function: main
+// Description: Main program entry point, sets signal handlers, runs command loop
+// Requirements: split(), Logger, commands class, signal handling
+// Required for: entire program execution
 int main()
 {
     signal(SIGINT, signalHandler);   // Ctrl+C

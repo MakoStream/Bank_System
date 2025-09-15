@@ -15,13 +15,17 @@
 
 using namespace std;
 
+// Function: isStringDigit
+// Description: Checks if a string represents a valid floating point number
+// Requirements: <string>, <cctype>
+// Required for: input validation in commands::execute
 bool isStringDigit(const std::string& s) {
     if (s.empty()) return false;
     int dotCount = 0;
     for (char c : s) {
         if (c == '.') {
             dotCount++;
-            if (dotCount > 1) return false; // лише одна крапка
+            if (dotCount > 1) return false;
         }
         else if (!isdigit(c)) {
             return false;
@@ -30,20 +34,25 @@ bool isStringDigit(const std::string& s) {
     return true;
 }
 
-bool isPhone(const std::string& s) { // скопійовано з Google AI answear
-    if (s.empty()) {
-        return false; // An empty string is not considered to contain only digits
-    }
-    if (s.size() != 10) { return false; };
+// Function: isPhone
+// Description: Validates if a string is a 10-digit phone number
+// Requirements: <string>, <cctype>
+// Required for: commands::execute("reg_user")
+bool isPhone(const std::string& s) {
+    if (s.empty()) return false;
+    if (s.size() != 10) return false;
     for (char c : s) {
-        if (!isdigit(c)) {
-            return false;
-        }
+        if (!isdigit(c)) return false;
     }
     return true;
 }
 
 commands::commands() {}
+
+// Function: commands::execute
+// Description: Executes CLI commands like create_db, reg_user, user_list
+// Requirements: DB_op functions, User, balanceMap, cardMap
+// Required for: main() loop
 void commands::execute(const vector<string>& args) {
     string command = args[0];
     // create_DB
@@ -120,14 +129,22 @@ void commands::execute(const vector<string>& args) {
     return;
 
 }
+
+// Function: commands::regUser
+// Description: Registers a new user and appends to database
+// Requirements: DB_newUser(), User class
+// Required for: execute("reg_user")
 void commands::regUser(User user) {
     DB_newUser(user);
     cout << "Новий користувач створений: " << user.getName() << endl;
 }
 
-void commands::printUserList() {}
 
 
+// Function: commands::createDB
+// Description: Creates the database file
+// Requirements: DB_create()
+// Required for: execute("create_db")
 void commands::createDB() {
     DB_create();
     return;
