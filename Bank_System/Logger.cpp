@@ -8,6 +8,10 @@
 
 using namespace std; 
 
+// Function: Logger::currentDate
+// Description: Returns current date as string YYYY-MM-DD
+// Requirements: <ctime>, <string>
+// Required for: Logger constructor, log file naming
 string Logger::currentDate() {
     time_t now = time(nullptr);
     char buf[20];
@@ -15,6 +19,10 @@ string Logger::currentDate() {
     return buf;
 }
 
+// Function: Logger::currentTime
+// Description: Returns current time as string HH.MM.SS
+// Requirements: <ctime>, <string>
+// Required for: Logger constructor, log writing
 string Logger::currentTime() {
     time_t now = time(nullptr);
     char buf[20];
@@ -22,6 +30,10 @@ string Logger::currentTime() {
     return buf;
 }
 
+// Constructor: Logger
+// Description: Initializes log file with current date and time, logs start event
+// Requirements: currentDate(), currentTime(), <fstream>, <iostream>
+// Required for: global logger
 Logger::Logger() {
     logFileName = "logs/" + currentDate() + "_" + currentTime() + ".txt";
     ofstream logFile(logFileName, ios::app);
@@ -31,6 +43,11 @@ Logger::Logger() {
     }
 }
 
+
+// Function: Logger::write
+// Description: Writes a log message to the log file
+// Requirements: currentTime(), <fstream>, <string>
+// Required for: signal handling, program logging
 void Logger::write(const string& message) {
     ofstream logFile(logFileName, ios::app);
     if (logFile.is_open()) {
@@ -39,6 +56,10 @@ void Logger::write(const string& message) {
     }
 }
 
+// Function: Logger::cmd
+// Description: Logs command execution with session_id and user_id
+// Requirements: currentTime(), <fstream>, <string>, <vector>
+// Required for: main(), commands execution logging
 void Logger::cmd(int session_id, int user_id, vector<string>& args) {
     ofstream logFile(logFileName, ios::app);
     string commandText = "";
@@ -51,4 +72,4 @@ void Logger::cmd(int session_id, int user_id, vector<string>& args) {
             << endl;
         logFile.close();
     }
-};
+}

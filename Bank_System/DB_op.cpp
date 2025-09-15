@@ -25,6 +25,11 @@ unordered_map<string, cardType> cardMap = {
 };
 
 
+
+// Function: DB_create
+// Description: Creates an empty binary file "users.dat"
+// Requirements: <fstream>, <iostream>
+// Required for: commands::createDB()
 void DB_create() {
     ofstream file("users.dat", ios::binary); // створюємо новий файл
     if (!file) {
@@ -33,14 +38,22 @@ void DB_create() {
     };
     cout << "Бінарний файл users.dat створено успішно." << endl;
     file.close();
-};
+}
 
+// Function: DB_newUser
+// Description: Appends a User object to "users.dat"
+// Requirements: User::save(), <fstream>
+// Required for: commands::regUser()
 void DB_newUser(User user) {
     ofstream fout("users.dat", ios::binary | ios::app);
     user.save(fout);
     fout.close();
-};
+}
 
+// Function: DB_list
+// Description: Reads and prints all users from "users.dat"
+// Requirements: User class, <fstream>, <iostream>
+// Required for: commands::execute("user_list")
 void DB_list() {
     ifstream fin("users.dat", ios::binary);
     if (!fin) {
@@ -50,7 +63,6 @@ void DB_list() {
 
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
-        // вивід всіх полів в один рядок
         cout
             << u.getId() << " "
             << u.getLogin() << " "
@@ -62,40 +74,44 @@ void DB_list() {
             << u.getStatusStr()
             << endl;
     }
-
     fin.close();
 }
 
+// Function: loadLastUser
+// Description: Loads the last user from "users.dat"
+// Requirements: User class, <fstream>, <iostream>
+// Required for: commands::regUser()
 User loadLastUser() {
-    std::ifstream fin("users.dat", std::ios::binary);
-    User empty; // пустий користувач, якщо файл порожній
+    ifstream fin("users.dat", ios::binary);
+    User empty;
 
     if (!fin) {
-        std::cerr << "Не вдалося відкрити файл!" << std::endl;
+        cerr << "Не вдалося відкрити файл!" << endl;
         return empty;
     }
 
-    fin.seekg(0, std::ios::end);
-    std::streampos size = fin.tellg();
-    if (size == 0) {
-        return empty; // файл порожній
-    }
+    fin.seekg(0, ios::end);
+    if (fin.tellg() == 0) return empty;
 
     User last;
-    fin.seekg(-static_cast<std::streamoff>(sizeof(User)), std::ios::end);
+    fin.seekg(-static_cast<streamoff>(sizeof(User)), ios::end);
     fin.read(reinterpret_cast<char*>(&last), sizeof(User));
     return last;
 }
 
+// Function: isUserExist_byLogin
+// Description: Checks if a login already exists in "users.dat"
+// Requirements: User class, <fstream>, <cstring>
+// Required for: commands::execute("reg_user")
 bool isUserExist_byLogin(const char* login) {
     ifstream fin("users.dat", ios::binary);
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
-        if (strcmp(u.getLogin(), login) == 0) { // порівнюємо вміст рядків
+        if (strcmp(u.getLogin(), login) == 0) {
             fin.close();
             return true;
         }
     }
     fin.close();
     return false;
-};
+}
