@@ -9,8 +9,11 @@
 #include "commands.h"
 #include <csignal>
 #include "DB_op.h"
+#include <thread>
 
 using namespace std;
+
+User emptyUser;
 
 
 // Function: split
@@ -27,16 +30,51 @@ vector<string> split(const string& input) {
     return tokens;
 };
 
+enum CMD_FS {NONE, GET_SID, LOGIN, LOGOUT};
+
+struct sessionConstruct {
+    int sessionId = 0;
+    int hash[10];
+    CMD_FS cmd_fs = NONE;
+    char cmd[256];
+};
+
 Logger logger; // глобально
+
+
+void HandleClient(HANDLE hPipe) {
+    while (true) {
+        sessionConstruct sessionData;
+        DWORD bytesRead, bytesWritten;
+
+        // Читаємо структуру від клієнта
+        BOOL success = ReadFile(hPipe, &sessionData, sizeof(sessionData), &bytesRead, NULL);
+        if (!success || bytesRead == 0) {
+            std::cout << "Client disconnected\n";
+            break;
+        }
+
+
+        // Модифікуємо дані
+        cout << sessionData.cmd << endl;
+        strcpy(sessionData.cmd, "hallo");
+        
+
+        // Відправляємо назад клієнту
+        WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
+    }
+
+    CloseHandle(hPipe);
+}
 
 
 
 // Function: signalHandler
 // Description: Handles system signals (SIGINT, SIGABRT, SIGTERM) and logs termination
-// Requirements: <csignal>, Logger
+// Requirements: <csignal>, logger
 // Required for: main()
 void signalHandler(int signal) {
-    logger.write("Програма завершилася сигналом " + std::to_string(signal));
+    logger.write("Програма завершилася сигналом " + to_string(signal));
     exit(signal);
 }
 
@@ -80,19 +118,26 @@ int main()
     atexit(onExit); // викликається при нормальному exit()
     setlocale(LC_ALL, "ukr");
 
-    commands cmd;
-    cout << "Міні-банківська система (CLI)\n";
-    cout << "Введіть команду (help для списку):\n";
-
-    string input;
+    const char* pipeName = R"(\\.\pipe\bankPipe123456789)";
     while (true) {
-        cout << "> ";
-        getline(cin, input);
+        HANDLE hPipe = CreateNamedPipeA(
+            pipeName,
+            PIPE_ACCESS_DUPLEX,
+            PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
+            PIPE_UNLIMITED_INSTANCES,
+            0, 0, 0, NULL
+        );
 
-        if (input.empty()) continue;
+        if (hPipe == INVALID_HANDLE_VALUE) {
+            std::cerr << "CreateNamedPipe failed\n";
+            return 1;
+        }
 
-        vector<string> args = split(input);
-        cmd.execute(args);
-        logger.cmd(00000000, 0000000, args);
+        std::cout << "Waiting for client...\n";
+        ConnectNamedPipe(hPipe, NULL);
+        std::cout << "Client connected!\n";
+
+        std::thread t(HandleClient, hPipe);
+        t.detach();
     }
 }
