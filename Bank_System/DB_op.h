@@ -140,8 +140,13 @@ public:
 
 };
 
+extern User emptyUser;
+
 void DB_list();
 void DB_create();
 void DB_newUser(User user);
 User loadLastUser();
 bool isUserExist_byLogin(const char* login);
+User getUser_byLogin(const char* login);
+bool isUserExist_byId(int id);
+User getUser_byId(int id);

@@ -115,3 +115,45 @@ bool isUserExist_byLogin(const char* login) {
     fin.close();
     return false;
 }
+
+
+bool isUserExist_byId(int id) {
+    ifstream fin("users.dat", ios::binary);
+    User u;
+    while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
+        if (u.getId() == id) {
+            fin.close();
+            return true;
+        }
+    }
+    fin.close();
+    return false;
+}
+
+
+User getUser_byLogin(const char* login) {
+    ifstream fin("users.dat", ios::binary);
+    User u;
+    while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
+        if (strcmp(u.getLogin(), login) == 0) {
+            fin.close();
+            return u;
+        }
+    }
+    fin.close();
+    return emptyUser;
+}
+
+User getUser_byId(int id) {
+    ifstream fin("users.dat", ios::binary);
+    User u;
+    while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
+        if (u.getId()==id) {
+            fin.close();
+            return u;
+        }
+    }
+    fin.close();
+    return emptyUser;
+}
+
