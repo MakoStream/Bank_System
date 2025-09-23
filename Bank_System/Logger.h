@@ -16,4 +16,9 @@ public:
     Logger();
     void write(const std::string& message);
     void cmd(int session_id, int user_id, vector<string>& args);
+    void newSession(int session_id, int client_type);
+    void userLoggined(int session_id, int user_id);
+    void exit();
 };
+
+extern Logger logger;

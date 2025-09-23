@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <csignal>
-#include "commands.h"
+//#include "commands.h"
 #include "DB_op.h"
 #include <cctype> 
 #include <algorithm> 

@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include "Logger.h"
-#include "commands.h"
+//#include "commands.h"
 #include <csignal>
 #include "DB_op.h"
 #include <optional>

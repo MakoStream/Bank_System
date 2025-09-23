@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <iostream>
 #include <windows.h>
@@ -52,11 +53,11 @@ public:
         int phone, cardType type, balanceType balance_Type, double balance)
         : id(id), type(type), balance_Type(balance_Type), balance(balance), status(AVAILABLE), phone(phone)
     {
-        strncpy(this->login, login, sizeof(this->login) - 1);
+        strncpy_s(this->login, login, sizeof(this->login) - 1);
         this->login[sizeof(this->login) - 1] = '\0';
-        strncpy(this->password, password, sizeof(this->password) - 1);
+        strncpy_s(this->password, password, sizeof(this->password) - 1);
         this->password[sizeof(this->password) - 1] = '\0';
-        strncpy(this->name, name, sizeof(this->name) - 1);
+        strncpy_s(this->name, name, sizeof(this->name) - 1);
         this->name[sizeof(this->name) - 1] = '\0';
     }
 

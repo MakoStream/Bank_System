@@ -4,6 +4,7 @@
 #include <ctime>
 #include <vector>
 #include <string>
+#include <sstream>
 #include "DB_op.h"
 
 using namespace std; 
@@ -73,3 +74,19 @@ void Logger::cmd(int session_id, int user_id, vector<string>& args) {
         logFile.close();
     }
 }
+
+void Logger::newSession(int session_id, int client_type) {
+    ostringstream oss;
+    oss << "Some user with S-Id:" << session_id << " connected with use User Client";
+    write(oss.str());
+}
+
+void Logger::userLoggined(int session_id, int user_id) {
+    ostringstream oss;
+    oss << "User with S-Id:" << session_id << " loggined as U-ID: " << user_id;
+    write(oss.str());
+}
+
+void Logger::exit() {
+    write("Process terminated succesful!");
+};

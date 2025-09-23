@@ -6,7 +6,16 @@
 #include <fstream>
 #include <sstream>
 #include "Logger.h"
-#include "commands.h"
+//#include "commands.h"
+#include "mainProcess.h"
+
+#include "processCommands.h"
+
+#include "CommandsManager.h"
+#include "commands/createDBCommand.h"
+#include "commands/RegisterUserCommand.h"
+#include "commands/PrintUserListCommand.h"
+
 #include <csignal>
 #include "DB_op.h"
 #include <thread>
@@ -30,15 +39,8 @@ vector<string> split(const string& input) {
     return tokens;
 };
 
-enum CMD_FS {NONE, GET_SID, LOGIN, LOGOUT};
-
-struct sessionConstruct {
-    int sessionId = 0;
-    int hash[10];
-    CMD_FS cmd_fs = NONE;
-    char cmd[256];
-};
-
+mainProcess process;
+CMD_Manager cmd_manager(process);
 Logger logger; // глобально
 
 
@@ -56,12 +58,24 @@ void HandleClient(HANDLE hPipe) {
 
 
         // Модифікуємо дані
-        cout << sessionData.cmd << endl;
-        strcpy(sessionData.cmd, "hallo");
+        /*cout << sessionData.cmd << endl;
+        strcpy(sessionData.cmd, "hallo");*/
+
         
+        
+        CommandsManager manager;
+        vector<string> args = split(sessionData.cmd);
+
+        if (sessionData.cmd_fs == GET_SID) {
+            cmd_manager.execute(sessionData.cmd_fs, sessionData, hPipe, bytesWritten);
+        };
+        //manager.execute(args[0], args);
+        process.printSessions();
+
 
         // Відправляємо назад клієнту
-        WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
+        //WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
+        
     }
 
     CloseHandle(hPipe);
@@ -83,25 +97,14 @@ void signalHandler(int signal) {
 // Requirements: Logger
 // Required for: main()
 void onExit() {
-    logger.write("Програма завершилася");
+    logger.exit();
 }
 
 
 
-struct Session {
-    int id;
-    User user;
-};
 
-class mainProcessClass {
-    
-};
 
-class Admin {  // Дані адміністратора
-    int id;
-    char login[32];
-    char password[32];
-};
+
 
 
 
@@ -112,11 +115,15 @@ class Admin {  // Дані адміністратора
 // Required for: entire program execution
 int main()
 {
+
+    
     signal(SIGINT, signalHandler);   // Ctrl+C
     signal(SIGABRT, signalHandler);  // аварійне завершення
     signal(SIGTERM, signalHandler);  // kill процес
     atexit(onExit); // викликається при нормальному exit()
     setlocale(LC_ALL, "ukr");
+    
+
 
     const char* pipeName = R"(\\.\pipe\bankPipe123456789)";
     while (true) {
