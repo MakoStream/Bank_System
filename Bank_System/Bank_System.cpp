@@ -41,7 +41,6 @@ vector<string> split(const string& input) {
 
 mainProcess process;
 CMD_Manager cmd_manager(process);
-Logger logger; // глобально
 
 
 void HandleClient(HANDLE hPipe) {

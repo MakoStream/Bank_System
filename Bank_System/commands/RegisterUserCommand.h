@@ -34,7 +34,7 @@ inline bool isPhone(const std::string& s) {
 
 class RegisterUserCommand : public Command {
 public:
-    void execute(const std::vector<std::string>& args, sessionConstruct user) override {
+    void execute(const std::vector<std::string>& args, Session& user) override {
         if (args.size() < 7) {
             cout << "Недостатньо аргументів для reg_user!" << endl;
             return;

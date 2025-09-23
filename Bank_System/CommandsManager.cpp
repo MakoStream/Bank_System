@@ -10,10 +10,10 @@ CommandsManager::CommandsManager() {
     commands.push_back(std::make_unique<PrintUserListCommand>());
 }
 
-void CommandsManager::execute(const std::string& cmdName, const std::vector<std::string>& args) {
+void CommandsManager::execute(const std::string& cmdName, const std::vector<std::string>& args, Session& user) {
     for (auto& cmd : commands) {
         if (cmd->name() == cmdName) {
-            cmd->execute(args);
+            cmd->execute(args, user);
             return;
         }
     }

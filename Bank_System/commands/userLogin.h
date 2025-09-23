@@ -3,7 +3,7 @@
 #include "../DB_op.h"
 #include <iostream>
 
-class PrintUserListCommand : public Command {
+class userLoginCommand : public Command {
     Logger* logger;
 public:
     void execute(const std::vector<std::string>& args, Session& user) override {
@@ -13,6 +13,6 @@ public:
     }
 
     std::string name() const override {
-        return "user_list";
+        return "login";
     }
 };

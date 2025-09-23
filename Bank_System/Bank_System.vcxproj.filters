@@ -68,5 +68,8 @@
     <ClInclude Include="processCommands\getSId.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="commands\userLogin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 #pragma once
+#include "mainProcess.h"
 #include <string>
 #include <vector>
 #include <windows.h>
@@ -17,7 +18,7 @@ extern struct sessionConstruct {
 class Command {
 public:
     virtual ~Command() = default;
-    virtual void execute(const std::vector<std::string>& args, sessionConstruct user) = 0; // чисто віртуальний метод
+    virtual void execute(const std::vector<std::string>& args, Session& user) = 0; // чисто віртуальний метод
     virtual std::string name() const = 0; // ім'я команди
 };
 

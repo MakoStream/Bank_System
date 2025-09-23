@@ -10,5 +10,5 @@ private:
 public:
     CommandsManager();
 
-    void execute(const std::string& cmdName, const std::vector<std::string>& args);
+    void execute(const std::string& cmdName, const std::vector<std::string>& args, Session& user);
 };

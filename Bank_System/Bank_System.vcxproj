@@ -141,6 +141,7 @@
     <ClInclude Include="commands\CreateDBCommand.h" />
     <ClInclude Include="commands\PrintUserListCommand.h" />
     <ClInclude Include="commands\RegisterUserCommand.h" />
+    <ClInclude Include="commands\userLogin.h" />
     <ClInclude Include="DB_op.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="mainProcess.h" />
