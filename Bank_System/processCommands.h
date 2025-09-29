@@ -12,5 +12,5 @@ private:
 public:
     CMD_Manager(mainProcess& process);
 
-    void execute(CMD_FS cmd_name, sessionConstruct& sessionData, HANDLE hPipe, DWORD& bytesWritten);
+    void execute(CMD_FS cmd_name, sessionConstruct& sessionData, HANDLE& hPipe, DWORD& bytesWritten);
 };

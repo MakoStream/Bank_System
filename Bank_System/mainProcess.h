@@ -7,14 +7,17 @@
 #include <fstream>
 #include <sstream>
 #include "Logger.h"
+//#include "Command.h"
 #include <csignal>
 #include <unordered_map>
 
 
-struct Session {
+typedef struct Session {
     int sesion_id;
     int user_id;
 };
+
+extern Session emptySession;
 
 class mainProcess {
     std::vector<Session> loggined_users;
@@ -23,4 +26,6 @@ public:
     int new_session();
     void login(int session_id, char login[32], char password[32]);
     void printSessions();
+    Session& getUserSession(int session_id);
 };
+extern mainProcess process;

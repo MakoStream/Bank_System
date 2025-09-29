@@ -1,6 +1,6 @@
 #pragma once
 #include "../Command.h"
-#include "../DB_op.h"
+#include "../DB_operations.h"
 #include <iostream>
 
 inline bool isStringDigit(const std::string& s) {
@@ -34,7 +34,7 @@ inline bool isPhone(const std::string& s) {
 
 class RegisterUserCommand : public Command {
 public:
-    void execute(const std::vector<std::string>& args, Session& user) override {
+    void execute(const std::vector<std::string>& args, handleInfo& handle) override {
         if (args.size() < 7) {
             cout << "Недостатньо аргументів для reg_user!" << endl;
             return;

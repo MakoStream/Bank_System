@@ -1,14 +1,16 @@
 #pragma once
 #include "../Command.h"
-#include "../DB_op.h"
+#include "../DB_operations.h"
 #include <iostream>
 
 class PrintUserListCommand : public Command {
     Logger* logger;
 public:
-    void execute(const std::vector<std::string>& args, Session& user) override {
+    void execute(const std::vector<std::string>& args, handleInfo& handle) override {
         DB_list();
-        logger->write("DB created");
+        strncpy(handle.sessionData.cmd, "User list is printed!", sizeof(handle.sessionData.cmd) - 1);
+        handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
+        WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
         return;
     }
 

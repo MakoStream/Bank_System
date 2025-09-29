@@ -17,12 +17,23 @@
 #include "commands/PrintUserListCommand.h"
 
 #include <csignal>
-#include "DB_op.h"
+#include "DB_operations.h"
 #include <thread>
 
 using namespace std;
 
-User emptyUser;
+User emptyUser(
+    -1,                  // int id
+    "",                  // const char* login
+    "",                  // const char* password
+    "",                  // const char* name
+    0,                   // int phone
+    DEFAULT,                // cardType type
+    UAH,                // balanceType balance_Type
+    0.0                  // double balance
+);
+
+Logger logger;  // визначення глобальної змінної
 
 
 // Function: split
@@ -40,6 +51,7 @@ vector<string> split(const string& input) {
 };
 
 mainProcess process;
+CommandsManager manager;
 CMD_Manager cmd_manager(process);
 
 
@@ -48,6 +60,7 @@ void HandleClient(HANDLE hPipe) {
         sessionConstruct sessionData;
         DWORD bytesRead, bytesWritten;
 
+        handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
         // Читаємо структуру від клієнта
         BOOL success = ReadFile(hPipe, &sessionData, sizeof(sessionData), &bytesRead, NULL);
         if (!success || bytesRead == 0) {
@@ -60,16 +73,19 @@ void HandleClient(HANDLE hPipe) {
         /*cout << sessionData.cmd << endl;
         strcpy(sessionData.cmd, "hallo");*/
 
-        
-        
-        CommandsManager manager;
         vector<string> args = split(sessionData.cmd);
-
         if (sessionData.cmd_fs == GET_SID) {
             cmd_manager.execute(sessionData.cmd_fs, sessionData, hPipe, bytesWritten);
+            process.printSessions();
+        }
+        
+        
+        else {
+            manager.execute(args[0], args, handle);
+            process.printSessions();
         };
-        //manager.execute(args[0], args);
-        process.printSessions();
+        
+
 
 
         // Відправляємо назад клієнту

@@ -5,12 +5,13 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include "Logger.h"
+//#include "Logger.h"
 #include <csignal>
-#include "DB_op.h"
+#include "DB_operations.h"
 #include <optional>
 #include "mainProcess.h"
 
+Session emptySession = { -1, -1 };
 
 int getNext_SId() {
     int s_id = 0;
@@ -64,6 +65,17 @@ void mainProcess::login(int session_id, char login[32], char password[32]){
     };
     return;
 }
+
+Session& mainProcess::getUserSession(int session_id) {
+    std::cout << "debug 4" << endl;
+    for (Session& a : loggined_users) {
+        if (a.sesion_id == session_id) {
+            std::cout << "debug 5" << endl;
+            return a;
+        }
+    };
+    return emptySession;
+};
 
 void mainProcess::printSessions() {
     for (Session a : loggined_users) {

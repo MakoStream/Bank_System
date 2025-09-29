@@ -1,10 +1,14 @@
 #pragma once
+
 #include <string>
 #include <vector>
-#include "DB_op.h"
-#include "mainProcess.h"
+#include "DB_operations.h"
+//#include "mainProcess.h"
+
 
 using namespace std;
+
+typedef struct Session;
 
 class Logger {
 private:

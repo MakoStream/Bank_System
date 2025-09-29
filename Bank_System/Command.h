@@ -14,17 +14,24 @@ extern struct sessionConstruct {
     char cmd[256];
 };
 
+extern struct handleInfo {
+    HANDLE& hPipe;
+    sessionConstruct& sessionData;
+    DWORD& bytesRead;
+    DWORD& bytesWritten;
+};
+
 // Базовий клас для будь-якої команди
 class Command {
 public:
     virtual ~Command() = default;
-    virtual void execute(const std::vector<std::string>& args, Session& user) = 0; // чисто віртуальний метод
+    virtual void execute(const std::vector<std::string>& args, handleInfo& handle) = 0; // чисто віртуальний метод
     virtual std::string name() const = 0; // ім'я команди
 };
 
 class processCommand {
 public:
     virtual ~processCommand() = default;
-    virtual void execute(CMD_FS cmd_name, sessionConstruct& sessionData, HANDLE hPipe, DWORD& bytesWritten) = 0;
+    virtual void execute(CMD_FS cmd_name, sessionConstruct& sessionData, HANDLE& hPipe, DWORD& bytesWritten) = 0;
     virtual CMD_FS name() const = 0;
 };

@@ -1,11 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include "mainProcess.h"
 #include "Logger.h"
 #include <fstream>
 #include <ctime>
 #include <vector>
 #include <string>
 #include <sstream>
-#include "DB_op.h"
+#include "DB_operations.h"
 
 using namespace std; 
 

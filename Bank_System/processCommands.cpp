@@ -14,7 +14,7 @@ CMD_Manager::CMD_Manager(mainProcess& process) {
     //commands.push_back(std::make_unique<PrintUserListCommand>());
 }
 
-void CMD_Manager::execute(CMD_FS cmd_name, sessionConstruct& sessionData, HANDLE hPipe, DWORD& bytesWritten) {
+void CMD_Manager::execute(CMD_FS cmd_name, sessionConstruct& sessionData, HANDLE& hPipe, DWORD& bytesWritten) {
     for (auto& cmd : processCommands) {
         if (cmd->name() == cmd_name) {
             cmd->execute(cmd_name, sessionData, hPipe, bytesWritten);

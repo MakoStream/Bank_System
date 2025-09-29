@@ -114,6 +114,10 @@ public:
         return 0;
     };
 
+    bool checkPassword(const char c_password[32]) {
+        return std::strcmp(password, c_password) == 0;
+    };
+
     // Для запису та считування даних з users.dat
     void save(ofstream& fout) const {
         fout.write(reinterpret_cast<const char*>(&id), sizeof(id));
