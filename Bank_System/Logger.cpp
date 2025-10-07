@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include "DB_operations.h"
+#include "User.h"
 
 using namespace std; 
 

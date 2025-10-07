@@ -5,13 +5,12 @@
 #include <windows.h>
 
 
-extern enum CMD_FS { NONE, GET_SID, LOGIN, LOGOUT };
-
 extern struct sessionConstruct {
     int sessionId = 0;
     int hash[10];
     CMD_FS cmd_fs = NONE;
     char cmd[256];
+    char msg[5][256];
 };
 
 extern struct handleInfo {

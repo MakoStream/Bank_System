@@ -13,11 +13,10 @@ CommandsManager::CommandsManager() {
 }
 
 void CommandsManager::execute(std::string& cmdName, std::vector<std::string>& args, handleInfo& handle) {
-    std::cout << "debug 1" << endl;
+    //std::cout << "debug 1" << endl;
     for (auto& cmd : commands) {
         if (cmd->name() == cmdName) {
             cmd->execute(args, handle);
-            std::cout << "debug 2" << endl;
             return;
         }
     }

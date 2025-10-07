@@ -1,7 +1,7 @@
 #pragma once
 #include "../mainProcess.h"
 #include "../Logger.h"
-#include "../DB_operations.h"
+#include "../User.h"
 #include "../Command.h"
 #include <iostream>
 

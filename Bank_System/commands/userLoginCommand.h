@@ -1,6 +1,6 @@
 #pragma once
 #include "../Command.h"
-#include "../DB_operations.h"
+#include "../User.h"
 #include <iostream>
 #include "../mainProcess.h"
 
