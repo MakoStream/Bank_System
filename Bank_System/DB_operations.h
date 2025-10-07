@@ -19,6 +19,8 @@ using namespace std;
 enum cardStatus { AVAILABLE, BLOCKED };
 enum cardType { DEPOSITE, DEFAULT, CREDIT };
 enum balanceType { UAH, DLR, EUR };
+enum userStatus { USER_AVAILABLE, USER_BLOCKED, USER_NONVERIFED};
+enum userRole { USER, ADMIN };
 
 
 extern std::unordered_map<std::string, cardType> cardMap;
@@ -29,9 +31,19 @@ extern std::unordered_map<std::string, balanceType> balanceMap;
 // 1 uah = 0.024 dollar = 0.021 euro
 
 
+struct passportData {
+	char series[2];
+	int number;
+	char issuedBy[64];
+	char issuedDate[16];
+	char birthDate[16];
+};
+extern passportData emptyPassport;
+
+
 // Class: User
 // Description: Represents a bank system user with credentials, balance, card info, and status
-// Requirements: <string>, <fstream>, cardType, balanceType, cardStatus
+// Requirements: <string>, <fstream>, userStatus, userRole
 // Required for: DB operations, commands, sessions
 class User {  // Дані користувача
     int id;
@@ -39,84 +51,45 @@ class User {  // Дані користувача
     char password[32];
     char name[64];
     int phone;
-    cardType type = DEFAULT;
-    balanceType balance_Type;
-    float balance;
-    cardStatus status = AVAILABLE;
-
+	passportData passport;                  // додаткові дані для верифікації
+	int TIN;                                // ідентифікаційний номер платника податків
+	userStatus status = USER_NONVERIFED;
+	userRole role = USER;
 
 public:
 
     User() {} // порожній конструктор для load
 
-    User(int id, const char* login, const char* password, const char* name,
-        int phone, cardType type, balanceType balance_Type, double balance)
-        : id(id), type(type), balance_Type(balance_Type), balance(balance), status(AVAILABLE), phone(phone)
+    // Конструктор
+	User(int _id, const char* _login, const char* _password, const char* _name, int _phone, passportData _passport, int _TIN,
+        userStatus _status = USER_AVAILABLE, userRole _role = USER)
+		: id(_id), phone(_phone), status(_status), role(_role), TIN(_TIN), passport(_passport)
     {
-        strncpy_s(this->login, login, sizeof(this->login) - 1);
-        this->login[sizeof(this->login) - 1] = '\0';
-        strncpy_s(this->password, password, sizeof(this->password) - 1);
-        this->password[sizeof(this->password) - 1] = '\0';
-        strncpy_s(this->name, name, sizeof(this->name) - 1);
-        this->name[sizeof(this->name) - 1] = '\0';
+        strncpy(login, _login, sizeof(login) - 1);
+        login[sizeof(login) - 1] = '\0';
+        strncpy(password, _password, sizeof(password) - 1);
+        password[sizeof(password) - 1] = '\0';
+        strncpy(name, _name, sizeof(name) - 1);
+        name[sizeof(name) - 1] = '\0';
     }
 
     // Базові ф-ції для виводу інформації
     int getId()const { return id; };
-    double getBalance()const { return balance; };
-    balanceType getBalanceType() const { return balance_Type; };
     const char* getName()const { return name; };
     const char* getLogin()const { return login; };
-    string getCardTypeStr() const {
-        switch (type) {
-        case DEFAULT: return "DEFAULT";
-        case DEPOSITE: return "DEPOSITE";
-        case CREDIT: return "CREDIT";
-        }
-        return "UNKNOWN";
-    }
-    string getBalanceTypeStr() const {
-        switch (balance_Type) {
-        case UAH: return "UAH";
-        case DLR: return "DLR";
-        case EUR: return "EUR";
-        }
-        return "UNKNOWN";
-    }
-    string getStatusStr() const {
-        switch (status) {
-        case AVAILABLE: return "AVAILABLE";
-        case BLOCKED: return "BLOCKED";
-        }
-        return "UNKNOWN";
-    }
     int getPhone() const { return phone; }
-
-
-    // Функція щоб разлогінити користувача з сессії
-    int logout() {
-        return 0;
-    };
 
     // Функції для платіжних операцій
     int transaction(User user, double ammount) {
-
         return 0;
     };
 
     // Базові функції для керування статусом
-    int ban() {
-        status = BLOCKED;
-        return 0;
-    };
-    int unban() {
-        status = AVAILABLE;
-        return 0;
-    };
+    void ban() {status = USER_BLOCKED;};
+    void unban() {status = USER_AVAILABLE;};
 
-    bool checkPassword(const char c_password[32]) {
-        return std::strcmp(password, c_password) == 0;
-    };
+    // функція для перевірки правильності паролю
+    bool checkPassword(const char c_password[32]) { return std::strcmp(password, c_password) == 0;};
 
     // Для запису та считування даних з users.dat
     void save(ofstream& fout) const {
@@ -125,10 +98,8 @@ public:
         fout.write(password, sizeof(password));
         fout.write(name, sizeof(name));
         fout.write(reinterpret_cast<const char*>(&phone), sizeof(phone));
-        fout.write(reinterpret_cast<const char*>(&type), sizeof(type));
-        fout.write(reinterpret_cast<const char*>(&balance_Type), sizeof(balance_Type));
-        fout.write(reinterpret_cast<const char*>(&balance), sizeof(balance));
         fout.write(reinterpret_cast<const char*>(&status), sizeof(status));
+		fout.write(reinterpret_cast<const char*>(&role), sizeof(role));
     }
 
     void load(ifstream& fin) {
@@ -137,10 +108,8 @@ public:
         fin.read(password, sizeof(password));
         fin.read(name, sizeof(name));
         fin.read(reinterpret_cast<char*>(&phone), sizeof(phone));
-        fin.read(reinterpret_cast<char*>(&type), sizeof(type));
-        fin.read(reinterpret_cast<char*>(&balance_Type), sizeof(balance_Type));
-        fin.read(reinterpret_cast<char*>(&balance), sizeof(balance));
         fin.read(reinterpret_cast<char*>(&status), sizeof(status));
+		fin.read(reinterpret_cast<char*>(&role), sizeof(role));
     }
 
 };

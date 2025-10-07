@@ -11,6 +11,7 @@
 #include <csignal>
 #include <unordered_map>
 
+extern enum CMD_FS { NONE, GET_SID, LOGIN, LOGOUT, GET_INFO };
 
 typedef struct Session {
     int sesion_id;

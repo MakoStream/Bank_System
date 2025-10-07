@@ -22,15 +22,17 @@
 
 using namespace std;
 
+passportData emptyPassport = { "", 0, "", "", "" };
 User emptyUser(
     -1,                  // int id
     "",                  // const char* login
     "",                  // const char* password
     "",                  // const char* name
     0,                   // int phone
-    DEFAULT,                // cardType type
-    UAH,                // balanceType balance_Type
-    0.0                  // double balance
+	emptyPassport,       // passportData passport
+	0,                   // int TIN
+	USER_AVAILABLE,      // userStatus status
+	USER                 // userRole role
 );
 
 Logger logger;  // визначення глобальної змінної
