@@ -28,6 +28,7 @@ User emptyUser(
     "",                  // const char* login
     "",                  // const char* password
     "",                  // const char* name
+	"",                  // const char* surname
     0,                   // int phone
 	emptyPassport,       // passportData passport
 	0,                   // int TIN

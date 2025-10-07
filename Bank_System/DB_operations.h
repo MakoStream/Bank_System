@@ -50,6 +50,7 @@ class User {  // Дані користувача
     char login[32];
     char password[32];
     char name[64];
+    char surname[64];
     int phone;
 	passportData passport;                  // додаткові дані для верифікації
 	int TIN;                                // ідентифікаційний номер платника податків
@@ -61,9 +62,9 @@ public:
     User() {} // порожній конструктор для load
 
     // Конструктор
-	User(int _id, const char* _login, const char* _password, const char* _name, int _phone, passportData _passport, int _TIN,
+	User(int _id, const char* _login, const char* _password, const char* _name, const char* _surname, int _phone, passportData _passport, int _TIN,
         userStatus _status = USER_AVAILABLE, userRole _role = USER)
-		: id(_id), phone(_phone), status(_status), role(_role), TIN(_TIN), passport(_passport)
+		: id(_id), phone(_phone), passport(_passport), TIN(_TIN), status(_status), role(_role)
     {
         strncpy(login, _login, sizeof(login) - 1);
         login[sizeof(login) - 1] = '\0';
@@ -71,18 +72,16 @@ public:
         password[sizeof(password) - 1] = '\0';
         strncpy(name, _name, sizeof(name) - 1);
         name[sizeof(name) - 1] = '\0';
+        strncpy(surname, _surname, sizeof(surname) - 1);
+        surname[sizeof(surname) - 1] = '\0';
     }
 
     // Базові ф-ції для виводу інформації
     int getId()const { return id; };
     const char* getName()const { return name; };
+    const char* getSurname()const { return surname; };
     const char* getLogin()const { return login; };
     int getPhone() const { return phone; }
-
-    // Функції для платіжних операцій
-    int transaction(User user, double ammount) {
-        return 0;
-    };
 
     // Базові функції для керування статусом
     void ban() {status = USER_BLOCKED;};
@@ -97,9 +96,12 @@ public:
         fout.write(login, sizeof(login));
         fout.write(password, sizeof(password));
         fout.write(name, sizeof(name));
+        fout.write(surname, sizeof(surname));
         fout.write(reinterpret_cast<const char*>(&phone), sizeof(phone));
+        fout.write(reinterpret_cast<const char*>(&passport), sizeof(passport));
+        fout.write(reinterpret_cast<const char*>(&TIN), sizeof(TIN));
         fout.write(reinterpret_cast<const char*>(&status), sizeof(status));
-		fout.write(reinterpret_cast<const char*>(&role), sizeof(role));
+        fout.write(reinterpret_cast<const char*>(&role), sizeof(role));
     }
 
     void load(ifstream& fin) {
@@ -107,9 +109,12 @@ public:
         fin.read(login, sizeof(login));
         fin.read(password, sizeof(password));
         fin.read(name, sizeof(name));
+        fin.read(surname, sizeof(surname));
         fin.read(reinterpret_cast<char*>(&phone), sizeof(phone));
+        fin.read(reinterpret_cast<char*>(&passport), sizeof(passport));
+        fin.read(reinterpret_cast<char*>(&TIN), sizeof(TIN));
         fin.read(reinterpret_cast<char*>(&status), sizeof(status));
-		fin.read(reinterpret_cast<char*>(&role), sizeof(role));
+        fin.read(reinterpret_cast<char*>(&role), sizeof(role));
     }
 
 };

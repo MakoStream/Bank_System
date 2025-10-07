@@ -34,8 +34,12 @@ inline bool isPhone(const std::string& s) {
 
 class RegisterUserCommand : public Command {
 public:
-    void execute(const std::vector<std::string>& args, handleInfo& handle) override {
-        if (args.size() < 7) {
+	void execute(const std::vector<std::string>& args, handleInfo& handle) override { // reg_user login password name surname phone //example: reg_user user1 pass1 John Doe 1234567890
+        for (string a : args) {
+			cout << a << " ";
+        };
+		cout << endl;
+        if (args.size() < 6) {
             cout << "Недостатньо аргументів для reg_user!" << endl;
             return;
         }
@@ -46,33 +50,15 @@ public:
         };
 
         int phone;
-        if (isPhone(args[4])) {
-            phone = stoi(args[4]);
+        if (isPhone(args[5])) {
+            phone = stoi(args[5]);
         }
         else {
             cout << "phone number is incorect" << endl;
             return;
         };
 
-        // Конвертація рядка в enum cardType
-        cardType newUserCardType;
-        if (cardMap.find(args[5]) != cardMap.end()) {
-            newUserCardType = cardMap[args[5]];
-        }
-        else {
-            cout << "Невідомий тип карти!" << endl;
-            return;
-        }
 
-        // Конвертація рядка в enum balanceType
-        balanceType newUserBalanceType;
-        if (balanceMap.find(args[6]) != balanceMap.end()) {
-            newUserBalanceType = balanceMap[args[6]];
-        }
-        else {
-            cout << "Невідома валюта!" << endl;
-            return;
-        };
         const char* newUserLogin = args[1].c_str();
         if (isUserExist_byLogin(newUserLogin)) {
             cout << newUserLogin << " already exist" << endl;
@@ -86,15 +72,23 @@ public:
         };
         User newUser(
             newUserId,
-            args[1].c_str(),
-            args[2].c_str(),
-            args[3].c_str(),
+			args[1].c_str(), // login
+			args[2].c_str(), // password
+			args[3].c_str(), // name
+			args[4].c_str(), // surname
             phone,
-            newUserCardType,
-            newUserBalanceType,
-            0
+			emptyPassport,
+			0,
+			USER_NONVERIFED,
+            USER
         );
         DB_newUser(newUser);
+		cout << "User " << newUserLogin << " registered!" << endl;
+
+
+		strncpy(handle.sessionData.cmd, "User registered!", sizeof(handle.sessionData.cmd) - 1);
+		handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
+		WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
 
     }
 
