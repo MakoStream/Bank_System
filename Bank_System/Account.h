@@ -35,12 +35,13 @@ class account {  // Дані банківської картки
 	balanceType balance_type = UAH;
 	double balance = 0.0;
 	cardType type = DEFAULT;
+	int AccountType = 0;             // План рахунків https://www.buhoblik.org.ua/uchet/organizacziya-buxgalterskogo-ucheta/388-plan-raxunkiv.html
 	cardStatus status = NONVERIFED;
 public:
 	account() {} // порожній конструктор для load
 	account(const int _userID, const char* _IBAN, const char* _cardNumber, const char* _CVV, const char* _expirationDate,
-		balanceType _balance_type = UAH, double _balance = 0.0, cardType _type = DEFAULT, cardStatus _status = NONVERIFED)
-		: userID(_userID), balance_type(_balance_type), balance(_balance), type(_type), status(_status)
+		balanceType _balance_type = UAH, int _AccountType, double _balance = 0.0, cardType _type = DEFAULT, cardStatus _status = NONVERIFED)
+		: userID(_userID), balance_type(_balance_type), AccountType(_AccountType), balance(_balance), type(_type), status(_status)
 	{
 		strncpy(IBAN, _IBAN, sizeof(IBAN) - 1);
 		strncpy(cardNumber, _cardNumber, sizeof(cardNumber) - 1);
@@ -58,6 +59,7 @@ public:
 	balanceType getBalanceType() { return balance_type; };
 	double getBalance() { return balance; };
 	cardType getCardType() { return type; };
+	int getAccountType() { return AccountType; };
 	cardStatus getCardStatus() {return status;};
 
 
@@ -75,6 +77,7 @@ public:
 		ofs.write((char*)&balance_type, sizeof(balance_type));
 		ofs.write((char*)&balance, sizeof(balance));
 		ofs.write((char*)&type, sizeof(type));
+		ofs.write((char*)&AccountType, sizeof(AccountType));
 		ofs.write((char*)&status, sizeof(status));
 	};
 	void load(std::ifstream& ifs) {
@@ -87,6 +90,7 @@ public:
 		ifs.read((char*)&balance_type, sizeof(balance_type));
 		ifs.read((char*)&balance, sizeof(balance));
 		ifs.read((char*)&type, sizeof(type));
+		ifs.read((char*)&AccountType, sizeof(AccountType));
 		ifs.read((char*)&status, sizeof(status));
 	};
 };
