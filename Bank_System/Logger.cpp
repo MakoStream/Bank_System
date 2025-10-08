@@ -1,10 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include "mainProcess.h"
 #include "Logger.h"
 #include <fstream>
 #include <ctime>
 #include <vector>
 #include <string>
-#include "DB_op.h"
+#include <sstream>
+#include "User.h"
 
 using namespace std; 
 
@@ -73,3 +75,30 @@ void Logger::cmd(int session_id, int user_id, vector<string>& args) {
         logFile.close();
     }
 }
+
+void Logger::newSession(int session_id, int client_type) {
+    ostringstream oss;
+    oss << "Some user with S-Id:" << session_id << " connected with use User Client";
+    write(oss.str());
+}
+
+void Logger::userLoggined(Session user) {
+    ostringstream oss;
+    oss << "User with S-Id:" << user.sesion_id << " loggined as U-ID: " << user.user_id;
+    write(oss.str());
+}
+void Logger::createdDB(Session user) {
+    ostringstream oss;
+    oss << "User (S-Id: " <<user.sesion_id << " | U-Id: "<<user.user_id <<") create DB";
+    write(oss.str());
+}
+
+void Logger::AccessDanied(string cmd_name, Session user) {
+    ostringstream oss;
+    oss << "Executing command" << cmd_name <<" for User(S - Id: " << user.sesion_id << " | U - Id : " << user.user_id << ") is Danied";
+    write(oss.str());
+}
+
+void Logger::exit() {
+    write("Process terminated succesful!");
+};

@@ -129,14 +129,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bank_System.cpp" />
-    <ClCompile Include="commands.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="DB_op.cpp" />
+    <ClCompile Include="Command.h" />
+    <ClCompile Include="CommandsManager.cpp" />
+    <ClCompile Include="mainProcess.cpp" />
+    <ClCompile Include="processCommands.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="commands.h" />
+    <ClInclude Include="CommandsManager.h" />
+    <ClInclude Include="commands\CreateDBCommand.h" />
+    <ClInclude Include="commands\PrintUserListCommand.h" />
+    <ClInclude Include="commands\RegisterUserCommand.h" />
+    <ClInclude Include="commands\userLoginCommand.h" />
     <ClInclude Include="DB_op.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="mainProcess.h" />
+    <ClInclude Include="processCommands.h" />
+    <ClInclude Include="processCommands\getSId.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

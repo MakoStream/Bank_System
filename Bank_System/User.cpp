@@ -6,9 +6,9 @@
 #include <fstream>
 #include <sstream>
 #include "Logger.h"
-#include "commands.h"
+//#include "commands.h"
 #include <csignal>
-#include "DB_op.h"
+#include "User.h"
 #include <optional>
 
 using namespace std;
@@ -62,18 +62,18 @@ void DB_list() {
     }
 
     User u;
-    while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
+    while (fin.peek() != EOF) { // перевіряємо кінець файлу
+        u.load(fin);
+        if (fin.gcount() == 0) break; // якщо нічого не прочитано
         cout
             << u.getId() << " "
             << u.getLogin() << " "
             << u.getName() << " "
+			<< u.getSurname() << " "
             << u.getPhone() << " "
-            << u.getCardTypeStr() << " "
-            << u.getBalanceTypeStr() << " "
-            << u.getBalance() << " "
-            << u.getStatusStr()
             << endl;
     }
+
     fin.close();
 }
 
