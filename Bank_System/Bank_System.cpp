@@ -17,7 +17,7 @@
 #include "commands/PrintUserListCommand.h"
 
 #include <csignal>
-#include "DB_operations.h"
+#include "User.h"
 #include <thread>
 
 using namespace std;
