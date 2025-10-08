@@ -9,7 +9,10 @@
 #include "Logger.h"
 #include <csignal>
 #include <unordered_map>
+#include <stdexcept>
+#include <cstdio>
 #include "User.h"
+
 
 using namespace std;
 
@@ -35,19 +38,21 @@ class account {  // Дані банківської картки
 	balanceType balance_type = UAH;
 	double balance = 0.0;
 	cardType type = DEFAULT;
-	int AccountType = 0;             // План рахунків https://www.buhoblik.org.ua/uchet/organizacziya-buxgalterskogo-ucheta/388-plan-raxunkiv.html
+	short AccountType = 0;             // План рахунків https://www.buhoblik.org.ua/uchet/organizacziya-buxgalterskogo-ucheta/388-plan-raxunkiv.html
 	cardStatus status = NONVERIFED;
 public:
 	account() {} // порожній конструктор для load
-	account(const int _userID, const char* _IBAN, const char* _cardNumber, const char* _CVV, const char* _expirationDate,
-		balanceType _balance_type = UAH, int _AccountType, double _balance = 0.0, cardType _type = DEFAULT, cardStatus _status = NONVERIFED)
-		: userID(_userID), balance_type(_balance_type), AccountType(_AccountType), balance(_balance), type(_type), status(_status)
+	account(const int _userID, const char* _IBAN, const char* _cardNumber, const char* _PIN,
+		const char* _CVV, const char* _expirationDate,short _AccountType, balanceType _balance_type = UAH,
+		cardType _type = DEFAULT, cardStatus _status = NONVERIFED)
+		: userID(_userID), balance_type(_balance_type), type(_type), AccountType(_AccountType), status(_status)
 	{
-		strncpy(IBAN, _IBAN, sizeof(IBAN) - 1);
-		strncpy(cardNumber, _cardNumber, sizeof(cardNumber) - 1);
-		strncpy(CVV, _CVV, sizeof(CVV) - 1);
-		strncpy(expirationDate, _expirationDate, sizeof(expirationDate) - 1);
-	};
+		strncpy(IBAN, _IBAN, sizeof(IBAN) - 1); IBAN[sizeof(IBAN) - 1] = '\0';
+		strncpy(cardNumber, _cardNumber, sizeof(cardNumber) - 1); cardNumber[sizeof(cardNumber) - 1] = '\0';
+		strncpy(PIN, _PIN, sizeof(PIN) - 1); PIN[sizeof(PIN) - 1] = '\0';
+		strncpy(CVV, _CVV, sizeof(CVV) - 1); CVV[sizeof(CVV) - 1] = '\0';
+		strncpy(expirationDate, _expirationDate, sizeof(expirationDate) - 1); expirationDate[sizeof(expirationDate) - 1] = '\0';
+	}
 
 	// Базові функції для повернення даних
 	User getUser() { return getUser_byId(userID); };
@@ -59,7 +64,7 @@ public:
 	balanceType getBalanceType() { return balance_type; };
 	double getBalance() { return balance; };
 	cardType getCardType() { return type; };
-	int getAccountType() { return AccountType; };
+	short getAccountType() { return AccountType; };
 	cardStatus getCardStatus() {return status;};
 
 
@@ -97,7 +102,43 @@ public:
 
 // Функції для роботи з банківськими рахунками
 void ACC_createDB(); // Створення пустого бінарного файлу accounts.dat
-void ACC_addAccount(account acc); // Додавання нового рахунку в accounts.dat
+void ACC_addAccount(); // Додавання нового рахунку в accounts.dat
 account ACC_getAccountByCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
 account ACC_getAccountByIBAN(const char* IBAN); // Пошук рахунку за IBAN
 void transferFunds(account& fromAcc, account& toAcc, double amount); // Переказ коштів між рахунками
+
+int generateIBAN(); // Генерація унікального IBAN
+int generateCardNumber(); // Генерація унікального номера картки
+
+
+//===============================================================================================================================
+//===============================================================================================================================
+//===============================================================================================================================
+
+
+// Типи рахунків:
+
+//Поточні рахунки клієнтів : рахунки 31 класу
+	//313 — Рахунки в національній валюті
+	//314 — Рахунки в іноземній валюті
+//Депозитні рахунки клієнтів : рахунки 31 класу
+	//315 — Депозитні рахунки в національній валюті
+	//316 — Депозитні рахунки в іноземній валюті
+//Кредитні рахунки клієнтів : рахунки 31 класу
+	//317 — Кредитні рахунки в національній валюті
+	//318 — Кредитні рахунки в іноземній валюті
+// Депонована заробітня плата : рахунок 36 класу
+	//3651 — Депонована заробітня плата
+
+
+//Дебіторська заборгованість банку : рахунок 20 класу
+	//201 — Дебіторська заборгованість за операціями з клієнтами
+//Доходи від кредитних операцій : рахунок 70 класу
+	//701 — Процентні доходи від кредитних операцій
+// Доходи від коміссій : рахунок 70 класу
+	// 704 — Доходи від коміссійних операцій
+//Витрати на оплату депозитів : рахунок 80 класу
+	//801 — Витрати на оплату депозитів
+
+// Блокування коштів : рахунок 30 класу
+	// 303 — Блокування коштів на рахунках клієнтів
