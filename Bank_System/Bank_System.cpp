@@ -10,6 +10,7 @@
 #include "mainProcess.h"
 
 #include "processCommands.h"
+#include "CommandsManager.h"
 
 #include <csignal>
 #include "User.h"
