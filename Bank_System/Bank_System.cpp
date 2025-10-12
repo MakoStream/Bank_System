@@ -11,11 +11,6 @@
 
 #include "processCommands.h"
 
-#include "CommandsManager.h"
-#include "commands/createDBCommand.h"
-#include "commands/RegisterUserCommand.h"
-#include "commands/PrintUserListCommand.h"
-
 #include <csignal>
 #include "User.h"
 #include <thread>
