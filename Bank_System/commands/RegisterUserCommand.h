@@ -34,10 +34,12 @@ inline bool isPhone(const std::string& s) {
 
 class RegisterUserCommand : public Command {
 public:
-	void execute(const std::vector<std::string>& args, handleInfo& handle) override { // reg_user login password name surname phone //example: reg_user user1 pass1 John Doe 1234567890
-        for (string a : args) {
+	void execute(handleInfo& handle) override { // reg_user login password name surname phone //example: reg_user user1 pass1 John Doe 1234567890
+        string input (handle.sessionData.cmd);
+		vector<string> args = split(input);
+        /*for (string a : args) {  // debug
 			cout << a << " ";
-        };
+        };*/
 		cout << endl;
         if (args.size() < 6) {
             cout << "Недостатньо аргументів для reg_user!" << endl;

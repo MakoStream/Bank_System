@@ -6,9 +6,8 @@
 #include <iostream>
 
 class CreateDBCommand : public Command {
-    Logger* logger;  // вказівник на глобальний логгер
 public:
-    void execute(const std::vector<std::string>& args, handleInfo& handle) override {
+    void execute(handleInfo& handle) override {
         DB_create();
         //std::cout << "База даних створена!\n" 
 

@@ -5,9 +5,12 @@
 #include "../mainProcess.h"
 
 class userLoginCommand : public Command {
-    Logger* logger;
+
 public:
-    void execute(const std::vector<std::string>& args, handleInfo& handle) override { // login <login> <password>
+    void execute(handleInfo& handle) override { // login <login> <password>
+		string cmdStr(handle.sessionData.cmd);
+		std::vector<std::string> args = split(cmdStr);
+
         if (args.size() < 3) {
             cout << "loggin: Args issue" << endl;
             return;

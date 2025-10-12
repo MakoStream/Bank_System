@@ -27,7 +27,7 @@ extern std::unordered_map<std::string, balanceType> balanceMap;
 // Class: Account
 // Description: Represents a bank account with card details, balance, and status
 // Requirements: <string>, <fstream>, cardStatus, cardType, balanceType
-// Required for:
+// Required for: 
 class account {  // Дані банківської картки
 	int userID;                      // ID власника картки
 	char IBAN[36];
@@ -59,13 +59,28 @@ public:
 	char* getIBAN() {return IBAN;}
 	char* getCardNumber() {return cardNumber;};
 	//char* getPIN() { return PIN; };
-	char* getCVV() { return CVV; };
+	//char* getCVV() { return CVV; };
 	char* getExpirationDate() { return expirationDate; };
 	balanceType getBalanceType() { return balance_type; };
 	double getBalance() { return balance; };
 	cardType getCardType() { return type; };
 	short getAccountType() { return AccountType; };
 	cardStatus getCardStatus() {return status;};
+
+	// Доступ
+	void verife() { status = AVAILABLE; }; void unban() { status = AVAILABLE; };
+	void ban(string reason) { 
+		status = BLOCKED; 
+	};
+	void changePIN(const char* newPIN) { strncpy(PIN, newPIN, sizeof(PIN) - 1); PIN[sizeof(PIN) - 1] = '\0'; };
+
+	bool checkPIN(const char* inputPIN) {
+		return strncmp(PIN, inputPIN, sizeof(PIN)) == 0;
+	}
+	bool checkCVV(const char* inputCVV) {
+		return strncmp(CVV, inputCVV, sizeof(CVV)) == 0;
+	}
+	
 
 
 

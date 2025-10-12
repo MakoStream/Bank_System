@@ -3,12 +3,12 @@
 #include <string>
 #include <vector>
 #include <windows.h>
+#include "basic_functions.h"
 
 
 extern struct sessionConstruct {
     int sessionId = 0;
     int hash[10];
-    CMD_FS cmd_fs = NONE;
     char cmd[256];
     char msg[5][256];
 };
@@ -24,13 +24,6 @@ extern struct handleInfo {
 class Command {
 public:
     virtual ~Command() = default;
-    virtual void execute(const std::vector<std::string>& args, handleInfo& handle) = 0; // чисто віртуальний метод
+    virtual void execute(handleInfo& handle) = 0; // чисто віртуальний метод
     virtual std::string name() const = 0; // ім'я команди
-};
-
-class processCommand {
-public:
-    virtual ~processCommand() = default;
-    virtual void execute(CMD_FS cmd_name, sessionConstruct& sessionData, HANDLE& hPipe, DWORD& bytesWritten) = 0;
-    virtual CMD_FS name() const = 0;
 };

@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include "basic_functions.h"
 
 class CommandsManager {
 private:
@@ -10,5 +11,5 @@ private:
 public:
     CommandsManager();
 
-    void execute(std::string& cmdName, std::vector<std::string>& args, handleInfo& handle);
+    void execute(handleInfo& handle);
 };
