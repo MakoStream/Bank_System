@@ -28,8 +28,13 @@ public:
         };
         
         if (user.checkPassword(password)) {
+            
             process.login(handle.sessionData.sessionId, login, password);
+            Session& this_session = process.getSessionByID(handle.sessionData.sessionId);
+            process.generateAuthKey(this_session, handle.sessionData);
+            //cout << "1: " << this_session.auth_key << endl;
             strncpy(handle.sessionData.cmd, "Loggined!", sizeof(handle.sessionData.cmd) - 1);
+
             handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
             WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
             return;

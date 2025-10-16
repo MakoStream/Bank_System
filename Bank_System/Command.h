@@ -4,21 +4,13 @@
 #include <vector>
 #include <windows.h>
 #include "basic_functions.h"
+#include "User.h"
+#include "Account.h"
+
+using namespace std;
 
 
-extern struct sessionConstruct {
-    int sessionId = 0;
-    int hash[10];
-    char cmd[256];
-    char msg[5][256];
-};
 
-extern struct handleInfo {
-    HANDLE& hPipe;
-    sessionConstruct& sessionData;
-    DWORD& bytesRead;
-    DWORD& bytesWritten;
-};
 
 // Базовий клас для будь-якої команди
 class Command {

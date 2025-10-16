@@ -84,18 +84,18 @@ void Logger::newSession(int session_id, int client_type) {
 
 void Logger::userLoggined(Session user) {
     ostringstream oss;
-    oss << "User with S-Id:" << user.sesion_id << " loggined as U-ID: " << user.user_id;
+    oss << "User with S-Id:" << user.session_id << " loggined as U-ID: " << user.user_id;
     write(oss.str());
 }
 void Logger::createdDB(Session user) {
     ostringstream oss;
-    oss << "User (S-Id: " <<user.sesion_id << " | U-Id: "<<user.user_id <<") create DB";
+    oss << "User (S-Id: " <<user.session_id << " | U-Id: "<<user.user_id <<") create DB";
     write(oss.str());
 }
 
 void Logger::AccessDanied(string cmd_name, Session user) {
     ostringstream oss;
-    oss << "Executing command" << cmd_name <<" for User(S - Id: " << user.sesion_id << " | U - Id : " << user.user_id << ") is Danied";
+    oss << "Executing command" << cmd_name <<" for User(S - Id: " << user.session_id << " | U - Id : " << user.user_id << ") is Danied";
     write(oss.str());
 }
 

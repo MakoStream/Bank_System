@@ -22,7 +22,8 @@ enum balanceType { UAH, DLR, EUR };
 
 extern std::unordered_map<std::string, cardType> cardMap;
 extern std::unordered_map<std::string, balanceType> balanceMap;
-
+extern std::unordered_map<std::string, cardStatus> statusMap;
+extern std::unordered_map<cardStatus, std::string> statusMapReverse;
 
 // Class: Account
 // Description: Represents a bank account with card details, balance, and status
@@ -56,8 +57,9 @@ public:
 
 	// Базові функції для повернення даних
 	User getUser() { return getUser_byId(userID); };
+	int getUserID() { return userID; };
 	char* getIBAN() {return IBAN;}
-	char* getCardNumber() {return cardNumber;};
+	char* getPAN() {return cardNumber;};
 	//char* getPIN() { return PIN; };
 	//char* getCVV() { return CVV; };
 	char* getExpirationDate() { return expirationDate; };
@@ -117,20 +119,22 @@ public:
 
 // Функції для роботи з банківськими рахунками
 void ACC_createDB(); // Створення пустого бінарного файлу accounts.dat
-void ACC_addAccount(); // Додавання нового рахунку в accounts.dat
+void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType); // Додавання нового рахунку
 account ACC_getAccountByCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
 account ACC_getAccountByIBAN(const char* IBAN); // Пошук рахунку за IBAN
 void transferFunds(account& fromAcc, account& toAcc, double amount); // Переказ коштів між рахунками
 
 int generateIBAN(); // Генерація унікального IBAN
 int generateCardNumber(); // Генерація унікального номера картки
-
+void printAllAccounts(char msg[5][1024], int page); // Виведення інформації про всі рахунки
+void DB_create_accounts(); // Створення пустого бінарного файлу accounts.dat
 
 //===============================================================================================================================
 //===============================================================================================================================
 //===============================================================================================================================
 
-
+// reg_user login password name surname phone //example: reg_user StreamCompanyBank 9723424887 Mako Stream 0000000000
+// new_account owner curence_type cardtype account_type //example: new_account 0 USD DEPOSITE 316
 // Типи рахунків:
 
 //Поточні рахунки клієнтів : рахунки 31 класу
@@ -146,14 +150,33 @@ int generateCardNumber(); // Генерація унікального номера картки
 	//3651 — Депонована заробітня плата
 
 
-//Дебіторська заборгованість банку : рахунок 20 класу
-	//201 — Дебіторська заборгованість за операціями з клієнтами
-//Доходи від кредитних операцій : рахунок 70 класу
-	//701 — Процентні доходи від кредитних операцій
-// Доходи від коміссій : рахунок 70 класу
-	// 704 — Доходи від коміссійних операцій
-//Витрати на оплату депозитів : рахунок 80 класу
-	//801 — Витрати на оплату депозитів
+// План рахунків банку з валютними субрахунками
 
-// Блокування коштів : рахунок 30 класу
-	// 303 — Блокування коштів на рахунках клієнтів
+// 20 клас — Дебіторська заборгованість банку
+// 201 — Дебіторська заборгованість за операціями з клієнтами
+// 2011 — Дебіторська заборгованість клієнтів UAH
+// 2012 — Дебіторська заборгованість клієнтів USD
+// 2013 — Дебіторська заборгованість клієнтів EUR
+
+// 30 клас — Блокування коштів на рахунках клієнтів
+// 303 — Блокування коштів
+// 3031 — Блокування коштів UAH
+// 3032 — Блокування коштів USD
+// 3033 — Блокування коштів EUR
+
+// 70 клас — Доходи банку
+// 701 — Процентні доходи від кредитних операцій
+// 7011 — Процентні доходи від кредитів UAH
+// 7012 — Процентні доходи від кредитів USD
+// 7013 — Процентні доходи від кредитів EUR
+
+// 704 — Доходи від комісійних операцій
+// 7041 — Доходи від комісій UAH
+// 7042 — Доходи від комісій USD
+// 7043 — Доходи від комісій EUR
+
+// 80 клас — Витрати банку
+// 801 — Витрати на оплату депозитів
+// 8011 — Витрати на депозити UAH
+// 8012 — Витрати на депозити USD
+// 8013 — Витрати на депозити EUR

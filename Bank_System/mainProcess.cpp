@@ -58,7 +58,7 @@ void mainProcess::login(int session_id, char login[32], char password[32]){
     Session user = { session_id, this_user.getId()};
 
     for (Session& a : loggined_users) {
-        if (a.sesion_id == session_id) {
+        if (a.session_id == session_id) {
             a = user;
             break;
         };
@@ -67,10 +67,8 @@ void mainProcess::login(int session_id, char login[32], char password[32]){
 }
 
 Session& mainProcess::getUserSession(int session_id) {
-    std::cout << "debug 4" << endl;
     for (Session& a : loggined_users) {
-        if (a.sesion_id == session_id) {
-            std::cout << "debug 5" << endl;
+        if (a.session_id == session_id) {
             return a;
         }
     };
@@ -79,6 +77,35 @@ Session& mainProcess::getUserSession(int session_id) {
 
 void mainProcess::printSessions() {
     for (Session a : loggined_users) {
-        cout << a.sesion_id << endl;
+        cout << a.session_id << " | " << a.user_id << " | " << a.auth_key << endl;
     };
 };
+
+Session& mainProcess::getSessionByID(int session_id) {
+    for (Session& a : loggined_users) {
+        if (a.session_id == session_id) {
+            return a;
+        }
+    }
+    return emptySession;
+}
+void mainProcess::generateAuthKey(Session& session, sessionConstruct& sessionData) {
+    static std::mt19937 generator(std::random_device{}());
+    static const char charset[] =
+        "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    std::uniform_int_distribution<int> dist(0, sizeof(charset) - 2);
+
+    // Заповнюємо ключ у session
+    for (int i = 0; i < 40; ++i)
+        session.auth_key[i] = charset[dist(generator)];
+    session.auth_key[40] = '\0';
+
+    // Копіюємо ключ у sessionData
+    std::strcpy(sessionData.auth_key, session.auth_key);
+    return;
+}
+
+bool mainProcess::compareAuthKey(const sessionConstruct& sc, const Session& s) {
+    return std::strncmp(sc.auth_key, s.auth_key, 40) == 0;
+}

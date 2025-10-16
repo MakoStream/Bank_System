@@ -3,33 +3,7 @@
 #include "../User.h"
 #include <iostream>
 
-inline bool isStringDigit(const std::string& s) {
-    if (s.empty()) return false;
-    int dotCount = 0;
-    for (char c : s) {
-        if (c == '.') {
-            dotCount++;
-            if (dotCount > 1) return false;
-        }
-        else if (!isdigit(c)) {
-            return false;
-        }
-    }
-    return true;
-}
 
-// Function: isPhone
-// Description: Validates if a string is a 10-digit phone number
-// Requirements: <string>, <cctype>
-// Required for: commands::execute("reg_user")
-inline bool isPhone(const std::string& s) {
-    if (s.empty()) return false;
-    if (s.size() != 10) return false;
-    for (char c : s) {
-        if (!isdigit(c)) return false;
-    }
-    return true;
-}
 
 
 class RegisterUserCommand : public Command {

@@ -8,8 +8,8 @@
 #include "Logger.h"
 //#include "commands.h"
 #include "mainProcess.h"
+#include "basic_functions.h"
 
-#include "processCommands.h"
 #include "CommandsManager.h"
 
 #include <csignal>
@@ -39,19 +39,9 @@ Logger logger;  // визначення глобальної змінної
 // Description: Splits a string into words separated by whitespace and returns them as a vector
 // Requirements: <string>, <sstream>, <vector>
 // Required for: main loop input parsing in main()
-vector<string> split(const string& input) {
-    vector<string> tokens;
-    istringstream iss(input);
-    string word;
-    while (iss >> word) {
-        tokens.push_back(word);
-    };
-    return tokens;
-};
 
 mainProcess process;
 CommandsManager manager;
-CMD_Manager cmd_manager(process);
 
 
 void HandleClient(HANDLE hPipe) {
@@ -62,34 +52,36 @@ void HandleClient(HANDLE hPipe) {
         handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
         // Читаємо структуру від клієнта
         BOOL success = ReadFile(hPipe, &sessionData, sizeof(sessionData), &bytesRead, NULL);
+        //cout << "2: " << process.getUserSession(sessionData.sessionId).auth_key << endl;
         if (!success || bytesRead == 0) {
             std::cout << "Client disconnected\n";
             break;
         }
+        //process.printSessions();
+        if (process.compareAuthKey(sessionData, process.getUserSession(sessionData.sessionId)) == false) {
+            std::cout << "Auth key mismatch for session " << sessionData.sessionId << "\n";
+            strncpy(sessionData.cmd, "Auth key mismatch!", sizeof(sessionData.cmd) - 1);
+            WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
+			break;
+        };
 
 
         // Модифікуємо дані
         /*cout << sessionData.cmd << endl;
         strcpy(sessionData.cmd, "hallo");*/
 
+
+        process.printSessions();
         vector<string> args = split(sessionData.cmd);
-        if (sessionData.cmd_fs == GET_SID) {
-            cmd_manager.execute(sessionData.cmd_fs, sessionData, hPipe, bytesWritten);
-            process.printSessions();
-        }
+        manager.execute(handle);
         
-        
-        else {
-            manager.execute(args[0], args, handle);
-            process.printSessions();
-        };
         
 
 
 
         // Відправляємо назад клієнту
         //WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
-        
+		//sessionData.auth_key[1] = '9'; // for test auth key mismatch
     }
 
     CloseHandle(hPipe);

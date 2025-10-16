@@ -12,6 +12,17 @@ unordered_map<string, cardType> cardMap = {
             {"CREDIT", CREDIT}
 };
 
+unordered_map<string, cardStatus> statusMap = {
+            {"AVAILABLE", AVAILABLE},
+            {"BLOCKED", BLOCKED},
+            {"NONVERIFED", NONVERIFED}
+};
+unordered_map<cardStatus, string> statusMapReverse = {
+    {AVAILABLE, "AVAILABLE"},
+    {BLOCKED, "BLOCKED"},
+    {NONVERIFED, "NONVERIFED"}
+};
+
 //TBkk12340101XXXXXXXXXXXX
 //400000XXXXXXXXXCc
 
@@ -159,6 +170,70 @@ void ACC_addAccount(int userID, balanceType balance_type, cardType type, short a
 	fout.close();
 	delete[] IBAN;
 	delete[] cardNumber;
+}
+
+void printAllAccounts(char msg[5][1024], int page) {
+    ifstream fin("accounts.dat", ios::binary);
+    if (!fin) {
+        cerr << "Не вдалося відкрити файл для читання." << endl;
+        for (int i = 0; i < 5; i++) msg[i][0] = '\0';
+        return;
+    }
+
+    account acc;
+    int startIndex = (page - 1) * 25; // пропускаємо попередні 25 записів
+    int currentIndex = 0;
+    int msgIndex = 0;
+    string buffer;
+
+    while (true) {
+        acc.load(fin);
+        if (fin.eof()) break;
+
+        if (currentIndex < startIndex) {
+            currentIndex++;
+            continue;
+        }
+
+        stringstream ss;
+        ss << "IBAN: " << acc.getIBAN()
+            << " | PAN: " << acc.getPAN()
+            << " | Status: " << statusMapReverse[acc.getCardStatus()]
+            << " | Owner ID: " << acc.getUserID()
+            << "\n";
+
+        buffer += ss.str();
+        currentIndex++;
+
+        // Якщо накопичилось 5 записів або довжина > 900 символів
+        if (currentIndex % 5 == 0 || buffer.size() > 900) {
+            strncpy(msg[msgIndex], buffer.c_str(), 1023);
+            msg[msgIndex][1023] = '\0';
+            buffer.clear();
+            msgIndex++;
+            if (msgIndex >= 5) break;
+        }
+    }
+
+    if (!buffer.empty() && msgIndex < 5) {
+        strncpy(msg[msgIndex], buffer.c_str(), 1023);
+        msg[msgIndex][1023] = '\0';
+        msgIndex++;
+    }
+
+    for (; msgIndex < 5; msgIndex++) msg[msgIndex][0] = '\0';
+
+    fin.close();
+}
+
+void DB_create_accounts() {
+	std::ofstream fout("accounts.dat", ios::binary | ios::trunc);
+	if (!fout) {
+		std::cerr << "Не вдалося створити файл." << std::endl;
+		return;
+	}
+	std::cout << "Бінарний файл accounts.dat створено успішно." << std::endl;
+	fout.close();
 }
 
 

@@ -112,7 +112,7 @@ public:
 
 extern User emptyUser;
 
-void DB_list();
+void DB_list(char msg[5][1024], int page);
 void DB_create();
 void DB_newUser(User user);
 User loadLastUser();

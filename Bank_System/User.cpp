@@ -44,28 +44,68 @@ void DB_newUser(User user) {
 // Description: Reads and prints all users from "users.dat"
 // Requirements: User class, <fstream>, <iostream>
 // Required for: commands::execute("user_list")
-void DB_list() {
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <cstring>
+using namespace std;
+
+// Потрібно, щоб існували:
+// class User { ...; void load(ifstream&); int getId(); string getLogin(); string getName(); string getSurname(); string getPhone(); }
+
+void DB_list(char msg[5][1024], int page) {
     ifstream fin("users.dat", ios::binary);
     if (!fin) {
         cerr << "Не вдалося відкрити файл users.dat!" << endl;
+        for (int i = 0; i < 5; i++) msg[i][0] = '\0';
         return;
     }
 
     User u;
-    while (fin.peek() != EOF) { // перевіряємо кінець файлу
+    int startIndex = (page - 1) * 25;
+    int currentIndex = 0;
+    int msgIndex = 0;
+    string buffer;
+
+    while (fin.peek() != EOF) {
         u.load(fin);
-        if (fin.gcount() == 0) break; // якщо нічого не прочитано
-        cout
-            << u.getId() << " "
+        if (fin.gcount() == 0) break;
+
+        if (currentIndex < startIndex) {
+            currentIndex++;
+            continue;
+        }
+
+        stringstream ss;
+        ss << u.getId() << " "
             << u.getLogin() << " "
             << u.getName() << " "
-			<< u.getSurname() << " "
-            << u.getPhone() << " "
-            << endl;
+            << u.getSurname() << " "
+            << u.getPhone() << "\n";
+
+        buffer += ss.str();
+        currentIndex++;
+
+        if (currentIndex % 5 == 0 || buffer.size() > 900) {
+            strncpy(msg[msgIndex], buffer.c_str(), 1023);
+            msg[msgIndex][1023] = '\0';
+            buffer.clear();
+            msgIndex++;
+            if (msgIndex >= 5) break;
+        }
     }
+
+    if (!buffer.empty() && msgIndex < 5) {
+        strncpy(msg[msgIndex], buffer.c_str(), 1023);
+        msg[msgIndex][1023] = '\0';
+        msgIndex++;
+    }
+
+    for (; msgIndex < 5; msgIndex++) msg[msgIndex][0] = '\0';
 
     fin.close();
 }
+
 
 // Function: loadLastUser
 // Description: Loads the last user from "users.dat"
