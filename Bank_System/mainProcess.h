@@ -11,6 +11,8 @@
 #include <csignal>
 #include <unordered_map>
 #include <random>
+#include "Account.h"
+#include "basic_functions.h"
 //#include "Command.h"
 
 
@@ -37,15 +39,41 @@ struct handleInfo {
 extern Session emptySession;
 
 class mainProcess {
+	int last_session_id;
+    int last_card_PAN;
+	int last_card_IBAN;
+
+	// default db paths
+	string account_db_path;
+	string user_db_path;
+	// db path for debug mode/unit tests
+	string account_db_debug_path;
+	string user_db_debug_path;
+
+	bool debug;
+
     std::vector<Session> loggined_users;
+    void savecfg();
 public:
 	mainProcess();
     int new_session();
+	void setDebugMode(bool mode);
+	void printConfig();
     void login(int session_id, char login[32], char password[32]);
     void printSessions();
     Session& getUserSession(int session_id);
     void generateAuthKey(Session& session, sessionConstruct& sessionData);
     Session& getSessionByID(int session_id);
     bool compareAuthKey(const sessionConstruct& sc, const Session& s);
+	void transferBridge(account& from, account& to, double amount);
+
+	//int incrementSessionID();
+	int incrementCardPAN();
+	int incrementCardIBAN();
+
+	string getAccountDBPath();
+	string getUserDBPath();
+	string getAccountDBDebugPath();
+	string getUserDBDebugPath();
 };
 extern mainProcess process;

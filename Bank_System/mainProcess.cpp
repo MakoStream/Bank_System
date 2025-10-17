@@ -45,13 +45,58 @@ int getNext_SId() {
 }
 
 mainProcess::mainProcess(){
-     
+    std::map<std::string, std::string> cfg = readConfig("config.ini");
+	for (const auto& [key, value] : cfg) {
+        if (key == "last_session_id") {
+			last_session_id = std::stoi(value);
+        };
+		if (key == "last_card_PAN") {
+			last_card_PAN = std::stoi(value);
+		}
+		if (key == "last_card_IBAN") {
+			last_card_IBAN = std::stoi(value);
+		}
+		if (key == "account_db_path") {
+			account_db_path = value;
+		}
+		else if (key == "user_db_path") {
+			user_db_path = value;
+		}
+		else if (key == "account_db_debug_path") {
+			account_db_debug_path = value;
+		}
+		else if (key == "user_db_debug_path") {
+			user_db_debug_path = value;
+		}
+        debug = false;
+	}
+}
+
+void mainProcess::savecfg() {
+    std::map<std::string, std::string> cfg;
+    cfg["last_session_id"] = std::to_string(last_session_id);
+    cfg["last_card_PAN"] = std::to_string(last_card_PAN);
+    cfg["last_card_IBAN"] = std::to_string(last_card_IBAN);
+    cfg["account_db_path"] = account_db_path;
+    cfg["user_db_path"] = user_db_path;
+    cfg["account_db_debug_path"] = account_db_debug_path;
+    cfg["user_db_debug_path"] = user_db_debug_path;
+
+    writeConfig("config.ini", cfg);
+}
+
+void mainProcess::printConfig() {
+	std::map<std::string, std::string> cfg = readConfig("config.ini");
+	for (const auto& [key, value] : cfg) {
+		std::cout << key << " = " << value << std::endl;
+	}
 }
 
 int mainProcess::new_session() {
-    int session_id = getNext_SId();
-    loggined_users.push_back({session_id, -1});
-    return session_id;
+    last_session_id++;
+    savecfg();
+    loggined_users.push_back({last_session_id, -1});
+    return last_session_id;
 }
 void mainProcess::login(int session_id, char login[32], char password[32]){
     User this_user = getUser_byLogin(login);
@@ -109,3 +154,22 @@ void mainProcess::generateAuthKey(Session& session, sessionConstruct& sessionDat
 bool mainProcess::compareAuthKey(const sessionConstruct& sc, const Session& s) {
     return std::strncmp(sc.auth_key, s.auth_key, 40) == 0;
 }
+
+void mainProcess::transferBridge(account& from, account& to, double amount) {
+	from.transfer(to, amount);
+}
+int mainProcess::incrementCardPAN() {
+	last_card_PAN++;
+	savecfg();
+	return last_card_PAN;
+}
+int mainProcess::incrementCardIBAN() {
+	last_card_IBAN++;
+	savecfg();
+	return last_card_IBAN;
+}
+
+string mainProcess::getAccountDBPath() {return account_db_path;}
+string mainProcess::getUserDBPath() { return user_db_path; }
+string mainProcess::getAccountDBDebugPath() { return account_db_debug_path; }
+string mainProcess::getUserDBDebugPath() { return user_db_debug_path; }

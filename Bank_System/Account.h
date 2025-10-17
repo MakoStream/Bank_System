@@ -25,6 +25,10 @@ extern std::unordered_map<std::string, balanceType> balanceMap;
 extern std::unordered_map<std::string, cardStatus> statusMap;
 extern std::unordered_map<cardStatus, std::string> statusMapReverse;
 
+class account; // forward declaration
+account getAccount_byIBAN(const char* IBAN); // Пошук рахунку за IBAN
+account getAccount_byCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
+
 // Class: Account
 // Description: Represents a bank account with card details, balance, and status
 // Requirements: <string>, <fstream>, cardStatus, cardType, balanceType
@@ -70,7 +74,10 @@ public:
 	cardStatus getCardStatus() {return status;};
 
 	// Доступ
-	void verife() { status = AVAILABLE; }; void unban() { status = AVAILABLE; };
+	void verify() {
+		if (status == NONVERIFED) status = AVAILABLE;
+	}; 
+	void unban() { status = AVAILABLE; };
 	void ban(string reason) { 
 		status = BLOCKED; 
 	};
@@ -83,7 +90,28 @@ public:
 		return strncmp(CVV, inputCVV, sizeof(CVV)) == 0;
 	}
 	
+	// Операції з балансом
+	void setBalance(double ammount) { balance += ammount; };
 
+	void transfer(account to, double value) {
+		double commission = 1.0;
+		if (balance_type != to.getBalanceType()) {
+			std::cerr << "Помилка: Рахунки мають різні валюти." << std::endl;
+			return;
+		};
+		if (balance < value + commission) {
+			std::cerr << "Помилка: Недостатньо коштів на рахунку відправника." << std::endl;
+			return;
+		};
+		setBalance(-(value + commission));
+		to.setBalance(value);
+		account comission_bag = getAccount_byIBAN("TB000000000000000000000000010");
+		comission_bag.setBalance(commission);
+		comission_bag.updateInFile();
+		this->updateInFile();
+		to.updateInFile();
+	};
+	
 
 
 	
@@ -115,7 +143,10 @@ public:
 		ifs.read((char*)&AccountType, sizeof(AccountType));
 		ifs.read((char*)&status, sizeof(status));
 	};
+	void updateInFile();
 };
+
+extern account emptyAccount;
 
 // Функції для роботи з банківськими рахунками
 void ACC_createDB(); // Створення пустого бінарного файлу accounts.dat
@@ -128,6 +159,10 @@ int generateIBAN(); // Генерація унікального IBAN
 int generateCardNumber(); // Генерація унікального номера картки
 void printAllAccounts(char msg[5][1024], int page); // Виведення інформації про всі рахунки
 void DB_create_accounts(); // Створення пустого бінарного файлу accounts.dat
+bool isAccountExist_byIBAN(const char* IBAN); // Перевірка існування рахунку за IBAN
+bool isAccountExist_byCardNumber(const char* cardNumber); // Перевірка існування рахунку за номером картки
+//account getAccount_byIBAN(const char* IBAN); // Пошук рахунку за IBAN
+//account getAccount_byCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
 
 //===============================================================================================================================
 //===============================================================================================================================

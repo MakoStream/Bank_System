@@ -52,7 +52,6 @@ void HandleClient(HANDLE hPipe) {
         handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
         // Читаємо структуру від клієнта
         BOOL success = ReadFile(hPipe, &sessionData, sizeof(sessionData), &bytesRead, NULL);
-        //cout << "2: " << process.getUserSession(sessionData.sessionId).auth_key << endl;
         if (!success || bytesRead == 0) {
             std::cout << "Client disconnected\n";
             break;
@@ -66,12 +65,7 @@ void HandleClient(HANDLE hPipe) {
         };
 
 
-        // Модифікуємо дані
-        /*cout << sessionData.cmd << endl;
-        strcpy(sessionData.cmd, "hallo");*/
-
-
-        process.printSessions();
+        //process.printSessions();
         vector<string> args = split(sessionData.cmd);
         manager.execute(handle);
         
@@ -81,7 +75,6 @@ void HandleClient(HANDLE hPipe) {
 
         // Відправляємо назад клієнту
         //WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
-		//sessionData.auth_key[1] = '9'; // for test auth key mismatch
     }
 
     CloseHandle(hPipe);
@@ -128,6 +121,8 @@ int main()
     signal(SIGTERM, signalHandler);  // kill процес
     atexit(onExit); // викликається при нормальному exit()
     setlocale(LC_ALL, "ukr");
+
+	process.printConfig();
     
 
 

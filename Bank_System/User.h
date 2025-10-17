@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
+//#include "mainProcess.h"
 #include <iostream>
 #include <windows.h>
 #include <string>
@@ -9,6 +10,7 @@
 #include "Logger.h"
 #include <csignal>
 #include <unordered_map>
+
 
 using namespace std;
 
@@ -107,6 +109,7 @@ public:
         fin.read(reinterpret_cast<char*>(&status), sizeof(status));
         fin.read(reinterpret_cast<char*>(&role), sizeof(role));
     }
+    void updateInFile();
 
 };
 

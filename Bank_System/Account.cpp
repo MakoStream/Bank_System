@@ -1,4 +1,5 @@
 #include "Account.h"
+#include "mainProcess.h"
 
 
 unordered_map <string, balanceType> balanceMap = {
@@ -25,6 +26,7 @@ unordered_map<cardStatus, string> statusMapReverse = {
 
 //TBkk12340101XXXXXXXXXXXX
 //400000XXXXXXXXXCc
+account emptyAccount;
 
 // Обчислення контрольної цифри Luhn для рядка цифр (без контрольної цифри)
 int computeLuhnCheckDigit(const char* digits_without_check) {
@@ -47,75 +49,36 @@ int computeLuhnCheckDigit(const char* digits_without_check) {
 
 // Генерація 16-значного номера: "400000" + 9-digit body + Luhn check
 char* get_BankID() {
-    int bank_id = 0;
-    char* bank_id_str = new char[17]; // 16 цифр + '\0'
-    memset(bank_id_str, 0, 17);
+    int bank_id = process.incrementCardPAN();
 
-    // Зчитуємо лічильник
-    std::ifstream in("bank_id.bin", std::ios::binary);
-    if (in.is_open()) {
-        in.read(reinterpret_cast<char*>(&bank_id), sizeof(bank_id));
-        in.close();
-    }
-    else {
-        // Якщо файла немає — створюємо з 0
-        std::ofstream newFile("bank_id.bin", std::ios::binary);
-        bank_id = 0;
-        newFile.write(reinterpret_cast<const char*>(&bank_id), sizeof(bank_id));
-        newFile.close();
-    }
-
-    // Інкрементуємо та записуємо назад
-    bank_id++;
-    std::ofstream out("bank_id.bin", std::ios::binary | std::ios::trunc);
-    if (!out) {
-        delete[] bank_id_str;
-        throw std::runtime_error("Не вдалося відкрити bank_id.bin для запису");
-    }
-    out.write(reinterpret_cast<const char*>(&bank_id), sizeof(bank_id));
-    out.close();
-
-    // Формуємо 15-значну основу: "400000" + 9 цифр body
     char withoutCheck[16]; // 15 цифр + '\0'
-    snprintf(withoutCheck, sizeof(withoutCheck), "400000%09d", bank_id); // гарантує 9 цифр з провідними нулями
+    snprintf(withoutCheck, sizeof(withoutCheck), "400000%09d", bank_id);
 
-    // Обчислюємо Luhn-контрольну цифру
     int check = computeLuhnCheckDigit(withoutCheck);
 
-    // Формуємо остаточний 16-значний рядок
+    // Виділяємо буфер для 16 цифр + '\0'
+    char* bank_id_str = (char*)malloc(17);
+    if (!bank_id_str) return nullptr;
+
     snprintf(bank_id_str, 17, "%s%d", withoutCheck, check);
 
-    return bank_id_str;
+    return bank_id_str; // Пам'ять треба буде вільно викликати free() після використання
 }
+
 
 char* get_IBAN() {
-    int IBAN = 0;
-    char* IBAN_str = new char[36];
-    memset(IBAN_str, 0, 36);
+    int IBAN = process.incrementCardIBAN();
 
-    std::ifstream in("IBAN.bin", std::ios::binary);
-    if (in.is_open()) {
-        in.read(reinterpret_cast<char*>(&IBAN), sizeof(IBAN));
-        in.close();
-    }
-    else {
-        std::ofstream newFile("IBAN.bin", std::ios::binary);
-        IBAN = 0;
-        newFile.write(reinterpret_cast<const char*>(&IBAN), sizeof(IBAN));
-        newFile.close();
-    }
+    // Виділяємо буфер для "TB00" + 25 цифр + '\0' = 30 символів
+    char* IBAN_str = (char*)malloc(30);
+    if (!IBAN_str) return nullptr;
 
-    IBAN++;
+    // Формуємо IBAN
+    snprintf(IBAN_str, 30, "TB00%025d", IBAN);
 
-    std::ofstream out("IBAN.bin", std::ios::binary | std::ios::trunc);
-    out.write(reinterpret_cast<const char*>(&IBAN), sizeof(IBAN));
-    out.close();
-
-    // Формуємо IBAN у форматі TB00xxxxxxxxxxxxxxx
-    snprintf(IBAN_str, 36, "TB001234%014d", IBAN);
-
-    return IBAN_str;
+    return IBAN_str; // Пам'ять треба буде звільнити після використання
 }
+
 
 char* generate_CVC() {
 	int CVC = rand() % 1000; // випадкове число від 0 до 999
@@ -125,7 +88,7 @@ char* generate_CVC() {
 }
 
 void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType) {
-    std::ofstream fout("accounts.dat", ios::binary | ios::app);
+    std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::app);
     if (!fout) {
         std::cerr << "Не вдалося відкрити файл для запису." << std::endl;
         return;
@@ -173,7 +136,7 @@ void ACC_addAccount(int userID, balanceType balance_type, cardType type, short a
 }
 
 void printAllAccounts(char msg[5][1024], int page) {
-    ifstream fin("accounts.dat", ios::binary);
+    ifstream fin(process.getAccountDBPath(), ios::binary);
     if (!fin) {
         cerr << "Не вдалося відкрити файл для читання." << endl;
         for (int i = 0; i < 5; i++) msg[i][0] = '\0';
@@ -227,13 +190,175 @@ void printAllAccounts(char msg[5][1024], int page) {
 }
 
 void DB_create_accounts() {
-	std::ofstream fout("accounts.dat", ios::binary | ios::trunc);
+	std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::trunc);
 	if (!fout) {
 		std::cerr << "Не вдалося створити файл." << std::endl;
 		return;
 	}
 	std::cout << "Бінарний файл accounts.dat створено успішно." << std::endl;
 	fout.close();
+
+    // створення базових рахунків банку
+	ACC_addAccount(0, UAH, DEFAULT, 2011);
+	ACC_addAccount(0, DLR, DEFAULT, 2012);
+	ACC_addAccount(0, EUR, DEFAULT, 2013);
+    ACC_addAccount(0, UAH, DEFAULT, 3011);
+    ACC_addAccount(0, DLR, DEFAULT, 3012);
+    ACC_addAccount(0, EUR, DEFAULT, 3013);
+    ACC_addAccount(0, UAH, DEFAULT, 7011);
+    ACC_addAccount(0, DLR, DEFAULT, 7012);
+    ACC_addAccount(0, EUR, DEFAULT, 7013);
+    ACC_addAccount(0, UAH, DEFAULT, 7041);
+    ACC_addAccount(0, DLR, DEFAULT, 7042);
+    ACC_addAccount(0, EUR, DEFAULT, 7043);
+    ACC_addAccount(0, UAH, DEFAULT, 8011);
+    ACC_addAccount(0, DLR, DEFAULT, 8012);
+    ACC_addAccount(0, EUR, DEFAULT, 8013);
 }
+
+// Перевірка існування рахунку за номером картки
+bool isAccountExist_byCardNumber(const char* cardNumber) {
+    std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
+    if (!fin) {
+        std::cerr << "Не вдалося відкрити файл для читання." << std::endl;
+        return false;
+    }
+
+    account acc;
+    while (true) {
+        std::streampos pos = fin.tellg();
+        acc.load(fin);
+        if (fin.eof()) break;
+
+        if (strcmp(acc.getPAN(), cardNumber) == 0) {
+            fin.close();
+            return true;
+        }
+    }
+
+    fin.close();
+    return false;
+}
+
+// Перевірка існування рахунку за IBAN
+bool isAccountExist_byIBAN(const char* IBAN) {
+    std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
+    if (!fin) {
+        std::cerr << "Не вдалося відкрити файл для читання." << std::endl;
+        return false;
+    }
+
+    account acc;
+    while (true) {
+        std::streampos pos = fin.tellg();
+        acc.load(fin);
+        if (fin.eof()) break;
+
+        if (strcmp(acc.getIBAN(), IBAN) == 0) {
+            fin.close();
+            return true;
+        }
+    }
+
+    fin.close();
+    return false;
+}
+
+// Отримати рахунок за номером картки
+account getAccount_byCardNumber(const char* cardNumber) {
+    std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
+    if (!fin) {
+        std::cerr << "Не вдалося відкрити файл для читання." << std::endl;
+        return emptyAccount;
+    }
+
+    account acc;
+    while (true) {
+        std::streampos pos = fin.tellg();
+        acc.load(fin);
+        if (fin.eof()) break;
+
+        if (strcmp(acc.getPAN(), cardNumber) == 0) {
+            fin.close();
+            return acc;
+        }
+    }
+
+    fin.close();
+    return emptyAccount;
+}
+
+// Отримати рахунок за IBAN
+account getAccount_byIBAN(const char* IBAN) {
+    std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
+    if (!fin) {
+        std::cerr << "Не вдалося відкрити файл для читання." << std::endl;
+        return emptyAccount;
+    }
+
+    account acc;
+    while (true) {
+        std::streampos pos = fin.tellg();
+        acc.load(fin);
+        if (fin.eof()) break;
+
+        if (strcmp(acc.getIBAN(), IBAN) == 0) {
+            fin.close();
+            return acc;
+        }
+    }
+
+    fin.close();
+    return emptyAccount;
+}
+
+void account::updateInFile() {
+    // 1. Зчитуємо всі записи з файлу
+    std::ifstream inFile("accounts.dat", std::ios::binary);
+    if (!inFile) {
+        std::cerr << "Помилка: не вдалося відкрити файл accounts.dat для читання." << std::endl;
+        return;
+    }
+
+    std::vector<account> all;
+    account temp;
+
+    // коректне зчитування через load
+    while (true) {
+        temp = account(); // очищаємо перед зчитуванням
+        temp.load(inFile);
+        if (!inFile) break; // якщо зчитування не вдалося — вихід
+        all.push_back(temp);
+    }
+    inFile.close();
+
+    // 2. Оновлюємо потрібний запис
+    bool found = false;
+    for (auto& acc : all) {
+        if (strcmp(acc.getIBAN(), this->getIBAN()) == 0) { // строго по IBAN
+            acc = *this; // оновлюємо весь об'єкт
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        std::cerr << "Попередження: рахунок із таким IBAN не знайдено." << std::endl;
+        return;
+    }
+
+    // 3. Перезаписуємо файл
+    std::ofstream outFile(process.getAccountDBPath(), std::ios::binary | std::ios::trunc);
+    if (!outFile) {
+        std::cerr << "Помилка: не вдалося відкрити файл accounts.dat для запису." << std::endl;
+        return;
+    }
+
+    for (auto& acc : all)
+        acc.save(outFile);
+
+    outFile.close();
+}
+
 
 

@@ -10,6 +10,7 @@
 #include <csignal>
 #include "User.h"
 #include <optional>
+#include "mainProcess.h"
 
 using namespace std;
 
@@ -21,12 +22,12 @@ using namespace std;
 // Requirements: <fstream>, <iostream>
 // Required for: commands::createDB()
 void DB_create() {
-    ofstream file("users.dat", ios::binary); // створюємо новий файл
+    ofstream file(process.getUserDBPath(), ios::binary); // створюємо новий файл
     if (!file) {
         cerr << "Помилка створення файлу!" << endl;
         return;
     };
-    cout << "Бінарний файл users.dat створено успішно." << endl;
+    cout << "Бінарний файл "<< process.getUserDBPath() << " створено успішно." << endl;
     file.close();
 }
 
@@ -35,7 +36,7 @@ void DB_create() {
 // Requirements: User::save(), <fstream>
 // Required for: commands::regUser()
 void DB_newUser(User user) {
-    ofstream fout("users.dat", ios::binary | ios::app);
+    ofstream fout(process.getUserDBPath(), ios::binary | ios::app);
     user.save(fout);
     fout.close();
 }
@@ -54,7 +55,7 @@ using namespace std;
 // class User { ...; void load(ifstream&); int getId(); string getLogin(); string getName(); string getSurname(); string getPhone(); }
 
 void DB_list(char msg[5][1024], int page) {
-    ifstream fin("users.dat", ios::binary);
+    ifstream fin(process.getUserDBPath(), ios::binary);
     if (!fin) {
         cerr << "Не вдалося відкрити файл users.dat!" << endl;
         for (int i = 0; i < 5; i++) msg[i][0] = '\0';
@@ -112,7 +113,7 @@ void DB_list(char msg[5][1024], int page) {
 // Requirements: User class, <fstream>, <iostream>
 // Required for: commands::regUser()
 User loadLastUser() {
-    ifstream fin("users.dat", ios::binary);
+    ifstream fin(process.getUserDBPath(), ios::binary);
     User empty;
 
     if (!fin) {
@@ -134,7 +135,7 @@ User loadLastUser() {
 // Requirements: User class, <fstream>, <cstring>
 // Required for: commands::execute("reg_user")
 bool isUserExist_byLogin(const char* login) {
-    ifstream fin("users.dat", ios::binary);
+    ifstream fin(process.getUserDBPath(), ios::binary);
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
         if (strcmp(u.getLogin(), login) == 0) {
@@ -162,7 +163,7 @@ bool isUserExist_byId(int id) {
 
 
 User getUser_byLogin(const char* login) {
-    ifstream fin("users.dat", ios::binary);
+    ifstream fin(process.getUserDBPath(), ios::binary);
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
         if (strcmp(u.getLogin(), login) == 0) {
@@ -175,7 +176,7 @@ User getUser_byLogin(const char* login) {
 }
 
 User getUser_byId(int id) {
-    ifstream fin("users.dat", ios::binary);
+    ifstream fin(process.getUserDBPath(), ios::binary);
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
         if (u.getId()==id) {
@@ -187,3 +188,48 @@ User getUser_byId(int id) {
     return emptyUser;
 }
 
+void User::updateInFile() {
+    // 1. Зчитуємо всі записи з файлу
+    std::ifstream inFile(process.getUserDBPath(), std::ios::binary);
+    if (!inFile) {
+        std::cerr << "Помилка: не вдалося відкрити файл users.dat для читання." << std::endl;
+        return;
+    }
+
+    std::vector<User> all;
+    User temp;
+
+    while (true) {
+        temp.load(inFile);
+        if (inFile.eof()) break;
+        all.push_back(temp);
+    }
+    inFile.close();
+
+    // 2. Оновлюємо потрібний запис
+    bool found = false;
+    for (auto& user : all) {
+        if (user.getId() == this->getId()) {
+            user = *this; // оновлюємо весь об'єкт
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        std::cerr << "Попередження: користувач із таким ID не знайдений." << std::endl;
+        return;
+    }
+
+    // 3. Перезаписуємо файл
+    std::ofstream outFile("users.dat", std::ios::binary | std::ios::trunc);
+    if (!outFile) {
+        std::cerr << "Помилка: не вдалося відкрити файл users.dat для запису." << std::endl;
+        return;
+    }
+
+    for (auto& user : all)
+        user.save(outFile);
+
+    outFile.close();
+}
