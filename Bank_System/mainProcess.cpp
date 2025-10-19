@@ -13,7 +13,30 @@
 
 Session emptySession = { -1, -1 };
 
-int getNext_SId() {
+
+
+mainProcess::mainProcess(){
+    std::map<std::string, std::string> cfg = readConfig(configName);
+	for (const auto& [key, value] : cfg) {
+        if (key == "last_session_id") {
+			last_session_id = std::stoi(value);
+        };
+		if (key == "last_card_PAN") {
+			last_card_PAN = std::stoi(value);
+		}
+		if (key == "last_card_IBAN") {
+			last_card_IBAN = std::stoi(value);
+		}
+		if (key == "account_db_path") {
+			account_db_path = value;
+		}
+		else if (key == "user_db_path") {
+			user_db_path = value;
+		}
+        debug = false;
+	}
+}
+int getNext_SId() {  // USELESS: must be deleted later
     int s_id = 0;
 
     // Відкрити для читання
@@ -44,34 +67,6 @@ int getNext_SId() {
     return s_id;
 }
 
-mainProcess::mainProcess(){
-    std::map<std::string, std::string> cfg = readConfig("config.ini");
-	for (const auto& [key, value] : cfg) {
-        if (key == "last_session_id") {
-			last_session_id = std::stoi(value);
-        };
-		if (key == "last_card_PAN") {
-			last_card_PAN = std::stoi(value);
-		}
-		if (key == "last_card_IBAN") {
-			last_card_IBAN = std::stoi(value);
-		}
-		if (key == "account_db_path") {
-			account_db_path = value;
-		}
-		else if (key == "user_db_path") {
-			user_db_path = value;
-		}
-		else if (key == "account_db_debug_path") {
-			account_db_debug_path = value;
-		}
-		else if (key == "user_db_debug_path") {
-			user_db_debug_path = value;
-		}
-        debug = false;
-	}
-}
-
 void mainProcess::savecfg() {
     std::map<std::string, std::string> cfg;
     cfg["last_session_id"] = std::to_string(last_session_id);
@@ -79,8 +74,6 @@ void mainProcess::savecfg() {
     cfg["last_card_IBAN"] = std::to_string(last_card_IBAN);
     cfg["account_db_path"] = account_db_path;
     cfg["user_db_path"] = user_db_path;
-    cfg["account_db_debug_path"] = account_db_debug_path;
-    cfg["user_db_debug_path"] = user_db_debug_path;
 
     writeConfig("config.ini", cfg);
 }
@@ -171,5 +164,29 @@ int mainProcess::incrementCardIBAN() {
 
 string mainProcess::getAccountDBPath() {return account_db_path;}
 string mainProcess::getUserDBPath() { return user_db_path; }
-string mainProcess::getAccountDBDebugPath() { return account_db_debug_path; }
-string mainProcess::getUserDBDebugPath() { return user_db_debug_path; }
+
+bool mainProcess::debugOn() {
+	debug = true;
+	configName = "config_debug.ini";
+    std::map<std::string, std::string> cfg = readConfig(configName);
+    for (const auto& [key, value] : cfg) {
+        if (key == "last_session_id") {
+            last_session_id = std::stoi(value);
+        };
+        if (key == "last_card_PAN") {
+            last_card_PAN = std::stoi(value);
+        }
+        if (key == "last_card_IBAN") {
+            last_card_IBAN = std::stoi(value);
+        }
+        if (key == "account_db_path") {
+            account_db_path = value;
+        }
+        else if (key == "user_db_path") {
+            user_db_path = value;
+        };
+    }
+	loggined_users.clear();
+
+    return true;
+}

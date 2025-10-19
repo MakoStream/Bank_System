@@ -47,9 +47,6 @@ class mainProcess {
 	// default db paths
 	string account_db_path;
 	string user_db_path;
-	// db path for debug mode/unit tests
-	string account_db_debug_path;
-	string user_db_debug_path;
 
 	bool debug;
 
@@ -71,10 +68,12 @@ public:
 	//int incrementSessionID();
 	int incrementCardPAN();
 	int incrementCardIBAN();
+	int getLastSessionID();
 
 	string getAccountDBPath();
 	string getUserDBPath();
-	string getAccountDBDebugPath();
-	string getUserDBDebugPath();
+
+	bool debugOn();
 };
 extern mainProcess process;
+extern string configName = "config.ini";
