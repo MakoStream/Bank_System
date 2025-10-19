@@ -12,7 +12,7 @@ public:
 		std::vector<std::string> args = split(cmdStr);
 
         if (args.size() < 3) {
-            cout << "loggin: Args issue" << endl;
+			throw_response(handle, "Not enough arguments for login command!");
             return;
         };
         
@@ -21,9 +21,7 @@ public:
         strcpy(password, args[2].c_str());
         User user = getUser_byLogin(login);
         if (user.getId() == emptyUser.getId()) { 
-            strncpy(handle.sessionData.cmd, "This user does't exist!", sizeof(handle.sessionData.cmd) - 1);
-            handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-            WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "User with this login does not exist!");
             return; 
         };
         
@@ -33,16 +31,17 @@ public:
             Session& this_session = process.getSessionByID(handle.sessionData.sessionId);
             process.generateAuthKey(this_session, handle.sessionData);
             //cout << "1: " << this_session.auth_key << endl;
-            strncpy(handle.sessionData.cmd, "Loggined!", sizeof(handle.sessionData.cmd) - 1);
+            strncpy(handle.sessionData.msg[0], user.getLogin(), sizeof(handle.sessionData.cmd) - 1);
+			strncpy(handle.sessionData.msg[1], user.getName(), sizeof(handle.sessionData.cmd) - 1);
+			strncpy(handle.sessionData.msg[2], user.getSurname(), sizeof(handle.sessionData.cmd) - 1);
 
+			handle.sessionData.hash[0] = 1; // success login
             handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
             WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
             return;
         };
 
-        strncpy(handle.sessionData.cmd, "Invalid password!", sizeof(handle.sessionData.cmd) - 1);
-        handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-        WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+		throw_response(handle, "Incorrect password!");
         
         return;
     }

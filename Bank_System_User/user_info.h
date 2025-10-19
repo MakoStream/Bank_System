@@ -1,5 +1,9 @@
 #pragma once
 #include "windows.h"
+#include <vector>
+#include <string>
+
+using namespace std;
 
 
 enum cardStatus { AVAILABLE, BLOCKED };
@@ -12,12 +16,15 @@ extern struct sessionConstruct {
     int sessionId = 0;
     int hash[10];
     char cmd[256];
-    char msg[5][256];
+    char auth_key[41];
+    //vector <string> msg;
+	char msg[10][1024];
 };
 
 
 extern struct fronted_User {
     char name[64];
+	char surname[64];
     char login[32];
 };
 
@@ -27,3 +34,6 @@ extern struct handleInfo {
     DWORD& bytesRead;
     DWORD& bytesWritten;
 };
+
+extern fronted_User currentUser;
+extern fronted_User emptyUser;

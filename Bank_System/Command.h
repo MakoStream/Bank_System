@@ -19,3 +19,6 @@ public:
     virtual void execute(handleInfo& handle) = 0; // чисто віртуальний метод
     virtual std::string name() const = 0; // ім'я команди
 };
+
+// Функція для викидання відповіді клієнту
+void throw_response(handleInfo& handle, const std::string& msg);

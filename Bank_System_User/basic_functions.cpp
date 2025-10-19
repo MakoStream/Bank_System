@@ -41,7 +41,6 @@ vector<string> split(const string& input) {
     return tokens;
 };
 
-
 // --- допоміжна функція для обрізання пробілів ---
 void trim(std::string& s) {
     while (!s.empty() && std::isspace((unsigned char)s.front())) s.erase(s.begin());
@@ -54,7 +53,7 @@ std::map<std::string, std::string> readConfig(const std::string& filename) {
     std::map<std::string, std::string> config;
 
     if (!file.is_open()) {
-        cout << "Cannot open " << filename << std::endl;
+        cout << "Помилка: не вдалося відкрити " << filename << std::endl;
         return config;
     }
 
@@ -79,11 +78,11 @@ std::map<std::string, std::string> readConfig(const std::string& filename) {
 }
 
 // --- запис у cfg файл ---
-void writeConfig(const std::string& filename, const std::map<std::string, std::string>& config) {
+bool writeConfig(const std::string& filename, const std::map<std::string, std::string>& config) {
     std::ofstream file(filename);
     if (!file.is_open()) {
-        std::cerr << "Cannot write in " << filename << std::endl;
-        return;
+        std::cerr << "Помилка: не вдалося записати у " << filename << std::endl;
+        return false;
     }
 
     for (const auto& [key, value] : config) {
@@ -91,5 +90,5 @@ void writeConfig(const std::string& filename, const std::map<std::string, std::s
     }
 
     file.close();
-    return;
+    return true;
 }

@@ -68,9 +68,8 @@ void DB_list(char msg[5][1024], int page) {
     int msgIndex = 0;
     string buffer;
 
-    while (fin.peek() != EOF) {
+    while (!fin.eof()) {
         u.load(fin);
-        if (fin.gcount() == 0) break;
 
         if (currentIndex < startIndex) {
             currentIndex++;

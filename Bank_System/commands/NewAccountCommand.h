@@ -11,34 +11,35 @@ public:
 		string input(handle.sessionData.cmd);
 		vector<string> args = split(input);
 
-		int userId = stoi(args[1]);
-
+		
+		handle.sessionData.hash[0] = 0; // default fail
 		// ряд перевірик краще винести в окрему функцію
 		if (args.size() < 3) {
-			cout << "Недостатньо аргументів для new_account!" << endl;
+			throw_response(handle, "Недостатньо аргументів");
 			return;
 		}
+		int userId = stoi(args[1]);
 		if (!isStringDigit(args[1])) {
-			cout << "userId is incorect" << endl;
+			throw_response(handle, "user_id is incorect");
 			return;
 		};
 		// Перевірка валюти
 		if (balanceMap.find(args[2]) == balanceMap.end()) {
-			cout << "Некоректний тип валюти: " << args[2] << endl;
+			throw_response(handle, "Некоректний тип валюти");
 			return;
 		}
 
 		// Перевірка типу картки
 		if (cardMap.find(args[3]) == cardMap.end()) {
-			cout << "Некоректний тип картки: " << args[3] << endl;
+			throw_response(handle, "Некоректний тип картки");
 			return;
 		}
 		if (!isStringDigit(args[4])) {
-			cout << "account_type is incorect" << endl;
+			throw_response(handle, "account_type is incorect");
 			return;
 		};
 		if (!isUserExist_byId(userId)) {
-			cout << userId << " not exist" << endl;
+			throw_response(handle, "Користувача з таким ID не існує");
 			return;
 		};
 
@@ -49,9 +50,9 @@ public:
 		
 		ACC_addAccount(userId, cur, cType, account_type);
 
-		strncpy(handle.sessionData.cmd, "Account registered!", sizeof(handle.sessionData.cmd) - 1);
 		handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-		WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+		handle.sessionData.hash[0] = 1;
+		throw_response(handle, "Рахунок успішно створено");
 
 		return;
 	};

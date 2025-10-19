@@ -10,7 +10,7 @@ class getSessionIdCommand : public Command {
 public:
     void execute(handleInfo& handle) override {
         handle.sessionData.sessionId = process.new_session();
-        WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+		throw_response(handle, "New session ID generated: " + std::to_string(handle.sessionData.sessionId));
         return;
     }
 

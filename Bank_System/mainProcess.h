@@ -26,7 +26,8 @@ struct sessionConstruct {
     int hash[10];
     char cmd[256];
     char auth_key[41];
-    char msg[5][1024];
+	//vector <string> msg;
+	char msg[10][1024];
 };
 
 struct handleInfo {

@@ -5,19 +5,41 @@
 #include <thread>
 #include <chrono>
 #include "user_info.h"
+#include "basic_functions.h"
+#include "ResponseManager.h"
+#include <vector>
+
+ResponseManager cmd;
+
+fronted_User emptyUser = { "", "", "" };
+fronted_User currentUser = emptyUser;
+
 
 using namespace std;
 
-void handleOp(sessionConstruct& sessionData, sessionConstruct& response, HANDLE& hPipe, const string& input, DWORD& bytesWritten, DWORD& bytesRead){
+void handleOp(sessionConstruct& sessionData, sessionConstruct& response, HANDLE& hPipe, const string& input, DWORD& bytesWritten, DWORD& bytesRead) {
+
     strncpy(sessionData.cmd, input.c_str(), sizeof(sessionData.cmd) - 1);
     sessionData.cmd[sizeof(sessionData.cmd) - 1] = '\0';
 
+    vector<string> args = split(input);
+
     WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
-    ReadFile(hPipe, &response, sizeof(response), &bytesRead, NULL);
+    //ReadFile(hPipe, &response, sizeof(response), &bytesRead, NULL);
+
+	handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
+	cmd.get_response(handle);
 
     // Оновлення сесії після відповіді сервера
-    sessionData = response;
-}
+    //sessionData = response;
+
+    /*if (args[0] == "account_list" || args[0] == "user_list") {
+        for (int i = 0; i < 5; i++) {
+			cout << response.msg[i] << endl;
+        };
+    };*/
+    
+};
 
 int main() {
     setlocale(LC_ALL, "ukr");

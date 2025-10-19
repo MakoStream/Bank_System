@@ -14,15 +14,15 @@ public:
         if (args.size() < 2) {page = 1;}
         else { 
             if (!isStringDigit(args[1])) {
-                cout << "Page is incorect" << endl;
-                return;
+				throw_response(handle, "Page number is incorect");
+				return;
             };
             page = stoi(args[1]);
         };
         
         printAllAccounts(handle.sessionData.msg, page);
-        strncpy(handle.sessionData.cmd, "Account list is printed!", sizeof(handle.sessionData.cmd) - 1);
-        handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
+        //strncpy(handle.sessionData.cmd, "Account list is printed!", sizeof(handle.sessionData.cmd) - 1);
+        //handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
         WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
         return;
     }

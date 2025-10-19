@@ -8,24 +8,19 @@ public:
 		string input(handle.sessionData.cmd);
 		vector<string> args = split(input);
 
+		handle.sessionData.hash[0] = 0; // fail by default
 		if (args.size() < 2) {
-			strncpy(handle.sessionData.cmd, "Args issue", sizeof(handle.sessionData.cmd) - 1);
-			handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-			WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "Args issue");
 			return;
 		}
 		if (args[1].length() != 29) {
-			strncpy(handle.sessionData.cmd, "wrong iban", sizeof(handle.sessionData.cmd) - 1);
-			handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-			WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "wrong iban");
 			return;
 		}
 		char IBAN[36];
 		strcpy(IBAN, args[1].c_str());
 		if (!isAccountExist_byIBAN(IBAN)) {
-			strncpy(handle.sessionData.cmd, "This account is not exist", sizeof(handle.sessionData.cmd) - 1);
-			handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-			WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "This account is not exist");
 			return;
 		};
 
@@ -36,9 +31,8 @@ public:
 		account acc = getAccount_byIBAN(IBAN);
 		acc.ban(reason);
 		acc.updateInFile();
-		strncpy(handle.sessionData.cmd, "Account banned!", sizeof(handle.sessionData.cmd) - 1);
-		handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-		WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+		handle.sessionData.hash[0] = 1; // success
+		throw_response(handle, "Account banned!");
 		return;
 
 	}
@@ -54,32 +48,25 @@ public:
 		vector<string> args = split(input);
 
 		if (args.size() < 2) {
-			strncpy(handle.sessionData.cmd, "Args issue", sizeof(handle.sessionData.cmd) - 1);
-			handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-			WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "Args issue");
 			return;
 		}
 		if (args[1].length() != 29) {
-			strncpy(handle.sessionData.cmd, "wrong iban", sizeof(handle.sessionData.cmd) - 1);
-			handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-			WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "wrong iban");
 			return;
 		}
 		char IBAN[36];
 		strcpy(IBAN, args[1].c_str());
 		if (!isAccountExist_byIBAN(IBAN)) {
-			strncpy(handle.sessionData.cmd, "This account is not exist", sizeof(handle.sessionData.cmd) - 1);
-			handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-			WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "This account is not exist");
 			return;
 		};
 
 		account acc = getAccount_byIBAN(IBAN);
 		acc.unban();
 		acc.updateInFile();
-		strncpy(handle.sessionData.cmd, "Account unbanned!", sizeof(handle.sessionData.cmd) - 1);
-		handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-		WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+		handle.sessionData.hash[0] = 1; // success
+		throw_response(handle, "Account unbanned!");
 		return;
 
 	}

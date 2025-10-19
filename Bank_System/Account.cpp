@@ -129,11 +129,11 @@ void ACC_addAccount(int userID, balanceType balance_type, cardType type, short a
 
 
     // Запис нового рахунку у файл
-	newAccount.save(fout);
-	fout.close();
-	delete[] IBAN;
-	delete[] cardNumber;
-}
+    newAccount.save(fout);
+    fout.close();
+    delete[] IBAN;
+    delete[] cardNumber;
+};
 
 void printAllAccounts(char msg[5][1024], int page) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
@@ -144,14 +144,13 @@ void printAllAccounts(char msg[5][1024], int page) {
     }
 
     account acc;
-    int startIndex = (page - 1) * 25; // пропускаємо попередні 25 записів
+    int startIndex = (page - 1) * 25;
     int currentIndex = 0;
     int msgIndex = 0;
     string buffer;
 
-    while (true) {
+    while (!fin.eof()) {
         acc.load(fin);
-        if (fin.eof()) break;
 
         if (currentIndex < startIndex) {
             currentIndex++;
@@ -168,7 +167,6 @@ void printAllAccounts(char msg[5][1024], int page) {
         buffer += ss.str();
         currentIndex++;
 
-        // Якщо накопичилось 5 записів або довжина > 900 символів
         if (currentIndex % 5 == 0 || buffer.size() > 900) {
             strncpy(msg[msgIndex], buffer.c_str(), 1023);
             msg[msgIndex][1023] = '\0';
@@ -188,6 +186,7 @@ void printAllAccounts(char msg[5][1024], int page) {
 
     fin.close();
 }
+
 
 void DB_create_accounts() {
 	std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::trunc);

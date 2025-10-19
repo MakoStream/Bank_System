@@ -11,17 +11,16 @@ public:
 	void execute(handleInfo& handle) override { // reg_user login password name surname phone //example: reg_user user1 pass1 John Doe 1234567890
         string input (handle.sessionData.cmd);
 		vector<string> args = split(input);
-        /*for (string a : args) {  // debug
-			cout << a << " ";
-        };*/
+
+		handle.sessionData.hash[0] = 0; // default fail
 		cout << endl;
         if (args.size() < 6) {
-            cout << "Недостатньо аргументів для reg_user!" << endl;
-            return;
+			throw_response(handle, "not enough arguments for reg_user");
+			return;
         }
 
         if (args[1].size() > 32 or args[2].size() > 32 or args[3].size() > 64) {
-            cout << "some args are to large" << endl;
+			throw_response(handle, "one of the arguments is too long");
             return;
         };
 
@@ -30,14 +29,14 @@ public:
             phone = stoi(args[5]);
         }
         else {
-            cout << "phone number is incorect" << endl;
+			throw_response(handle, "phone number is invalid");
             return;
         };
 
 
         const char* newUserLogin = args[1].c_str();
         if (isUserExist_byLogin(newUserLogin)) {
-            cout << newUserLogin << " already exist" << endl;
+			throw_response(handle, "user with this login already exists");
             return;
         };
         int newUserId = 0;
@@ -61,10 +60,9 @@ public:
         DB_newUser(newUser);
 		cout << "User " << newUserLogin << " registered!" << endl;
 
-
-		strncpy(handle.sessionData.cmd, "User registered!", sizeof(handle.sessionData.cmd) - 1);
-		handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-		WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+		handle.sessionData.hash[0] = 1; // success
+		throw_response(handle, "user registered successfully");
+		return;
 
     }
 

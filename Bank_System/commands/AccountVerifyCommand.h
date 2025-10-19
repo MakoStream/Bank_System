@@ -9,23 +9,17 @@ public:
 		vector<string> args = split(input);
 
 		if (args.size() < 2) {
-			strncpy(handle.sessionData.cmd, "Args issue", sizeof(handle.sessionData.cmd) - 1);
-			handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-			WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "Not enough arguments");
 			return;
 		}
 		if (args[1].length() != 29) {
-			strncpy(handle.sessionData.cmd, "wrong iban", sizeof(handle.sessionData.cmd) - 1);
-			handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-			WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "IBAN is incorect");
 			return;
 		}
 		char IBAN[36];
 		strcpy(IBAN, args[1].c_str());
 		if (!isAccountExist_byIBAN(IBAN)) {
-			strncpy(handle.sessionData.cmd, "This account is not exist", sizeof(handle.sessionData.cmd) - 1);
-			handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-			WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			throw_response(handle, "Account with this IBAN does not exist");
 			return;
 		};
 
@@ -33,9 +27,7 @@ public:
 		acc.verify();
 		acc.updateInFile();
 
-		strncpy(handle.sessionData.cmd, "Account verifed!", sizeof(handle.sessionData.cmd) - 1);
-		handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
-		WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+		throw_response(handle, "Account verified successfully");
 		string account_number = args[1];
 		return;
 	};

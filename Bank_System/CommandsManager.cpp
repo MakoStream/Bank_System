@@ -7,6 +7,9 @@
 #include "commands/getSessionIdCommand.h"
 #include "commands/PrintAccountListCommand.h"
 #include "commands/NewAccountCommand.h"
+#include "commands/AccountVerifyCommand.h"
+#include "commands/AccountBanCommand.h"
+
 
 #include <iostream>
 
@@ -22,6 +25,9 @@ CommandsManager::CommandsManager() {
 	commands.push_back(std::make_unique<getSessionIdCommand>());
 	commands.push_back(std::make_unique<PrintAccountListCommand>());
 	commands.push_back(std::make_unique<NewAccountCommand>());
+	commands.push_back(std::make_unique<AccountVerifyCommand>());
+	commands.push_back(std::make_unique<AccountBanCommand>());
+    commands.push_back(std::make_unique<AccountUnbanCommand>());
 }
 
 
