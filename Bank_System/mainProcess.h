@@ -15,6 +15,7 @@
 #include "basic_functions.h"
 //#include "Command.h"
 
+extern string configName;
 
 typedef struct Session {
     int session_id;
@@ -22,7 +23,7 @@ typedef struct Session {
     char auth_key[41];
 };
 struct sessionConstruct {
-    int sessionId = 0;
+    int sessionId = -1;
     int hash[10];
     char cmd[256];
     char auth_key[41];
@@ -58,12 +59,14 @@ public:
 	void setDebugMode(bool mode);
 	void printConfig();
     void login(int session_id, char login[32], char password[32]);
+	void logout(int session_id);
     void printSessions();
     Session& getUserSession(int session_id);
     void generateAuthKey(Session& session, sessionConstruct& sessionData);
     Session& getSessionByID(int session_id);
     bool compareAuthKey(const sessionConstruct& sc, const Session& s);
 	void transferBridge(account& from, account& to, double amount);
+    vector <Session> getSessions();
 
 	//int incrementSessionID();
 	int incrementCardPAN();
@@ -76,4 +79,3 @@ public:
 	bool debugOn();
 };
 extern mainProcess process;
-extern string configName = "config.ini";

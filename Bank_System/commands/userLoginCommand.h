@@ -42,7 +42,6 @@ public:
         };
 
 		throw_response(handle, "Incorrect password!");
-        
         return;
     }
 

@@ -3,6 +3,7 @@
 
 // here need to include all response headers (responses/)
 #include "responses/LoginResponse.h"
+#include "responses/LogoutResponse.h"
 #include "responses/GetSessionIdResponse.h"
 #include "responses/AccountListResponse.h"
 #include "responses/UserListResponse.h"
@@ -18,6 +19,7 @@ ResponseManager::ResponseManager() {
 	// here need to add all responses to vector (responses/)
 	// responses.push_back(std::make_unique<YourResponseClass>());
 	responses.push_back(std::make_unique<LoginResponse>());
+	responses.push_back(std::make_unique<LogoutResponse>());
 	responses.push_back(std::make_unique<GetSessionIdResponse>());
 	responses.push_back(std::make_unique<AccountListResponse>());
 	responses.push_back(std::make_unique<UserListResponse>());

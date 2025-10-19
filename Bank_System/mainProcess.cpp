@@ -1,4 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include "mainProcess.h"
 #include <iostream>
 #include <windows.h>
 #include <string>
@@ -9,13 +10,13 @@
 #include <csignal>
 #include "User.h"
 #include <optional>
-#include "mainProcess.h"
+
+
 
 Session emptySession = { -1, -1 };
 
-
-
 mainProcess::mainProcess(){
+	cout << configName << endl;
     std::map<std::string, std::string> cfg = readConfig(configName);
 	for (const auto& [key, value] : cfg) {
         if (key == "last_session_id") {
@@ -104,6 +105,18 @@ void mainProcess::login(int session_id, char login[32], char password[32]){
     return;
 }
 
+void mainProcess::logout(int session_id) {
+    for (auto& it : loggined_users) {
+		if (it.session_id == session_id) {
+			it.user_id = -1;
+			it.auth_key[0] = '\0';
+			break;
+		};
+
+    };
+	return;
+};
+
 Session& mainProcess::getUserSession(int session_id) {
     for (Session& a : loggined_users) {
         if (a.session_id == session_id) {
@@ -164,6 +177,9 @@ int mainProcess::incrementCardIBAN() {
 
 string mainProcess::getAccountDBPath() {return account_db_path;}
 string mainProcess::getUserDBPath() { return user_db_path; }
+vector <Session> mainProcess::getSessions() {
+    return loggined_users;
+};
 
 bool mainProcess::debugOn() {
 	debug = true;

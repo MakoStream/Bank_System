@@ -4,6 +4,7 @@
 #include "commands/RegisterUserCommand.h"
 #include "commands/PrintUserListCommand.h"
 #include "commands/userLoginCommand.h"
+#include "commands/userLogoutCommand.h"
 #include "commands/getSessionIdCommand.h"
 #include "commands/PrintAccountListCommand.h"
 #include "commands/NewAccountCommand.h"
@@ -22,6 +23,7 @@ CommandsManager::CommandsManager() {
     commands.push_back(std::make_unique<RegisterUserCommand>());
     commands.push_back(std::make_unique<PrintUserListCommand>());
     commands.push_back(std::make_unique<userLoginCommand>());
+	commands.push_back(std::make_unique<userLogoutCommand>());
 	commands.push_back(std::make_unique<getSessionIdCommand>());
 	commands.push_back(std::make_unique<PrintAccountListCommand>());
 	commands.push_back(std::make_unique<NewAccountCommand>());

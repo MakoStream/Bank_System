@@ -18,6 +18,8 @@
 
 using namespace std;
 
+
+string configName = "config.ini";
 passportData emptyPassport = { "", 0, "", "", "" };
 User emptyUser(
     -1,                  // int id

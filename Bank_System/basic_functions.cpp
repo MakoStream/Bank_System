@@ -50,6 +50,7 @@ void trim(std::string& s) {
 
 // --- читання з cfg файлу ---
 std::map<std::string, std::string> readConfig(const std::string& filename) {
+	cout << "Reading config from " << filename << std::endl;
     std::ifstream file(filename);
     std::map<std::string, std::string> config;
 
