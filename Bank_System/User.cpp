@@ -112,22 +112,36 @@ void DB_list(char msg[5][1024], int page) {
 // Requirements: User class, <fstream>, <iostream>
 // Required for: commands::regUser()
 User loadLastUser() {
-    ifstream fin(process.getUserDBPath(), ios::binary);
-    User empty;
+    ifstream fin(process.getUserDBPath(), ios::binary | ios::in);
+    User empty{};
 
-    if (!fin) {
-        cerr << "Не вдалося відкрити файл!" << endl;
+    if (!fin.is_open()) {
+        cerr << "Не вдалося відкрити файл користувачів!" << endl;
         return empty;
     }
 
     fin.seekg(0, ios::end);
-    if (fin.tellg() == 0) return empty;
+    streamoff fileSize = fin.tellg();
 
-    User last;
+    // Перевірка на порожній або некоректний файл
+    if (fileSize < static_cast<streamoff>(sizeof(User)) || fileSize % sizeof(User) != 0) {
+        cerr << "Файл користувачів порожній або пошкоджений!" << endl;
+        return empty;
+    }
+
     fin.seekg(-static_cast<streamoff>(sizeof(User)), ios::end);
+
+    User last{};
     fin.read(reinterpret_cast<char*>(&last), sizeof(User));
+
+    if (!fin.good()) {
+        cerr << "Помилка читання останнього користувача!" << endl;
+        return empty;
+    }
+
     return last;
 }
+
 
 // Function: isUserExist_byLogin
 // Description: Checks if a login already exists in "users.dat"

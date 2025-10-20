@@ -34,6 +34,7 @@ account getAccount_byCardNumber(const char* cardNumber); // Пошук рахунку за ном
 // Requirements: <string>, <fstream>, cardStatus, cardType, balanceType
 // Required for: 
 class account {  // Дані банківської картки
+	int id;
 	int userID;                      // ID власника картки
 	char IBAN[36];
 	char cardNumber[16];
@@ -47,10 +48,10 @@ class account {  // Дані банківської картки
 	cardStatus status = NONVERIFED;
 public:
 	account() {} // порожній конструктор для load
-	account(const int _userID, const char* _IBAN, const char* _cardNumber, const char* _PIN,
+	account(const int _id, const int _userID, const char* _IBAN, const char* _cardNumber, const char* _PIN,
 		const char* _CVV, const char* _expirationDate,short _AccountType, balanceType _balance_type = UAH,
 		cardType _type = DEFAULT, cardStatus _status = NONVERIFED)
-		: userID(_userID), balance_type(_balance_type), type(_type), AccountType(_AccountType), status(_status)
+		: id(_id), userID(_userID), balance_type(_balance_type), type(_type), AccountType(_AccountType), status(_status)
 	{
 		strncpy(IBAN, _IBAN, sizeof(IBAN) - 1); IBAN[sizeof(IBAN) - 1] = '\0';
 		strncpy(cardNumber, _cardNumber, sizeof(cardNumber) - 1); cardNumber[sizeof(cardNumber) - 1] = '\0';
@@ -60,6 +61,7 @@ public:
 	}
 
 	// Базові функції для повернення даних
+	int getId() { return id; };
 	User getUser() { return getUser_byId(userID); };
 	int getUserID() { return userID; };
 	char* getIBAN() {return IBAN;}
@@ -161,6 +163,9 @@ void printAllAccounts(char msg[5][1024], int page); // Виведення інформації про 
 void DB_create_accounts(); // Створення пустого бінарного файлу accounts.dat
 bool isAccountExist_byIBAN(const char* IBAN); // Перевірка існування рахунку за IBAN
 bool isAccountExist_byCardNumber(const char* cardNumber); // Перевірка існування рахунку за номером картки
+account getAccountById(int id);
+bool isAccountExistById(int id);
+account getLastAccount();
 //account getAccount_byIBAN(const char* IBAN); // Пошук рахунку за IBAN
 //account getAccount_byCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
 

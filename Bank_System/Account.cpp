@@ -87,6 +87,37 @@ char* generate_CVC() {
 	return CVC_str;
 }
 
+account getLastAccount() {
+    ifstream fin(process.getAccountDBPath(), ios::binary | ios::in);
+    account empty{};
+
+    if (!fin.is_open()) {
+        cerr << "Не вдалося відкрити файл!" << endl;
+        return empty;
+    }
+
+    fin.seekg(0, ios::end);
+    streamoff fileSize = fin.tellg();
+
+    // Перевірка на пустий файл або некратний розмір
+    if (fileSize < static_cast<streamoff>(sizeof(account)) || fileSize % sizeof(account) != 0) {
+        cerr << "Файл порожній або пошкоджений!" << endl;
+        return empty;
+    }
+
+    fin.seekg(-static_cast<streamoff>(sizeof(account)), ios::end);
+
+    account last{};
+    fin.read(reinterpret_cast<char*>(&last), sizeof(account));
+
+    if (!fin) {
+        cerr << "Помилка читання останнього запису!" << endl;
+        return empty;
+    }
+
+    return last;
+}
+
 void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType) {
     std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::app);
     if (!fout) {
@@ -115,6 +146,7 @@ void ACC_addAccount(int userID, balanceType balance_type, cardType type, short a
 
     // Створення нового рахунку
     account newAccount(
+        0,
         userID,
         IBAN,
         cardNumber,
