@@ -9,7 +9,7 @@
 #include "ResponseManager.h"
 #include <vector>
 
-ResponseManager cmd;
+ResponseManager response_manager;
 
 fronted_User emptyUser = { "", "", "" };
 fronted_User currentUser = emptyUser;
@@ -24,11 +24,11 @@ void handleOp(sessionConstruct& sessionData, sessionConstruct& response, HANDLE&
 
     vector<string> args = split(input);
 
-    WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
+    //WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
     //ReadFile(hPipe, &response, sizeof(response), &bytesRead, NULL);
 
 	handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
-	cmd.get_response(handle);
+    response_manager.get_response(handle);
 
     // Оновлення сесії після відповіді сервера
     //sessionData = response;
