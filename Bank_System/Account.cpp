@@ -118,6 +118,32 @@ account getLastAccount() {
     return last;
 }
 
+account getAccountById(int id) {
+    ifstream fin(process.getAccountDBPath(), ios::binary);
+    account acc;
+    while (fin.read(reinterpret_cast<char*>(&acc), sizeof(User))) {
+        if (acc.getId() == id) {
+            fin.close();
+            return acc;
+        }
+    }
+    fin.close();
+    return emptyAccount;
+};
+
+bool isAccountExisytById(int id) {
+    ifstream fin(process.getAccountDBPath(), ios::binary);
+    account acc;
+    while (fin.read(reinterpret_cast<char*>(&acc), sizeof(User))) {
+        if (acc.getId() == id) {
+            fin.close();
+            return true;
+        }
+    }
+    fin.close();
+    return false;
+};
+
 void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType) {
     std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::app);
     if (!fout) {
@@ -146,7 +172,7 @@ void ACC_addAccount(int userID, balanceType balance_type, cardType type, short a
 
     // Створення нового рахунку
     account newAccount(
-        0,
+        getLastAccount().getId()+1,
         userID,
         IBAN,
         cardNumber,
@@ -190,7 +216,8 @@ void printAllAccounts(char msg[5][1024], int page) {
         }
 
         stringstream ss;
-        ss << "IBAN: " << acc.getIBAN()
+        ss << "id: " << acc.getId()
+            << " | IBAN: " << acc.getIBAN()
             << " | PAN: " << acc.getPAN()
             << " | Status: " << statusMapReverse[acc.getCardStatus()]
             << " | Owner ID: " << acc.getUserID()

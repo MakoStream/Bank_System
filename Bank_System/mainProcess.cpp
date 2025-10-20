@@ -13,7 +13,7 @@
 
 
 
-Session emptySession = { -1, -1 };
+Session emptySession = { -1, -1, ""};
 
 mainProcess::mainProcess(){
 	cout << configName << endl;

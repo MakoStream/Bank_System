@@ -13,7 +13,8 @@ enum balanceType { UAH, DLR, EUR };
 
 
 extern struct sessionConstruct {
-    int sessionId = 0;
+    int sessionId = -1;
+    int userId = -1;
     int hash[10];
     char cmd[256];
     char auth_key[41];

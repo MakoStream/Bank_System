@@ -14,4 +14,4 @@ public:
     void get_response(handleInfo& handle);
 };
 
-extern ResponseManager cmd;
+extern ResponseManager response_manager;

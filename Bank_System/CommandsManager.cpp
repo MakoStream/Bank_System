@@ -10,6 +10,7 @@
 #include "commands/NewAccountCommand.h"
 #include "commands/AccountVerifyCommand.h"
 #include "commands/AccountBanCommand.h"
+#include "commands/UserInfoCommand.h"
 
 
 #include <iostream>
@@ -30,6 +31,7 @@ CommandsManager::CommandsManager() {
 	commands.push_back(std::make_unique<AccountVerifyCommand>());
 	commands.push_back(std::make_unique<AccountBanCommand>());
     commands.push_back(std::make_unique<AccountUnbanCommand>());
+    commands.push_back(std::make_unique<UserInfoCommand>());
 }
 
 

@@ -12,6 +12,8 @@
 #include "responses/AccountVerifyResponse.h"
 #include "responses/AccountBanResponse.h"
 #include "responses/CreateDBResponse.h"
+#include "responses/UserInfoResponse.h"
+#include "responses/MeResponse.h"
 
 // ======================================================
 
@@ -29,7 +31,8 @@ ResponseManager::ResponseManager() {
 	responses.push_back(std::make_unique<AccountBanResponse>());
 	responses.push_back(std::make_unique<AccountUnbanResponse>());
 	responses.push_back(std::make_unique<CreateDBResponse>());
-	
+	responses.push_back(std::make_unique<UserInfoResponse>());
+	responses.push_back(std::make_unique<MeResponse>());
 
 }
 
@@ -41,6 +44,11 @@ void ResponseManager::get_response(handleInfo& handle) {
     for (auto& cmd : responses) {
 		//cout << cmd->name() << endl;
         if (cmd->name() == cmdName) {
+			cout << cmd->need_execute() << endl;
+			if (cmd->need_execute()) {
+				
+				WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+			};
             cmd->get_response(handle);
             strncpy(handle.sessionData.cmd, "", sizeof(handle.sessionData.cmd) - 1);
             handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';

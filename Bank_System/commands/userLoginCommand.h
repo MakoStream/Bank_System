@@ -37,6 +37,7 @@ public:
 
 			handle.sessionData.hash[0] = 1; // success login
             handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
+            handle.sessionData.userId = user.getId();
             WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
             return;
         };

@@ -120,6 +120,7 @@ public:
 
 	// Функції для запису та зчитування даних з бінарного файлу accounts.dat
 	void save(std::ofstream& ofs) {
+		ofs.write((char*)&id, sizeof(id));
 		ofs.write((char*)&userID, sizeof(userID));
 		ofs.write((char*)&IBAN, sizeof(IBAN));
 		ofs.write((char*)&cardNumber, sizeof(cardNumber));
@@ -133,6 +134,7 @@ public:
 		ofs.write((char*)&status, sizeof(status));
 	};
 	void load(std::ifstream& ifs) {
+		ifs.read((char*)&id, sizeof(id));
 		ifs.read((char*)&userID, sizeof(userID));
 		ifs.read((char*)&IBAN, sizeof(IBAN));
 		ifs.read((char*)&cardNumber, sizeof(cardNumber));

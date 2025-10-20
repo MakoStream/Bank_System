@@ -162,7 +162,7 @@ bool isUserExist_byLogin(const char* login) {
 
 
 bool isUserExist_byId(int id) {
-    ifstream fin("users.dat", ios::binary);
+    ifstream fin(process.getUserDBPath(), ios::binary);
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
         if (u.getId() == id) {

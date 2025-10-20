@@ -75,6 +75,11 @@ public:
     const char* getSurname()const { return surname; };
     const char* getLogin()const { return login; };
     int getPhone() const { return phone; }
+    int getTIN() const { return TIN; };
+
+    userRole getRole()const { return role; };
+    userStatus getStatus()const { return status; };
+    passportData getPassport()const { return passport; };
 
     // Базові функції для керування статусом
     void ban() {status = USER_BLOCKED;};
