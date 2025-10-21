@@ -206,3 +206,5 @@ bool mainProcess::debugOn() {
 
     return true;
 }
+
+bool mainProcess::debugStatus() { return debug; };

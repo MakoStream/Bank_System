@@ -14,7 +14,8 @@
 #include "responses/CreateDBResponse.h"
 #include "responses/UserInfoResponse.h"
 #include "responses/MeResponse.h"
-#include "responses/DebugOnResponsecpp.h"
+#include "responses/DebugOnResponse.h"
+#include "responses/UnitTestResponse.h"
 
 // ======================================================
 
@@ -35,8 +36,7 @@ ResponseManager::ResponseManager() {
 	responses.push_back(std::make_unique<UserInfoResponse>());
 	responses.push_back(std::make_unique<MeResponse>());
 	responses.push_back(std::make_unique<DebugOnResponse>());
-
-
+	responses.push_back(std::make_unique<UnitTestResponse>());
 }
 
 void ResponseManager::get_response(handleInfo& handle) {

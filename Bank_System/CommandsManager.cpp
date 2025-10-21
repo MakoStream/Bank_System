@@ -12,12 +12,10 @@
 #include "commands/AccountBanCommand.h"
 #include "commands/UserInfoCommand.h"
 #include "commands/DebugOnCommand.h"
+#include "commands/UnitTestCommand.h"
 
 
 #include <iostream>
-
-
-
 
 
 CommandsManager::CommandsManager() {
@@ -34,6 +32,7 @@ CommandsManager::CommandsManager() {
     commands.push_back(std::make_unique<AccountUnbanCommand>());
     commands.push_back(std::make_unique<UserInfoCommand>());
     commands.push_back(std::make_unique<DebugOnCommand>());
+    commands.push_back(std::make_unique<UnitTestCommand>());
 }
 
 
