@@ -1,6 +1,4 @@
 #define _CRT_SECURE_NO_WARNINGS
-#define BOOST_TEST_NO_MAIN
-#define BOOST_TEST_ALTERNATIVE_INIT_API
 #include <iostream>
 //#include <windows.h>
 #include <string>

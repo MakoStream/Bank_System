@@ -7,9 +7,14 @@ public:
 		ReadFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesRead, NULL);
 
 		if (handle.sessionData.hash[0] == 1) {
-			strncpy(currentUser.login, handle.sessionData.msg[0], sizeof(handle.sessionData.msg[0]) - 1);
-			strncpy(currentUser.name, handle.sessionData.msg[1], sizeof(handle.sessionData.msg[1]) - 1);
-			strncpy(currentUser.surname, handle.sessionData.msg[2], sizeof(handle.sessionData.msg[2]) - 1);
+			strncpy(currentUser.login, handle.sessionData.msg[0], sizeof(currentUser.login) - 1);
+			currentUser.login[sizeof(currentUser.login) - 1] = '\0';
+
+			strncpy(currentUser.name, handle.sessionData.msg[1], sizeof(currentUser.name) - 1);
+			currentUser.name[sizeof(currentUser.name) - 1] = '\0';
+
+			strncpy(currentUser.surname, handle.sessionData.msg[2], sizeof(currentUser.surname) - 1);
+			currentUser.surname[sizeof(currentUser.surname) - 1] = '\0';
 			cout << "Hello, " << currentUser.name << " " << currentUser.surname << "!\n" << endl;
 			return;
 		}

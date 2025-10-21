@@ -1,9 +1,18 @@
 #include "../Command.h"
 #include "../mainProcess.h"
+#include <filesystem>
 
 class UnitTestCommand : public Command {
 public:
 	void execute(handleInfo& handle) override {  // unit_test <client_type>
+
+		//================================
+		cout << handle.sessionData.sessionId << endl;
+
+		//================================
+		std::filesystem::remove("../" + process.getUserDBPath());
+		std::filesystem::remove("../" + process.getAccountDBPath());
+
 		string input(handle.sessionData.cmd);
 		vector<string> args = split(input);
 
