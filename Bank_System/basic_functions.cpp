@@ -2,7 +2,11 @@
 
 
 
-
+// Function: isStringDigit
+// Description: Checks whether the given string represents a valid numeric value (integer or decimal).
+// Requirements: <string>, <cctype>
+// Required for: class NewAccountCommand, class UserListCommand, class AccountListCommand, class UserInfoCommand,
+//               class RegisterUserCommand
 bool isStringDigit(const std::string& s) {
     if (s.empty()) return false;
     int dotCount = 0;
@@ -31,6 +35,10 @@ bool isPhone(const std::string& s) {
     return true;
 }
 
+// Function: split
+// Description: Splits a string into words separated by whitespace and returns them as a vector
+// Requirements: <string>, <sstream>, <vector>
+// Required for: main(), Command::execute()
 vector<string> split(const string& input) {
     vector<string> tokens;
     istringstream iss(input);
@@ -41,14 +49,19 @@ vector<string> split(const string& input) {
     return tokens;
 };
 
-
-// --- допоміжна функція для обрізання пробілів ---
+// Function: trim
+// Description: Removes spaces at the edges of text
+// Requirements: <string>, <sstream>
+// Required for: readConfig()
 void trim(std::string& s) {
     while (!s.empty() && std::isspace((unsigned char)s.front())) s.erase(s.begin());
     while (!s.empty() && std::isspace((unsigned char)s.back())) s.pop_back();
 }
 
-// --- читання з cfg файлу ---
+// Function: readConfig
+// Description: Reads configuration attributes from a *.ini file and stores them as key-value pairs.
+// Requirements: <iostream>, <fstream>, <string>, <map>, and a helper function trim(std::string&)
+// Required for: class mainProcess()
 std::map<std::string, std::string> readConfig(const std::string& filename) {
 	cout << "Reading config from " << filename << std::endl;
     std::ifstream file(filename);
@@ -79,7 +92,10 @@ std::map<std::string, std::string> readConfig(const std::string& filename) {
     return config;
 }
 
-// --- запис у cfg файл ---
+// Function: writeConfig
+// Description: Writes configuration key-value pairs to a specified *.ini file, overwriting its content.
+// Requirements: <iostream>, <fstream>, <string>, <map>
+// Required for: class mainProcess()
 void writeConfig(const std::string& filename, const std::map<std::string, std::string>& config) {
     std::ofstream file(filename);
     if (!file.is_open()) {
