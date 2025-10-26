@@ -17,7 +17,10 @@
 
 #include <iostream>
 
-
+// Function: CommandsManager::CommandsManager
+// Description: Stores all command objects and executes them based on handle.sessionData.cmd
+// Requirements: <vector>, <memory>, <string>, commands/..
+// Required for: CommandsManager::execute()
 CommandsManager::CommandsManager() {
     commands.push_back(std::make_unique<CreateDBCommand>());
     commands.push_back(std::make_unique<RegisterUserCommand>());
@@ -35,7 +38,10 @@ CommandsManager::CommandsManager() {
     commands.push_back(std::make_unique<UnitTestCommand>());
 }
 
-
+// Function: CommandsManager::execute
+// Description: Executes a command from handle.sessionData.cmd
+// Requirements: handleInfo
+// Required for: Processing client commands
 void CommandsManager::execute(handleInfo& handle) {
 	string cmdStr(handle.sessionData.cmd);
     std::vector<std::string> args = split(cmdStr);
