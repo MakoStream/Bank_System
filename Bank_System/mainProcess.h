@@ -78,5 +78,6 @@ public:
 	string getUserDBPath();
 
 	bool debugOn();
+    bool debugStatus();
 };
 extern mainProcess process;

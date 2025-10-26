@@ -8,7 +8,7 @@
 
 class RegisterUserCommand : public Command {
 public:
-	void execute(handleInfo& handle) override { // reg_user login password name surname phone //example: reg_user user1 pass1 John Doe 1234567890
+    void execute(handleInfo& handle) override { // reg_user <login> <password> <name> <surname> <phone> //example: reg_user user1 pass1 John Doe 1234567890
         string input (handle.sessionData.cmd);
 		vector<string> args = split(input);
 

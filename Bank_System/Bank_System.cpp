@@ -52,7 +52,7 @@ void HandleClient(HANDLE hPipe) {
         DWORD bytesRead, bytesWritten;
 
         handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
-        // „итаЇмо структуру в≥д кл≥Їнта
+
         BOOL success = ReadFile(hPipe, &sessionData, sizeof(sessionData), &bytesRead, NULL);
         if (!success || bytesRead == 0) {
             std::cout << "Client disconnected\n";
@@ -66,8 +66,6 @@ void HandleClient(HANDLE hPipe) {
 			break;
         };
 
-
-        //process.printSessions();
         vector<string> args = split(sessionData.cmd);
         manager.execute(handle);
         

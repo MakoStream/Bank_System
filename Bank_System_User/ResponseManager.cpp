@@ -14,6 +14,8 @@
 #include "responses/CreateDBResponse.h"
 #include "responses/UserInfoResponse.h"
 #include "responses/MeResponse.h"
+#include "responses/DebugOnResponse.h"
+#include "responses/UnitTestResponse.h"
 
 // ======================================================
 
@@ -33,7 +35,8 @@ ResponseManager::ResponseManager() {
 	responses.push_back(std::make_unique<CreateDBResponse>());
 	responses.push_back(std::make_unique<UserInfoResponse>());
 	responses.push_back(std::make_unique<MeResponse>());
-
+	responses.push_back(std::make_unique<DebugOnResponse>());
+	responses.push_back(std::make_unique<UnitTestResponse>());
 }
 
 void ResponseManager::get_response(handleInfo& handle) {
@@ -44,7 +47,7 @@ void ResponseManager::get_response(handleInfo& handle) {
     for (auto& cmd : responses) {
 		//cout << cmd->name() << endl;
         if (cmd->name() == cmdName) {
-			cout << cmd->need_execute() << endl;
+			//cout << cmd->need_execute() << endl;
 			if (cmd->need_execute()) {
 				
 				WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);

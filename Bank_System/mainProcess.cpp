@@ -80,7 +80,7 @@ void mainProcess::savecfg() {
 }
 
 void mainProcess::printConfig() {
-	std::map<std::string, std::string> cfg = readConfig("config.ini");
+	std::map<std::string, std::string> cfg = readConfig(configName);
 	for (const auto& [key, value] : cfg) {
 		std::cout << key << " = " << value << std::endl;
 	}
@@ -184,6 +184,7 @@ vector <Session> mainProcess::getSessions() {
 bool mainProcess::debugOn() {
 	debug = true;
 	configName = "config_debug.ini";
+    cout << configName << endl;
     std::map<std::string, std::string> cfg = readConfig(configName);
     for (const auto& [key, value] : cfg) {
         if (key == "last_session_id") {
@@ -206,3 +207,5 @@ bool mainProcess::debugOn() {
 
     return true;
 }
+
+bool mainProcess::debugStatus() { return debug; };

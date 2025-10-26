@@ -7,7 +7,7 @@ public:
 		process.logout(handle.sessionData.sessionId);
 
 
-		handle.sessionData.sessionId = -1;
+		handle.sessionData.userId = -1;
 		handle.sessionData.auth_key[0] = '\0';
 		throw_response(handle, "Logged out successfully.");
 		return;

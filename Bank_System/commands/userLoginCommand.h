@@ -11,6 +11,7 @@ public:
 		string cmdStr(handle.sessionData.cmd);
 		std::vector<std::string> args = split(cmdStr);
 
+        handle.sessionData.hash[0] = 0;
         if (args.size() < 3) {
 			throw_response(handle, "Not enough arguments for login command!");
             return;

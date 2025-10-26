@@ -12,6 +12,7 @@ public:
 		string cmdText = "user_info " + to_string(handle.sessionData.userId);
 		cout << cmdText << endl;
 		strncpy(handle.sessionData.cmd, cmdText.c_str(), sizeof(handle.sessionData.cmd) - 1);
+		handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
 		cout << handle.sessionData.cmd << endl;
 		response_manager.get_response(handle);
 	};

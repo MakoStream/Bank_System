@@ -92,3 +92,13 @@ bool writeConfig(const std::string& filename, const std::map<std::string, std::s
     file.close();
     return true;
 }
+
+string getTimestamp() {
+    auto now = std::chrono::system_clock::now();
+    std::time_t t = std::chrono::system_clock::to_time_t(now);
+    std::tm tm;
+    localtime_s(&tm, &t); // для Windows
+    std::stringstream ss;
+    ss << std::put_time(&tm, "%Y-%m-%d_%H-%M-%S");
+    return ss.str();
+}

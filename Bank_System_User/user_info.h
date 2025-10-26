@@ -30,10 +30,10 @@ extern struct fronted_User {
 };
 
 extern struct handleInfo {
-    HANDLE& hPipe;
-    sessionConstruct& sessionData;
-    DWORD& bytesRead;
-    DWORD& bytesWritten;
+    HANDLE hPipe;
+    sessionConstruct sessionData;
+    DWORD bytesRead;
+    DWORD bytesWritten;
 };
 
 extern fronted_User currentUser;
