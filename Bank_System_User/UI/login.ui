@@ -322,7 +322,7 @@
     </font>
    </property>
    <property name="text">
-    <string>hasbd,amnsbd,asndbajsdhnbashdba,sndbasndbasnd bansdbc,asjdbs</string>
+    <string>Message_Text</string>
    </property>
    <property name="scaledContents">
     <bool>false</bool>
