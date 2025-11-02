@@ -199,3 +199,111 @@ void AUD_addAudit(int id, int userID, int sessionID, action act, const char* inf
     audit.saveToFile(fout);
     fout.close();
 }
+
+int getLastTransactionID() {
+	string filePath = process.getTransactionLogDBPath();
+	std::ifstream in(filePath, std::ios::binary);
+	if (!in) {
+		std::cerr << "Помилка: не вдалося відкрити файл транзакцій для читання: " << filePath << std::endl;
+		return -1;
+	}
+
+	TransactionLog temp;
+	int lastID = -1;
+
+	while (true) {
+		temp.loadFromFile(in);
+		if (!in.good()) break;
+
+		lastID = temp.getID();
+	}
+
+	in.close();
+	return lastID;
+};
+
+int getLastAuditID() {
+	string filePath = process.getAuditLogDBPath();
+	std::ifstream in(filePath, std::ios::binary);
+	if (!in) {
+		std::cerr << "Помилка: не вдалося відкрити файл аудиту для читання: " << filePath << std::endl;
+		return -1;
+	}
+
+	AuditLog temp;
+	int lastID = -1;
+
+	while (true) {
+		temp.loadFromFile(in);
+		if (!in.good()) break;
+
+		lastID = temp.getID();
+	}
+
+	in.close();
+	return lastID;
+};
+
+vector<TransactionLog> getTransactionsLogs(int transaction_id) {   // O(n)
+    vector<TransactionLog> result;
+    string filePath = process.getAuditLogDBPath();
+    std::ifstream from(filePath, std::ios::binary);
+    if (!from) {
+        std::cerr << "Помилка: не вдалося відкрити файл аудиту для читання: " << filePath << std::endl;
+        return result;
+    }
+
+    while (from.peek() != EOF) { // поки не кінець файлу
+        TransactionLog temp;
+        temp.loadFromFile(from);
+        if (!from) break; // якщо читання не вдалося
+        if (temp.getTransactionID() == transaction_id) {
+            result.push_back(temp);
+        }
+    }
+
+    from.close();
+    return result;
+}
+vector<AuditLog> getAuditLogs(int transaction_PM_id) { // O(n)
+	vector<AuditLog> result;
+	string filePath = process.getAuditLogDBPath();
+	std::ifstream from(filePath, std::ios::binary);
+	if (!from) {
+		std::cerr << "Помилка: не вдалося відкрити файл аудиту для читання: " << filePath << std::endl;
+		return result;
+	}
+
+    while (from.peek() != EOF) { // поки не кінець файлу
+        AuditLog temp;
+        temp.loadFromFile(from);
+        if (!from) break; // якщо читання не вдалося
+        if (temp.getSessionID() == transaction_PM_id) {
+            result.push_back(temp);
+        };
+    };
+
+	from.close();
+	return result;
+};
+vector <AuditLog> getUserAuditLogs(int user_id) {
+	vector<AuditLog> result;
+	string filePath = process.getAuditLogDBPath();
+	std::ifstream from(filePath, std::ios::binary);
+	if (!from) {
+		std::cerr << "Помилка: не вдалося відкрити файл аудиту для читання: " << filePath << std::endl;
+		return result;
+	}
+
+	while (from.peek() != EOF) { // поки не кінець файлу
+		AuditLog temp;
+		temp.loadFromFile(from);
+		if (!from) break; // якщо читання не вдалося
+		if (temp.getUserID() == user_id) {
+			result.push_back(temp);
+		}
+	}
+
+	from.close();
+	return result;
+};

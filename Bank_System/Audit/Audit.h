@@ -123,6 +123,25 @@ public:
         strcpy_s(allowed_by, sizeof(allowed_by), allowedBy);
         strcpy_s(comment, sizeof(comment), comm);
     }
+	// ---------------------- Функції отримання змінних ----------------------
+	int getID() const { return id; }
+	int getTransactionID() const { return transaction_id; }
+	operations getOperationType() const { return operation_type; }
+	transaction_status getStatus() const { return status; }
+	const char* getTime() const { return time; }
+	bool isOtherCurrency() const { return other_currency; }
+	bool isBlockedMoney() const { return blocked_money; }
+	const char* getFromIBAN() const { return from_IBAN; }
+	const char* getFromCardNumber() const { return from_cardNumber; }
+	const char* getToIBAN() const { return to_IBAN; }
+	const char* getToCardNumber() const { return to_cardNumber; }
+	bool isOtherBankUser() const { return other_bank_user; }
+	int getUserID() const { return user_id; }
+	double getCurrency() const { return currency; }
+	balanceType getCurrencyType() const { return currency_type; }
+	const char* getAllowedBy() const { return allowed_by; }
+	const char* getComment() const { return comment; }
+
 
     // ---------------------- Методи керування статусом ----------------------
     bool allow() {
@@ -263,6 +282,7 @@ class AuditLog {
     // Log info
     action Action;
     char info[124];
+    int transaction_PM_id;
 
     bool success;               // Було виконано успішно чи ні
     char error_message[128];    // Якщо дія завершилась з помилкою
@@ -276,20 +296,32 @@ public:
 		strcpy_s(time, sizeof(time), getTimestamp().c_str());
 		Action = CONNECTED;
 		strcpy_s(info, sizeof(info), "");
+		transaction_PM_id = -1;
 		success = true;
 		strcpy_s(error_message, sizeof(error_message), "");
 	}
-    AuditLog(int _id, int _userID, int _sessionID, action _act, const char* _info, bool _success = true, const char* _errorMessage = "")
+    AuditLog(int _id, int _userID, int _sessionID, action _act, const char* _info, int _transaction_PM_id, bool _success = true, const char* _errorMessage = "")
     {
         id = _id;
         user_id = _userID;
         session_id = _sessionID;
         Action = _act;
         strncpy_s(info, sizeof(info), _info, _TRUNCATE);
+		transaction_PM_id = _transaction_PM_id;
         success = _success;
         strncpy_s(error_message, sizeof(error_message), _errorMessage, _TRUNCATE);
         strncpy_s(time, sizeof(time), getTimestamp().c_str(), _TRUNCATE);
     }
+
+    // ---------------------- Функції отримання змінних ----------------------
+	int getID() const { return id; }
+	int getUserID() const { return user_id; }
+	int getSessionID() const { return session_id; }
+	action getAction() const { return Action; }
+	const char* getTime() const { return time; }
+	const char* getInfo() const { return info; }
+	int getTransactionPMID() const { return transaction_PM_id; }
+
 
 	// ---------------------- Запис у файл ----------------------
     void saveToFile(std::ostream& out) const {
@@ -299,6 +331,7 @@ public:
         out.write(time, sizeof(time));
         out.write(reinterpret_cast<const char*>(&Action), sizeof(Action));
         out.write(info, sizeof(info));
+        out.write(reinterpret_cast<const char*>(&transaction_PM_id), sizeof(transaction_PM_id));
         out.write(reinterpret_cast<const char*>(&success), sizeof(success));
         out.write(error_message, sizeof(error_message));
     };
@@ -310,6 +343,7 @@ public:
         in.read(time, sizeof(time));
         in.read(reinterpret_cast<char*>(&Action), sizeof(Action));
         in.read(info, sizeof(info));
+        in.read(reinterpret_cast<char*>(&transaction_PM_id), sizeof(transaction_PM_id));
         in.read(reinterpret_cast<char*>(&success), sizeof(success));
         in.read(error_message, sizeof(error_message));
     };
@@ -349,3 +383,10 @@ void TRAN_addTransaction(
     const char* comment
 );
 
+
+int getLastTransactionID();
+int getLastAuditID();
+
+vector<TransactionLog> getTransactionsLogs(int transaction_id);
+vector<AuditLog> getAuditLogs(int transaction_PM_id);
+vector <AuditLog> getUserAuditLogs(int user_id);
