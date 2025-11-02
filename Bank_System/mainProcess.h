@@ -49,6 +49,8 @@ class mainProcess {
 	// default db paths
 	string account_db_path;
 	string user_db_path;
+    string transaction_log_db_path;
+    string audit_log_db_path;
 
 	bool debug;
 
@@ -76,6 +78,8 @@ public:
 
 	string getAccountDBPath();
 	string getUserDBPath();
+	string getTransactionLogDBPath();
+	string getAuditLogDBPath();
 
 	bool debugOn();
     bool debugStatus();

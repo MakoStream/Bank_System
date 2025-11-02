@@ -37,14 +37,13 @@ User emptyUser(
 Logger logger;  // визначення глобальної змінної
 
 
-// Function: split
-// Description: Splits a string into words separated by whitespace and returns them as a vector
-// Requirements: <string>, <sstream>, <vector>
-// Required for: main loop input parsing in main()
-
 mainProcess process;
 CommandsManager manager;
 
+// Function: HandleClient(HANDLE hPipe)
+// Description: Splits a string into words separated by whitespace and returns them as a vector
+// Requirements: <string>, <sstream>, <vector>
+// Required for: main loop input parsing in main()
 
 void HandleClient(HANDLE hPipe) {
     while (true) {
@@ -98,13 +97,6 @@ void signalHandler(int signal) {
 void onExit() {
     logger.exit();
 }
-
-
-
-
-
-
-
 
 
 

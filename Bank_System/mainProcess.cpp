@@ -224,6 +224,8 @@ int mainProcess::incrementCardIBAN() {
 
 string mainProcess::getAccountDBPath() {return account_db_path;}
 string mainProcess::getUserDBPath() { return user_db_path; }
+string mainProcess::getTransactionLogDBPath() { return transaction_log_db_path; }
+string mainProcess::getAuditLogDBPath() { return audit_log_db_path; }
 vector <Session> mainProcess::getSessions() {
     return loggined_users;
 };
@@ -249,6 +251,12 @@ bool mainProcess::debugOn() {
         }
         if (key == "account_db_path") {
             account_db_path = value;
+        }
+        if (key == "transaction_log_db_path") {
+            transaction_log_db_path = value;
+        }
+        if (key == "audit_log_db_path") {
+            audit_log_db_path = value;
         }
         else if (key == "user_db_path") {
             user_db_path = value;
