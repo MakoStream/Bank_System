@@ -10,6 +10,7 @@
 #include <csignal>
 #include "User.h"
 #include <optional>
+#include "Audit/Audit.h"
 
 
 
@@ -33,8 +34,26 @@ mainProcess::mainProcess(){
 		if (key == "last_card_IBAN") {
 			last_card_IBAN = std::stoi(value);
 		}
+		if (key == "last_audit_id") {
+			last_audit_id = std::stoi(value);
+		}
+		if (key == "last_account_id") {
+			last_account_id = std::stoi(value);
+		};
+		if (key == "last_transaction_id") {
+			last_transaction_id = std::stoi(value);
+		}
+		if (key == "last_transaction_request_id") {
+			last_transaction_request_id = std::stoi(value);
+		}
 		if (key == "account_db_path") {
 			account_db_path = value;
+		}
+		if (key == "transaction_log_db_path") {
+			transaction_log_db_path = value;
+		}
+		if (key == "audit_log_db_path") {
+			audit_log_db_path = value;
 		}
 		else if (key == "user_db_path") {
 			user_db_path = value;
@@ -84,8 +103,14 @@ void mainProcess::savecfg() {
     cfg["last_session_id"] = std::to_string(last_session_id);
     cfg["last_card_PAN"] = std::to_string(last_card_PAN);
     cfg["last_card_IBAN"] = std::to_string(last_card_IBAN);
+	cfg["last_audit_id"] = std::to_string(last_audit_id);
+	cfg["last_account_id"] = std::to_string(last_account_id);
+	cfg["last_transaction_id"] = std::to_string(last_transaction_id);
+	cfg["last_transaction_request_id"] = std::to_string(last_transaction_request_id);
     cfg["account_db_path"] = account_db_path;
     cfg["user_db_path"] = user_db_path;
+	cfg["transaction_log_db_path"] = transaction_log_db_path;
+	cfg["audit_log_db_path"] = audit_log_db_path;
 
     writeConfig("config.ini", cfg);
 }
@@ -208,9 +233,6 @@ bool mainProcess::compareAuthKey(const sessionConstruct& sc, const Session& s) {
     return std::strncmp(sc.auth_key, s.auth_key, 40) == 0;
 }
 
-void mainProcess::transferBridge(account& from, account& to, double amount) {
-	from.transfer(to, amount);
-}
 int mainProcess::incrementCardPAN() {
 	last_card_PAN++;
 	savecfg();
@@ -221,6 +243,26 @@ int mainProcess::incrementCardIBAN() {
 	savecfg();
 	return last_card_IBAN;
 }
+int mainProcess::incrementAccountID() {
+    last_account_id++;
+    savecfg();
+    return last_account_id;
+}
+int mainProcess::incrementAuditID() {
+	last_audit_id++;
+	savecfg();
+	return last_audit_id;
+}
+int mainProcess::incrementTransactionID() {
+	last_transaction_id++;
+	savecfg();
+	return last_transaction_id;
+}
+int mainProcess::incrementTransactionRequestID() {
+    last_transaction_request_id++;
+    savecfg();
+    return last_transaction_request_id;
+};
 
 string mainProcess::getAccountDBPath() {return account_db_path;}
 string mainProcess::getUserDBPath() { return user_db_path; }
@@ -258,6 +300,18 @@ bool mainProcess::debugOn() {
         if (key == "audit_log_db_path") {
             audit_log_db_path = value;
         }
+        if (key == "last_audit_id") {
+            last_audit_id = std::stoi(value);
+        }
+        if (key == "last_account_id") {
+			last_account_id = std::stoi(value);
+        };
+		if (key == "last_transaction_id") {
+			last_transaction_id = std::stoi(value);
+		}
+        if (key == "last_transaction_request_id") {
+            last_transaction_request_id = std::stoi(value);
+        }
         else if (key == "user_db_path") {
             user_db_path = value;
         };
@@ -268,3 +322,48 @@ bool mainProcess::debugOn() {
 }
 
 bool mainProcess::debugStatus() { return debug; };
+
+void mainProcess::transaction_request(handleInfo handle, account& from, account& to, double ammount, const char* PIN, const char* CVV, operations op_type, string comment) {  // need args: from_account, to_account, amount
+	// Create a new transaction request
+	Session session = process.getSessionByID(handle.sessionData.sessionId);
+	User user = getUser_byId(session.user_id);
+	bool from_own_account = (from.getUserID() == user.getId());
+	bool to_own_account = (to.getUserID() == user.getId());
+
+
+    TransactionLog log(
+        process.incrementTransactionID(),
+		process.incrementTransactionRequestID(),
+		op_type,
+		REQUEST,
+		//getTimestamp(),
+        (to.getBalanceType() != from.getBalanceType()),
+		false,
+		from.getIBAN(),
+		from.getPAN(),
+		to.getIBAN(),
+		to.getPAN(),
+		false,
+		-1,
+		ammount,
+		"",
+		comment.c_str()
+	);
+    if (from.getBalance() < ammount + 10) {
+		log.fail(FAIL_NO_MONEY);
+    }
+    else if (from.getCardStatus() != AVAILABLE) {
+        log.fail(FAIL_YOUR_CARD_BLOCKED);
+    }
+    else if (to.getCardStatus() != AVAILABLE) {
+        log.fail(FAIL_CARD_BLOCKED);
+    }
+    else if (!from_own_account and !from.checkCVV(CVV)) { // За умови, якщо картка чужа і CVV не правильне
+        log.fail(FAIL_WRONG_CVV);
+    }
+	else if (from_own_account and !from.checkPIN(PIN)) { // За умови, якщо картка своя і PIN не правильний
+		log.fail(FAIL_WRONG_PIN);
+	};
+
+    save_transaction_log(log);
+}

@@ -6,6 +6,7 @@
 // Requirements: <string>, <unordered_map>, enums balanceType, cardType, cardStatus
 // Required for: account management functions, printing, validation
 unordered_map <string, balanceType> balanceMap = { {"UAH", UAH}, {"DLR", DLR}, {"EUR", EUR} };
+unordered_map <balanceType, string> balanceMapToString = { {UAH, "UAH"}, {DLR, "DLR"}, {EUR, "EUR"} };
 unordered_map<string, cardType> cardMap = { {"DEFAULT", DEFAULT}, {"DEPOSITE", DEPOSITE}, {"CREDIT", CREDIT} };
 unordered_map<string, cardStatus> statusMap = { {"AVAILABLE", AVAILABLE}, {"BLOCKED", BLOCKED}, {"NONVERIFED", NONVERIFED} };
 unordered_map<cardStatus, string> statusMapReverse = { {AVAILABLE, "AVAILABLE"}, {BLOCKED, "BLOCKED"}, {NONVERIFED, "NONVERIFED"} };
@@ -48,6 +49,7 @@ char* get_BankID() {
     char* bank_id_str = (char*)malloc(17);
     if (!bank_id_str) return nullptr;
     snprintf(bank_id_str, 17, "%s%d", withoutCheck, check);
+	cout << "Generated Bank ID: " << bank_id_str << endl;
     return bank_id_str;
 }
 
@@ -151,7 +153,7 @@ void ACC_addAccount(int userID, balanceType balance_type, cardType type, short a
     }
 
     account newAccount(
-        getLastAccount().getId() + 1,
+        process.incrementAccountID(),
         userID,
         IBAN,
         cardNumber,
@@ -345,4 +347,10 @@ void account::updateInFile() {
     if (!outFile) { std::cerr << "Помилка: не вдалося відкрити файл accounts.dat для запису." << std::endl; return; }
     for (auto& acc : all) acc.save(outFile);
     outFile.close();
+}
+
+void setAccountBalance(account& acc, double newBalance) {
+    if (!process.debugStatus()) return;
+	acc.setBalance(newBalance - acc.getBalance());
+	acc.updateInFile();
 }

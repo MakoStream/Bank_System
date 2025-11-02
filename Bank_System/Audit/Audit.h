@@ -12,7 +12,7 @@ enum operations {
     SELF_TRANSACTION,         // Транзакція між власними картками
     TAX,                      // Податок
     PAYDAY,                   // Заробітна плата
-    IBAN_TRANSACTION,         // Транзакція по IBAN
+    IBAN_TRANSACTION,         // Транзакція по IBAN //USELESS
     ROLLBACK,                 // Повернення коштів
 };
 
@@ -27,13 +27,18 @@ enum transaction_status {
 
     FAIL,
     FAIL_NO_MONEY,
-    FAIL_WRONG_ACCOUNT,
+    FAIL_WRONG_ACCOUNT, // useless
     FAIL_CARD_BLOCKED,
     FAIL_YOUR_CARD_BLOCKED,
     FAIL_WRONG_CVV,
+    FAIL_WRONG_PIN,
     
     SUSPECT_REQUEST
 };
+extern const std::map<operations, std::string> operationToString;
+extern const std::map<transaction_status, std::string> transactionStatusToString;
+extern const std::map<std::string, operations> stringToOperation;
+extern const std::map<std::string, transaction_status> stringToTransactionStatus;
 
 class TransactionLog {
     int id;
@@ -47,12 +52,12 @@ class TransactionLog {
 
     // account from
     char from_IBAN[36];
-    char from_cardNumber[16];
+    char from_cardNumber[17];
     double from_currency_before;
     double from_currency_after;
     // account to
     char to_IBAN[36];
-    char to_cardNumber[16];
+    char to_cardNumber[17];
     double to_currency_before;
     double to_currency_after;
 
@@ -96,12 +101,19 @@ public:
     TransactionLog(
         int _id,
 		int _transaction_id,
-        operations op, transaction_status st,
-        bool otherCur, bool blocked,
-        const char* fromIban, const char* fromCard,
-        const char* toIban, const char* toCard,
-        bool otherBank, int uid, double curr,
-        const char* allowedBy, const char* comm
+        operations op,
+        transaction_status st,
+        bool otherCur,
+        bool blocked,
+        const char* fromIban,
+        const char* fromCard,
+        const char* toIban, 
+        const char* toCard,
+        bool otherBank, 
+        int uid, 
+        double curr,
+        const char* allowedBy, 
+        const char* comm
     ) {
         id = _id;
 		transaction_id = _transaction_id;
@@ -146,25 +158,25 @@ public:
     // ---------------------- Методи керування статусом ----------------------
     bool allow() {
         status = ALLOWED;
+		// Змінити рахунки тут пізніше
+
         blocked_money = false;
         return true;
     }
 
     bool deny() {
         status = DENIED;
+		// Якщо було заблоковано гроші, розблокувати їх і повернути на рахунок
+
         blocked_money = false;
         return true;
     }
 
     void fail(transaction_status fail_status) {
         status = fail_status;
-        blocked_money = false;
-    }
+		// Якщо було заблоковано гроші, розблокувати їх і повернути на рахунок
 
-    bool request(transaction_status request_status) {
-        status = request_status;
-        blocked_money = true;
-        return true;
+        blocked_money = false;
     }
 
     // ---------------------- Запис у файл ----------------------
@@ -383,10 +395,12 @@ void TRAN_addTransaction(
     const char* comment
 );
 
-
+void save_audit_log(AuditLog& log);
+void save_transaction_log(TransactionLog& log);
 int getLastTransactionID();
 int getLastAuditID();
 
 vector<TransactionLog> getTransactionsLogs(int transaction_id);
 vector<AuditLog> getAuditLogs(int transaction_PM_id);
 vector <AuditLog> getUserAuditLogs(int user_id);
+void printTransactions(char msg[5][1024], int page);

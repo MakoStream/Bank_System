@@ -21,6 +21,7 @@ enum cardType { DEPOSITE, DEFAULT, CREDIT };
 enum balanceType { UAH, DLR, EUR };
 
 extern std::unordered_map<std::string, cardType> cardMap;
+extern std::unordered_map <balanceType, string> balanceMapToString;
 extern std::unordered_map<std::string, balanceType> balanceMap;
 extern std::unordered_map<std::string, cardStatus> statusMap;
 extern std::unordered_map<cardStatus, std::string> statusMapReverse;
@@ -36,8 +37,8 @@ account getAccount_byCardNumber(const char* cardNumber); // Пошук рахунку за ном
 class account {  // Дані банківської картки
 	int id;
 	int userID;                      // ID власника картки
-	char IBAN[36];
-	char cardNumber[16];
+	char IBAN[37];
+	char cardNumber[17];
 	char PIN[4];
 	char CVV[3];
 	char expirationDate[8];          // MM/YY
@@ -66,8 +67,8 @@ public:
 	int getUserID() { return userID; };
 	char* getIBAN() {return IBAN;}
 	char* getPAN() {return cardNumber;};
-	//char* getPIN() { return PIN; };
-	//char* getCVV() { return CVV; };
+	char* getPIN() { return PIN; };
+	char* getCVV() { return CVV; };
 	char* getExpirationDate() { return expirationDate; };
 	balanceType getBalanceType() { return balance_type; };
 	double getBalance() { return balance; };
@@ -95,25 +96,13 @@ public:
 	// Операції з балансом
 	void setBalance(double ammount) { balance += ammount; };
 
-	void transfer(account to, double value) {
-		double commission = 1.0;
-		if (balance_type != to.getBalanceType()) {
-			std::cerr << "Помилка: Рахунки мають різні валюти." << std::endl;
-			return;
-		};
-		if (balance < value + commission) {
-			std::cerr << "Помилка: Недостатньо коштів на рахунку відправника." << std::endl;
-			return;
-		};
-		setBalance(-(value + commission));
-		to.setBalance(value);
-		account comission_bag = getAccount_byIBAN("TB000000000000000000000000010");
-		comission_bag.setBalance(commission);
-		comission_bag.updateInFile();
-		this->updateInFile();
-		to.updateInFile();
+
+	void setPIN(const char* newPIN) {
+		strncpy(PIN, newPIN, sizeof(PIN) - 1); PIN[sizeof(PIN) - 1] = '\0';
 	};
-	
+	void setCVV(const char* newCVV) {
+		strncpy(CVV, newCVV, sizeof(CVV) - 1); CVV[sizeof(CVV) - 1] = '\0';
+	};
 
 
 	
@@ -168,6 +157,8 @@ bool isAccountExist_byCardNumber(const char* cardNumber); // Перевірка існування
 account getAccountById(int id);
 bool isAccountExistById(int id);
 account getLastAccount();
+
+void setAccountBalance(account& acc, double newBalance); // only for debug
 //account getAccount_byIBAN(const char* IBAN); // Пошук рахунку за IBAN
 //account getAccount_byCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
 
@@ -176,7 +167,7 @@ account getLastAccount();
 //===============================================================================================================================
 
 // reg_user login password name surname phone //example: reg_user StreamCompanyBank 9723424887 Mako Stream 0000000000
-// new_account owner curence_type cardtype account_type //example: new_account 0 USD DEPOSITE 316
+// new_account owner curence_type cardtype account_type //example: new_account 0 USD DEPOSITE 316  
 // Типи рахунків:
 
 //Поточні рахунки клієнтів : рахунки 31 класу

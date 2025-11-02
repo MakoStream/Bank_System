@@ -6,6 +6,72 @@
 
 using namespace std;
 
+//====================================================================
+// Operations map
+// ------------------------- Enum -> String -------------------------
+const std::map<operations, std::string> operationToString = {
+    { COMMISION, "COMMISION" },
+    { CREDIT_EXPANSION, "CREDIT_EXPANSION" },
+    { DEPOSIT_PAYDAY, "DEPOSIT_PAYDAY" },
+    { TRANSACTION, "TRANSACTION" },
+    { SELF_TRANSACTION, "SELF_TRANSACTION" },
+    { TAX, "TAX" },
+    { PAYDAY, "PAYDAY" },
+    { IBAN_TRANSACTION, "IBAN_TRANSACTION" },
+    { ROLLBACK, "ROLLBACK" }
+};
+
+// ------------------------- String -> Enum -------------------------
+const std::map<std::string, operations> stringToOperation = {
+    { "COMMISION", COMMISION },
+    { "CREDIT_EXPANSION", CREDIT_EXPANSION },
+    { "DEPOSIT_PAYDAY", DEPOSIT_PAYDAY },
+    { "TRANSACTION", TRANSACTION },
+    { "SELF_TRANSACTION", SELF_TRANSACTION },
+    { "TAX", TAX },
+    { "PAYDAY", PAYDAY },
+    { "IBAN_TRANSACTION", IBAN_TRANSACTION },
+    { "ROLLBACK", ROLLBACK }
+};
+//====================================================================
+// Transaction Status map
+// ------------------------- Enum -> String -------------------------
+const std::map<transaction_status, std::string> transactionStatusToString = {
+    { SUCCES, "SUCCES" },
+    { ALLOWED, "ALLOWED" },
+    { DENIED, "DENIED" },
+    { REQUEST, "REQUEST" },
+    { ROLLBACK_REQUEST, "ROLLBACK_REQUEST" },
+    { ROLLBACK_DONE, "ROLLBACK_DONE" },
+    { FAIL, "FAIL" },
+    { FAIL_NO_MONEY, "FAIL_NO_MONEY" },
+    { FAIL_WRONG_ACCOUNT, "FAIL_WRONG_ACCOUNT" },
+    { FAIL_CARD_BLOCKED, "FAIL_CARD_BLOCKED" },
+    { FAIL_YOUR_CARD_BLOCKED, "FAIL_YOUR_CARD_BLOCKED" },
+    { FAIL_WRONG_CVV, "FAIL_WRONG_CVV" },
+    { FAIL_WRONG_PIN, "FAIL_WRONG_PIN" },
+    { SUSPECT_REQUEST, "SUSPECT_REQUEST" }
+};
+// ------------------------- String -> Enum -------------------------
+const std::map<std::string, transaction_status> stringToTransactionStatus = {
+    { "SUCCES", SUCCES },
+    { "ALLOWED", ALLOWED },
+    { "DENIED", DENIED },
+    { "REQUEST", REQUEST },
+    { "ROLLBACK_REQUEST", ROLLBACK_REQUEST },
+    { "ROLLBACK_DONE", ROLLBACK_DONE },
+    { "FAIL", FAIL },
+    { "FAIL_NO_MONEY", FAIL_NO_MONEY },
+    { "FAIL_WRONG_ACCOUNT", FAIL_WRONG_ACCOUNT },
+    { "FAIL_CARD_BLOCKED", FAIL_CARD_BLOCKED },
+    { "FAIL_YOUR_CARD_BLOCKED", FAIL_YOUR_CARD_BLOCKED },
+    { "FAIL_WRONG_CVV", FAIL_WRONG_CVV },
+    { "FAIL_WRONG_PIN", FAIL_WRONG_PIN },
+    { "SUSPECT_REQUEST", SUSPECT_REQUEST }
+};
+//====================================================================
+
+
 // ---------- TransactionLog::updateInFile ----------
 bool TransactionLog::updateInFile() {
 	string filePath = process.getTransactionLogDBPath();
@@ -307,3 +373,68 @@ vector <AuditLog> getUserAuditLogs(int user_id) {
 	from.close();
 	return result;
 };
+
+void save_audit_log(AuditLog& log) {
+	std::ofstream fout(process.getAuditLogDBPath(), std::ios::binary | std::ios::app);
+	if (!fout) {
+		std::cerr << "Не вдалося відкрити файл аудиту для запису." << std::endl;
+		return;
+	}
+	log.saveToFile(fout);
+	fout.close();
+};
+
+void save_transaction_log(TransactionLog& log) {
+	std::ofstream fout(process.getTransactionLogDBPath(), std::ios::binary | std::ios::app);
+	if (!fout) {
+		std::cerr << "Не вдалося відкрити файл транзакцій для запису." << std::endl;
+		return;
+	}
+	log.saveToFile(fout);
+	fout.close();
+};
+
+
+void printTransactions(char msg[5][1024], int page) {
+    ifstream fin(process.getTransactionLogDBPath(), ios::binary);
+    if (!fin) { cerr << "Не вдалося відкрити файл для читання." << endl; for (int i = 0; i < 5; i++) msg[i][0] = '\0'; return; }
+
+    TransactionLog log;
+    int startIndex = (page - 1) * 25;
+    int currentIndex = 0;
+    int msgIndex = 0;
+    string buffer;
+
+    while (!fin.eof()) {
+        log.loadFromFile(fin);
+        if (currentIndex < startIndex) { currentIndex++; continue; }
+
+		stringstream ss;  // id | transaction_id | PAN from | PAN to | Status | by User | Amount 
+        ss << "id: " << log.getID()
+            << " | transaction_id: " << log.getTransactionID()
+            << " | PAN from: " << log.getFromCardNumber()
+            << " | PAN to: " << log.getToCardNumber()
+            << " | Status: " << transactionStatusToString.at(log.getStatus())
+			<< " | by User: " << log.getUserID()
+			<< " | Amount: " << log.getCurrency() << "\n";
+        buffer += ss.str();
+        currentIndex++;
+
+        if (currentIndex % 5 == 0 || buffer.size() > 900) {
+            strncpy(msg[msgIndex], buffer.c_str(), 1023);
+            msg[msgIndex][1023] = '\0';
+            buffer.clear();
+            msgIndex++;
+            if (msgIndex >= 5) break;
+        }
+    }
+
+    if (!buffer.empty() && msgIndex < 5) {
+        strncpy(msg[msgIndex], buffer.c_str(), 1023);
+        msg[msgIndex][1023] = '\0';
+        msgIndex++;
+    }
+
+    for (; msgIndex < 5; msgIndex++) msg[msgIndex][0] = '\0';
+    fin.close();
+}

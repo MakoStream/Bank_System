@@ -14,6 +14,8 @@
 #include "Account.h"
 #include "basic_functions.h"
 //#include "Command.h"
+#include "Audit/Audit.h"
+
 
 extern string configName;
 
@@ -45,19 +47,24 @@ class mainProcess {
 	int last_session_id;
     int last_card_PAN;
 	int last_card_IBAN;
+	int last_audit_id;
+	int last_account_id;
+	int last_transaction_id;
+	int last_transaction_request_id;
 
 	// default db paths
 	string account_db_path;
 	string user_db_path;
     string transaction_log_db_path;
     string audit_log_db_path;
-
 	bool debug;
 
     std::vector<Session> loggined_users;
     void savecfg();
 public:
+
 	mainProcess();
+	// Session management
     int new_session();
 	void setDebugMode(bool mode);
 	void printConfig();
@@ -71,17 +78,31 @@ public:
 	void transferBridge(account& from, account& to, double amount);
     vector <Session> getSessions();
 
-	//int incrementSessionID();
+	//increments();
 	int incrementCardPAN();
 	int incrementCardIBAN();
+	int incrementAccountID();
+	int incrementAuditID();
+	int incrementTransactionID();
+	int incrementTransactionRequestID();
 	int getLastSessionID();
-
+    
+	// Getters for DB paths
 	string getAccountDBPath();
 	string getUserDBPath();
 	string getTransactionLogDBPath();
 	string getAuditLogDBPath();
 
+
+	// Debug mode
 	bool debugOn();
     bool debugStatus();
+
+	void transaction_request(handleInfo handle, account& from, account& to, double ammount, const char* PIN, const char* CVV, operations op_type, string comment);  // need args: handle info, from_account, to_account, amount
+    void check_requests();
 };
+
+
 extern mainProcess process;
+
+

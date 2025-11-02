@@ -13,9 +13,17 @@
 #include "responses/AccountBanResponse.h"
 #include "responses/CreateDBResponse.h"
 #include "responses/UserInfoResponse.h"
+#include "responses/AccountInfoResponse.h"
 #include "responses/MeResponse.h"
 #include "responses/DebugOnResponse.h"
 #include "responses/UnitTestResponse.h"
+#include "responses/SetAccountResponse.h"
+#include "responses/TransactionRequestResponse.h"
+
+// DEBUG responses
+
+#include "responses/DEBUG/DEBUG_setAccountCurrencyResponse.h"
+#include "responses/DEBUG/DEBUG_removeDBResponse.h"
 
 // ======================================================
 
@@ -37,6 +45,14 @@ ResponseManager::ResponseManager() {
 	responses.push_back(std::make_unique<MeResponse>());
 	responses.push_back(std::make_unique<DebugOnResponse>());
 	responses.push_back(std::make_unique<UnitTestResponse>());
+	responses.push_back(std::make_unique<AccountInfoResponse>());
+	responses.push_back(std::make_unique<SetAccountResponse>());
+	responses.push_back(std::make_unique<TransactionRequestPANResponse>());
+	responses.push_back(std::make_unique<TransactionRequestListResponse>());
+
+	// DEBUG responses
+	responses.push_back(std::make_unique<DEBUG_setAccountCurrencyResponse>());
+	responses.push_back(std::make_unique<DEBUG_removeDBResponse>());
 }
 
 void ResponseManager::get_response(handleInfo& handle) {

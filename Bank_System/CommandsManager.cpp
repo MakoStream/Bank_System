@@ -13,7 +13,13 @@
 #include "commands/UserInfoCommand.h"
 #include "commands/DebugOnCommand.h"
 #include "commands/UnitTestCommand.h"
+#include "commands/AccountInfoCommand.h"
+#include "commands/SetAccountComand.h"
+#include "commands/TransactionRequestCommand.h"
 
+
+#include "commands/DEBUG/DEBUG_setAccountCurrencyCommand.h"
+#include "commands/DEBUG/DEBUG_removeDBCommand.h"
 
 #include <iostream>
 
@@ -36,6 +42,14 @@ CommandsManager::CommandsManager() {
     commands.push_back(std::make_unique<UserInfoCommand>());
     commands.push_back(std::make_unique<DebugOnCommand>());
     commands.push_back(std::make_unique<UnitTestCommand>());
+	commands.push_back(std::make_unique<AccountInfoCommand>());
+	commands.push_back(std::make_unique<SetAccountCommand>());
+	commands.push_back(std::make_unique<TransactionRequestPANCommand>());
+    commands.push_back(std::make_unique<TransactionRequestListCommand>());
+
+	// Debug commands
+	commands.push_back(std::make_unique<DEBUG_setAccountCurrencyCommand>());
+	commands.push_back(std::make_unique<DEBUG_removeDBCommand>());
 }
 
 // Function: CommandsManager::execute
