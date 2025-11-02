@@ -4,6 +4,7 @@
 #include "../User.h"
 #include "../Command.h"
 #include <iostream>
+#include "../Audit/Audit.h"
 
 class CreateDBCommand : public Command {
 public:
@@ -13,13 +14,23 @@ public:
         if (args[1] == "users") {
             DB_create();
             //std::cout << "База даних створена!\n" 
-			throw_response(handle, "User database created!");
+            throw_response(handle, "User database created!");
             return;
         }
-        else if (args[1]=="accounts") {
-			DB_create_accounts();
-			//std::cout << "База даних створена!\n" 
-			throw_response(handle, "Accounts database created!");
+        else if (args[1] == "accounts") {
+            DB_create_accounts();
+            //std::cout << "База даних створена!\n" 
+            throw_response(handle, "Accounts database created!");
+            return;
+        }
+        else if (args[1] == "transactions") {
+            create_db_transaction_log();
+            throw_response(handle, "Transactions database created!");
+            return;
+		}
+		else if (args[1] == "audit") {
+			create_db_audit_log();
+			throw_response(handle, "Audit database created!");
 			return;
 		}
 		else {
