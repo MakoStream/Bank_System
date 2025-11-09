@@ -9,6 +9,7 @@
 //#include "commands.h"
 #include "mainProcess.h"
 #include "basic_functions.h"
+#include "LogEye.h"
 
 #include "CommandsManager.h"
 
@@ -18,7 +19,7 @@
 
 using namespace std;
 
-
+LogEye logEye;
 string configName = "config.ini";
 passportData emptyPassport = { "", 0, "", "", "" };
 User emptyUser(
@@ -54,12 +55,14 @@ void HandleClient(HANDLE hPipe) {
 
         BOOL success = ReadFile(hPipe, &sessionData, sizeof(sessionData), &bytesRead, NULL);
         if (!success || bytesRead == 0) {
-            std::cout << "Client disconnected\n";
+            //std::cout << "Client disconnected\n";
+			logEye.info("Client disconnected from the pipe.");
             break;
         }
         //process.printSessions();
         if (process.compareAuthKey(sessionData, process.getUserSession(sessionData.sessionId)) == false) {
-            std::cout << "Auth key mismatch for session " << sessionData.sessionId << "\n";
+            //std::cout << "Auth key mismatch for session " << sessionData.sessionId << "\n";
+			logEye.warning("Auth key mismatch for session " + to_string(sessionData.sessionId) + ".");
             strncpy(sessionData.cmd, "Auth key mismatch!", sizeof(sessionData.cmd) - 1);
             WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
 			break;
@@ -117,7 +120,7 @@ int main()
 	process.printConfig();
     
 
-
+	logEye.info("Bank system started.");
     const char* pipeName = R"(\\.\pipe\bankPipe123456789)";
     while (true) {
         HANDLE hPipe = CreateNamedPipeA(
@@ -133,9 +136,10 @@ int main()
             return 1;
         }
 
-        std::cout << "Waiting for client...\n";
+        //std::cout << "Waiting for client...\n";
         ConnectNamedPipe(hPipe, NULL);
-        std::cout << "Client connected!\n";
+        //std::cout << "Client connected!\n";
+		logEye.info("Client connected to the pipe.");
 
         std::thread t(HandleClient, hPipe);
         t.detach();
