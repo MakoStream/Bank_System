@@ -5,6 +5,7 @@
 #include "../Command.h"
 #include <iostream>
 #include "../Audit/Audit.h"
+#include "../LogEye.h"
 
 class CreateDBCommand : public Command {
 public:
