@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -134,22 +134,39 @@
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp17</LanguageStandard>
     </ClCompile>
     <ClCompile Include="ResponseManager.cpp" />
+    <ClCompile Include="responses\DebugOnResponse.h" />
+    <ClCompile Include="UnitTest\UserClientTest.cpp" />
     <ClCompile Include="user_info.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="responses\AccountBanResponse.h" />
+    <ClInclude Include="responses\AccountInfoResponse.h" />
     <ClInclude Include="responses\AccountListResponse.h" />
     <ClInclude Include="basic_functions.h" />
     <ClInclude Include="Response.h" />
     <ClInclude Include="ResponseManager.h" />
     <ClInclude Include="responses\AccountVerifyResponse.h" />
     <ClInclude Include="responses\CreateDBresponse.h" />
+    <ClInclude Include="responses\DEBUG\DEBUG_setAccountCurrencyResponse.h" />
+    <ClInclude Include="responses\DEBUG\DEBUG_removeDBResponse.h" />
     <ClInclude Include="responses\GetSessionIdResponse.h" />
     <ClInclude Include="responses\LoginResponse.h" />
+    <ClInclude Include="responses\LogoutResponse.h" />
+    <ClInclude Include="responses\MeResponse.h" />
     <ClInclude Include="responses\NewAccountResponse.h" />
     <ClInclude Include="responses\NewUserResponse.h" />
+    <ClInclude Include="responses\SetAccountResponse.h" />
+    <ClInclude Include="responses\TransactionRequestResponse.h" />
+    <ClInclude Include="responses\UnitTestResponse.h" />
+    <ClInclude Include="responses\UserInfoResponse.h" />
     <ClInclude Include="responses\UserListResponse.h" />
     <ClInclude Include="user_info.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UI\login.ui" />
+    <None Include="UI\mainMenu.ui" />
+    <None Include="UI\template.ui" />
+    <None Include="UnitTest\UserClientTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

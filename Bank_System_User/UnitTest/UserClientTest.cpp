@@ -262,7 +262,7 @@ void test_new_account(handleInfo& handle) {
     response_manager.get_response(handle);
     // ѕерев≥р€ю // –ахунок усп≥шно створено
     BOOST_CHECK(handle.sessionData.hash[0] == 1);
-    BOOST_CHECK(strcmp(handle.sessionData.msg[1], "–ахунок усп≥шно створено") == 0);
+    BOOST_CHECK(strcmp(handle.sessionData.msg[0], "–ахунок усп≥шно створено") == 0);
 };
 void test_account_list(handleInfo& handle) {
     // –едагую handle - прописую в ньому команду
@@ -289,7 +289,7 @@ void test_account_verify(handleInfo& handle) {
     // в≥дправл€ю на "сервер"
     response_manager.get_response(handle);
     // ѕерев≥р€ю 
-    BOOST_CHECK(strcmp(handle.sessionData.msg[1], "Account verified successfully") == 0);
+    BOOST_CHECK(strcmp(handle.sessionData.msg[0], "Account verified successfully") == 0);
 };
 void test_account_ban_unban(handleInfo& handle) {
     // –едагую handle - прописую в ньому команду
@@ -298,7 +298,7 @@ void test_account_ban_unban(handleInfo& handle) {
     // в≥дправл€ю на "сервер"
     response_manager.get_response(handle);
     // ѕерев≥р€ю 
-    BOOST_CHECK(strcmp(handle.sessionData.msg[1], "Account banned!") == 0);
+    BOOST_CHECK(strcmp(handle.sessionData.msg[0], "Account banned!") == 0);
 
     // –едагую handle - прописую в ньому команду
     strncpy(handle.sessionData.cmd, "account_unban TB000000000000000000000000015", sizeof(handle.sessionData.cmd) - 1);
@@ -306,7 +306,7 @@ void test_account_ban_unban(handleInfo& handle) {
     // в≥дправл€ю на "сервер"
     response_manager.get_response(handle);
     // ѕерев≥р€ю 
-    BOOST_CHECK(strcmp(handle.sessionData.msg[1], "Account unbanned!") == 0);
+    BOOST_CHECK(strcmp(handle.sessionData.msg[0], "Account unbanned!") == 0);
 };
 void test_logout(handleInfo& handle) {
     // –едагую handle - прописую в ньому команду

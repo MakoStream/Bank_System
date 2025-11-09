@@ -24,9 +24,6 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files\Server</Filter>
     </ClCompile>
-    <ClCompile Include="DB_op.cpp">
-      <Filter>Source Files\Server</Filter>
-    </ClCompile>
     <ClCompile Include="Command.h">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,7 +33,19 @@
     <ClCompile Include="mainProcess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="processCommands.cpp">
+    <ClCompile Include="Account.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="basic_functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Audit\Audit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,9 +54,6 @@
       <Filter>Source Files\Server</Filter>
     </ClInclude>
     <ClInclude Include="CommandsManager.h">
-      <Filter>Source Files\Server</Filter>
-    </ClInclude>
-    <ClInclude Include="DB_op.h">
       <Filter>Source Files\Server</Filter>
     </ClInclude>
     <ClInclude Include="commands\CreateDBCommand.h">
@@ -62,13 +68,67 @@
     <ClInclude Include="mainProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="processCommands.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="processCommands\getSId.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="commands\userLoginCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Account.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="basic_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\getSessionIdCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\NewAccountCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\PrintAccountListCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\AccountVerifyCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\AccountBanCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\userLogoutCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\UserInfoCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\DebugOnCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\UnitTestCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Audit\Audit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\DEBUG\DEBUG_setAccountCurrencyCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\DEBUG\DEBUG_removeDBCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\AccountInfoCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\SetAccountComand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commands\TransactionRequestCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LogEye.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -27,6 +27,12 @@
     <ClCompile Include="ResponseManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="responses\DebugOnResponse.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitTest\UserClientTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user_info.h">
@@ -68,5 +74,38 @@
     <ClInclude Include="responses\CreateDBresponse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="responses\LogoutResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="responses\UserInfoResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="responses\MeResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="responses\UnitTestResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="responses\DEBUG\DEBUG_removeDBResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="responses\DEBUG\DEBUG_setAccountCurrencyResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="responses\AccountInfoResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="responses\SetAccountResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="responses\TransactionRequestResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UnitTest\UserClientTest.h" />
+    <None Include="UI\login.ui" />
+    <None Include="UI\template.ui" />
+    <None Include="UI\mainMenu.ui" />
   </ItemGroup>
 </Project>
