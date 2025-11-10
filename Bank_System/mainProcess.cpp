@@ -11,6 +11,8 @@
 #include "User.h"
 #include <optional>
 #include "Audit/Audit.h"
+//#include "basic_functions.h"
+#include "LogEye.h"
 
 
 
@@ -112,7 +114,7 @@ void mainProcess::savecfg() {
 	cfg["transaction_log_db_path"] = transaction_log_db_path;
 	cfg["audit_log_db_path"] = audit_log_db_path;
 
-    writeConfig("config.ini", cfg);
+    writeConfig(configName, cfg);
 }
 
 // Function: mainProcess::printConfig
@@ -346,16 +348,18 @@ void mainProcess::transaction_request(handleInfo handle, account& from, account&
 		false,
 		-1,
 		ammount,
-		"",
+		-2, // While not allowed
 		comment.c_str()
 	);
-    if (from.getBalance() < ammount + 10) {
+
+	if (from.getBalance() < ammount + 10) { // за умови, що на картці відправача недостатньо коштів
 		log.fail(FAIL_NO_MONEY);
     }
-    else if (from.getCardStatus() != AVAILABLE) {
+    else if (from.getCardStatus() != AVAILABLE) { // за умови, що карта відправача недоступна
+        //cout << "Ups" << endl;
         log.fail(FAIL_YOUR_CARD_BLOCKED);
     }
-    else if (to.getCardStatus() != AVAILABLE) {
+    else if (to.getCardStatus() != AVAILABLE) { // За умови, що карта отримувача недоступна
         log.fail(FAIL_CARD_BLOCKED);
     }
     else if (!from_own_account and !from.checkCVV(CVV)) { // За умови, якщо картка чужа і CVV не правильне
@@ -367,3 +371,26 @@ void mainProcess::transaction_request(handleInfo handle, account& from, account&
 
     save_transaction_log(log);
 }
+
+void mainProcess::allow_transaction(int transaction_id, handleInfo& user_handle, string comment) {
+    int log_id = logEye.logTrace("allow transaction");
+	logEye.msgTrace(log_id, "transaction id", to_string(transaction_id), 1);
+	logEye.msgTrace(log_id, "user session id", to_string(user_handle.sessionData.sessionId), 1);
+
+	logEye.commentTrace(log_id, "Fetching transaction logs");
+    vector<TransactionLog> Transactions = getTransactionLogs(transaction_id);
+    TransactionLog newTransactionStatus = Transactions[Transactions.size() - 1];
+
+	logEye.commentTrace(log_id, "Updating transaction status to ALLOW");
+	newTransactionStatus.change_id(process.incrementTransactionID());
+    newTransactionStatus.allow(process.getUserSession(user_handle.sessionData.sessionId).user_id);
+    newTransactionStatus.setComment(comment);
+
+    logEye.commentTrace(log_id, "Saving transaction log...");
+	save_transaction_log(newTransactionStatus);
+
+
+	logEye.endTrace(log_id, SUCCESS, "Transaction allowed");
+	return;
+};
+

@@ -158,6 +158,8 @@ account getAccountById(int id);
 bool isAccountExistById(int id);
 account getLastAccount();
 
+vector<account> getUserAccounts(int user_id);
+
 void setAccountBalance(account& acc, double newBalance); // only for debug
 //account getAccount_byIBAN(const char* IBAN); // Пошук рахунку за IBAN
 //account getAccount_byCardNumber(const char* cardNumber); // Пошук рахунку за номером картки

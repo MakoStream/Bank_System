@@ -2,7 +2,9 @@
 #include "../mainProcess.h"
 #include <fstream>
 #include <iostream>
+
 #include <string>
+#include "../LogEye.h"
 
 using namespace std;
 
@@ -219,7 +221,7 @@ void TRAN_addTransaction(
     bool otherBank,
     int userID,
     double amount,
-    const char* allowedBy,
+    const int allowedBy,
     const char* comment
 ) {
     TransactionLog transaction(
@@ -438,3 +440,26 @@ void printTransactions(char msg[5][1024], int page) {
     for (; msgIndex < 5; msgIndex++) msg[msgIndex][0] = '\0';
     fin.close();
 }
+
+
+vector<TransactionLog> getTransactionLogs(int transaction_id) {
+    int log_id = logEye.logTrace("getTransactionLogs");
+    logEye.msgTrace(log_id, "transaction_id", to_string(transaction_id), true);
+    vector<TransactionLog> logs;
+    ifstream fin(process.getTransactionLogDBPath(), ios::binary);
+    if (!fin) {
+        logEye.endTrace(log_id, FAILURE, "File does't exist");
+        return logs;
+    }
+	TransactionLog log;
+	while (!fin.eof()) {
+		log.loadFromFile(fin);
+		if (log.getTransactionID() == transaction_id) {
+            logEye.commentTrace(log_id, "Founded log");
+			logs.push_back(log);
+		}
+	}
+	fin.close();
+    logEye.endTrace(log_id, SUCCESS, "Found " + to_string(logs.size()) + " transaction logs");
+	return logs;
+};

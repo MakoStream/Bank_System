@@ -1,5 +1,6 @@
 #include "Account.h"
 #include "mainProcess.h"
+#include "LogEye.h"
 
 // Objects: balanceMap, cardMap, statusMap, statusMapReverse
 // Description: These maps provide conversions between string identifiers and corresponding enum values for balances, card types, and card statuses.
@@ -354,3 +355,27 @@ void setAccountBalance(account& acc, double newBalance) {
 	acc.setBalance(newBalance - acc.getBalance());
 	acc.updateInFile();
 }
+
+vector<account> getUserAccounts(int user_id) {
+    int log_id = logEye.logTrace("GetUserAccounts");
+	logEye.msgTrace(log_id, "user_id", to_string(user_id), true);
+	vector<account> userAccounts;
+	ifstream fin(process.getAccountDBPath(), ios::binary);
+	if (!fin) { 
+        logEye.endTrace(log_id, FAILURE, "File does't exist");
+        return userAccounts;
+    }
+	account acc;
+	logEye.commentTrace(log_id, "Searching accounts for user ID " + to_string(user_id));
+	while (true) {
+		acc.load(fin);
+		if (fin.eof()) break;
+		if (acc.getUserID() == user_id) {
+			logEye.commentTrace(log_id, "Found account ID " + to_string(acc.getId()));
+			userAccounts.push_back(acc);
+		}
+	}
+	fin.close();
+	logEye.endTrace(log_id, SUCCESS, "Found " + to_string(userAccounts.size()) + " accounts");
+	return userAccounts;
+};

@@ -56,6 +56,7 @@ public:
 		double ammount = stod(args[3]);
 		account acc_from = getAccount_byCardNumber(args[1].c_str());
 		account acc_to = getAccount_byCardNumber(args[2].c_str());
+
 		if (!isAccountExist_byCardNumber(args[2].c_str())) {
 			throw_response(handle, "Account_to not exist");
 			logEye.endTrace(log_id, FAILURE, "Account_to not exist");
@@ -69,7 +70,7 @@ public:
 
 		handle.sessionData.hash[0] = 1; // success
 		
-		process.transaction_request(handle, acc_from, acc_to, ammount, args[4].c_str(), args[5].c_str(), TRANSACTION, args.size() >= 7 ? args[6] : "");
+		process.transaction_request(handle, acc_from, acc_to, ammount, args[4].c_str(), args[5].c_str(), TRANSACTION, args.size() >= 7 ? args[6] : ""); // issue here
 		throw_response(handle, "Transaction request processed");
 		logEye.endTrace(log_id, SUCCESS, "Transaction request processed from PAN: " + string(args[1]) + " to PAN: " + string(args[2]));
 		return;

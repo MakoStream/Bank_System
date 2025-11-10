@@ -78,6 +78,8 @@ public:
 	void transferBridge(account& from, account& to, double amount);
     vector <Session> getSessions();
 
+	// Audit management
+
 	//increments();
 	int incrementCardPAN();
 	int incrementCardIBAN();
@@ -98,8 +100,11 @@ public:
 	bool debugOn();
     bool debugStatus();
 
-	void transaction_request(handleInfo handle, account& from, account& to, double ammount, const char* PIN, const char* CVV, operations op_type, string comment);  // need args: handle info, from_account, to_account, amount
+
+	void transaction_request(handleInfo handle, account& from, account& to, double ammount, const char* PIN, const char* CVV, operations op_type, string comment = "#");  // need args: handle info, from_account, to_account, amount
     void check_requests();
+
+	void allow_transaction(int transaction_id, handleInfo& user_handle, string comment);
 };
 
 

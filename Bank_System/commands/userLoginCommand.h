@@ -12,7 +12,7 @@ public:
     void execute(handleInfo& handle) override { // login <login> <password>
 		int log_id = logEye.logTrace("login Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);
-		logEye.msgTrace(log_id, "input data", string(handle.sessionData.cmd), true);
+        logEye.msgTrace(log_id, "input data", "*************************", true);
 
 		string cmdStr(handle.sessionData.cmd);
 		std::vector<std::string> args = split(cmdStr);

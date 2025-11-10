@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstring>
 #include "../basic_functions.h"
+//#include "../mainProcess.h"
 
 enum operations {
     COMMISION,                // комісія за операції
@@ -71,7 +72,7 @@ class TransactionLog {
     double currency;
 	balanceType currency_type;
 
-    char allowed_by[30];
+    int allowed_by;  // user id
     char comment[255];
 
 public:
@@ -93,7 +94,7 @@ public:
         user_id = -1;
         currency = 0.0;
 
-        strcpy_s(allowed_by, sizeof(allowed_by), "");
+		allowed_by = -1;
         strcpy_s(comment, sizeof(comment), "");
     }
 
@@ -112,7 +113,7 @@ public:
         bool otherBank, 
         int uid, 
         double curr,
-        const char* allowedBy, 
+        const int _allowed_by, 
         const char* comm
     ) {
         id = _id;
@@ -132,8 +133,13 @@ public:
         user_id = uid;
         currency = curr;
 
-        strcpy_s(allowed_by, sizeof(allowed_by), allowedBy);
+		allowed_by = _allowed_by;
         strcpy_s(comment, sizeof(comment), comm);
+    }
+
+    void change_id(int _id) { // ДУЖЕ НЕБЕЗБЕЧНА ФУНКЦІЯ!
+        id = _id; 
+        return;
     }
 	// ---------------------- Функції отримання змінних ----------------------
 	int getID() const { return id; }
@@ -151,18 +157,24 @@ public:
 	int getUserID() const { return user_id; }
 	double getCurrency() const { return currency; }
 	balanceType getCurrencyType() const { return currency_type; }
-	const char* getAllowedBy() const { return allowed_by; }
+	const int getAllowedBy() const { return allowed_by; }
 	const char* getComment() const { return comment; }
 
 
     // ---------------------- Методи керування статусом ----------------------
-    bool allow() {
+    bool allow(int allowed_by_user_id) {
         status = ALLOWED;
+		allowed_by = allowed_by_user_id;
 		// Змінити рахунки тут пізніше
 
+		// =====================================================
         blocked_money = false;
         return true;
     }
+
+    void setComment(string new_comment) {
+        strncpy(comment, new_comment.c_str(), sizeof(comment));
+    };
 
     bool deny() {
         status = DENIED;
@@ -195,7 +207,7 @@ public:
         out.write(reinterpret_cast<const char*>(&other_bank_user), sizeof(other_bank_user));
         out.write(reinterpret_cast<const char*>(&user_id), sizeof(user_id));
         out.write(reinterpret_cast<const char*>(&currency), sizeof(currency));
-        out.write(allowed_by, sizeof(allowed_by));
+        out.write(reinterpret_cast<const char*>(&allowed_by), sizeof(allowed_by));
         out.write(comment, sizeof(comment));
     }
 
@@ -215,7 +227,7 @@ public:
         in.read(reinterpret_cast<char*>(&other_bank_user), sizeof(other_bank_user));
         in.read(reinterpret_cast<char*>(&user_id), sizeof(user_id));
         in.read(reinterpret_cast<char*>(&currency), sizeof(currency));
-        in.read(allowed_by, sizeof(allowed_by));
+        in.read(reinterpret_cast<char*>(&allowed_by), sizeof(allowed_by));
         in.read(comment, sizeof(comment));
     }
 
@@ -404,3 +416,5 @@ vector<TransactionLog> getTransactionsLogs(int transaction_id);
 vector<AuditLog> getAuditLogs(int transaction_PM_id);
 vector <AuditLog> getUserAuditLogs(int user_id);
 void printTransactions(char msg[5][1024], int page);
+
+vector<TransactionLog> getTransactionLogs(int transaction_id);
