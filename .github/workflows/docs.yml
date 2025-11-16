@@ -3,7 +3,7 @@ name: Generate Doxygen Docs
 on:
   push:
     branches:
-      - main   # або ваша основна гілка
+      - main   # Г ГЎГ® ГўГ ГёГ  Г®Г±Г­Г®ГўГ­Г  ГЈВіГ«ГЄГ 
   pull_request:
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       run: doxygen Doxyfile
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v6
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./html
