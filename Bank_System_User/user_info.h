@@ -27,6 +27,7 @@ extern struct fronted_User {
     char name[64];
 	char surname[64];
     char login[32];
+	vector<int> accounts_id;
 };
 
 extern struct handleInfo {

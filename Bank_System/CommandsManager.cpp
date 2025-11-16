@@ -1,3 +1,11 @@
+/**
+@file CommandsManager.cpp
+@brief Implementation of CommandsManager class methods.
+@details Defines the constructor to register all commands and the execute method
+to process incoming commands from clients.Includes both regular and debug / test commands.
+@note Required headers : CommandsManager.h, headers of all command classes, <iostream>.
+*/
+
 #include "CommandsManager.h"
 
 #include "commands/CreateDBCommand.h"
@@ -16,6 +24,7 @@
 #include "commands/AccountInfoCommand.h"
 #include "commands/SetAccountComand.h"
 #include "commands/TransactionRequestCommand.h"
+#include "commands/getUserAccountsCommand.h"
 
 
 #include "commands/DEBUG/DEBUG_setAccountCurrencyCommand.h"
@@ -23,39 +32,47 @@
 
 #include <iostream>
 
-// Function: CommandsManager::CommandsManager
-// Description: Stores all command objects and executes them based on handle.sessionData.cmd
-// Requirements: <vector>, <memory>, <string>, commands/..
-// Required for: CommandsManager::execute()
+/**
+@brief Registers all available command objects.
+@details The constructor adds instances of all concrete Command classes
+to the internal vector, including both standard and debug/test commands.
+@note Used internally when creating a CommandsManager object.
+*/
 CommandsManager::CommandsManager() {
     commands.push_back(std::make_unique<CreateDBCommand>());
     commands.push_back(std::make_unique<RegisterUserCommand>());
     commands.push_back(std::make_unique<PrintUserListCommand>());
     commands.push_back(std::make_unique<userLoginCommand>());
-	commands.push_back(std::make_unique<userLogoutCommand>());
-	commands.push_back(std::make_unique<getSessionIdCommand>());
-	commands.push_back(std::make_unique<PrintAccountListCommand>());
-	commands.push_back(std::make_unique<NewAccountCommand>());
-	commands.push_back(std::make_unique<AccountVerifyCommand>());
-	commands.push_back(std::make_unique<AccountBanCommand>());
+    commands.push_back(std::make_unique<userLogoutCommand>());
+    commands.push_back(std::make_unique<getSessionIdCommand>());
+    commands.push_back(std::make_unique<PrintAccountListCommand>());
+    commands.push_back(std::make_unique<NewAccountCommand>());
+    commands.push_back(std::make_unique<AccountVerifyCommand>());
+    commands.push_back(std::make_unique<AccountBanCommand>());
     commands.push_back(std::make_unique<AccountUnbanCommand>());
     commands.push_back(std::make_unique<UserInfoCommand>());
     commands.push_back(std::make_unique<DebugOnCommand>());
     commands.push_back(std::make_unique<UnitTestCommand>());
-	commands.push_back(std::make_unique<AccountInfoCommand>());
-	commands.push_back(std::make_unique<SetAccountCommand>());
-	commands.push_back(std::make_unique<TransactionRequestPANCommand>());
+    commands.push_back(std::make_unique<AccountInfoCommand>());
+    commands.push_back(std::make_unique<SetAccountCommand>());
+    commands.push_back(std::make_unique<TransactionRequestPANCommand>());
     commands.push_back(std::make_unique<TransactionRequestListCommand>());
+    commands.push_back(std::make_unique<getUserAccountsCommand>());
 
-	// Debug commands
-	commands.push_back(std::make_unique<DEBUG_setAccountCurrencyCommand>());
-	commands.push_back(std::make_unique<DEBUG_removeDBCommand>());
-}
+    // Debug commands
+    commands.push_back(std::make_unique<DEBUG_setAccountCurrencyCommand>());
+    commands.push_back(std::make_unique<DEBUG_removeDBCommand>());
+};
 
-// Function: CommandsManager::execute
-// Description: Executes a command from handle.sessionData.cmd
-// Requirements: handleInfo
-// Required for: Processing client commands
+/**
+@brief Executes a command based on the string received from a client.
+@details Parses the command string from sessionData, finds the matching Command object,
+executes it, and clears the cmd field. If the command does not exist, sends a response
+to the client indicating an unknown command.
+@param handle Reference to handleInfo containing session data and pipe handle.
+@note Calls split() from basic_functions.h to parse the command string.
+@note Calls throw_response() to notify client of unknown commands.
+*/
 void CommandsManager::execute(handleInfo& handle) {
 	string cmdStr(handle.sessionData.cmd);
     std::vector<std::string> args = split(cmdStr);
@@ -69,5 +86,6 @@ void CommandsManager::execute(handleInfo& handle) {
         }
     }
     std::cout << "Невідома команда: " << cmdName << "\n";
+    throw_response(handle, "Невідома команда");
 };
 

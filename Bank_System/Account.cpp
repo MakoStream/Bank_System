@@ -1,3 +1,12 @@
+/**
+ * @file Account.cpp
+ * @brief Implementation of account-related functions and global mappings.
+ *
+ * Provides functions for account creation, retrieval, validation, printing, and file management.
+ * Includes global maps for converting between enums and string representations for balance types,
+ * card types, and card statuses.
+ */
+
 #include "Account.h"
 #include "mainProcess.h"
 #include "LogEye.h"
@@ -17,10 +26,13 @@ unordered_map<cardStatus, string> statusMapReverse = { {AVAILABLE, "AVAILABLE"},
 // Required for: returning default account if not found
 account emptyAccount;
 
-// Function: computeLuhnCheckDigit
-// Description: Calculates the Luhn check digit for a numeric string (excluding the check digit itself).
-// Requirements: <cstring>
-// Required for: get_BankID()
+
+/**
+ * @brief Calculates the Luhn check digit for a numeric string (excluding check digit)
+ * @param digits_without_check The numeric string without the check digit
+ * @return The Luhn check digit (0–9)
+ * @see get_BankID()
+ */
 int computeLuhnCheckDigit(const char* digits_without_check) {
     int sum = 0;
     int n = (int)strlen(digits_without_check);
@@ -38,10 +50,11 @@ int computeLuhnCheckDigit(const char* digits_without_check) {
     return (10 - (sum % 10)) % 10;
 }
 
-// Function: get_BankID
-// Description: Generates a 16-digit bank card number using "400000" + 9-digit body + Luhn check digit.
-// Requirements: <cstdlib>, <cstdio>, computeLuhnCheckDigit(), process.incrementCardPAN()
-// Required for: ACC_addAccount()
+/**
+ * @brief Generates a 16-digit bank card number with Luhn check digit
+ * @return Pointer to allocated C-string containing the card number (must be freed)
+ * @see ACC_addAccount()
+ */
 char* get_BankID() {
     int bank_id = process.incrementCardPAN();
     char withoutCheck[16];
@@ -54,10 +67,11 @@ char* get_BankID() {
     return bank_id_str;
 }
 
-// Function: get_IBAN
-// Description: Generates a pseudo IBAN string in the format "TB00" + 25-digit number.
-// Requirements: <cstdlib>, <cstdio>, process.incrementCardIBAN()
-// Required for: ACC_addAccount()
+/**
+ * @brief Generates a pseudo IBAN string in the format "TB00" + 25-digit number
+ * @return Pointer to allocated C-string containing the IBAN (must be freed)
+ * @see ACC_addAccount()
+ */
 char* get_IBAN() {
     int IBAN = process.incrementCardIBAN();
     char* IBAN_str = (char*)malloc(30);
@@ -66,10 +80,11 @@ char* get_IBAN() {
     return IBAN_str;
 }
 
-// Function: generate_CVC
-// Description: Generates a random 3-digit CVC code for a card.
-// Requirements: <cstdlib>, <cstdio>, rand()
-// Required for: ACC_addAccount()
+/**
+ * @brief Generates a random 3-digit CVC code
+ * @return Pointer to allocated C-string containing the CVC (must be deleted)
+ * @see ACC_addAccount()
+ */
 char* generate_CVC() {
     int CVC = rand() % 1000;
     char* CVC_str = new char[4];
@@ -77,10 +92,11 @@ char* generate_CVC() {
     return CVC_str;
 }
 
-// Function: getLastAccount
-// Description: Reads the last account from the account database file.
-// Requirements: <fstream>, account class, process.getAccountDBPath()
-// Required for: ACC_addAccount()
+/**
+ * @brief Retrieves the last account stored in the database
+ * @return Account object of the last record; empty account if file not found or corrupted
+ * @see ACC_addAccount()
+ */
 account getLastAccount() {
     ifstream fin(process.getAccountDBPath(), ios::binary | ios::in);
     account empty{};
@@ -98,10 +114,11 @@ account getLastAccount() {
     return last;
 }
 
-// Function: getAccountById
-// Description: Finds an account by its ID.
-// Requirements: <fstream>, account class, process.getAccountDBPath()
-// Required for: 
+/**
+ * @brief Finds an account by ID
+ * @param id Account ID
+ * @return Account object if found; emptyAccount if not found
+ */
 account getAccountById(int id) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
     account acc;
@@ -115,10 +132,11 @@ account getAccountById(int id) {
     return emptyAccount;
 }
 
-// Function: isAccountExisytById
-// Description: Checks if an account exists by ID.
-// Requirements: <fstream>, account class, process.getAccountDBPath()
-// Required for: 
+/**
+ * @brief Checks if an account exists by ID
+ * @param id Account ID
+ * @return true if account exists; false otherwise
+ */
 bool isAccountExisytById(int id) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
     account acc;
@@ -132,10 +150,14 @@ bool isAccountExisytById(int id) {
     return false;
 }
 
-// Function: ACC_addAccount
-// Description: Creates a new account and saves it to the database file.
-// Requirements: get_IBAN(), get_BankID(), generate_CVC(), getLastAccount(), isUserExist_byId(), account class, <fstream>
-// Required for: DB_create_accounts(), class NewAccountCommand
+/**
+ * @brief Adds a new account and saves it to the database
+ * @param userID Owner user ID
+ * @param balance_type Currency type
+ * @param type Card type
+ * @param accountType Account plan type
+ * @see DB_create_accounts()
+ */
 void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType) {
     std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::app);
     if (!fout) { std::cerr << "Не вдалося відкрити файл для запису." << std::endl; return; }
@@ -173,10 +195,12 @@ void ACC_addAccount(int userID, balanceType balance_type, cardType type, short a
     delete[] cardNumber;
 }
 
-// Function: printAllAccounts
-// Description: Reads accounts from the database and formats them into pages of messages.
-// Requirements: <fstream>, <sstream>, account class, statusMapReverse, process.getAccountDBPath()
-// Required for: class AccountListCommand
+/**
+ * @brief Reads accounts from the database and formats them into pages of messages
+ * @param msg Array of 5 strings (each 1024 chars) to hold page messages
+ * @param page Page number (1-based)
+ * @see AccountListCommand
+ */
 void printAllAccounts(char msg[5][1024], int page) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
     if (!fin) { cerr << "Не вдалося відкрити файл для читання." << endl; for (int i = 0; i < 5; i++) msg[i][0] = '\0'; return; }
@@ -219,10 +243,10 @@ void printAllAccounts(char msg[5][1024], int page) {
     fin.close();
 }
 
-// Function: DB_create_accounts
-// Description: Creates the initial accounts database and populates it with default bank accounts.
-// Requirements: ACC_addAccount(), account class, <fstream>
-// Required for: class CreateDBCommand
+/**
+ * @brief Creates the initial accounts database with default accounts
+ * @see ACC_addAccount()
+ */
 void DB_create_accounts() {
     std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::trunc);
     if (!fout) { std::cerr << "Не вдалося створити файл." << std::endl; return; }
@@ -246,10 +270,13 @@ void DB_create_accounts() {
     ACC_addAccount(0, EUR, DEFAULT, 8013);
 }
 
-// Function: isAccountExist_byCardNumber
-// Description: Checks if an account exists by card number.
-// Requirements: <fstream>, account class, process.getAccountDBPath()
-// Required for: class AccountInfoCommand
+
+/**
+ * @brief Checks if an account exists by card number
+ * @param cardNumber Card number string
+ * @return true if exists, false otherwise
+ * @see AccountInfoCommand
+ */
 bool isAccountExist_byCardNumber(const char* cardNumber) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return false; }
@@ -263,10 +290,12 @@ bool isAccountExist_byCardNumber(const char* cardNumber) {
     return false;
 }
 
-// Function: isAccountExist_byIBAN
-// Description: Checks if an account exists by IBAN.
-// Requirements: <fstream>, account class, process.getAccountDBPath()
-// Required for: class AccountBanCommand, class AccountVerifyCommand, class AccountInfoCommand
+/**
+ * @brief Checks if an account exists by IBAN
+ * @param IBAN IBAN string
+ * @return true if exists, false otherwise
+ * @see AccountBanCommand, AccountVerifyCommand, AccountInfoCommand
+ */
 bool isAccountExist_byIBAN(const char* IBAN) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return false; }
@@ -280,10 +309,12 @@ bool isAccountExist_byIBAN(const char* IBAN) {
     return false;
 }
 
-// Function: getAccount_byCardNumber
-// Description: Retrieves an account object by card number.
-// Requirements: <fstream>, account class, process.getAccountDBPath()
-// Required for: class AccountInfoCommand
+/**
+ * @brief Retrieves an account object by card number
+ * @param cardNumber Card number string
+ * @return Account object if found, otherwise emptyAccount
+ * @see AccountInfoCommand
+ */
 account getAccount_byCardNumber(const char* cardNumber) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return emptyAccount; }
@@ -297,10 +328,12 @@ account getAccount_byCardNumber(const char* cardNumber) {
     return emptyAccount;
 }
 
-// Function: getAccount_byIBAN
-// Description: Retrieves an account object by IBAN.
-// Requirements: <fstream>, account class, process.getAccountDBPath()
-// Required for: account.transfer(), class AccountBanCommand, class AccountInfoCommand, class AccountVerifyCommand
+/**
+ * @brief Retrieves an account object by IBAN
+ * @param IBAN IBAN string
+ * @return Account object if found, otherwise emptyAccount
+ * @see account::transfer(), AccountBanCommand, AccountInfoCommand, AccountVerifyCommand
+ */
 account getAccount_byIBAN(const char* IBAN) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return emptyAccount; }
@@ -314,10 +347,10 @@ account getAccount_byIBAN(const char* IBAN) {
     return emptyAccount;
 }
 
-// Method: account::updateInFile
-// Description: Updates the current account object in the accounts database file.
-// Requirements: <fstream>, <vector>, account class, process.getAccountDBPath()
-// Required for: class account
+/**
+ * @brief Updates the current account object in the accounts database file
+ * @see account class
+ */
 void account::updateInFile() {
     std::ifstream inFile(process.getAccountDBPath(), std::ios::binary);
     if (!inFile) { std::cerr << "Помилка: не вдалося відкрити файл accounts.dat для читання." << std::endl; return; }
@@ -350,12 +383,24 @@ void account::updateInFile() {
     outFile.close();
 }
 
+
+/**
+ * @brief Sets account balance and updates the file (debug only)
+ * @param acc Reference to account object
+ * @param newBalance New balance value
+ */
 void setAccountBalance(account& acc, double newBalance) {
     if (!process.debugStatus()) return;
 	acc.setBalance(newBalance - acc.getBalance());
 	acc.updateInFile();
 }
 
+
+/**
+ * @brief Retrieves all accounts for a specific user
+ * @param user_id User ID
+ * @return Vector of account objects
+ */
 vector<account> getUserAccounts(int user_id) {
     int log_id = logEye.logTrace("GetUserAccounts");
 	logEye.msgTrace(log_id, "user_id", to_string(user_id), true);

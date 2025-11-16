@@ -50,12 +50,18 @@ public:
             handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
             handle.sessionData.userId = user.getId();
             WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
+
 			logEye.endTrace(log_id, SUCCESS, "User logged in successfully: " + string(login));
+
+            process.printSessions();
+
             return;
         };
 
 		throw_response(handle, "Incorrect password!");
 		logEye.endTrace(log_id, FAILURE, "Incorrect password for user: " + string(login));
+
+
         return;
     }
 

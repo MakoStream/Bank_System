@@ -28,6 +28,7 @@ void handleOp(sessionConstruct& sessionData, sessionConstruct& response, HANDLE&
     //ReadFile(hPipe, &response, sizeof(response), &bytesRead, NULL);
 
 	handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
+	cout << sessionData.sessionId << endl;
     response_manager.get_response(handle);
 
     // Оновлення сесії після відповіді сервера

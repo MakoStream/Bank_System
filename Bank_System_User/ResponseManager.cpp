@@ -19,6 +19,8 @@
 #include "responses/UnitTestResponse.h"
 #include "responses/SetAccountResponse.h"
 #include "responses/TransactionRequestResponse.h"
+#include "responses/getUserAccountsResponse.h"
+
 
 // DEBUG responses
 
@@ -49,6 +51,7 @@ ResponseManager::ResponseManager() {
 	responses.push_back(std::make_unique<SetAccountResponse>());
 	responses.push_back(std::make_unique<TransactionRequestPANResponse>());
 	responses.push_back(std::make_unique<TransactionRequestListResponse>());
+	responses.push_back(std::make_unique<getUserAccountsResponse>());
 
 	// DEBUG responses
 	responses.push_back(std::make_unique<DEBUG_setAccountCurrencyResponse>());
@@ -75,5 +78,5 @@ void ResponseManager::get_response(handleInfo& handle) {
         }
     }
     std::cout << "Невідома команда: " << cmdName << "\n";
-	ReadFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesRead, NULL);
+	//ReadFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesRead, NULL);
 };

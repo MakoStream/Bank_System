@@ -1,3 +1,15 @@
+/**
+@file Bank_System.cpp
+@brief Main module of the bank system server.
+@details This file defines the central logic of the bank server. It initializes
+global objects, configures logging, loads system settings, registers signal
+handlers and exit callbacks, and starts the main loop. The module creates a
+named pipe for inter-process communication and spawns a new thread for each
+client connection using HandleClient(). This file orchestrates the entire
+runtime behavior of the bank system.
+@note This is the core file required for the entire system to function.
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <windows.h>
@@ -41,10 +53,15 @@ Logger logger;  // визначення глобальної змінної
 mainProcess process;
 CommandsManager manager;
 
-// Function: HandleClient(HANDLE hPipe)
-// Description: Splits a string into words separated by whitespace and returns them as a vector
-// Requirements: <string>, <sstream>, <vector>
-// Required for: main loop input parsing in main()
+/**
+@brief Handles a single client request through a named pipe.
+@details The function splits an input string into words separated by
+whitespace, converts them into a vector of strings, and passes the
+processed data to the main loop.
+@param hPipe Handle to the pipe through which client data is received.
+@note Required headers: <string>, <sstream>, <vector>.
+@note Used for input parsing in the main loop (main()).
+*/
 
 void HandleClient(HANDLE hPipe) {
     while (true) {
@@ -84,29 +101,39 @@ void HandleClient(HANDLE hPipe) {
 
 
 
-// Function: signalHandler
-// Description: Handles system signals (SIGINT, SIGABRT, SIGTERM) and logs termination
-// Requirements: <csignal>, logger
-// Required for: main()
+/**
+@brief Handles system termination signals and logs the shutdown event.
+@details The function processes incoming system signals such as
+SIGINT, SIGABRT, and SIGTERM. When a signal is received, it writes
+a log message and terminates the program using exit().
+@param signal The system signal number that triggered the handler.
+@note Required headers: <csignal>.
+@note Requires a logger instance.
+@note Used in main() to ensure clean shutdown and logging.
+*/
 void signalHandler(int signal) {
     logger.write("Програма завершилася сигналом " + to_string(signal));
     exit(signal);
 }
 
-// Function: onExit
-// Description: Called automatically at normal program exit to log termination
-// Requirements: Logger
-// Required for: main()
+/**
+@brief Called automatically at normal program termination.
+@details This function is executed when the program exits normally and writes a termination record using the logger.
+@note Requires a logger instance.
+@note Used in main() to log program termination.
+*/
 void onExit() {
     logger.exit();
 }
 
 
 
-// Function: main
-// Description: Main program entry point, sets signal handlers, runs command loop
-// Requirements: split(), Logger, commands class, signal handling
-// Required for: entire program execution
+/**
+@brief Main program entry point.
+@details Initializes the application, sets up signal handlers, registers exit callbacks, loads configuration, starts logging, and enters the main loop that accepts clients through a named pipe. Each client connection is handled by a separate thread using HandleClient().
+@note Requirements: split(), Logger, commands class, signal handling.
+@note Required for entire program execution.
+*/
 int main()
 {
 

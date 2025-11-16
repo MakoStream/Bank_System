@@ -1,3 +1,9 @@
+/**
+ * @file Account.h
+ * @brief Bank account class and functions for account management.
+ * @note Required headers: <iostream>, <windows.h>, <vector>, <fstream>, <sstream>, "Logger.h", <csignal>, <unordered_map>, <stdexcept>, <cstdio>, "User.h"
+ */
+
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <iostream>
@@ -30,10 +36,11 @@ class account; // forward declaration
 account getAccount_byIBAN(const char* IBAN); // Пошук рахунку за IBAN
 account getAccount_byCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
 
-// Class: Account
-// Description: Represents a bank account with card details, balance, and status
-// Requirements: <string>, <fstream>, cardStatus, cardType, balanceType
-// Required for: 
+/**
+ * @class account
+ * @brief Represents a bank account with IBAN, PAN, PIN, CVV, balance, type, status, and owner ID.
+ * @note Required headers: <iostream>, <fstream>, <sstream>, "User.h", <cstring>
+ */
 class account {  // Дані банківської картки
 	int id;
 	int userID;                      // ID власника картки
@@ -48,7 +55,27 @@ class account {  // Дані банківської картки
 	short AccountType = 0;             // План рахунків https://www.buhoblik.org.ua/uchet/organizacziya-buxgalterskogo-ucheta/388-plan-raxunkiv.html
 	cardStatus status = NONVERIFED;
 public:
+	/**
+	 * @brief Default constructor for empty account or loading from file.
+	 * @note Requires <cstring>
+	 */
 	account() {} // порожній конструктор для load
+
+	/**
+     * @brief Full constructor for creating an account
+     * @param _id Unique account ID
+     * @param _userID Owner's user ID
+     * @param _IBAN IBAN string
+     * @param _cardNumber Card number string (PAN)
+     * @param _PIN PIN code
+     * @param _CVV CVV code
+     * @param _expirationDate Card expiration date
+     * @param _AccountType Accounting plan type
+     * @param _balance_type Currency type
+     * @param _type Card type
+     * @param _status Card status
+     * @note Requires <cstring>
+     */
 	account(const int _id, const int _userID, const char* _IBAN, const char* _cardNumber, const char* _PIN,
 		const char* _CVV, const char* _expirationDate,short _AccountType, balanceType _balance_type = UAH,
 		cardType _type = DEFAULT, cardStatus _status = NONVERIFED)
@@ -61,82 +88,78 @@ public:
 		strncpy(expirationDate, _expirationDate, sizeof(expirationDate) - 1); expirationDate[sizeof(expirationDate) - 1] = '\0';
 	}
 
-	// Базові функції для повернення даних
-	int getId() { return id; };
-	User getUser() { return getUser_byId(userID); };
-	int getUserID() { return userID; };
-	char* getIBAN() {return IBAN;}
-	char* getPAN() {return cardNumber;};
-	char* getPIN() { return PIN; };
-	char* getCVV() { return CVV; };
-	char* getExpirationDate() { return expirationDate; };
-	balanceType getBalanceType() { return balance_type; };
-	double getBalance() { return balance; };
-	cardType getCardType() { return type; };
-	short getAccountType() { return AccountType; };
-	cardStatus getCardStatus() {return status;};
+    /** @name Getters */
+    ///@{
+    int getId() { return id; }                               ///< Returns account ID
+    User getUser() { return getUser_byId(userID); }          ///< Returns user object
+    int getUserID() { return userID; }                       ///< Returns owner ID
+    char* getIBAN() { return IBAN; }                         ///< Returns IBAN
+    char* getPAN() { return cardNumber; }                    ///< Returns card number
+    char* getPIN() { return PIN; }                            ///< Returns PIN
+    char* getCVV() { return CVV; }                           ///< Returns CVV
+    char* getExpirationDate() { return expirationDate; }     ///< Returns expiration date
+    balanceType getBalanceType() { return balance_type; }    ///< Returns currency type
+    double getBalance() { return balance; }                  ///< Returns balance
+    cardType getCardType() { return type; }                  ///< Returns card type
+    short getAccountType() { return AccountType; }          ///< Returns account plan type
+    cardStatus getCardStatus() { return status; }           ///< Returns card status
+    ///@}
 
-	// Доступ
-	void verify() {
-		if (status == NONVERIFED) status = AVAILABLE;
-	}; 
-	void unban() { status = AVAILABLE; };
-	void ban(string reason) { 
-		status = BLOCKED; 
-	};
-	void changePIN(const char* newPIN) { strncpy(PIN, newPIN, sizeof(PIN) - 1); PIN[sizeof(PIN) - 1] = '\0'; };
+    /** @name Status and access */
+    ///@{
+    void verify() { if (status == NONVERIFED) status = AVAILABLE; } ///< Set status from NONVERIFED to AVAILABLE
+    void unban() { status = AVAILABLE; }                            ///< Set status to AVAILABLE
+    void ban(std::string reason) { status = BLOCKED; }              ///< Set status to BLOCKED
+    ///@}
 
-	bool checkPIN(const char* inputPIN) {
-		return strncmp(PIN, inputPIN, sizeof(PIN)) == 0;
-	}
-	bool checkCVV(const char* inputCVV) {
-		return strncmp(CVV, inputCVV, sizeof(CVV)) == 0;
-	}
-	
-	// Операції з балансом
-	void setBalance(double ammount) { balance += ammount; };
+    /** @name PIN/CVV operations */
+    ///@{
+    void changePIN(const char* newPIN) { strncpy(PIN, newPIN, sizeof(PIN) - 1); PIN[sizeof(PIN) - 1] = '\0'; } ///< Change PIN
+    void setPIN(const char* newPIN) { strncpy(PIN, newPIN, sizeof(PIN) - 1); PIN[sizeof(PIN) - 1] = '\0'; }    ///< Set new PIN
+    void setCVV(const char* newCVV) { strncpy(CVV, newCVV, sizeof(CVV) - 1); CVV[sizeof(CVV) - 1] = '\0'; }   ///< Set new CVV
+    bool checkPIN(const char* inputPIN) { return strncmp(PIN, inputPIN, sizeof(PIN)) == 0; }                  ///< Check input PIN
+    bool checkCVV(const char* inputCVV) { return strncmp(CVV, inputCVV, sizeof(CVV)) == 0; }                  ///< Check input CVV
+    ///@}
 
+    /** @name Balance operations */
+    ///@{
+    void setBalance(double amount) { balance += amount; } ///< Add or remove funds
+    ///@}
 
-	void setPIN(const char* newPIN) {
-		strncpy(PIN, newPIN, sizeof(PIN) - 1); PIN[sizeof(PIN) - 1] = '\0';
-	};
-	void setCVV(const char* newCVV) {
-		strncpy(CVV, newCVV, sizeof(CVV) - 1); CVV[sizeof(CVV) - 1] = '\0';
-	};
+    /** @name File operations */
+    ///@{
+    void save(std::ofstream& ofs) {
+        ofs.write((char*)&id, sizeof(id));
+        ofs.write((char*)&userID, sizeof(userID));
+        ofs.write((char*)&IBAN, sizeof(IBAN));
+        ofs.write((char*)&cardNumber, sizeof(cardNumber));
+        ofs.write((char*)&PIN, sizeof(PIN));
+        ofs.write((char*)&CVV, sizeof(CVV));
+        ofs.write((char*)&expirationDate, sizeof(expirationDate));
+        ofs.write((char*)&balance_type, sizeof(balance_type));
+        ofs.write((char*)&balance, sizeof(balance));
+        ofs.write((char*)&type, sizeof(type));
+        ofs.write((char*)&AccountType, sizeof(AccountType));
+        ofs.write((char*)&status, sizeof(status));
+    } ///< Write account to file
 
+    void load(std::ifstream& ifs) {
+        ifs.read((char*)&id, sizeof(id));
+        ifs.read((char*)&userID, sizeof(userID));
+        ifs.read((char*)&IBAN, sizeof(IBAN));
+        ifs.read((char*)&cardNumber, sizeof(cardNumber));
+        ifs.read((char*)&PIN, sizeof(PIN));
+        ifs.read((char*)&CVV, sizeof(CVV));
+        ifs.read((char*)&expirationDate, sizeof(expirationDate));
+        ifs.read((char*)&balance_type, sizeof(balance_type));
+        ifs.read((char*)&balance, sizeof(balance));
+        ifs.read((char*)&type, sizeof(type));
+        ifs.read((char*)&AccountType, sizeof(AccountType));
+        ifs.read((char*)&status, sizeof(status));
+    } ///< Read account from file
 
-	
-
-	// Функції для запису та зчитування даних з бінарного файлу accounts.dat
-	void save(std::ofstream& ofs) {
-		ofs.write((char*)&id, sizeof(id));
-		ofs.write((char*)&userID, sizeof(userID));
-		ofs.write((char*)&IBAN, sizeof(IBAN));
-		ofs.write((char*)&cardNumber, sizeof(cardNumber));
-		ofs.write((char*)&PIN, sizeof(PIN));
-		ofs.write((char*)&CVV, sizeof(CVV));
-		ofs.write((char*)&expirationDate, sizeof(expirationDate));
-		ofs.write((char*)&balance_type, sizeof(balance_type));
-		ofs.write((char*)&balance, sizeof(balance));
-		ofs.write((char*)&type, sizeof(type));
-		ofs.write((char*)&AccountType, sizeof(AccountType));
-		ofs.write((char*)&status, sizeof(status));
-	};
-	void load(std::ifstream& ifs) {
-		ifs.read((char*)&id, sizeof(id));
-		ifs.read((char*)&userID, sizeof(userID));
-		ifs.read((char*)&IBAN, sizeof(IBAN));
-		ifs.read((char*)&cardNumber, sizeof(cardNumber));
-		ifs.read((char*)&PIN, sizeof(PIN));
-		ifs.read((char*)&CVV, sizeof(CVV));
-		ifs.read((char*)&expirationDate, sizeof(expirationDate));
-		ifs.read((char*)&balance_type, sizeof(balance_type));
-		ifs.read((char*)&balance, sizeof(balance));
-		ifs.read((char*)&type, sizeof(type));
-		ifs.read((char*)&AccountType, sizeof(AccountType));
-		ifs.read((char*)&status, sizeof(status));
-	};
-	void updateInFile();
+    void updateInFile(); ///< Update account record in file
+    ///@}
 };
 
 extern account emptyAccount;
@@ -144,23 +167,97 @@ extern account emptyAccount;
 // Функції для роботи з банківськими рахунками
 void ACC_createDB(); // Створення пустого бінарного файлу accounts.dat
 void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType); // Додавання нового рахунку
+
+/**
+ * @brief Find account by card number.
+ * @param cardNumber Card number (PAN)
+ * @return account object, or emptyAccount if not found
+ * @note Requires account class and <fstream>
+ */
 account ACC_getAccountByCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
+
+
+/**
+ * @brief Find account by IBAN.
+ * @param IBAN IBAN of the account
+ * @return account object, or emptyAccount if not found
+ * @note Requires account class and <fstream>
+ */
 account ACC_getAccountByIBAN(const char* IBAN); // Пошук рахунку за IBAN
+
+/**
+ * @brief Transfer funds between accounts
+ * @note Requires account class
+ */
 void transferFunds(account& fromAcc, account& toAcc, double amount); // Переказ коштів між рахунками
 
-int generateIBAN(); // Генерація унікального IBAN
-int generateCardNumber(); // Генерація унікального номера картки
-void printAllAccounts(char msg[5][1024], int page); // Виведення інформації про всі рахунки
-void DB_create_accounts(); // Створення пустого бінарного файлу accounts.dat
-bool isAccountExist_byIBAN(const char* IBAN); // Перевірка існування рахунку за IBAN
-bool isAccountExist_byCardNumber(const char* cardNumber); // Перевірка існування рахунку за номером картки
+/**
+ * @brief Generate unique IBAN
+ * @note Requires process.incrementCardIBAN()
+ */
+int generateIBAN();
+
+/**
+ * @brief Generate unique card number
+ * @note Requires process.incrementCardPAN()
+ */
+int generateCardNumber();
+
+/**
+ * @brief Print accounts into paged messages
+ * @note Requires account class, <fstream>, <sstream>
+ */
+void printAllAccounts(char msg[5][1024], int page);
+
+/**
+ * @brief Create empty accounts file
+ * @note Requires ACC_addAccount()
+ */
+void DB_create_accounts();
+
+/**
+ * @brief Check if account exists by IBAN
+ * @note Requires account class, <fstream>
+ */
+bool isAccountExist_byIBAN(const char* IBAN);
+
+/**
+ * @brief Check if account exists by card number
+ * @note Requires account class, <fstream>
+ */
+bool isAccountExist_byCardNumber(const char* cardNumber);
+
+/**
+ * @brief Get account by ID
+ * @note Requires account class, <fstream>
+ */
 account getAccountById(int id);
+
+/**
+ * @brief Check if account exists by ID
+ * @note Requires account class, <fstream>
+ */
 bool isAccountExistById(int id);
+
+/**
+ * @brief Get last account in database
+ * @note Requires account class, <fstream>
+ */
 account getLastAccount();
 
+/**
+ * @brief Get all accounts of a user
+ * @note Requires account class, <fstream>
+ */
 vector<account> getUserAccounts(int user_id);
 
-void setAccountBalance(account& acc, double newBalance); // only for debug
+/**
+ * @brief Debug: set account balance
+ * @note Requires account class
+ */
+void setAccountBalance(account& acc, double newBalance);
+
+
 //account getAccount_byIBAN(const char* IBAN); // Пошук рахунку за IBAN
 //account getAccount_byCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
 
