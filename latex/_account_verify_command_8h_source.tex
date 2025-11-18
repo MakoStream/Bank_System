@@ -1,0 +1,59 @@
+\doxysection{Account\+Verify\+Command.\+h}
+\hypertarget{_account_verify_command_8h_source}{}\label{_account_verify_command_8h_source}\index{Bank\_System/commands/AccountVerifyCommand.h@{Bank\_System/commands/AccountVerifyCommand.h}}
+\mbox{\hyperlink{_account_verify_command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_command_8h}{../Command.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_log_eye_8h}{../LogEye.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_account_verify_command}{AccountVerifyCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_command}{Command}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_account_verify_command_afd611b656232ae6cf1e587b9fe5db2c4}{execute}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{\ \textcolor{comment}{//\ account\_verify\ <account\_number>}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ log\_id\ =\ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.logTrace(\textcolor{stringliteral}{"{}account\_verify\ Command"{}});}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}Session\ Id"{}},\ to\_string(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}User\ Id"{}},\ to\_string(\mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}.getUserSession(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}).user\_id),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}input\ data"{}},\ \textcolor{keywordtype}{string}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}});}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ vector<string>\ args\ =\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_acb3b421c46ad175157857d818818bdab}{split}}(input);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.commentTrace(log\_id,\ \textcolor{stringliteral}{"{}Check\ input\ requirement"{}});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args.size()\ <\ 2)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Not\ enough\ arguments"{}});}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}Not\ enough\ arguments"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args[1].length()\ !=\ 29)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}IBAN\ is\ incorect"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}IBAN\ is\ incorect"{}});}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ IBAN[36];}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ strcpy(IBAN,\ args[1].c\_str());}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_account_8cpp_a71a3333731b67667f502cae089f081cf}{isAccountExist\_byIBAN}}(IBAN))\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Account\ with\ this\ IBAN\ does\ not\ exist"{}});}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}Account\ with\ this\ IBAN\ does\ not\ exist"{}});}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.commentTrace(log\_id,\ \textcolor{stringliteral}{"{}Verifying\ account\ with\ IBAN:\ "{}}\ +\ \textcolor{keywordtype}{string}(IBAN));}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classaccount}{account}}\ acc\ =\ \mbox{\hyperlink{_account_8cpp_ad29696bd8aaa1b96c5e68b1754d675c7}{getAccount\_byIBAN}}(IBAN);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ acc.\mbox{\hyperlink{classaccount_a9b4a2b2f4a4389da06374e70285e9a04}{verify}}();}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ acc.\mbox{\hyperlink{classaccount_a20bfc751a668d2ee17c286285c19ef83}{updateInFile}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 1;\ \textcolor{comment}{//\ success}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Account\ verified\ successfully"{}});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//string\ account\_number\ =\ args[1];}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}},\ \textcolor{stringliteral}{"{}Account\ verified\ successfully\ for\ IBAN:\ "{}}\ +\ \textcolor{keywordtype}{string}(IBAN));}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00057\ \ \ \ \ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_account_verify_command_acffda367f1c16a5c2dacbe64c8a1b61f}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}account\_verify"{}};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \};}
+
+\end{DoxyCode}

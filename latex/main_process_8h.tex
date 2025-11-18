@@ -1,0 +1,110 @@
+\doxysection{Bank\+\_\+\+System/main\+Process.h File Reference}
+\hypertarget{main_process_8h}{}\label{main_process_8h}\index{Bank\_System/mainProcess.h@{Bank\_System/mainProcess.h}}
+
+
+Declares \doxylink{classmain_process}{main\+Process} class for session, user, transaction, and configuration management.  
+
+
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include "{}Logger.\+h"{}}\newline
+{\ttfamily \#include $<$csignal$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include "{}Account.\+h"{}}\newline
+{\ttfamily \#include "{}basic\+\_\+functions.\+h"{}}\newline
+{\ttfamily \#include "{}Audit/\+Audit.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_session}{Session}}
+\begin{DoxyCompactList}\small\item\em Represents a user session. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structsession_construct}{session\+Construct}}
+\begin{DoxyCompactList}\small\item\em Structure for client session data used in pipes. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhandle_info}{handle\+Info}}
+\begin{DoxyCompactList}\small\item\em Helper structure to pass pipe handles and session data. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classmain_process}{main\+Process}}
+\begin{DoxyCompactList}\small\item\em Main class for session, user, transaction, and configuration management. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_process_8h_af08ec37a8c99d747fb60fa15bc28678b}{\+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct Session \mbox{\hyperlink{main_process_8h_a10fab1025eeb1f405833c9179e00896d}{Session}}
+\begin{DoxyCompactList}\small\item\em Represents a user session. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{main_process_8h_a73284a437ebc36a15a222a2660de8bb4}{config\+Name}}
+\item 
+\mbox{\hyperlink{struct_session}{Session}} \mbox{\hyperlink{main_process_8h_a34e50bd064592714d0e0d7360a61af35}{empty\+Session}}
+\begin{DoxyCompactList}\small\item\em Represents a user session in the system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classmain_process}{main\+Process}} \mbox{\hyperlink{main_process_8h_a31607588183278c556138cdb6a0e1f33}{process}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declares \doxylink{classmain_process}{main\+Process} class for session, user, transaction, and configuration management. 
+
+Provides functions to manage sessions, login/logout, generate authentication keys, handle transactions, debug mode, and persistence of counters in configuration files. \begin{DoxyNote}{Note}
+Required headers\+: \texorpdfstring{$<$}{<}windows.\+h\texorpdfstring{$>$}{>}, $<$string$>$, $<$vector$>$, $<$fstream$>$, $<$sstream$>$, $<$random$>$, \doxylink{_account_8h}{Account.\+h}, basic\+\_\+functions.\+h, \doxylink{_audit_8h}{Audit/\+Audit.\+h}, \doxylink{_logger_8h}{Logger.\+h} 
+\end{DoxyNote}
+
+
+\label{doc-define-members}
+\Hypertarget{main_process_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{main_process_8h_af08ec37a8c99d747fb60fa15bc28678b}\index{mainProcess.h@{mainProcess.h}!\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}}
+\index{\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}!mainProcess.h@{mainProcess.h}}
+\doxysubsubsection{\texorpdfstring{\_CRT\_SECURE\_NO\_WARNINGS}{\_CRT\_SECURE\_NO\_WARNINGS}}
+{\footnotesize\ttfamily \label{main_process_8h_af08ec37a8c99d747fb60fa15bc28678b} 
+\#define \+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}
+
+
+
+\label{doc-typedef-members}
+\Hypertarget{main_process_8h_doc-typedef-members}
+\doxysubsection{Typedef Documentation}
+\Hypertarget{main_process_8h_a10fab1025eeb1f405833c9179e00896d}\index{mainProcess.h@{mainProcess.h}!Session@{Session}}
+\index{Session@{Session}!mainProcess.h@{mainProcess.h}}
+\doxysubsubsection{\texorpdfstring{Session}{Session}}
+{\footnotesize\ttfamily \label{main_process_8h_a10fab1025eeb1f405833c9179e00896d} 
+typedef struct Session Session}
+
+
+
+Represents a user session. 
+
+
+
+\label{doc-var-members}
+\Hypertarget{main_process_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_process_8h_a73284a437ebc36a15a222a2660de8bb4}\index{mainProcess.h@{mainProcess.h}!configName@{configName}}
+\index{configName@{configName}!mainProcess.h@{mainProcess.h}}
+\doxysubsubsection{\texorpdfstring{configName}{configName}}
+{\footnotesize\ttfamily \label{main_process_8h_a73284a437ebc36a15a222a2660de8bb4} 
+string config\+Name\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{main_process_8h_a34e50bd064592714d0e0d7360a61af35}\index{mainProcess.h@{mainProcess.h}!emptySession@{emptySession}}
+\index{emptySession@{emptySession}!mainProcess.h@{mainProcess.h}}
+\doxysubsubsection{\texorpdfstring{emptySession}{emptySession}}
+{\footnotesize\ttfamily \label{main_process_8h_a34e50bd064592714d0e0d7360a61af35} 
+\mbox{\hyperlink{struct_session}{Session}} empty\+Session\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Represents a user session in the system. 
+
+\Hypertarget{main_process_8h_a31607588183278c556138cdb6a0e1f33}\index{mainProcess.h@{mainProcess.h}!process@{process}}
+\index{process@{process}!mainProcess.h@{mainProcess.h}}
+\doxysubsubsection{\texorpdfstring{process}{process}}
+{\footnotesize\ttfamily \label{main_process_8h_a31607588183278c556138cdb6a0e1f33} 
+\mbox{\hyperlink{classmain_process}{main\+Process}} process\hspace{0.3cm}{\ttfamily [extern]}}
+

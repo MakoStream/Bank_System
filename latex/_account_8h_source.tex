@@ -1,0 +1,216 @@
+\doxysection{Account.\+h}
+\hypertarget{_account_8h_source}{}\label{_account_8h_source}\index{Bank\_System/Account.h@{Bank\_System/Account.h}}
+\mbox{\hyperlink{_account_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_CRT\_SECURE\_NO\_WARNINGS}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_logger_8h}{Logger.h}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <csignal>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <cstdio>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_user_8h}{User.h}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{cardStatus}}\ \{\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}{AVAILABLE}},\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61}{BLOCKED}},\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}}\};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{cardType}}\ \{\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18ac1b583024752a086f49bf2061478409e}{DEPOSITE}},\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}},\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a5b9c7596aea45aa4b6b3fc93a907391d}{CREDIT}}\ \};}
+\DoxyCodeLine{00027\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balanceType}}\ \{\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}},\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a73bf3800553f080d112618f5742f617e}{DLR}},\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a0c1560edca52d24f8b6c3118f965ed71}{EUR}}\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ cardType>\ \mbox{\hyperlink{_account_8cpp_a620eb1df630bf856dcd6ec690e56728c}{cardMap}};}
+\DoxyCodeLine{00030\ \textcolor{keyword}{extern}\ std::unordered\_map\ <balanceType,\ string>\ \mbox{\hyperlink{_account_8cpp_a3aaa99f260c8425788de65247da5c521}{balanceMapToString}};}
+\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ balanceType>\ \mbox{\hyperlink{_account_8cpp_a2997a5fef35f01b92d962e6609a759ac}{balanceMap}};}
+\DoxyCodeLine{00032\ \textcolor{keyword}{extern}\ std::unordered\_map<std::string,\ cardStatus>\ \mbox{\hyperlink{_account_8cpp_a12e2b82f2d5eec6fa27f94f45df328a0}{statusMap}};}
+\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ std::unordered\_map<cardStatus,\ std::string>\ \mbox{\hyperlink{_account_8cpp_a0e221c28002633e4e1e6a18456140a3c}{statusMapReverse}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classaccount}{account}};\ \textcolor{comment}{//\ forward\ declaration}}
+\DoxyCodeLine{00036\ \mbox{\hyperlink{classaccount}{account}}\ \mbox{\hyperlink{_account_8h_ad29696bd8aaa1b96c5e68b1754d675c7}{getAccount\_byIBAN}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}});\ \textcolor{comment}{//\ Пошук рахунку\ за IBAN}}
+\DoxyCodeLine{00037\ \mbox{\hyperlink{classaccount}{account}}\ \mbox{\hyperlink{_account_8h_a56710721192c273c14e555742b245a9a}{getAccount\_byCardNumber}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}});\ \textcolor{comment}{//\ Пошук рахунку\ за номером картки}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classaccount_a96261021a96c9792b16081e8fcaf23a3}{account}}\ \{\ \ \textcolor{comment}{//\ Дані банківської\ картки}}
+\DoxyCodeLine{00045\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classaccount_af85403b25ba58a36d691b38b213c73ce}{id}};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classaccount_a88753af536313c494b223d092c241af3}{userID}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ID\ власника картки}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}}[37];}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}}[17];}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}}[4];}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}}[3];}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}}[8];\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ MM/YY}}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balanceType}}\ \mbox{\hyperlink{classaccount_abb2560cecad76a7bd666e57e573c4b13}{balance\_type}}\ =\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classaccount_ad12a7da018413a8c5100ef243b06de56}{balance}}\ =\ 0.0;}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{cardType}}\ \mbox{\hyperlink{classaccount_a3b1a849e03c173503931c076d4e06b61}{type}}\ =\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{classaccount_a35b2bfb0d119f6196123555e3279a4e7}{AccountType}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ План рахунків https://www.buhoblik.org.ua/uchet/organizacziya-\/buxgalterskogo-\/ucheta/388-\/plan-\/raxunkiv.html}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{cardStatus}}\ \mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}}\ =\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}};}
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classaccount_a96261021a96c9792b16081e8fcaf23a3}{account}}()\ \{\}\ \textcolor{comment}{//\ порожній конструктор для\ load}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classaccount_a9c18a3cb5a588c675edfebc50f3f129b}{account}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_id,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_userID,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_IBAN,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_cardNumber,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_PIN,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_CVV,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_expirationDate,\textcolor{keywordtype}{short}\ \_AccountType,\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balanceType}}\ \_balance\_type\ =\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}},}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{cardType}}\ \_type\ =\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}},\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{cardStatus}}\ \_status\ =\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}})}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classaccount_af85403b25ba58a36d691b38b213c73ce}{id}}(\_id),\ \mbox{\hyperlink{classaccount_a88753af536313c494b223d092c241af3}{userID}}(\_userID),\ \mbox{\hyperlink{classaccount_abb2560cecad76a7bd666e57e573c4b13}{balance\_type}}(\_balance\_type),\ \mbox{\hyperlink{classaccount_a3b1a849e03c173503931c076d4e06b61}{type}}(\_type),\ \mbox{\hyperlink{classaccount_a35b2bfb0d119f6196123555e3279a4e7}{AccountType}}(\_AccountType),\ \mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}}(\_status)}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}},\ \_IBAN,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}})\ -\/\ 1);\ \mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}},\ \_cardNumber,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}})\ -\/\ 1);\ \mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}},\ \_PIN,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}})\ -\/\ 1);\ \mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}},\ \_CVV,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}})\ -\/\ 1);\ \mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}},\ \_expirationDate,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}})\ -\/\ 1);\ \mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classaccount_ac4962b1e5c3121f98e1afdef66a28650}{getId}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_af85403b25ba58a36d691b38b213c73ce}{id}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{class_user}{User}}\ \mbox{\hyperlink{classaccount_a7cd7f200a2e4f17d4fea007743f76b29}{getUser}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{_user_8cpp_a3706eb8ba7ca7e8392708b640102b82d}{getUser\_byId}}(\mbox{\hyperlink{classaccount_a88753af536313c494b223d092c241af3}{userID}});\ \}\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classaccount_a67e5b3feea84193b3943364bd323cd3b}{getUserID}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_a88753af536313c494b223d092c241af3}{userID}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classaccount_a1f064086bad18f46093c7715ce1cf81c}{getIBAN}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classaccount_a640cac1e9310f500a882206f0b8f37b8}{getPAN}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classaccount_aa72eaba454fba91a65f11508e4f1f993}{getPIN}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classaccount_a3a83d589e92677d90f3a8b6800e524f1}{getCVV}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classaccount_a3cf825f7c521fcd1d32f9a15f298814e}{getExpirationDate}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}};\ \}\ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balanceType}}\ \mbox{\hyperlink{classaccount_a7769a4cd9c60254a4e15f0081796b5ff}{getBalanceType}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_abb2560cecad76a7bd666e57e573c4b13}{balance\_type}};\ \}\ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classaccount_a67341f6f3f06a7c8431619ba8c04ed43}{getBalance}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_ad12a7da018413a8c5100ef243b06de56}{balance}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{cardType}}\ \mbox{\hyperlink{classaccount_ac51392c03e97b6658654edfa9fce3b89}{getCardType}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_a3b1a849e03c173503931c076d4e06b61}{type}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{classaccount_a231e3e63c1a791d4686b1622d524e784}{getAccountType}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_a35b2bfb0d119f6196123555e3279a4e7}{AccountType}};\ \}\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{cardStatus}}\ \mbox{\hyperlink{classaccount_adf0b6c2f7e5190f87e5da1937b902d4c}{getCardStatus}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}};\ \}\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_a9b4a2b2f4a4389da06374e70285e9a04}{verify}}()\ \{\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}}\ ==\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}})\ \mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}}\ =\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}{AVAILABLE}};\ \}\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_aef9d2c94e890f0b5912b731363dcc686}{unban}}()\ \{\ \mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}}\ =\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}{AVAILABLE}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_a84cd06a4944d15b516dfdee34e8036dc}{ban}}(std::string\ reason)\ \{\ \mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}}\ =\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61}{BLOCKED}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_a2e6042cb7fd06996740a91f3042e07cb}{changePIN}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ newPIN)\ \{\ strncpy(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}},\ newPIN,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}})\ -\/\ 1);\ \mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};\ \}\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_a0562d41ba7864fac0a5e472c36a263e2}{setPIN}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ newPIN)\ \{\ strncpy(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}},\ newPIN,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}})\ -\/\ 1);\ \mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};\ \}\ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_aaa32f28c70881043705f02805c88326b}{setCVV}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ newCVV)\ \{\ strncpy(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}},\ newCVV,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}})\ -\/\ 1);\ \mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};\ \}\ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classaccount_ade39eb37093e7c156a7297cd812eca1d}{checkPIN}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ inputPIN)\ \{\ \textcolor{keywordflow}{return}\ strncmp(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}},\ inputPIN,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}}))\ ==\ 0;\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classaccount_a67499cd84c8b7114d42b32e3b63fb7d1}{checkCVV}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ inputCVV)\ \{\ \textcolor{keywordflow}{return}\ strncmp(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}},\ inputCVV,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}}))\ ==\ 0;\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_a21d59306e081cd6b11e904d741d34fba}{setBalance}}(\textcolor{keywordtype}{double}\ amount)\ \{\ \mbox{\hyperlink{classaccount_ad12a7da018413a8c5100ef243b06de56}{balance}}\ +=\ amount;\ \}\ }
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_a66274de8deba7562d78041b9509d0021}{save}}(std::ofstream\&\ ofs)\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{id},\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a88753af536313c494b223d092c241af3}{userID}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a88753af536313c494b223d092c241af3}{userID}}));}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}}));}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}}));}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}}));}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}}));}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}}));}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_abb2560cecad76a7bd666e57e573c4b13}{balance\_type}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_abb2560cecad76a7bd666e57e573c4b13}{balance\_type}}));}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_ad12a7da018413a8c5100ef243b06de56}{balance}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_ad12a7da018413a8c5100ef243b06de56}{balance}}));}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a3b1a849e03c173503931c076d4e06b61}{type}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a3b1a849e03c173503931c076d4e06b61}{type}}));}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a35b2bfb0d119f6196123555e3279a4e7}{AccountType}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a35b2bfb0d119f6196123555e3279a4e7}{AccountType}}));}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ ofs.write((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}}));}
+\DoxyCodeLine{00144\ \ \ \ \ \}\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_a4421fff24410f5a7ededfa68d6ae358d}{load}}(std::ifstream\&\ ifs)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\textcolor{keywordtype}{id},\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a88753af536313c494b223d092c241af3}{userID}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a88753af536313c494b223d092c241af3}{userID}}));}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}}));}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{cardNumber}}));}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}}));}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}}));}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expirationDate}}));}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_abb2560cecad76a7bd666e57e573c4b13}{balance\_type}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_abb2560cecad76a7bd666e57e573c4b13}{balance\_type}}));}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_ad12a7da018413a8c5100ef243b06de56}{balance}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_ad12a7da018413a8c5100ef243b06de56}{balance}}));}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a3b1a849e03c173503931c076d4e06b61}{type}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a3b1a849e03c173503931c076d4e06b61}{type}}));}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a35b2bfb0d119f6196123555e3279a4e7}{AccountType}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a35b2bfb0d119f6196123555e3279a4e7}{AccountType}}));}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ ifs.read((\textcolor{keywordtype}{char}*)\&\mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}}));}
+\DoxyCodeLine{00159\ \ \ \ \ \}\ }
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classaccount_a20bfc751a668d2ee17c286285c19ef83}{updateInFile}}();\ }
+\DoxyCodeLine{00163\ \};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{classaccount}{account}}\ \mbox{\hyperlink{_account_8cpp_a3d2068db832f10c8d9bdcf38b74accdf}{emptyAccount}};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ Функції\ для\ роботи з\ банківськими рахунками}}
+\DoxyCodeLine{00168\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_account_8h_a959faddce33d8900ff61684ebe0c73f0}{ACC\_createDB}}();\ \textcolor{comment}{//\ Створення\ пустого\ бінарного\ файлу accounts.dat}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00178\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_account_8h_aaa5fd9cf9e5fad16e78cde9c6d69d413}{ACC\_addAccount}}(\textcolor{keywordtype}{int}\ userID,\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balanceType}}\ balance\_type,\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{cardType}}\ type,\ \textcolor{keywordtype}{short}\ accountType);\ \textcolor{comment}{//\ Додавання\ нового\ рахунку}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00186\ \mbox{\hyperlink{classaccount}{account}}\ \mbox{\hyperlink{_account_8h_afb19e4e64a9c76eb7f14323ae5bcc78c}{ACC\_getAccountByCardNumber}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ cardNumber);\ \textcolor{comment}{//\ Пошук рахунку\ за номером картки}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00195\ \mbox{\hyperlink{classaccount}{account}}\ \mbox{\hyperlink{_account_8h_a89fc4fb615cfb01d1be97739247fedc7}{ACC\_getAccountByIBAN}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ IBAN);\ \textcolor{comment}{//\ Пошук рахунку\ за IBAN}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00201\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_account_8h_a26abb33f42a609ed05c31b718b103e64}{transferFunds}}(\mbox{\hyperlink{classaccount}{account}}\&\ fromAcc,\ \mbox{\hyperlink{classaccount}{account}}\&\ toAcc,\ \textcolor{keywordtype}{double}\ amount);\ \textcolor{comment}{//\ Переказ коштів між рахунками}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00209\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_account_8h_ae4a1fa018c246de48e57b71e3e18f268}{printAllAccounts}}(\textcolor{keywordtype}{char}\ msg[5][1024],\ \textcolor{keywordtype}{int}\ page);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00215\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_account_8h_a2855b434b928b7074ca97ed8f2821c02}{DB\_create\_accounts}}();}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00221\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_account_8h_a71a3333731b67667f502cae089f081cf}{isAccountExist\_byIBAN}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ IBAN);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00227\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_account_8h_af0df86b7800d7758e8ef29de4af8d78b}{isAccountExist\_byCardNumber}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ cardNumber);}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00233\ \mbox{\hyperlink{classaccount}{account}}\ \mbox{\hyperlink{_account_8h_a8f1773ce2ae32192952e79041669c0e5}{getAccountById}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00239\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_account_8h_aa41489e55613a8749e8168ccf023ed91}{isAccountExistById}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00246\ \mbox{\hyperlink{classaccount}{account}}\ \mbox{\hyperlink{_account_8h_ae2222b66da356d1d0126579d7eab520f}{getLastAccount}}();}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00252\ vector<account>\ \mbox{\hyperlink{_account_8h_a8ea4f4a39bdea1809db1ff7bb3ab3f61}{getUserAccounts}}(\textcolor{keywordtype}{int}\ user\_id);}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00258\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_account_8h_a5fb03ffabc9421b8f5a840b0a0774134}{setAccountBalance}}(\mbox{\hyperlink{classaccount}{account}}\&\ acc,\ \textcolor{keywordtype}{double}\ newBalance);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{comment}{//account\ getAccount\_byIBAN(const\ char*\ IBAN);\ //\ Пошук рахунку\ за IBAN}}
+\DoxyCodeLine{00262\ \textcolor{comment}{//account\ getAccount\_byCardNumber(const\ char*\ cardNumber);\ //\ Пошук рахунку\ за номером картки}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \textcolor{comment}{//===============================================================================================================================}}
+\DoxyCodeLine{00265\ \textcolor{comment}{//===============================================================================================================================}}
+\DoxyCodeLine{00266\ \textcolor{comment}{//===============================================================================================================================}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{comment}{//\ reg\_user\ login\ password\ name\ surname\ phone\ //example:\ reg\_user\ StreamCompanyBank\ 9723424887\ Mako\ Stream\ 0000000000}}
+\DoxyCodeLine{00269\ \textcolor{comment}{//\ new\_account\ owner\ curence\_type\ cardtype\ account\_type\ //example:\ new\_account\ 0\ USD\ DEPOSITE\ 316\ \ }}
+\DoxyCodeLine{00270\ \textcolor{comment}{//\ Типи рахунків:}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{comment}{//Поточні\ рахунки\ клієнтів :\ рахунки\ 31\ класу}}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//313\ —\ Рахунки в\ національній валюті}}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{comment}{//314\ —\ Рахунки в\ іноземній валюті}}
+\DoxyCodeLine{00275\ \textcolor{comment}{//Депозитні\ рахунки\ клієнтів :\ рахунки\ 31\ класу}}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{comment}{//315\ —\ Депозитні\ рахунки\ в національній валюті}}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{comment}{//316\ —\ Депозитні\ рахунки\ в іноземній валюті}}
+\DoxyCodeLine{00278\ \textcolor{comment}{//Кредитні рахунки\ клієнтів :\ рахунки\ 31\ класу}}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{comment}{//317\ —\ Кредитні рахунки\ в національній валюті}}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{comment}{//318\ —\ Кредитні рахунки\ в іноземній валюті}}
+\DoxyCodeLine{00281\ \textcolor{comment}{//\ Депонована заробітня плата :\ рахунок\ 36\ класу}}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{comment}{//3651\ —\ Депонована заробітня плата}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{comment}{//\ План рахунків банку з валютними субрахунками}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{comment}{//\ 20\ клас — Дебіторська заборгованість банку}}
+\DoxyCodeLine{00288\ \textcolor{comment}{//\ 201\ —\ Дебіторська заборгованість за операціями з клієнтами}}
+\DoxyCodeLine{00289\ \textcolor{comment}{//\ 2011\ —\ Дебіторська заборгованість клієнтів UAH}}
+\DoxyCodeLine{00290\ \textcolor{comment}{//\ 2012\ —\ Дебіторська заборгованість клієнтів USD}}
+\DoxyCodeLine{00291\ \textcolor{comment}{//\ 2013\ —\ Дебіторська заборгованість клієнтів EUR}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \textcolor{comment}{//\ 30\ клас — Блокування коштів на рахунках клієнтів}}
+\DoxyCodeLine{00294\ \textcolor{comment}{//\ 303\ —\ Блокування коштів}}
+\DoxyCodeLine{00295\ \textcolor{comment}{//\ 3031\ —\ Блокування коштів UAH}}
+\DoxyCodeLine{00296\ \textcolor{comment}{//\ 3032\ —\ Блокування коштів USD}}
+\DoxyCodeLine{00297\ \textcolor{comment}{//\ 3033\ —\ Блокування коштів EUR}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{comment}{//\ 70\ клас — Доходи\ банку}}
+\DoxyCodeLine{00300\ \textcolor{comment}{//\ 701\ —\ Процентні\ доходи\ від\ кредитних\ операцій}}
+\DoxyCodeLine{00301\ \textcolor{comment}{//\ 7011\ —\ Процентні\ доходи\ від\ кредитів UAH}}
+\DoxyCodeLine{00302\ \textcolor{comment}{//\ 7012\ —\ Процентні\ доходи\ від\ кредитів USD}}
+\DoxyCodeLine{00303\ \textcolor{comment}{//\ 7013\ —\ Процентні\ доходи\ від\ кредитів EUR}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{comment}{//\ 704\ —\ Доходи\ від\ комісійних операцій}}
+\DoxyCodeLine{00306\ \textcolor{comment}{//\ 7041\ —\ Доходи\ від\ комісій UAH}}
+\DoxyCodeLine{00307\ \textcolor{comment}{//\ 7042\ —\ Доходи\ від\ комісій USD}}
+\DoxyCodeLine{00308\ \textcolor{comment}{//\ 7043\ —\ Доходи\ від\ комісій EUR}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{comment}{//\ 80\ клас — Витрати банку}}
+\DoxyCodeLine{00311\ \textcolor{comment}{//\ 801\ —\ Витрати на оплату депозитів}}
+\DoxyCodeLine{00312\ \textcolor{comment}{//\ 8011\ —\ Витрати на депозити UAH}}
+\DoxyCodeLine{00313\ \textcolor{comment}{//\ 8012\ —\ Витрати на депозити USD}}
+\DoxyCodeLine{00314\ \textcolor{comment}{//\ 8013\ —\ Витрати на депозити EUR}}
+
+\end{DoxyCode}

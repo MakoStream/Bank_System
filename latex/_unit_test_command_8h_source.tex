@@ -1,0 +1,72 @@
+\doxysection{Unit\+Test\+Command.\+h}
+\hypertarget{_unit_test_command_8h_source}{}\label{_unit_test_command_8h_source}\index{Bank\_System/commands/UnitTestCommand.h@{Bank\_System/commands/UnitTestCommand.h}}
+\mbox{\hyperlink{_unit_test_command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_command_8h}{../Command.h}}"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{main_process_8h}{../mainProcess.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_unit_test_command}{UnitTestCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_command}{Command}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_unit_test_command_ad97bd77280dc6e2e9455e9a354e42d07}{execute}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{\ \ \textcolor{comment}{//\ unit\_test\ <client\_type>}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ log\_id\ =\ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.logTrace(\textcolor{stringliteral}{"{}unit\_test\ Command"{}});}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}Session\ Id"{}},\ to\_string(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}User\ Id"{}},\ to\_string(\mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}.getUserSession(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}).user\_id),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}input\ data"{}},\ \textcolor{keywordtype}{string}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//================================}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ cout\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}\ <<\ endl;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//================================}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.commentTrace(log\_id,\ \textcolor{stringliteral}{"{}Remove\ existing\ databases"{}});}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ std::filesystem::remove(\textcolor{stringliteral}{"{}../"{}}\ +\ \mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}.getUserDBPath());}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::filesystem::remove(\textcolor{stringliteral}{"{}../"{}}\ +\ \mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}.getAccountDBPath());}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ vector<string>\ args\ =\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_acb3b421c46ad175157857d818818bdab}{split}}(input);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ client\_type\ =\ \textcolor{stringliteral}{"{}user"{}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 0;\ \textcolor{comment}{//\ fail\ by\ default}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args.size()\ >=\ 2)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ client\_type\ =\ args[1];}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}.debugStatus())\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (client\_type\ ==\ \textcolor{stringliteral}{"{}user"{}})\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 1;\ \textcolor{comment}{//\ allow\ to\ run\ UnitTest}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}},\ \textcolor{stringliteral}{"{}Allow\ to\ run\ UnitTest"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (client\_type\ ==\ \textcolor{stringliteral}{"{}server"{}})\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//here\ i\ must\ run\ Server\ Client\ unit\ test}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 1;\ \textcolor{comment}{//\ allow\ to\ run\ UnitTest}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}},\ \textcolor{stringliteral}{"{}Allow\ to\ run\ UnitTest\ for\ server\ client"{}});}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}You\ can't\ run\ UnitTest\ without\ debug\ mode.\ Run\ this\ first\ ('debug'\ command)"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}User\ can't\ run\ UnitTest\ when\ debug\ mode\ OFF."{}});}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_unit_test_command_ae74d8800d3183dd95ee63e805768c229}{name}}()\textcolor{keyword}{const\ override\ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}unit\_test"{}};}
+\DoxyCodeLine{00072\ \ \ \ \ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,111 @@
+\doxysection{Account\+Ban\+Command.\+h}
+\hypertarget{_account_ban_command_8h_source}{}\label{_account_ban_command_8h_source}\index{Bank\_System/commands/AccountBanCommand.h@{Bank\_System/commands/AccountBanCommand.h}}
+\mbox{\hyperlink{_account_ban_command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_command_8h}{../Command.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_log_eye_8h}{../LogEye.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\#\ include\ "{}../mainProcess.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_account_ban_command}{AccountBanCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_command}{Command}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_account_ban_command_accca16fb3cef8f6bdf62b2833f294df5}{execute}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{\ \textcolor{comment}{//\ account\_ban\ <account\_number>\ <reason>}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ log\_id\ =\ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.logTrace(\textcolor{stringliteral}{"{}account\_ban\ Command"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}Session\ Id"{}},\ to\_string(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}User\ Id"{}},\ to\_string(\mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}.getUserSession(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}).user\_id),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}input\ data"{}},\ \textcolor{keywordtype}{string}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ vector<string>\ args\ =\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_acb3b421c46ad175157857d818818bdab}{split}}(input);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 0;\ \textcolor{comment}{//\ fail\ by\ default}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.commentTrace(log\_id,\ \textcolor{stringliteral}{"{}Check\ input\ requirement"{}});}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args.size()\ <\ 2)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Args\ issue"{}});}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}Args\ issue"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args[1].length()\ !=\ 29)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}wrong\ iban"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}wrong\ iban"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ IBAN[36];}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ strcpy(IBAN,\ args[1].c\_str());}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_account_8cpp_a71a3333731b67667f502cae089f081cf}{isAccountExist\_byIBAN}}(IBAN))\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}This\ account\ is\ not\ exist"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}Account\ does\ not\ exist"{}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ reason\ =\ \textcolor{stringliteral}{"{}No\ reason\ specified"{}};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args.size()\ >=\ 3)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ reason\ =\ args[2];}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classaccount}{account}}\ acc\ =\ \mbox{\hyperlink{_account_8cpp_ad29696bd8aaa1b96c5e68b1754d675c7}{getAccount\_byIBAN}}(IBAN);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ acc.\mbox{\hyperlink{classaccount_a84cd06a4944d15b516dfdee34e8036dc}{ban}}(reason);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ acc.\mbox{\hyperlink{classaccount_a20bfc751a668d2ee17c286285c19ef83}{updateInFile}}();}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 1;\ \textcolor{comment}{//\ success}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Account\ banned!"{}});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ logMessage\ =\ \textcolor{stringliteral}{"{}Account\ with\ IBAN\ "{}}\ +\ string(IBAN)\ +\ \textcolor{stringliteral}{"{}\ has\ been\ banned.\ Reason:\ "{}}\ +\ reason;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}},\ logMessage);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_account_ban_command_a36181e8ca9a89ef76c7350f55ad7fd26}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}account\_ban"{}};}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_account_unban_command}{AccountUnbanCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_command}{Command}}\ \{}
+\DoxyCodeLine{00081\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_account_unban_command_ae5b37169482c0b1c9bf722a63aa1b7e9}{execute}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{\ \textcolor{comment}{//\ account\_unban\ <account\_number>}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ log\_id\ =\ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.logTrace(\textcolor{stringliteral}{"{}account\_unban\ Command"{}});}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}Session\ Id"{}},\ to\_string(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}User\ Id"{}},\ to\_string(\mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}.getUserSession(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}).user\_id),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}input\ data"{}},\ \textcolor{keywordtype}{string}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 0;\ \textcolor{comment}{//\ fail\ by\ default}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}});}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ vector<string>\ args\ =\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_acb3b421c46ad175157857d818818bdab}{split}}(input);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.commentTrace(log\_id,\ \textcolor{stringliteral}{"{}Check\ input\ requirement"{}});}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args.size()\ <\ 2)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Args\ issue"{}});}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}Args\ issue"{}});}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args[1].length()\ !=\ 29)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}wrong\ iban"{}});}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}wrong\ iban"{}});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ IBAN[36];}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ strcpy(IBAN,\ args[1].c\_str());}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_account_8cpp_a71a3333731b67667f502cae089f081cf}{isAccountExist\_byIBAN}}(IBAN))\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}This\ account\ is\ not\ exist"{}});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}Account\ does\ not\ exist"{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classaccount}{account}}\ acc\ =\ \mbox{\hyperlink{_account_8cpp_ad29696bd8aaa1b96c5e68b1754d675c7}{getAccount\_byIBAN}}(IBAN);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ acc.\mbox{\hyperlink{classaccount_aef9d2c94e890f0b5912b731363dcc686}{unban}}();}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ acc.\mbox{\hyperlink{classaccount_a20bfc751a668d2ee17c286285c19ef83}{updateInFile}}();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 1;\ \textcolor{comment}{//\ success}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Account\ unbanned!"{}});}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ logMessage\ =\ \textcolor{stringliteral}{"{}Account\ with\ IBAN\ "{}}\ +\ string(IBAN)\ +\ \textcolor{stringliteral}{"{}\ has\ been\ unbanned."{}};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}},\ logMessage);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_account_unban_command_a9ff6b66e6bfa67681ad68464afc3718a}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}account\_unban"{}};}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \};}
+
+\end{DoxyCode}

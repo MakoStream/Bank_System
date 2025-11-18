@@ -5,6 +5,15 @@
 #include "../mainProcess.h"
 #include "../LogEye.h"
 
+/**
+ * @class SetAccountCommand
+ * @brief Updates account PIN or CVV.
+ * @details Validates PAN and input type, updates PIN or CVV in account,
+ * logs all actions via logEye.
+ * @note Requires: handleInfo, logEye, Account, <vector>, <string>
+ * @note Syntax: set_account <PAN> <PIN/CVV> <value>
+ */
+
 class SetAccountCommand : public Command {
 public:
 	void execute(handleInfo& handle) override { // set_account <PAN> <PIN/CVV> <password>

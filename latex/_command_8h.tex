@@ -1,0 +1,59 @@
+\doxysection{Bank\+\_\+\+System/\+Command.h File Reference}
+\hypertarget{_command_8h}{}\label{_command_8h}\index{Bank\_System/Command.h@{Bank\_System/Command.h}}
+
+
+Defines the base \doxylink{class_command}{Command} class and utility functions for sending responses to clients.  
+
+
+{\ttfamily \#include "{}main\+Process.\+h"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include "{}basic\+\_\+functions.\+h"{}}\newline
+{\ttfamily \#include "{}User.\+h"{}}\newline
+{\ttfamily \#include "{}Account.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_command}{Command}}
+\begin{DoxyCompactList}\small\item\em Abstract base class for all commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_command_8h_a718cac29a2de76923315d12032ef77ab}{throw\+\_\+response}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle, const std\+::string \&msg)
+\begin{DoxyCompactList}\small\item\em Sends a response message to the client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the base \doxylink{class_command}{Command} class and utility functions for sending responses to clients. 
+
+This header provides the abstract \doxylink{class_command}{Command} class, which serves as the base for all specific command implementations. It also declares the throw\+\_\+response function for sending messages back to clients via a named pipe. \begin{DoxyNote}{Note}
+Required headers\+: \doxylink{main_process_8h}{main\+Process.\+h}, basic\+\_\+functions.\+h, \doxylink{_user_8h}{User.\+h}, \doxylink{_account_8h}{Account.\+h}, $<$string$>$, $<$vector$>$, \texorpdfstring{$<$}{<}windows.\+h\texorpdfstring{$>$}{>}. 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{_command_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_command_8h_a718cac29a2de76923315d12032ef77ab}\index{Command.h@{Command.h}!throw\_response@{throw\_response}}
+\index{throw\_response@{throw\_response}!Command.h@{Command.h}}
+\doxysubsubsection{\texorpdfstring{throw\_response()}{throw\_response()}}
+{\footnotesize\ttfamily \label{_command_8h_a718cac29a2de76923315d12032ef77ab} 
+void throw\+\_\+response (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{, }\item[{const std\+::string \&}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Sends a response message to the client. 
+
+Copies the given message into the first slot of session\+Data.\+msg and writes the updated session\+Data structure to the pipe associated with the handle. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Reference to \doxylink{structhandle_info}{handle\+Info} containing the pipe and session\+Data. \\
+\hline
+{\em msg} & The message string to send to the client. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$string$>$, $<$cstring$>$, \texorpdfstring{$<$}{<}windows.\+h\texorpdfstring{$>$}{>}. 
+
+Used by \doxylink{class_command}{Command} and all derived command classes to send messages to clients. 
+\end{DoxyNote}

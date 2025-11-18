@@ -1,0 +1,69 @@
+\doxysection{Create\+DBCommand Class Reference}
+\hypertarget{class_create_d_b_command}{}\label{class_create_d_b_command}\index{CreateDBCommand@{CreateDBCommand}}
+
+
+Creates specified database tables.  
+
+
+
+
+{\ttfamily \#include $<$Create\+DBCommand.\+h$>$}
+
+Inheritance diagram for Create\+DBCommand\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_create_d_b_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_create_d_b_command_ad6a8245d266d301ca163bc91a00837a8}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle) override
+\item 
+std\+::string \mbox{\hyperlink{class_create_d_b_command_ac4a8e0ddd33fae6ddfe045c921034cc5}{name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_command}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_command_aa545a53d35818f9efb936daf3fa16c61}{\texorpdfstring{$\sim$}{\string~}\+Command}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Creates specified database tables. 
+
+Supports creation of users, accounts, transactions, and audit databases. Logs all actions via log\+Eye. \begin{DoxyNote}{Note}
+Requires\+: $<$string$>$, \doxylink{structhandle_info}{handle\+Info}, log\+Eye 
+
+Syntax\+: create\+\_\+db \texorpdfstring{$<$}{<}users\texorpdfstring{$\vert$}{|}accounts\texorpdfstring{$\vert$}{|}transactions\texorpdfstring{$\vert$}{|}audit\texorpdfstring{$>$}{>} 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{class_create_d_b_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_create_d_b_command_ad6a8245d266d301ca163bc91a00837a8}\index{CreateDBCommand@{CreateDBCommand}!execute@{execute}}
+\index{execute@{execute}!CreateDBCommand@{CreateDBCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{class_create_d_b_command_ad6a8245d266d301ca163bc91a00837a8} 
+void Create\+DBCommand\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command}}.
+
+\Hypertarget{class_create_d_b_command_ac4a8e0ddd33fae6ddfe045c921034cc5}\index{CreateDBCommand@{CreateDBCommand}!name@{name}}
+\index{name@{name}!CreateDBCommand@{CreateDBCommand}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \label{class_create_d_b_command_ac4a8e0ddd33fae6ddfe045c921034cc5} 
+std\+::string Create\+DBCommand\+::name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a87b16bdc7005f072d4b352666d3c1489}{Command}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/commands/\mbox{\hyperlink{_create_d_b_command_8h}{Create\+DBCommand.\+h}}\end{DoxyCompactItemize}

@@ -22,8 +22,6 @@ var _account_8h =
     [ "ACC_getAccountByCardNumber", "_account_8h.html#afb19e4e64a9c76eb7f14323ae5bcc78c", null ],
     [ "ACC_getAccountByIBAN", "_account_8h.html#a89fc4fb615cfb01d1be97739247fedc7", null ],
     [ "DB_create_accounts", "_account_8h.html#a2855b434b928b7074ca97ed8f2821c02", null ],
-    [ "generateCardNumber", "_account_8h.html#ac43de5302351810f8ac4fe65fd819fdb", null ],
-    [ "generateIBAN", "_account_8h.html#aedb047c6012f66b76cefda946dca426b", null ],
     [ "getAccount_byCardNumber", "_account_8h.html#a56710721192c273c14e555742b245a9a", null ],
     [ "getAccount_byIBAN", "_account_8h.html#ad29696bd8aaa1b96c5e68b1754d675c7", null ],
     [ "getAccountById", "_account_8h.html#a8f1773ce2ae32192952e79041669c0e5", null ],

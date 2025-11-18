@@ -1,0 +1,87 @@
+\doxysection{Commands\+Manager Class Reference}
+\hypertarget{class_commands_manager}{}\label{class_commands_manager}\index{CommandsManager@{CommandsManager}}
+
+
+{\ttfamily \#include $<$Commands\+Manager.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_commands_manager_a620ebdd3b164ef16266454a719490013}{Commands\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Manages and executes all available commands. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_commands_manager_af5d22a45a038bae0956f07556e8e6ccb}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\begin{DoxyCompactList}\small\item\em Constructor that registers all available commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_command}{Command}} $>$ $>$ \mbox{\hyperlink{class_commands_manager_a4c8de02dca75b2025b458559912077bf}{commands}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_commands_manager_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_commands_manager_a620ebdd3b164ef16266454a719490013}\index{CommandsManager@{CommandsManager}!CommandsManager@{CommandsManager}}
+\index{CommandsManager@{CommandsManager}!CommandsManager@{CommandsManager}}
+\doxysubsubsection{\texorpdfstring{CommandsManager()}{CommandsManager()}}
+{\footnotesize\ttfamily \label{class_commands_manager_a620ebdd3b164ef16266454a719490013} 
+Commands\+Manager\+::\+Commands\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Manages and executes all available commands. 
+
+Registers all available command objects.
+
+Stores all command objects in a vector and matches incoming command strings from client sessions to the appropriate \doxylink{class_command}{Command} object for execution.
+
+The constructor adds instances of all concrete \doxylink{class_command}{Command} classes to the internal vector, including both standard and debug/test commands. \begin{DoxyNote}{Note}
+Used internally when creating a \doxylink{class_commands_manager}{Commands\+Manager} object. 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{class_commands_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_commands_manager_af5d22a45a038bae0956f07556e8e6ccb}\index{CommandsManager@{CommandsManager}!execute@{execute}}
+\index{execute@{execute}!CommandsManager@{CommandsManager}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{class_commands_manager_af5d22a45a038bae0956f07556e8e6ccb} 
+void Commands\+Manager\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+Constructor that registers all available commands. 
+
+Executes a command based on the string received from a client.
+
+Initializes the vector of commands, including debug and test commands. \begin{DoxyNote}{Note}
+Required headers\+: $<$vector$>$, $<$memory$>$, $<$string$>$, headers of all command classes.
+\end{DoxyNote}
+Parses the command string from session\+Data, finds the matching \doxylink{class_command}{Command} object, executes it, and clears the cmd field. If the command does not exist, sends a response to the client indicating an unknown command. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Reference to \doxylink{structhandle_info}{handle\+Info} containing session data and pipe handle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Calls \doxylink{_bank___system_2basic__functions_8cpp_acb3b421c46ad175157857d818818bdab}{split()} from basic\+\_\+functions.\+h to parse the command string. 
+
+Calls \doxylink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\+\_\+response()} to notify client of unknown commands. 
+\end{DoxyNote}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_commands_manager_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_commands_manager_a4c8de02dca75b2025b458559912077bf}\index{CommandsManager@{CommandsManager}!commands@{commands}}
+\index{commands@{commands}!CommandsManager@{CommandsManager}}
+\doxysubsubsection{\texorpdfstring{commands}{commands}}
+{\footnotesize\ttfamily \label{class_commands_manager_a4c8de02dca75b2025b458559912077bf} 
+std\+::vector$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{class_command}{Command}}$>$ $>$ Commands\+Manager\+::commands\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{_commands_manager_8h}{Commands\+Manager.\+h}}\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{_commands_manager_8cpp}{Commands\+Manager.\+cpp}}\end{DoxyCompactItemize}

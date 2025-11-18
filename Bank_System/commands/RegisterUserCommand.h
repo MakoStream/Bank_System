@@ -5,9 +5,14 @@
 #include "../mainProcess.h"
 #include "../LogEye.h"
 
-
-
-
+/**
+ * @class RegisterUserCommand
+ * @brief Registers a new user in the system.
+ * @details Validates input parameters, creates user, stores in DB,
+ * logs all actions via logEye.
+ * @note Requires: handleInfo, logEye, User
+ * @note Syntax: reg_user <login> <password> <name> <surname> <phone>
+ */
 class RegisterUserCommand : public Command {
 public:
     void execute(handleInfo& handle) override { // reg_user <login> <password> <name> <surname> <phone> //example: reg_user user1 pass1 John Doe 1234567890

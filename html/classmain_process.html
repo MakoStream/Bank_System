@@ -101,7 +101,7 @@ $(function(){initNavTree('classmain_process.html','','classmain_process-members'
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aae457b30b1820aa1b15fa77ab4b687c2" id="r_aae457b30b1820aa1b15fa77ab4b687c2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae457b30b1820aa1b15fa77ab4b687c2">mainProcess</a> ()</td></tr>
-<tr class="memdesc:aae457b30b1820aa1b15fa77ab4b687c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs <a class="el" href="classmain_process.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> object and reads configuration.  <br /></td></tr>
+<tr class="memdesc:aae457b30b1820aa1b15fa77ab4b687c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes <a class="el" href="classmain_process.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> by reading configuration values from configName.  <br /></td></tr>
 <tr class="memitem:acd985b507420bd2aa4e86142ff5c3ed5" id="r_acd985b507420bd2aa4e86142ff5c3ed5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd985b507420bd2aa4e86142ff5c3ed5">new_session</a> ()</td></tr>
 <tr class="memdesc:acd985b507420bd2aa4e86142ff5c3ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new session, increments last_session_id and adds session to logged users.  <br /></td></tr>
 <tr class="memitem:a2292b748e6991cc73433259a9cd078cf" id="r_a2292b748e6991cc73433259a9cd078cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2292b748e6991cc73433259a9cd078cf">setDebugMode</a> (bool mode)</td></tr>
@@ -179,14 +179,14 @@ Private Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main class for session, user, transaction, and configuration management. </p>
 <p>The <a class="el" href="classmain_process.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> class handles:</p><ul>
-<li><a class="el" href="class_user.html">User</a> session management (create, login, logout, generate authentication keys)</li>
+<li><a class="el" href="class_user.html" title="Represents a bank system user.">User</a> session management (create, login, logout, generate authentication keys)</li>
 <li>Database operations (file paths, incrementing PAN, IBAN, transaction IDs)</li>
 <li>Transaction handling and logging via Audit</li>
 <li>Debug mode management</li>
-<li>Reading and writing configuration files <dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="_bank___system_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a>, <a class="el" href="_bank___system_2basic__functions_8cpp.html#a006014cced648ca7880d24c53223bdd4" title="Writes configuration key-value pairs to a *.ini file.">writeConfig()</a>, &lt;vector&gt;, &lt;string&gt;, &lt;map&gt;, <a class="el" href="class_logger.html">Logger</a>, <a class="el" href="structsession_construct.html" title="Structure for client session data used in pipes.">sessionConstruct</a>, <a class="el" href="struct_session.html" title="Represents a user session.">Session</a>, <a class="el" href="class_user.html">User</a>, account @required For all core program operations (<a class="el" href="class_commands_manager.html">CommandsManager</a>, HandleClient, <a class="el" href="classuser_login_command.html">userLoginCommand</a>, transaction_request, etc.) @used For:</dd></dl>
+<li>Reading and writing configuration files <dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="_bank___system_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a>, <a class="el" href="_bank___system_2basic__functions_8cpp.html#a006014cced648ca7880d24c53223bdd4" title="Writes configuration key-value pairs to a *.ini file.">writeConfig()</a>, &lt;vector&gt;, &lt;string&gt;, &lt;map&gt;, <a class="el" href="class_logger.html">Logger</a>, <a class="el" href="structsession_construct.html" title="Structure for client session data used in pipes.">sessionConstruct</a>, <a class="el" href="struct_session.html" title="Represents a user session.">Session</a>, <a class="el" href="class_user.html" title="Represents a bank system user.">User</a>, account @required For all core program operations (<a class="el" href="class_commands_manager.html">CommandsManager</a>, HandleClient, <a class="el" href="classuser_login_command.html" title="Command class for user login.">userLoginCommand</a>, transaction_request, etc.) @used For:</dd></dl>
 </li>
 <li>Processing client sessions</li>
-<li><a class="el" href="class_user.html">User</a> login/logout</li>
+<li><a class="el" href="class_user.html" title="Represents a bank system user.">User</a> login/logout</li>
 <li>Creating and approving transactions</li>
 <li>Configuration file management </li>
 </ul>
@@ -206,10 +206,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs <a class="el" href="classmain_process.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> object and reads configuration. </p>
-<p>Initializes <a class="el" href="classmain_process.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> by reading configuration values from configName.</p>
-<p>Reads the configuration file specified by configName and loads last session ID, card counters, database paths, and other persistent variables.</p>
-<dl class="section note"><dt>Note</dt><dd>Uses <a class="el" href="_bank___system_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a> and &lt;map&gt;, &lt;string&gt;, &lt;iostream&gt;. </dd></dl>
+<p>Initializes <a class="el" href="classmain_process.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> by reading configuration values from configName. </p>
+<p>Reads the configuration file specified by configName and loads last session ID, card counters, database paths, and other persistent variables. </p><dl class="section note"><dt>Note</dt><dd>Uses <a class="el" href="_bank___system_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a> and &lt;map&gt;, &lt;string&gt;, &lt;iostream&gt;. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="_bank___system_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a> </dd></dl>
 
 </div>
@@ -715,12 +713,12 @@ false Otherwise. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">session_id</td><td><a class="el" href="struct_session.html" title="Represents a user session.">Session</a> identifier. </td></tr>
-    <tr><td class="paramname">login</td><td><a class="el" href="class_user.html">User</a> login string. </td></tr>
-    <tr><td class="paramname">password</td><td><a class="el" href="class_user.html">User</a> password string. </td></tr>
+    <tr><td class="paramname">login</td><td><a class="el" href="class_user.html" title="Represents a bank system user.">User</a> login string. </td></tr>
+    <tr><td class="paramname">password</td><td><a class="el" href="class_user.html" title="Represents a bank system user.">User</a> password string. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="_user_8cpp.html#acf075e84c512170ca555c32e2960298f">getUser_byLogin()</a>, vector&lt;Session&gt; </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="_user_8cpp.html#acf075e84c512170ca555c32e2960298f" title="Retrieves a User object by login.">getUser_byLogin()</a>, vector&lt;Session&gt; </dd></dl>
 
 </div>
 </div>
@@ -1255,7 +1253,7 @@ false Otherwise. </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="class_user.html">User</a> database file path </p>
+<p><a class="el" href="class_user.html" title="Represents a bank system user.">User</a> database file path </p>
 
 </div>
 </div>

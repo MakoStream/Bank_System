@@ -1,0 +1,23 @@
+\doxysection{Get\+Session\+Id\+Response.\+h}
+\hypertarget{_get_session_id_response_8h_source}{}\label{_get_session_id_response_8h_source}\index{Bank\_System\_User/responses/GetSessionIdResponse.h@{Bank\_System\_User/responses/GetSessionIdResponse.h}}
+\mbox{\hyperlink{_get_session_id_response_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_response_8h}{../Response.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_get_session_id_response}{GetSessionIdResponse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_get_session_id_response_af984fd17b65ad76e5303924c21317dcd}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ the\ get\_session\_id\ response}}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ ReadFile(handle.\mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}},\ \&handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}},\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}),\ \&handle.\mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}},\ NULL);}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Session\ ID:\ "{}}\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};\ \textcolor{comment}{//\ SIG\ correct,\ but}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00012\ \ \ \ \ \}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ std::string\ \mbox{\hyperlink{class_get_session_id_response_adcb31d5243aeeb39d0d50bd7e24efd16}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}getSID"{}};}
+\DoxyCodeLine{00016\ \ \ \ \ \}}
+\DoxyCodeLine{00017\ \};}
+
+\end{DoxyCode}

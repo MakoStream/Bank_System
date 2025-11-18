@@ -1,21 +1,3 @@
-/**
- * @file mainProcess.cpp
- * @brief Implementation of the mainProcess class for session, transaction, and configuration management.
- *
- * This file contains all methods for:
- *  - Managing user sessions (login, logout, session creation)
- *  - Generating and comparing authentication keys
- *  - Transaction requests and approvals
- *  - Reading and saving configuration
- *  - Debug mode operations
- *
- * Dependencies:
- *  - mainProcess.h
- *  - Account.h
- *  - Audit/Audit.h
- *  - LogEye.h
- */
-
 #define _CRT_SECURE_NO_WARNINGS
 #include "mainProcess.h"
 #include <iostream>
@@ -36,15 +18,7 @@
 /// @brief Represents a user session in the system
 Session emptySession = { -1, -1, ""};
 
-/**
- * @brief Initializes mainProcess by reading configuration values from configName.
- *
- * @details Reads the configuration file specified by configName and loads
- * last session ID, card counters, database paths, and other persistent variables.
- *
- * @note Uses readConfig() and <map>, <string>, <iostream>.
- * @see readConfig()
- */
+
 mainProcess::mainProcess(){
 	cout << configName << endl;
     std::map<std::string, std::string> cfg = readConfig(configName);

@@ -1,0 +1,116 @@
+\doxysection{Bank\+\_\+\+System\+\_\+\+User/user\+\_\+info.h File Reference}
+\hypertarget{user__info_8h}{}\label{user__info_8h}\index{Bank\_System\_User/user\_info.h@{Bank\_System\_User/user\_info.h}}
+{\ttfamily \#include "{}windows.\+h"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsession_construct}{session\+Construct}}
+\begin{DoxyCompactList}\small\item\em Structure for client session data used in pipes. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structfronted___user}{fronted\+\_\+\+User}}
+\item 
+struct \mbox{\hyperlink{structhandle_info}{handle\+Info}}
+\begin{DoxyCompactList}\small\item\em Helper structure to pass pipe handles and session data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{user__info_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}} \{ \mbox{\hyperlink{user__info_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}{AVAILABLE}}
+, \mbox{\hyperlink{user__info_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61}{BLOCKED}}
+ \}
+\item 
+enum \mbox{\hyperlink{user__info_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}} \{ \mbox{\hyperlink{user__info_8h_adc82e1818cbb951286495171fd55db18ac1b583024752a086f49bf2061478409e}{DEPOSITE}}
+, \mbox{\hyperlink{user__info_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}}
+, \mbox{\hyperlink{user__info_8h_adc82e1818cbb951286495171fd55db18a5b9c7596aea45aa4b6b3fc93a907391d}{CREDIT}}
+ \}
+\item 
+enum \mbox{\hyperlink{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} \{ \mbox{\hyperlink{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}}
+, \mbox{\hyperlink{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a73bf3800553f080d112618f5742f617e}{DLR}}
+, \mbox{\hyperlink{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a0c1560edca52d24f8b6c3118f965ed71}{EUR}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structfronted___user}{fronted\+\_\+\+User}} \mbox{\hyperlink{user__info_8h_abf53f26f833fbcbc7f1e42193d61cc0c}{current\+User}}
+\item 
+\mbox{\hyperlink{structfronted___user}{fronted\+\_\+\+User}} \mbox{\hyperlink{user__info_8h_a44748714a1a3a5beca9a162481b8f7f7}{empty\+User}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{user__info_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}\index{user\_info.h@{user\_info.h}!balanceType@{balanceType}}
+\index{balanceType@{balanceType}!user\_info.h@{user\_info.h}}
+\doxysubsubsection{\texorpdfstring{balanceType}{balanceType}}
+{\footnotesize\ttfamily \label{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7} 
+enum \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UAH@{UAH}!user\_info.h@{user\_info.h}}\index{user\_info.h@{user\_info.h}!UAH@{UAH}}}\Hypertarget{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}\label{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14} 
+UAH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DLR@{DLR}!user\_info.h@{user\_info.h}}\index{user\_info.h@{user\_info.h}!DLR@{DLR}}}\Hypertarget{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a73bf3800553f080d112618f5742f617e}\label{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a73bf3800553f080d112618f5742f617e} 
+DLR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EUR@{EUR}!user\_info.h@{user\_info.h}}\index{user\_info.h@{user\_info.h}!EUR@{EUR}}}\Hypertarget{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a0c1560edca52d24f8b6c3118f965ed71}\label{user__info_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a0c1560edca52d24f8b6c3118f965ed71} 
+EUR&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{user__info_8h_aba520d1dcd32e7c343ab84b92212e1ae}\index{user\_info.h@{user\_info.h}!cardStatus@{cardStatus}}
+\index{cardStatus@{cardStatus}!user\_info.h@{user\_info.h}}
+\doxysubsubsection{\texorpdfstring{cardStatus}{cardStatus}}
+{\footnotesize\ttfamily \label{user__info_8h_aba520d1dcd32e7c343ab84b92212e1ae} 
+enum \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AVAILABLE@{AVAILABLE}!user\_info.h@{user\_info.h}}\index{user\_info.h@{user\_info.h}!AVAILABLE@{AVAILABLE}}}\Hypertarget{user__info_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}\label{user__info_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e} 
+AVAILABLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BLOCKED@{BLOCKED}!user\_info.h@{user\_info.h}}\index{user\_info.h@{user\_info.h}!BLOCKED@{BLOCKED}}}\Hypertarget{user__info_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61}\label{user__info_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61} 
+BLOCKED&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{user__info_8h_adc82e1818cbb951286495171fd55db18}\index{user\_info.h@{user\_info.h}!cardType@{cardType}}
+\index{cardType@{cardType}!user\_info.h@{user\_info.h}}
+\doxysubsubsection{\texorpdfstring{cardType}{cardType}}
+{\footnotesize\ttfamily \label{user__info_8h_adc82e1818cbb951286495171fd55db18} 
+enum \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEPOSITE@{DEPOSITE}!user\_info.h@{user\_info.h}}\index{user\_info.h@{user\_info.h}!DEPOSITE@{DEPOSITE}}}\Hypertarget{user__info_8h_adc82e1818cbb951286495171fd55db18ac1b583024752a086f49bf2061478409e}\label{user__info_8h_adc82e1818cbb951286495171fd55db18ac1b583024752a086f49bf2061478409e} 
+DEPOSITE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT@{DEFAULT}!user\_info.h@{user\_info.h}}\index{user\_info.h@{user\_info.h}!DEFAULT@{DEFAULT}}}\Hypertarget{user__info_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}\label{user__info_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6} 
+DEFAULT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CREDIT@{CREDIT}!user\_info.h@{user\_info.h}}\index{user\_info.h@{user\_info.h}!CREDIT@{CREDIT}}}\Hypertarget{user__info_8h_adc82e1818cbb951286495171fd55db18a5b9c7596aea45aa4b6b3fc93a907391d}\label{user__info_8h_adc82e1818cbb951286495171fd55db18a5b9c7596aea45aa4b6b3fc93a907391d} 
+CREDIT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-var-members}
+\Hypertarget{user__info_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{user__info_8h_abf53f26f833fbcbc7f1e42193d61cc0c}\index{user\_info.h@{user\_info.h}!currentUser@{currentUser}}
+\index{currentUser@{currentUser}!user\_info.h@{user\_info.h}}
+\doxysubsubsection{\texorpdfstring{currentUser}{currentUser}}
+{\footnotesize\ttfamily \label{user__info_8h_abf53f26f833fbcbc7f1e42193d61cc0c} 
+\mbox{\hyperlink{structfronted___user}{fronted\+\_\+\+User}} current\+User\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{user__info_8h_a44748714a1a3a5beca9a162481b8f7f7}\index{user\_info.h@{user\_info.h}!emptyUser@{emptyUser}}
+\index{emptyUser@{emptyUser}!user\_info.h@{user\_info.h}}
+\doxysubsubsection{\texorpdfstring{emptyUser}{emptyUser}}
+{\footnotesize\ttfamily \label{user__info_8h_a44748714a1a3a5beca9a162481b8f7f7} 
+\mbox{\hyperlink{structfronted___user}{fronted\+\_\+\+User}} empty\+User\hspace{0.3cm}{\ttfamily [extern]}}
+

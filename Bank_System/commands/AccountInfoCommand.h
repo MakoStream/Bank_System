@@ -5,7 +5,15 @@
 #include "../Account.h"
 #include "../LogEye.h"
 
-
+/**
+ * @class AccountInfoCommand
+ * @brief Retrieves detailed information about an account by card number.
+ * @details Validates card number, checks if account exists,
+ * retrieves IBAN, balance, currency, and owner information,
+ * logs all actions via logEye.
+ * @note Requires: <string>, Account, handleInfo, logEye
+ * @note Syntax: account_info <card_number>
+ */
 class AccountInfoCommand : public Command {
 public:
 	void execute(handleInfo& handle) override {  // accountInfo <account_PAN>

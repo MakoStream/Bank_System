@@ -1,0 +1,209 @@
+\doxysection{Audit\+Log Class Reference}
+\hypertarget{class_audit_log}{}\label{class_audit_log}\index{AuditLog@{AuditLog}}
+
+
+{\ttfamily \#include $<$Audit.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_audit_log_a71e477c9e64d742f24e0d50f6bc25897}{Audit\+Log}} ()
+\item 
+\mbox{\hyperlink{class_audit_log_af61317d1532f0c64e723e46108d06966}{Audit\+Log}} (int \+\_\+id, int \+\_\+user\+ID, int \+\_\+session\+ID, \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}} \+\_\+act, const char \texorpdfstring{$\ast$}{*}\+\_\+info, int \+\_\+transaction\+\_\+\+PM\+\_\+id, bool \+\_\+success=true, const char \texorpdfstring{$\ast$}{*}\+\_\+error\+Message="{}"{})
+\item 
+int \mbox{\hyperlink{class_audit_log_a6bd0f55d2a5a41346e96f8070c131c16}{get\+ID}} () const
+\item 
+int \mbox{\hyperlink{class_audit_log_a70200f493ccdfd4b83493b113697a114}{get\+User\+ID}} () const
+\item 
+int \mbox{\hyperlink{class_audit_log_a18c30f4151e14416af9f765ae9a2b4b1}{get\+Session\+ID}} () const
+\item 
+\mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}} \mbox{\hyperlink{class_audit_log_af739e7521a606a22ea7b9b7d7680a6b3}{get\+Action}} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_audit_log_a6c4196046db7fb5cafe9c48497307364}{get\+Time}} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_audit_log_a9b91e54cf163f76ae009fae5cf0eff43}{get\+Info}} () const
+\item 
+int \mbox{\hyperlink{class_audit_log_a6f5b701746b2035d0ca0c93bc0c816b5}{get\+Transaction\+PMID}} () const
+\item 
+void \mbox{\hyperlink{class_audit_log_aa2752c5853e91af1cdce0ac079e3195e}{save\+To\+File}} (std\+::ostream \&out) const
+\item 
+void \mbox{\hyperlink{class_audit_log_ae223842a48b1ec3c7066b2b4b8fc8255}{load\+From\+File}} (std\+::istream \&in)
+\item 
+void \mbox{\hyperlink{class_audit_log_a8df829b4a885a94ec57bdd0728dfeb00}{print}} () const
+\item 
+bool \mbox{\hyperlink{class_audit_log_ac79f6c20be93c88e8c5ff170c4b9eedb}{update\+In\+File}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_audit_log_a7914f00f8fd9974347c971cc6f45c5d1}{id}}
+\item 
+int \mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\+\_\+id}}
+\item 
+int \mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\+\_\+id}}
+\item 
+char \mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}} \mbox{[}25\mbox{]}
+\item 
+\mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}} \mbox{\hyperlink{class_audit_log_a98494c2f65497eab99396a0807598793}{Action}}
+\item 
+char \mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}} \mbox{[}124\mbox{]}
+\item 
+int \mbox{\hyperlink{class_audit_log_a5c800990f8175feb52748f05319690bf}{transaction\+\_\+\+PM\+\_\+id}}
+\item 
+bool \mbox{\hyperlink{class_audit_log_a3eac3629706f116d05947cf62a7176de}{success}}
+\item 
+char \mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\+\_\+message}} \mbox{[}128\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_audit_log_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_audit_log_a71e477c9e64d742f24e0d50f6bc25897}\index{AuditLog@{AuditLog}!AuditLog@{AuditLog}}
+\index{AuditLog@{AuditLog}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{AuditLog()}{AuditLog()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_audit_log_a71e477c9e64d742f24e0d50f6bc25897} 
+Audit\+Log\+::\+Audit\+Log (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_af61317d1532f0c64e723e46108d06966}\index{AuditLog@{AuditLog}!AuditLog@{AuditLog}}
+\index{AuditLog@{AuditLog}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{AuditLog()}{AuditLog()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_audit_log_af61317d1532f0c64e723e46108d06966} 
+Audit\+Log\+::\+Audit\+Log (\begin{DoxyParamCaption}\item[{int}]{\+\_\+id}{, }\item[{int}]{\+\_\+user\+ID}{, }\item[{int}]{\+\_\+session\+ID}{, }\item[{\mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}}}]{\+\_\+act}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{\+\_\+info}{, }\item[{int}]{\+\_\+transaction\+\_\+\+PM\+\_\+id}{, }\item[{bool}]{\+\_\+success}{ = {\ttfamily true}, }\item[{const char \texorpdfstring{$\ast$}{*}}]{\+\_\+error\+Message}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_audit_log_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_audit_log_af739e7521a606a22ea7b9b7d7680a6b3}\index{AuditLog@{AuditLog}!getAction@{getAction}}
+\index{getAction@{getAction}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{getAction()}{getAction()}}
+{\footnotesize\ttfamily \label{class_audit_log_af739e7521a606a22ea7b9b7d7680a6b3} 
+\mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}} Audit\+Log\+::get\+Action (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_a6bd0f55d2a5a41346e96f8070c131c16}\index{AuditLog@{AuditLog}!getID@{getID}}
+\index{getID@{getID}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{getID()}{getID()}}
+{\footnotesize\ttfamily \label{class_audit_log_a6bd0f55d2a5a41346e96f8070c131c16} 
+int Audit\+Log\+::get\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_a9b91e54cf163f76ae009fae5cf0eff43}\index{AuditLog@{AuditLog}!getInfo@{getInfo}}
+\index{getInfo@{getInfo}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{getInfo()}{getInfo()}}
+{\footnotesize\ttfamily \label{class_audit_log_a9b91e54cf163f76ae009fae5cf0eff43} 
+const char \texorpdfstring{$\ast$}{*} Audit\+Log\+::get\+Info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_a18c30f4151e14416af9f765ae9a2b4b1}\index{AuditLog@{AuditLog}!getSessionID@{getSessionID}}
+\index{getSessionID@{getSessionID}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{getSessionID()}{getSessionID()}}
+{\footnotesize\ttfamily \label{class_audit_log_a18c30f4151e14416af9f765ae9a2b4b1} 
+int Audit\+Log\+::get\+Session\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_a6c4196046db7fb5cafe9c48497307364}\index{AuditLog@{AuditLog}!getTime@{getTime}}
+\index{getTime@{getTime}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{getTime()}{getTime()}}
+{\footnotesize\ttfamily \label{class_audit_log_a6c4196046db7fb5cafe9c48497307364} 
+const char \texorpdfstring{$\ast$}{*} Audit\+Log\+::get\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_a6f5b701746b2035d0ca0c93bc0c816b5}\index{AuditLog@{AuditLog}!getTransactionPMID@{getTransactionPMID}}
+\index{getTransactionPMID@{getTransactionPMID}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{getTransactionPMID()}{getTransactionPMID()}}
+{\footnotesize\ttfamily \label{class_audit_log_a6f5b701746b2035d0ca0c93bc0c816b5} 
+int Audit\+Log\+::get\+Transaction\+PMID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_a70200f493ccdfd4b83493b113697a114}\index{AuditLog@{AuditLog}!getUserID@{getUserID}}
+\index{getUserID@{getUserID}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{getUserID()}{getUserID()}}
+{\footnotesize\ttfamily \label{class_audit_log_a70200f493ccdfd4b83493b113697a114} 
+int Audit\+Log\+::get\+User\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_ae223842a48b1ec3c7066b2b4b8fc8255}\index{AuditLog@{AuditLog}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily \label{class_audit_log_ae223842a48b1ec3c7066b2b4b8fc8255} 
+void Audit\+Log\+::load\+From\+File (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{in}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_a8df829b4a885a94ec57bdd0728dfeb00}\index{AuditLog@{AuditLog}!print@{print}}
+\index{print@{print}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily \label{class_audit_log_a8df829b4a885a94ec57bdd0728dfeb00} 
+void Audit\+Log\+::print (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_aa2752c5853e91af1cdce0ac079e3195e}\index{AuditLog@{AuditLog}!saveToFile@{saveToFile}}
+\index{saveToFile@{saveToFile}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{saveToFile()}{saveToFile()}}
+{\footnotesize\ttfamily \label{class_audit_log_aa2752c5853e91af1cdce0ac079e3195e} 
+void Audit\+Log\+::save\+To\+File (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_audit_log_ac79f6c20be93c88e8c5ff170c4b9eedb}\index{AuditLog@{AuditLog}!updateInFile@{updateInFile}}
+\index{updateInFile@{updateInFile}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{updateInFile()}{updateInFile()}}
+{\footnotesize\ttfamily \label{class_audit_log_ac79f6c20be93c88e8c5ff170c4b9eedb} 
+bool Audit\+Log\+::update\+In\+File (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_audit_log_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_audit_log_a98494c2f65497eab99396a0807598793}\index{AuditLog@{AuditLog}!Action@{Action}}
+\index{Action@{Action}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{Action}{Action}}
+{\footnotesize\ttfamily \label{class_audit_log_a98494c2f65497eab99396a0807598793} 
+\mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}} Audit\+Log\+::\+Action\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}\index{AuditLog@{AuditLog}!error\_message@{error\_message}}
+\index{error\_message@{error\_message}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{error\_message}{error\_message}}
+{\footnotesize\ttfamily \label{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3} 
+char Audit\+Log\+::error\+\_\+message\mbox{[}128\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_audit_log_a7914f00f8fd9974347c971cc6f45c5d1}\index{AuditLog@{AuditLog}!id@{id}}
+\index{id@{id}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{class_audit_log_a7914f00f8fd9974347c971cc6f45c5d1} 
+int Audit\+Log\+::id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}\index{AuditLog@{AuditLog}!info@{info}}
+\index{info@{info}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{info}{info}}
+{\footnotesize\ttfamily \label{class_audit_log_abc2b0a8b22c8381557d76fb342b36095} 
+char Audit\+Log\+::info\mbox{[}124\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_audit_log_a51db19fefa860e1f35679664931e41b4}\index{AuditLog@{AuditLog}!session\_id@{session\_id}}
+\index{session\_id@{session\_id}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{session\_id}{session\_id}}
+{\footnotesize\ttfamily \label{class_audit_log_a51db19fefa860e1f35679664931e41b4} 
+int Audit\+Log\+::session\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_audit_log_a3eac3629706f116d05947cf62a7176de}\index{AuditLog@{AuditLog}!success@{success}}
+\index{success@{success}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily \label{class_audit_log_a3eac3629706f116d05947cf62a7176de} 
+bool Audit\+Log\+::success\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_audit_log_a8703559722e1144a5766787093c39b7d}\index{AuditLog@{AuditLog}!time@{time}}
+\index{time@{time}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily \label{class_audit_log_a8703559722e1144a5766787093c39b7d} 
+char Audit\+Log\+::time\mbox{[}25\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_audit_log_a5c800990f8175feb52748f05319690bf}\index{AuditLog@{AuditLog}!transaction\_PM\_id@{transaction\_PM\_id}}
+\index{transaction\_PM\_id@{transaction\_PM\_id}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{transaction\_PM\_id}{transaction\_PM\_id}}
+{\footnotesize\ttfamily \label{class_audit_log_a5c800990f8175feb52748f05319690bf} 
+int Audit\+Log\+::transaction\+\_\+\+PM\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_audit_log_aac8512a96224d37beb7e9d49a880e537}\index{AuditLog@{AuditLog}!user\_id@{user\_id}}
+\index{user\_id@{user\_id}!AuditLog@{AuditLog}}
+\doxysubsubsection{\texorpdfstring{user\_id}{user\_id}}
+{\footnotesize\ttfamily \label{class_audit_log_aac8512a96224d37beb7e9d49a880e537} 
+int Audit\+Log\+::user\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/\+Audit/\mbox{\hyperlink{_audit_8h}{Audit.\+h}}\item 
+Bank\+\_\+\+System/\+Audit/\mbox{\hyperlink{_audit_8cpp}{Audit.\+cpp}}\end{DoxyCompactItemize}

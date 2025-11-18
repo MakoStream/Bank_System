@@ -1,0 +1,37 @@
+\doxysection{Logger.\+h}
+\hypertarget{_logger_8h_source}{}\label{_logger_8h_source}\index{Bank\_System/Logger.h@{Bank\_System/Logger.h}}
+\mbox{\hyperlink{_logger_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_user_8h}{User.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\#include\ "{}mainProcess.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_session}{Session}};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_logger_abc41bfb031d896170c7675fa96a6b30c}{Logger}}\ \{}
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \ \ std::string\ \mbox{\hyperlink{class_logger_a3dc198309aa6b96f0c9f535eb5f24738}{logFileName}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ std::string\ \mbox{\hyperlink{class_logger_a139da25b5779da772d9f7a67580056a3}{currentDate}}();}
+\DoxyCodeLine{00018\ \ \ \ \ std::string\ \mbox{\hyperlink{class_logger_a3bc26d255e653b2acaae16554530ba71}{currentTime}}();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_logger_abc41bfb031d896170c7675fa96a6b30c}{Logger}}();}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_logger_ab1bf9a557e3e24536205cfa95958a6b7}{write}}(\textcolor{keyword}{const}\ std::string\&\ message);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_logger_accca60aa984a93e145b2432201dc3587}{cmd}}(\textcolor{keywordtype}{int}\ session\_id,\ \textcolor{keywordtype}{int}\ user\_id,\ vector<string>\&\ args);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_logger_a14d6ff5bd189d5caa2042d88248d0f6b}{newSession}}(\textcolor{keywordtype}{int}\ session\_id,\ \textcolor{keywordtype}{int}\ client\_type);}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_logger_a8906cb83011f1317191c9ee5d786271b}{userLoggined}}(\mbox{\hyperlink{struct_session}{Session}}\ user);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_logger_a2d78f9f6b0952852e5c4ed2fbf1e80b2}{createdDB}}(\mbox{\hyperlink{struct_session}{Session}}\ user);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_logger_aae0bf57fb01069e3849061db8f19b07a}{AccessDanied}}(\textcolor{keywordtype}{string}\ command\_name,\ \mbox{\hyperlink{struct_session}{Session}}\ user);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_logger_a4908862c28c1dc8876deac709ae75686}{exit}}();}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_logger}{Logger}}\ \mbox{\hyperlink{_bank___system_8cpp_a5b27630dbcf231bfda3a7d79e1eefce5}{logger}};}
+
+\end{DoxyCode}

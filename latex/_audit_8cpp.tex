@@ -1,0 +1,230 @@
+\doxysection{Bank\+\_\+\+System/\+Audit/\+Audit.cpp File Reference}
+\hypertarget{_audit_8cpp}{}\label{_audit_8cpp}\index{Bank\_System/Audit/Audit.cpp@{Bank\_System/Audit/Audit.cpp}}
+{\ttfamily \#include "{}Audit.\+h"{}}\newline
+{\ttfamily \#include "{}../main\+Process.\+h"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include "{}../\+Log\+Eye.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_audit_8cpp_aeb29b6c474cd090f1e9f162505d3e11a}{create\+\_\+db\+\_\+audit\+\_\+log}} ()
+\item 
+void \mbox{\hyperlink{_audit_8cpp_ad2e2619ef4bd6776e6c204b5ebd75614}{create\+\_\+db\+\_\+transaction\+\_\+log}} ()
+\item 
+void \mbox{\hyperlink{_audit_8cpp_a5727b88b872baf8cf06eecb7743a4da5}{TRAN\+\_\+add\+Transaction}} (int id, int transaction\+\_\+id, \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}} op, \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}} st, bool other\+Cur, bool blocked, const char \texorpdfstring{$\ast$}{*}from\+Iban, const char \texorpdfstring{$\ast$}{*}from\+Card, const char \texorpdfstring{$\ast$}{*}to\+Iban, const char \texorpdfstring{$\ast$}{*}to\+Card, bool other\+Bank, int user\+ID, double amount, const int allowed\+By, const char \texorpdfstring{$\ast$}{*}comment)
+\item 
+void \mbox{\hyperlink{_audit_8cpp_a5b0577b5d355e2d81330c1515cca2f76}{AUD\+\_\+add\+Audit}} (int id, int user\+ID, int session\+ID, \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}} act, const char \texorpdfstring{$\ast$}{*}info, bool success=true, const char \texorpdfstring{$\ast$}{*}error\+Message="{}"{})
+\item 
+int \mbox{\hyperlink{_audit_8cpp_adac0cd14c94dc9a9f29bcc3da0b5a3a7}{get\+Last\+Transaction\+ID}} ()
+\item 
+int \mbox{\hyperlink{_audit_8cpp_a39328a4d0e3b7a5f14f4d89476c052a1}{get\+Last\+Audit\+ID}} ()
+\item 
+vector$<$ \mbox{\hyperlink{class_transaction_log}{Transaction\+Log}} $>$ \mbox{\hyperlink{_audit_8cpp_ae7df60c13516619be66d6d6afd5cff41}{get\+Transactions\+Logs}} (int transaction\+\_\+id)
+\item 
+vector$<$ \mbox{\hyperlink{class_audit_log}{Audit\+Log}} $>$ \mbox{\hyperlink{_audit_8cpp_ad1fb1097a3ba64f6278865c340d1ad1f}{get\+Audit\+Logs}} (int transaction\+\_\+\+PM\+\_\+id)
+\item 
+vector$<$ \mbox{\hyperlink{class_audit_log}{Audit\+Log}} $>$ \mbox{\hyperlink{_audit_8cpp_a4b33ddfbb31375a9cdc103c8d5f1751d}{get\+User\+Audit\+Logs}} (int user\+\_\+id)
+\item 
+void \mbox{\hyperlink{_audit_8cpp_a9b8dad3817af47637f9856bbd4198eed}{save\+\_\+audit\+\_\+log}} (\mbox{\hyperlink{class_audit_log}{Audit\+Log}} \&log)
+\item 
+void \mbox{\hyperlink{_audit_8cpp_a67c4e7e0664ca098a2851963e11e8b84}{save\+\_\+transaction\+\_\+log}} (\mbox{\hyperlink{class_transaction_log}{Transaction\+Log}} \&log)
+\item 
+void \mbox{\hyperlink{_audit_8cpp_a2dce53494632e348e830931b2c5071c8}{print\+Transactions}} (char msg\mbox{[}5\mbox{]}\mbox{[}1024\mbox{]}, int page)
+\item 
+vector$<$ \mbox{\hyperlink{class_transaction_log}{Transaction\+Log}} $>$ \mbox{\hyperlink{_audit_8cpp_a08be5b64aa2c2e2ab1ba0631d82eafa5}{get\+Transaction\+Logs}} (int transaction\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::map$<$ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}, std\+::string $>$ \mbox{\hyperlink{_audit_8cpp_aa94bf9d9e321dd12d36827acdaf3c227}{operation\+To\+String}}
+\item 
+const std\+::map$<$ std\+::string, \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}} $>$ \mbox{\hyperlink{_audit_8cpp_a1a61622124c3338bb26e19d9bb8bbd3e}{string\+To\+Operation}}
+\item 
+const std\+::map$<$ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}}, std\+::string $>$ \mbox{\hyperlink{_audit_8cpp_a329ff71b5729c8e60c763687719ba32f}{transaction\+Status\+To\+String}}
+\item 
+const std\+::map$<$ std\+::string, \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}} $>$ \mbox{\hyperlink{_audit_8cpp_a6de7433141566ac6234e2b4e88414faa}{string\+To\+Transaction\+Status}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_audit_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_audit_8cpp_a5b0577b5d355e2d81330c1515cca2f76}\index{Audit.cpp@{Audit.cpp}!AUD\_addAudit@{AUD\_addAudit}}
+\index{AUD\_addAudit@{AUD\_addAudit}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{AUD\_addAudit()}{AUD\_addAudit()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a5b0577b5d355e2d81330c1515cca2f76} 
+void AUD\+\_\+add\+Audit (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{int}]{user\+ID}{, }\item[{int}]{session\+ID}{, }\item[{\mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}}}]{act}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{info}{, }\item[{bool}]{success}{ = {\ttfamily true}, }\item[{const char \texorpdfstring{$\ast$}{*}}]{error\+Message}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_aeb29b6c474cd090f1e9f162505d3e11a}\index{Audit.cpp@{Audit.cpp}!create\_db\_audit\_log@{create\_db\_audit\_log}}
+\index{create\_db\_audit\_log@{create\_db\_audit\_log}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{create\_db\_audit\_log()}{create\_db\_audit\_log()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_aeb29b6c474cd090f1e9f162505d3e11a} 
+void create\+\_\+db\+\_\+audit\+\_\+log (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_ad2e2619ef4bd6776e6c204b5ebd75614}\index{Audit.cpp@{Audit.cpp}!create\_db\_transaction\_log@{create\_db\_transaction\_log}}
+\index{create\_db\_transaction\_log@{create\_db\_transaction\_log}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{create\_db\_transaction\_log()}{create\_db\_transaction\_log()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_ad2e2619ef4bd6776e6c204b5ebd75614} 
+void create\+\_\+db\+\_\+transaction\+\_\+log (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_ad1fb1097a3ba64f6278865c340d1ad1f}\index{Audit.cpp@{Audit.cpp}!getAuditLogs@{getAuditLogs}}
+\index{getAuditLogs@{getAuditLogs}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{getAuditLogs()}{getAuditLogs()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_ad1fb1097a3ba64f6278865c340d1ad1f} 
+vector$<$ \mbox{\hyperlink{class_audit_log}{Audit\+Log}} $>$ get\+Audit\+Logs (\begin{DoxyParamCaption}\item[{int}]{transaction\+\_\+\+PM\+\_\+id}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_a39328a4d0e3b7a5f14f4d89476c052a1}\index{Audit.cpp@{Audit.cpp}!getLastAuditID@{getLastAuditID}}
+\index{getLastAuditID@{getLastAuditID}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{getLastAuditID()}{getLastAuditID()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a39328a4d0e3b7a5f14f4d89476c052a1} 
+int get\+Last\+Audit\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_adac0cd14c94dc9a9f29bcc3da0b5a3a7}\index{Audit.cpp@{Audit.cpp}!getLastTransactionID@{getLastTransactionID}}
+\index{getLastTransactionID@{getLastTransactionID}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{getLastTransactionID()}{getLastTransactionID()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_adac0cd14c94dc9a9f29bcc3da0b5a3a7} 
+int get\+Last\+Transaction\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_a08be5b64aa2c2e2ab1ba0631d82eafa5}\index{Audit.cpp@{Audit.cpp}!getTransactionLogs@{getTransactionLogs}}
+\index{getTransactionLogs@{getTransactionLogs}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{getTransactionLogs()}{getTransactionLogs()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a08be5b64aa2c2e2ab1ba0631d82eafa5} 
+vector$<$ \mbox{\hyperlink{class_transaction_log}{Transaction\+Log}} $>$ get\+Transaction\+Logs (\begin{DoxyParamCaption}\item[{int}]{transaction\+\_\+id}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_ae7df60c13516619be66d6d6afd5cff41}\index{Audit.cpp@{Audit.cpp}!getTransactionsLogs@{getTransactionsLogs}}
+\index{getTransactionsLogs@{getTransactionsLogs}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{getTransactionsLogs()}{getTransactionsLogs()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_ae7df60c13516619be66d6d6afd5cff41} 
+vector$<$ \mbox{\hyperlink{class_transaction_log}{Transaction\+Log}} $>$ get\+Transactions\+Logs (\begin{DoxyParamCaption}\item[{int}]{transaction\+\_\+id}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_a4b33ddfbb31375a9cdc103c8d5f1751d}\index{Audit.cpp@{Audit.cpp}!getUserAuditLogs@{getUserAuditLogs}}
+\index{getUserAuditLogs@{getUserAuditLogs}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{getUserAuditLogs()}{getUserAuditLogs()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a4b33ddfbb31375a9cdc103c8d5f1751d} 
+vector$<$ \mbox{\hyperlink{class_audit_log}{Audit\+Log}} $>$ get\+User\+Audit\+Logs (\begin{DoxyParamCaption}\item[{int}]{user\+\_\+id}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_a2dce53494632e348e830931b2c5071c8}\index{Audit.cpp@{Audit.cpp}!printTransactions@{printTransactions}}
+\index{printTransactions@{printTransactions}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{printTransactions()}{printTransactions()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a2dce53494632e348e830931b2c5071c8} 
+void print\+Transactions (\begin{DoxyParamCaption}\item[{char}]{msg}{\mbox{[}5\mbox{]}\mbox{[}1024\mbox{]}, }\item[{int}]{page}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_a9b8dad3817af47637f9856bbd4198eed}\index{Audit.cpp@{Audit.cpp}!save\_audit\_log@{save\_audit\_log}}
+\index{save\_audit\_log@{save\_audit\_log}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{save\_audit\_log()}{save\_audit\_log()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a9b8dad3817af47637f9856bbd4198eed} 
+void save\+\_\+audit\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_audit_log}{Audit\+Log}} \&}]{log}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_a67c4e7e0664ca098a2851963e11e8b84}\index{Audit.cpp@{Audit.cpp}!save\_transaction\_log@{save\_transaction\_log}}
+\index{save\_transaction\_log@{save\_transaction\_log}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{save\_transaction\_log()}{save\_transaction\_log()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a67c4e7e0664ca098a2851963e11e8b84} 
+void save\+\_\+transaction\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_transaction_log}{Transaction\+Log}} \&}]{log}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_audit_8cpp_a5727b88b872baf8cf06eecb7743a4da5}\index{Audit.cpp@{Audit.cpp}!TRAN\_addTransaction@{TRAN\_addTransaction}}
+\index{TRAN\_addTransaction@{TRAN\_addTransaction}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{TRAN\_addTransaction()}{TRAN\_addTransaction()}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a5727b88b872baf8cf06eecb7743a4da5} 
+void TRAN\+\_\+add\+Transaction (\begin{DoxyParamCaption}\item[{int}]{id}{, }\item[{int}]{transaction\+\_\+id}{, }\item[{\mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}}]{op}{, }\item[{\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}}}]{st}{, }\item[{bool}]{other\+Cur}{, }\item[{bool}]{blocked}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{from\+Iban}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{from\+Card}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{to\+Iban}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{to\+Card}{, }\item[{bool}]{other\+Bank}{, }\item[{int}]{user\+ID}{, }\item[{double}]{amount}{, }\item[{const int}]{allowed\+By}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{comment}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-var-members}
+\Hypertarget{_audit_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_audit_8cpp_aa94bf9d9e321dd12d36827acdaf3c227}\index{Audit.cpp@{Audit.cpp}!operationToString@{operationToString}}
+\index{operationToString@{operationToString}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{operationToString}{operationToString}}
+{\footnotesize\ttfamily \label{_audit_8cpp_aa94bf9d9e321dd12d36827acdaf3c227} 
+const std\+::map$<$\mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}, std\+::string$>$ operation\+To\+String}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a9181d442ac6b43f331b50f1700649579}{COMMISION}},\ \textcolor{stringliteral}{"{}COMMISION"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89accc8b15ae3b0dbbabfdb2771e085e8fc}{CREDIT\_EXPANSION}},\ \textcolor{stringliteral}{"{}CREDIT\_EXPANSION"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89aa23ddc57871bd570c6cfb850b88d826a}{DEPOSIT\_PAYDAY}},\ \textcolor{stringliteral}{"{}DEPOSIT\_PAYDAY"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a2238345c21cd115d2eaee8097508d9d7}{TRANSACTION}},\ \textcolor{stringliteral}{"{}TRANSACTION"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a521d5ad8a239a7bf1ac2e16a9c1fb5b7}{SELF\_TRANSACTION}},\ \textcolor{stringliteral}{"{}SELF\_TRANSACTION"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a30e59148af45aa6e6ab6bf5250a83f95}{TAX}},\ \textcolor{stringliteral}{"{}TAX"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a35e4c4ca1c1b950729ff7bce399b64d8}{PAYDAY}},\ \textcolor{stringliteral}{"{}PAYDAY"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a2b82a3b8c24e8fac5762e8cd4698ee6c}{IBAN\_TRANSACTION}},\ \textcolor{stringliteral}{"{}IBAN\_TRANSACTION"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a4cbb6eb1cc376e49a1c120dffacdba06}{ROLLBACK}},\ \textcolor{stringliteral}{"{}ROLLBACK"{}}\ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_audit_8cpp_a1a61622124c3338bb26e19d9bb8bbd3e}\index{Audit.cpp@{Audit.cpp}!stringToOperation@{stringToOperation}}
+\index{stringToOperation@{stringToOperation}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{stringToOperation}{stringToOperation}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a1a61622124c3338bb26e19d9bb8bbd3e} 
+const std\+::map$<$std\+::string, \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}$>$ string\+To\+Operation}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMISION"{}},\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a9181d442ac6b43f331b50f1700649579}{COMMISION}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}CREDIT\_EXPANSION"{}},\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89accc8b15ae3b0dbbabfdb2771e085e8fc}{CREDIT\_EXPANSION}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}DEPOSIT\_PAYDAY"{}},\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89aa23ddc57871bd570c6cfb850b88d826a}{DEPOSIT\_PAYDAY}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}TRANSACTION"{}},\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a2238345c21cd115d2eaee8097508d9d7}{TRANSACTION}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}SELF\_TRANSACTION"{}},\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a521d5ad8a239a7bf1ac2e16a9c1fb5b7}{SELF\_TRANSACTION}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}TAX"{}},\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a30e59148af45aa6e6ab6bf5250a83f95}{TAX}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}PAYDAY"{}},\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a35e4c4ca1c1b950729ff7bce399b64d8}{PAYDAY}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}IBAN\_TRANSACTION"{}},\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a2b82a3b8c24e8fac5762e8cd4698ee6c}{IBAN\_TRANSACTION}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}ROLLBACK"{}},\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a4cbb6eb1cc376e49a1c120dffacdba06}{ROLLBACK}}\ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_audit_8cpp_a6de7433141566ac6234e2b4e88414faa}\index{Audit.cpp@{Audit.cpp}!stringToTransactionStatus@{stringToTransactionStatus}}
+\index{stringToTransactionStatus@{stringToTransactionStatus}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{stringToTransactionStatus}{stringToTransactionStatus}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a6de7433141566ac6234e2b4e88414faa} 
+const std\+::map$<$std\+::string, \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}}$>$ string\+To\+Transaction\+Status}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}SUCCES"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a1230137cb1670af41522e68d576326d9}{SUCCES}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}ALLOWED"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67af0956b6c32fca5ccc9fc6f5451c3d632}{ALLOWED}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}DENIED"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a08f1ea1cb5cac34a4f4237e5259fcabb}{DENIED}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}REQUEST"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67abaf6b8e08edf0e9d2eb38551fed1fb39}{REQUEST}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}ROLLBACK\_REQUEST"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67af23292b13488911b134b00e00fd9576e}{ROLLBACK\_REQUEST}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}ROLLBACK\_DONE"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a4dd2c8a822c6c13fa31fe22ee42c200b}{ROLLBACK\_DONE}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}FAIL"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a936c4a5547a9360243178f726f6b2715}{FAIL}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}FAIL\_NO\_MONEY"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a31ab9549f988dc25f0f4c2d8ccb4ff84}{FAIL\_NO\_MONEY}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}FAIL\_WRONG\_ACCOUNT"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a01127902004977c63ad8a275cb3d0f36}{FAIL\_WRONG\_ACCOUNT}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}FAIL\_CARD\_BLOCKED"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67aa039d1ff36f2f1d4a3a92c93e8a67c0f}{FAIL\_CARD\_BLOCKED}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}FAIL\_YOUR\_CARD\_BLOCKED"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a7d9d493ec5f58c1bfa4b031de58af83c}{FAIL\_YOUR\_CARD\_BLOCKED}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}FAIL\_WRONG\_CVV"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67abc7d9a626434bdf983b115d564d5ed78}{FAIL\_WRONG\_CVV}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}FAIL\_WRONG\_PIN"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a06a1428213a8fa5eaf5e9c490a527f2f}{FAIL\_WRONG\_PIN}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \textcolor{stringliteral}{"{}SUSPECT\_REQUEST"{}},\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a298158b200f64c973e11c385e40f9a50}{SUSPECT\_REQUEST}}\ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_audit_8cpp_a329ff71b5729c8e60c763687719ba32f}\index{Audit.cpp@{Audit.cpp}!transactionStatusToString@{transactionStatusToString}}
+\index{transactionStatusToString@{transactionStatusToString}!Audit.cpp@{Audit.cpp}}
+\doxysubsubsection{\texorpdfstring{transactionStatusToString}{transactionStatusToString}}
+{\footnotesize\ttfamily \label{_audit_8cpp_a329ff71b5729c8e60c763687719ba32f} 
+const std\+::map$<$\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}}, std\+::string$>$ transaction\+Status\+To\+String}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a1230137cb1670af41522e68d576326d9}{SUCCES}},\ \textcolor{stringliteral}{"{}SUCCES"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67af0956b6c32fca5ccc9fc6f5451c3d632}{ALLOWED}},\ \textcolor{stringliteral}{"{}ALLOWED"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a08f1ea1cb5cac34a4f4237e5259fcabb}{DENIED}},\ \textcolor{stringliteral}{"{}DENIED"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67abaf6b8e08edf0e9d2eb38551fed1fb39}{REQUEST}},\ \textcolor{stringliteral}{"{}REQUEST"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67af23292b13488911b134b00e00fd9576e}{ROLLBACK\_REQUEST}},\ \textcolor{stringliteral}{"{}ROLLBACK\_REQUEST"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a4dd2c8a822c6c13fa31fe22ee42c200b}{ROLLBACK\_DONE}},\ \textcolor{stringliteral}{"{}ROLLBACK\_DONE"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a936c4a5547a9360243178f726f6b2715}{FAIL}},\ \textcolor{stringliteral}{"{}FAIL"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a31ab9549f988dc25f0f4c2d8ccb4ff84}{FAIL\_NO\_MONEY}},\ \textcolor{stringliteral}{"{}FAIL\_NO\_MONEY"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a01127902004977c63ad8a275cb3d0f36}{FAIL\_WRONG\_ACCOUNT}},\ \textcolor{stringliteral}{"{}FAIL\_WRONG\_ACCOUNT"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67aa039d1ff36f2f1d4a3a92c93e8a67c0f}{FAIL\_CARD\_BLOCKED}},\ \textcolor{stringliteral}{"{}FAIL\_CARD\_BLOCKED"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a7d9d493ec5f58c1bfa4b031de58af83c}{FAIL\_YOUR\_CARD\_BLOCKED}},\ \textcolor{stringliteral}{"{}FAIL\_YOUR\_CARD\_BLOCKED"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67abc7d9a626434bdf983b115d564d5ed78}{FAIL\_WRONG\_CVV}},\ \textcolor{stringliteral}{"{}FAIL\_WRONG\_CVV"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a06a1428213a8fa5eaf5e9c490a527f2f}{FAIL\_WRONG\_PIN}},\ \textcolor{stringliteral}{"{}FAIL\_WRONG\_PIN"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a298158b200f64c973e11c385e40f9a50}{SUSPECT\_REQUEST}},\ \textcolor{stringliteral}{"{}SUSPECT\_REQUEST"{}}\ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

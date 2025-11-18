@@ -1,0 +1,137 @@
+\doxysection{User.\+h}
+\hypertarget{_user_8h_source}{}\label{_user_8h_source}\index{Bank\_System/User.h@{Bank\_System/User.h}}
+\mbox{\hyperlink{_user_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_CRT\_SECURE\_NO\_WARNINGS}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\#include\ "{}mainProcess.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_logger_8h}{Logger.h}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <csignal>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41}{userStatus}}\ \{\ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a8ba576de68566f5d774c3f01beaa86f7}{USER\_AVAILABLE}},\ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a6621cecbf22cf5533b3d83120b696dfd}{USER\_BLOCKED}},\ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a277c4299c60647069204311addfb6532}{USER\_NONVERIFED}}\};}
+\DoxyCodeLine{00025\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42}{userRole}}\ \{\ \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42ae2d30a195cee6b2961cc2c23ea4b520b}{USER}},\ \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42a3228e792244f936584abc6e3d7542d2c}{ADMIN}}\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ 1\ dollar\ =\ 0.85\ euro\ =\ 41.24\ uah}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ 1\ euro\ =\ 1.17\ dollar\ =\ 48.37\ uah\ }}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ 1\ uah\ =\ 0.024\ dollar\ =\ 0.021\ euro}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structpassport_data}{passportData}}\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpassport_data_a788df08dcb6d0dcef298a9ee1fd90731}{series}}[2];}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structpassport_data_ad09216f173a812cd5496009121d9f9f3}{number}};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpassport_data_acf0b026416f122b8d912e9070b35973d}{issuedBy}}[64];}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpassport_data_adae225f8e8e52fcc4a0345cb9bd67456}{issuedDate}}[16];}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structpassport_data_a0c7767040e17261f6e066f4f52e8ab36}{birthDate}}[16];}
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structpassport_data}{passportData}}\ \mbox{\hyperlink{_bank___system_8cpp_a25d4977b41069615a2b0da1fcc7fc585}{emptyPassport}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_user_a4a0137053e591fbb79d9057dd7d2283d}{User}}\ \{\ \ \textcolor{comment}{//\ Дані користувача}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_user_aa7e6e39b43020bbe9c3a196b3689b0f7}{id}};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}}[32];}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}}[32];}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}}[64];}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}}[64];}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_user_a25c69b42eac0c172a221aaae07b5dce2}{phone}};}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{structpassport_data}{passportData}}\ \mbox{\hyperlink{class_user_ab1e0e9f654257936e709c719f27ffd76}{passport}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ додаткові\ дані\ для\ верифікації}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_user_a978c4dd2bd9653e3863ed9b82c88c01c}{TIN}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ідентифікаційний номер платника\ податків}}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41}{userStatus}}\ \mbox{\hyperlink{class_user_a63b0d2b6ef616525748bbf915df27730}{status}}\ =\ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a277c4299c60647069204311addfb6532}{USER\_NONVERIFED}};}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42}{userRole}}\ \mbox{\hyperlink{class_user_af24508f611d47ed44cc0f78622c706bc}{role}}\ =\ \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42ae2d30a195cee6b2961cc2c23ea4b520b}{USER}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_user_a4a0137053e591fbb79d9057dd7d2283d}{User}}()\ \{\}\ \textcolor{comment}{//\ порожній конструктор для\ load}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{class_user_aeed9b9f03e20f8322a4daf2e4d3b326a}{User}}(\textcolor{keywordtype}{int}\ \_id,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_login,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_password,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_surname,\ \textcolor{keywordtype}{int}\ \_phone,\ \mbox{\hyperlink{structpassport_data}{passportData}}\ \_passport,\ \textcolor{keywordtype}{int}\ \_TIN,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41}{userStatus}}\ \_status\ =\ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a8ba576de68566f5d774c3f01beaa86f7}{USER\_AVAILABLE}},\ \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42}{userRole}}\ \_role\ =\ \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42ae2d30a195cee6b2961cc2c23ea4b520b}{USER}})}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_user_aa7e6e39b43020bbe9c3a196b3689b0f7}{id}}(\_id),\ \mbox{\hyperlink{class_user_a25c69b42eac0c172a221aaae07b5dce2}{phone}}(\_phone),\ \mbox{\hyperlink{class_user_ab1e0e9f654257936e709c719f27ffd76}{passport}}(\_passport),\ \mbox{\hyperlink{class_user_a978c4dd2bd9653e3863ed9b82c88c01c}{TIN}}(\_TIN),\ \mbox{\hyperlink{class_user_a63b0d2b6ef616525748bbf915df27730}{status}}(\_status),\ \mbox{\hyperlink{class_user_af24508f611d47ed44cc0f78622c706bc}{role}}(\_role)}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}},\ \_login,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}})\ -\/\ 1);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}},\ \_password,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}})\ -\/\ 1);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}},\ \_name,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}})\ -\/\ 1);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}},\ \_surname,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}})\ -\/\ 1);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_user_a010077fcd52d32fd3b4e1171f748a86a}{getId}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_user_aa7e6e39b43020bbe9c3a196b3689b0f7}{id}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_user_a2a306840681c53c35c73721401061db5}{getName}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_user_ab98edea1b276e1e30b1c453592d4ccee}{getSurname}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}};\ \}\ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_user_a29869cca1eebb4a8f8430f53ab145ae1}{getLogin}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}};\ \}\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_user_ad319aff3804859b3d90e14375f2706d8}{getPhone}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_user_a25c69b42eac0c172a221aaae07b5dce2}{phone}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_user_abe3e83cf19594ee0a7595e632ec813b8}{getTIN}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_user_a978c4dd2bd9653e3863ed9b82c88c01c}{TIN}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42}{userRole}}\ \mbox{\hyperlink{class_user_ac72e34619947274701f626935ef3637b}{getRole}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_user_af24508f611d47ed44cc0f78622c706bc}{role}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41}{userStatus}}\ \mbox{\hyperlink{class_user_a9c04f41730146bc5396504a0a3ff74fa}{getStatus}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_user_a63b0d2b6ef616525748bbf915df27730}{status}};\ \}\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{structpassport_data}{passportData}}\ \mbox{\hyperlink{class_user_a7897a133a6ea482db473a8bb4218f9d8}{getPassport}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_user_ab1e0e9f654257936e709c719f27ffd76}{passport}};\ \}\ \ \ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_a3a86325f0108067f88cd113774388bb8}{ban}}()\ \{\ \mbox{\hyperlink{class_user_a63b0d2b6ef616525748bbf915df27730}{status}}\ =\ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a6621cecbf22cf5533b3d83120b696dfd}{USER\_BLOCKED}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_a84e9236b3bba7f5cbfab52ddde2e3f71}{unban}}()\ \{\ \mbox{\hyperlink{class_user_a63b0d2b6ef616525748bbf915df27730}{status}}\ =\ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a8ba576de68566f5d774c3f01beaa86f7}{USER\_AVAILABLE}};\ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_user_a328e298b031c30a97743b9cf87b1323e}{checkPassword}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ c\_password[32])\ \{\ \textcolor{keywordflow}{return}\ std::strcmp(\mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}},\ c\_password)\ ==\ 0;\ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_aec0e526fe82e8632425b21f7e1e228ab}{save}}(ofstream\&\ fout)\textcolor{keyword}{\ const\ }\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ fout.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\textcolor{keywordtype}{id}),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ fout.write(\mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}}));}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ fout.write(\mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}}));}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ fout.write(\mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}}));}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ fout.write(\mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}}));}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ fout.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_a25c69b42eac0c172a221aaae07b5dce2}{phone}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a25c69b42eac0c172a221aaae07b5dce2}{phone}}));}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ fout.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_ab1e0e9f654257936e709c719f27ffd76}{passport}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_ab1e0e9f654257936e709c719f27ffd76}{passport}}));}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ fout.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_a978c4dd2bd9653e3863ed9b82c88c01c}{TIN}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a978c4dd2bd9653e3863ed9b82c88c01c}{TIN}}));}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ fout.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_a63b0d2b6ef616525748bbf915df27730}{status}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a63b0d2b6ef616525748bbf915df27730}{status}}));}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ fout.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_af24508f611d47ed44cc0f78622c706bc}{role}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_af24508f611d47ed44cc0f78622c706bc}{role}}));}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_a6b5366e49e886c8b8ae141c6b06b3fb3}{load}}(ifstream\&\ fin)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ fin.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\textcolor{keywordtype}{id}),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ fin.read(\mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a2a956759ec25a043c36008267cbb185c}{login}}));}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ fin.read(\mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_aacccaa34b41b3669d0ab177a59d347dc}{password}}));}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ fin.read(\mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a56e69f2a550699c1ed13fa4cd36c39f5}{name}}));}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ fin.read(\mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a68e0ee16888f824d6b00ac2a3d400313}{surname}}));}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ fin.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_a25c69b42eac0c172a221aaae07b5dce2}{phone}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a25c69b42eac0c172a221aaae07b5dce2}{phone}}));}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ fin.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_ab1e0e9f654257936e709c719f27ffd76}{passport}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_ab1e0e9f654257936e709c719f27ffd76}{passport}}));}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ fin.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_a978c4dd2bd9653e3863ed9b82c88c01c}{TIN}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a978c4dd2bd9653e3863ed9b82c88c01c}{TIN}}));}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ fin.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_a63b0d2b6ef616525748bbf915df27730}{status}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_a63b0d2b6ef616525748bbf915df27730}{status}}));}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ fin.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_user_af24508f611d47ed44cc0f78622c706bc}{role}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_user_af24508f611d47ed44cc0f78622c706bc}{role}}));}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_a93fb9dc8da5fb26320e90745d96e1959}{updateInFile}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{class_user}{User}}\ \mbox{\hyperlink{_bank___system_8cpp_a824c80a5364fc01142e0849490db0544}{emptyUser}};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00156\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_user_8h_a3c2b3238cf0dd22543db5603c171dec6}{DB\_list}}(\textcolor{keywordtype}{char}\ msg[5][1024],\ \textcolor{keywordtype}{int}\ page);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00164\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_user_8h_abb536b221473f7c0575c9eee5921970b}{DB\_create}}();}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00172\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_user_8h_a3d004748aec1ac5e31bead3264418421}{DB\_newUser}}(\mbox{\hyperlink{class_user}{User}}\ user);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00180\ \mbox{\hyperlink{class_user}{User}}\ \mbox{\hyperlink{_user_8h_a9ab483de47cccd849b1da00dc4e6597b}{loadLastUser}}();}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00189\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_user_8h_a4684f54ede335a61198dd93867f0aa42}{isUserExist\_byLogin}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ login);}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00197\ \mbox{\hyperlink{class_user}{User}}\ \mbox{\hyperlink{_user_8h_acf075e84c512170ca555c32e2960298f}{getUser\_byLogin}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ login);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00205\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_user_8h_a63e80be97ecb6528c6c48c24fc9c8b23}{isUserExist\_byId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00213\ \mbox{\hyperlink{class_user}{User}}\ \mbox{\hyperlink{_user_8h_a3706eb8ba7ca7e8392708b640102b82d}{getUser\_byId}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+
+\end{DoxyCode}

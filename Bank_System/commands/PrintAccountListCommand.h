@@ -6,6 +6,15 @@
 #include "../mainProcess.h"
 #include "../LogEye.h"
 
+
+/**
+ * @class PrintAccountListCommand
+ * @brief Prints a paginated list of all accounts.
+ * @details Validates page number, prints accounts page by page,
+ * logs all actions via logEye.
+ * @note Requires: handleInfo, logEye
+ * @note Syntax: account_list <page>
+ */
 class PrintAccountListCommand : public Command {
     Logger* logger;
 public:

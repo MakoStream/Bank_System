@@ -1,0 +1,174 @@
+\doxysection{Bank\+\_\+\+System/\+User.cpp File Reference}
+\hypertarget{_user_8cpp}{}\label{_user_8cpp}\index{Bank\_System/User.cpp@{Bank\_System/User.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include "{}Logger.\+h"{}}\newline
+{\ttfamily \#include $<$csignal$>$}\newline
+{\ttfamily \#include "{}User.\+h"{}}\newline
+{\ttfamily \#include $<$optional$>$}\newline
+{\ttfamily \#include "{}main\+Process.\+h"{}}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_user_8cpp_af08ec37a8c99d747fb60fa15bc28678b}{\+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_user_8cpp_abb536b221473f7c0575c9eee5921970b}{DB\+\_\+create}} ()
+\begin{DoxyCompactList}\small\item\em Creates an empty binary file "{}users.\+dat"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_user_8cpp_a3d004748aec1ac5e31bead3264418421}{DB\+\_\+new\+User}} (\mbox{\hyperlink{class_user}{User}} user)
+\begin{DoxyCompactList}\small\item\em Appends a \doxylink{class_user}{User} object to "{}users.\+dat"{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_user_8cpp_a3c2b3238cf0dd22543db5603c171dec6}{DB\+\_\+list}} (char msg\mbox{[}5\mbox{]}\mbox{[}1024\mbox{]}, int page)
+\begin{DoxyCompactList}\small\item\em Reads and prints a page of users from "{}users.\+dat"{}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_user}{User}} \mbox{\hyperlink{_user_8cpp_a9ab483de47cccd849b1da00dc4e6597b}{load\+Last\+User}} ()
+\begin{DoxyCompactList}\small\item\em Loads the last user from "{}users.\+dat"{}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_user_8cpp_a4684f54ede335a61198dd93867f0aa42}{is\+User\+Exist\+\_\+by\+Login}} (const char \texorpdfstring{$\ast$}{*}login)
+\begin{DoxyCompactList}\small\item\em Checks if a login already exists in "{}users.\+dat"{}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_user_8cpp_a63e80be97ecb6528c6c48c24fc9c8b23}{is\+User\+Exist\+\_\+by\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Checks if a user with a given ID exists in "{}users.\+dat"{}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_user}{User}} \mbox{\hyperlink{_user_8cpp_acf075e84c512170ca555c32e2960298f}{get\+User\+\_\+by\+Login}} (const char \texorpdfstring{$\ast$}{*}login)
+\begin{DoxyCompactList}\small\item\em Retrieves a \doxylink{class_user}{User} object by login. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_user}{User}} \mbox{\hyperlink{_user_8cpp_a3706eb8ba7ca7e8392708b640102b82d}{get\+User\+\_\+by\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Retrieves a \doxylink{class_user}{User} object by ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_user_8cpp_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_user_8cpp_af08ec37a8c99d747fb60fa15bc28678b}\index{User.cpp@{User.cpp}!\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}}
+\index{\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}!User.cpp@{User.cpp}}
+\doxysubsubsection{\texorpdfstring{\_CRT\_SECURE\_NO\_WARNINGS}{\_CRT\_SECURE\_NO\_WARNINGS}}
+{\footnotesize\ttfamily \label{_user_8cpp_af08ec37a8c99d747fb60fa15bc28678b} 
+\#define \+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_user_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_user_8cpp_abb536b221473f7c0575c9eee5921970b}\index{User.cpp@{User.cpp}!DB\_create@{DB\_create}}
+\index{DB\_create@{DB\_create}!User.cpp@{User.cpp}}
+\doxysubsubsection{\texorpdfstring{DB\_create()}{DB\_create()}}
+{\footnotesize\ttfamily \label{_user_8cpp_abb536b221473f7c0575c9eee5921970b} 
+void DB\+\_\+create (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Creates an empty binary file "{}users.\+dat"{}. 
+
+This function creates a new binary file to store user data. If the file already exists, it will be overwritten. \begin{DoxyNote}{Note}
+Requirements\+: $<$fstream$>$, $<$iostream$>$ 
+
+Required for\+: commands\+::create\+DB() 
+\end{DoxyNote}
+\Hypertarget{_user_8cpp_a3c2b3238cf0dd22543db5603c171dec6}\index{User.cpp@{User.cpp}!DB\_list@{DB\_list}}
+\index{DB\_list@{DB\_list}!User.cpp@{User.cpp}}
+\doxysubsubsection{\texorpdfstring{DB\_list()}{DB\_list()}}
+{\footnotesize\ttfamily \label{_user_8cpp_a3c2b3238cf0dd22543db5603c171dec6} 
+void DB\+\_\+list (\begin{DoxyParamCaption}\item[{char}]{msg}{\mbox{[}5\mbox{]}\mbox{[}1024\mbox{]}, }\item[{int}]{page}{}\end{DoxyParamCaption})}
+
+
+
+Reads and prints a page of users from "{}users.\+dat"{}. 
+
+Loads users from the binary file and formats their information into a 5-\/element string array for display. Supports pagination. \begin{DoxyNote}{Note}
+Requirements\+: \doxylink{class_user}{User} class, $<$fstream$>$, $<$iostream$>$ 
+
+Required for\+: commands\+::execute("{}user\+\_\+list"{}) 
+\end{DoxyNote}
+\Hypertarget{_user_8cpp_a3d004748aec1ac5e31bead3264418421}\index{User.cpp@{User.cpp}!DB\_newUser@{DB\_newUser}}
+\index{DB\_newUser@{DB\_newUser}!User.cpp@{User.cpp}}
+\doxysubsubsection{\texorpdfstring{DB\_newUser()}{DB\_newUser()}}
+{\footnotesize\ttfamily \label{_user_8cpp_a3d004748aec1ac5e31bead3264418421} 
+void DB\+\_\+new\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_user}{User}}}]{user}{}\end{DoxyParamCaption})}
+
+
+
+Appends a \doxylink{class_user}{User} object to "{}users.\+dat"{}. 
+
+This function writes a \doxylink{class_user}{User} object to the end of the binary file for persistent storage. \begin{DoxyNote}{Note}
+Requirements\+: \doxylink{class_user_aec0e526fe82e8632425b21f7e1e228ab}{User\+::save()}, $<$fstream$>$ 
+
+Required for\+: commands\+::reg\+User() 
+\end{DoxyNote}
+\Hypertarget{_user_8cpp_a3706eb8ba7ca7e8392708b640102b82d}\index{User.cpp@{User.cpp}!getUser\_byId@{getUser\_byId}}
+\index{getUser\_byId@{getUser\_byId}!User.cpp@{User.cpp}}
+\doxysubsubsection{\texorpdfstring{getUser\_byId()}{getUser\_byId()}}
+{\footnotesize\ttfamily \label{_user_8cpp_a3706eb8ba7ca7e8392708b640102b82d} 
+\mbox{\hyperlink{class_user}{User}} get\+User\+\_\+by\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a \doxylink{class_user}{User} object by ID. 
+
+Searches the binary file for a user matching the specified ID and returns the \doxylink{class_user}{User} object. \begin{DoxyNote}{Note}
+Requirements\+: \doxylink{class_user}{User} class, $<$fstream$>$ 
+
+Required for\+: any function needing \doxylink{class_user}{User} data by ID 
+\end{DoxyNote}
+\Hypertarget{_user_8cpp_acf075e84c512170ca555c32e2960298f}\index{User.cpp@{User.cpp}!getUser\_byLogin@{getUser\_byLogin}}
+\index{getUser\_byLogin@{getUser\_byLogin}!User.cpp@{User.cpp}}
+\doxysubsubsection{\texorpdfstring{getUser\_byLogin()}{getUser\_byLogin()}}
+{\footnotesize\ttfamily \label{_user_8cpp_acf075e84c512170ca555c32e2960298f} 
+\mbox{\hyperlink{class_user}{User}} get\+User\+\_\+by\+Login (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{login}{}\end{DoxyParamCaption})}
+
+
+
+Retrieves a \doxylink{class_user}{User} object by login. 
+
+Searches the binary file for a user matching the specified login and returns the \doxylink{class_user}{User} object. \begin{DoxyNote}{Note}
+Requirements\+: \doxylink{class_user}{User} class, $<$fstream$>$, $<$cstring$>$ 
+
+Required for\+: any function needing \doxylink{class_user}{User} data by login 
+\end{DoxyNote}
+\Hypertarget{_user_8cpp_a63e80be97ecb6528c6c48c24fc9c8b23}\index{User.cpp@{User.cpp}!isUserExist\_byId@{isUserExist\_byId}}
+\index{isUserExist\_byId@{isUserExist\_byId}!User.cpp@{User.cpp}}
+\doxysubsubsection{\texorpdfstring{isUserExist\_byId()}{isUserExist\_byId()}}
+{\footnotesize\ttfamily \label{_user_8cpp_a63e80be97ecb6528c6c48c24fc9c8b23} 
+bool is\+User\+Exist\+\_\+by\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Checks if a user with a given ID exists in "{}users.\+dat"{}. 
+
+Iterates through the binary user file and compares IDs. \begin{DoxyNote}{Note}
+Requirements\+: \doxylink{class_user}{User} class, $<$fstream$>$ 
+
+Required for\+: any function needing user validation 
+\end{DoxyNote}
+\Hypertarget{_user_8cpp_a4684f54ede335a61198dd93867f0aa42}\index{User.cpp@{User.cpp}!isUserExist\_byLogin@{isUserExist\_byLogin}}
+\index{isUserExist\_byLogin@{isUserExist\_byLogin}!User.cpp@{User.cpp}}
+\doxysubsubsection{\texorpdfstring{isUserExist\_byLogin()}{isUserExist\_byLogin()}}
+{\footnotesize\ttfamily \label{_user_8cpp_a4684f54ede335a61198dd93867f0aa42} 
+bool is\+User\+Exist\+\_\+by\+Login (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{login}{}\end{DoxyParamCaption})}
+
+
+
+Checks if a login already exists in "{}users.\+dat"{}. 
+
+Iterates through the binary user file and compares logins to prevent duplicates. \begin{DoxyNote}{Note}
+Requirements\+: \doxylink{class_user}{User} class, $<$fstream$>$, $<$cstring$>$ 
+
+Required for\+: commands\+::execute("{}reg\+\_\+user"{}) 
+\end{DoxyNote}
+\Hypertarget{_user_8cpp_a9ab483de47cccd849b1da00dc4e6597b}\index{User.cpp@{User.cpp}!loadLastUser@{loadLastUser}}
+\index{loadLastUser@{loadLastUser}!User.cpp@{User.cpp}}
+\doxysubsubsection{\texorpdfstring{loadLastUser()}{loadLastUser()}}
+{\footnotesize\ttfamily \label{_user_8cpp_a9ab483de47cccd849b1da00dc4e6597b} 
+\mbox{\hyperlink{class_user}{User}} load\+Last\+User (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Loads the last user from "{}users.\+dat"{}. 
+
+Seeks to the end of the binary file and reads the last \doxylink{class_user}{User} object for further processing. \begin{DoxyNote}{Note}
+Requirements\+: \doxylink{class_user}{User} class, $<$fstream$>$, $<$iostream$>$ 
+
+Required for\+: commands\+::reg\+User() 
+\end{DoxyNote}

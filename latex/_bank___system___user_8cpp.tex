@@ -1,0 +1,82 @@
+\doxysection{Bank\+\_\+\+System\+\_\+\+User/\+Bank\+\_\+\+System\+\_\+\+User.cpp File Reference}
+\hypertarget{_bank___system___user_8cpp}{}\label{_bank___system___user_8cpp}\index{Bank\_System\_User/Bank\_System\_User.cpp@{Bank\_System\_User/Bank\_System\_User.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include "{}user\+\_\+info.\+h"{}}\newline
+{\ttfamily \#include "{}basic\+\_\+functions.\+h"{}}\newline
+{\ttfamily \#include "{}Response\+Manager.\+h"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_bank___system___user_8cpp_af08ec37a8c99d747fb60fa15bc28678b}{\+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_bank___system___user_8cpp_a2c4977aaaecaff8367d371f2b040e7e4}{handle\+Op}} (\mbox{\hyperlink{structsession_construct}{session\+Construct}} \&session\+Data, \mbox{\hyperlink{structsession_construct}{session\+Construct}} \&response, HANDLE \&h\+Pipe, const string \&input, DWORD \&bytes\+Written, DWORD \&bytes\+Read)
+\item 
+int \mbox{\hyperlink{_bank___system___user_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_response_manager}{Response\+Manager}} \mbox{\hyperlink{_bank___system___user_8cpp_afdb8dffdd79bdb9ea28861f65e37d5ff}{response\+\_\+manager}}
+\item 
+\mbox{\hyperlink{structfronted___user}{fronted\+\_\+\+User}} \mbox{\hyperlink{_bank___system___user_8cpp_a44748714a1a3a5beca9a162481b8f7f7}{empty\+User}} = \{ "{}"{}, "{}"{}, "{}"{} \}
+\item 
+\mbox{\hyperlink{structfronted___user}{fronted\+\_\+\+User}} \mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{current\+User}} = \mbox{\hyperlink{_bank___system___user_8cpp_a44748714a1a3a5beca9a162481b8f7f7}{empty\+User}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_bank___system___user_8cpp_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_bank___system___user_8cpp_af08ec37a8c99d747fb60fa15bc28678b}\index{Bank\_System\_User.cpp@{Bank\_System\_User.cpp}!\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}}
+\index{\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}!Bank\_System\_User.cpp@{Bank\_System\_User.cpp}}
+\doxysubsubsection{\texorpdfstring{\_CRT\_SECURE\_NO\_WARNINGS}{\_CRT\_SECURE\_NO\_WARNINGS}}
+{\footnotesize\ttfamily \label{_bank___system___user_8cpp_af08ec37a8c99d747fb60fa15bc28678b} 
+\#define \+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_bank___system___user_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_bank___system___user_8cpp_a2c4977aaaecaff8367d371f2b040e7e4}\index{Bank\_System\_User.cpp@{Bank\_System\_User.cpp}!handleOp@{handleOp}}
+\index{handleOp@{handleOp}!Bank\_System\_User.cpp@{Bank\_System\_User.cpp}}
+\doxysubsubsection{\texorpdfstring{handleOp()}{handleOp()}}
+{\footnotesize\ttfamily \label{_bank___system___user_8cpp_a2c4977aaaecaff8367d371f2b040e7e4} 
+void handle\+Op (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsession_construct}{session\+Construct}} \&}]{session\+Data}{, }\item[{\mbox{\hyperlink{structsession_construct}{session\+Construct}} \&}]{response}{, }\item[{HANDLE \&}]{h\+Pipe}{, }\item[{const string \&}]{input}{, }\item[{DWORD \&}]{bytes\+Written}{, }\item[{DWORD \&}]{bytes\+Read}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_bank___system___user_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{Bank\_System\_User.cpp@{Bank\_System\_User.cpp}!main@{main}}
+\index{main@{main}!Bank\_System\_User.cpp@{Bank\_System\_User.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{_bank___system___user_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-var-members}
+\Hypertarget{_bank___system___user_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}\index{Bank\_System\_User.cpp@{Bank\_System\_User.cpp}!currentUser@{currentUser}}
+\index{currentUser@{currentUser}!Bank\_System\_User.cpp@{Bank\_System\_User.cpp}}
+\doxysubsubsection{\texorpdfstring{currentUser}{currentUser}}
+{\footnotesize\ttfamily \label{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c} 
+\mbox{\hyperlink{structfronted___user}{fronted\+\_\+\+User}} current\+User = \mbox{\hyperlink{_bank___system___user_8cpp_a44748714a1a3a5beca9a162481b8f7f7}{empty\+User}}}
+
+\Hypertarget{_bank___system___user_8cpp_a44748714a1a3a5beca9a162481b8f7f7}\index{Bank\_System\_User.cpp@{Bank\_System\_User.cpp}!emptyUser@{emptyUser}}
+\index{emptyUser@{emptyUser}!Bank\_System\_User.cpp@{Bank\_System\_User.cpp}}
+\doxysubsubsection{\texorpdfstring{emptyUser}{emptyUser}}
+{\footnotesize\ttfamily \label{_bank___system___user_8cpp_a44748714a1a3a5beca9a162481b8f7f7} 
+\mbox{\hyperlink{structfronted___user}{fronted\+\_\+\+User}} empty\+User = \{ "{}"{}, "{}"{}, "{}"{} \}}
+
+\Hypertarget{_bank___system___user_8cpp_afdb8dffdd79bdb9ea28861f65e37d5ff}\index{Bank\_System\_User.cpp@{Bank\_System\_User.cpp}!response\_manager@{response\_manager}}
+\index{response\_manager@{response\_manager}!Bank\_System\_User.cpp@{Bank\_System\_User.cpp}}
+\doxysubsubsection{\texorpdfstring{response\_manager}{response\_manager}}
+{\footnotesize\ttfamily \label{_bank___system___user_8cpp_afdb8dffdd79bdb9ea28861f65e37d5ff} 
+\mbox{\hyperlink{class_response_manager}{Response\+Manager}} response\+\_\+manager}
+

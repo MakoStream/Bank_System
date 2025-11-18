@@ -1,0 +1,723 @@
+\doxysection{main\+Process Class Reference}
+\hypertarget{classmain_process}{}\label{classmain_process}\index{mainProcess@{mainProcess}}
+
+
+Main class for session, user, transaction, and configuration management.  
+
+
+
+
+{\ttfamily \#include $<$main\+Process.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmain_process_aae457b30b1820aa1b15fa77ab4b687c2}{main\+Process}} ()
+\begin{DoxyCompactList}\small\item\em Initializes \doxylink{classmain_process}{main\+Process} by reading configuration values from config\+Name. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classmain_process_acd985b507420bd2aa4e86142ff5c3ed5}{new\+\_\+session}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new session, increments last\+\_\+session\+\_\+id and adds session to logged users. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmain_process_a2292b748e6991cc73433259a9cd078cf}{set\+Debug\+Mode}} (bool mode)
+\item 
+void \mbox{\hyperlink{classmain_process_af3fb877bea6082d8f432bcd51816f924}{print\+Config}} ()
+\begin{DoxyCompactList}\small\item\em Prints all key-\/value pairs from the configuration file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmain_process_a695066867863263aca8b0156539ed397}{login}} (int session\+\_\+id, char login\mbox{[}32\mbox{]}, char password\mbox{[}32\mbox{]})
+\begin{DoxyCompactList}\small\item\em Logs in a user by setting user ID in the session structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmain_process_a0405b9392a203b5afee0bc8403a44b74}{logout}} (int session\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Logs out a session by resetting its user\+\_\+id and auth\+\_\+key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmain_process_a7aa73f43d68883b49bc20b9e757c143d}{print\+Sessions}} ()
+\begin{DoxyCompactList}\small\item\em Prints all logged sessions to console. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_session}{Session}} \& \mbox{\hyperlink{classmain_process_a907d64c9dff50858dac9fb33310a9f48}{get\+User\+Session}} (int session\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Returns reference to a session by session\+\_\+id, or empty\+Session if not found. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmain_process_a5dc7f5e4fef1b4d0707cc5f5f6b9f83a}{generate\+Auth\+Key}} (\mbox{\hyperlink{struct_session}{Session}} \&session, \mbox{\hyperlink{structsession_construct}{session\+Construct}} \&session\+Data)
+\begin{DoxyCompactList}\small\item\em Generates random 40-\/character auth\+\_\+key for a session and copies it to session\+Data. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_session}{Session}} \& \mbox{\hyperlink{classmain_process_aeca921d85a9735b866d06751c9bb3704}{get\+Session\+By\+ID}} (int session\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Returns reference to a session by session\+\_\+id, or empty\+Session if not found. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmain_process_a161c906f54cf24c0fa200e42b5cc7139}{compare\+Auth\+Key}} (const \mbox{\hyperlink{structsession_construct}{session\+Construct}} \&sc, const \mbox{\hyperlink{struct_session}{Session}} \&s)
+\begin{DoxyCompactList}\small\item\em Compares auth\+\_\+key from \doxylink{structsession_construct}{session\+Construct} with session. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmain_process_a710cf408d62c85190d34e6755f648a4a}{transfer\+Bridge}} (\mbox{\hyperlink{classaccount}{account}} \&from, \mbox{\hyperlink{classaccount}{account}} \&to, double amount)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_session}{Session}} $>$ \mbox{\hyperlink{classmain_process_add1af2af25696f7c7be9305bad656175}{get\+Sessions}} ()
+\begin{DoxyCompactList}\small\item\em Returns vector of logged-\/in sessions. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classmain_process_a2c36de84164f4cd81fcabe7a38188a5a}{increment\+Card\+PAN}} ()
+\begin{DoxyCompactList}\small\item\em Increments and returns the last PAN card counter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classmain_process_ac08e7f615e38f86a6ba5c9ab92859285}{increment\+Card\+IBAN}} ()
+\begin{DoxyCompactList}\small\item\em Increments and returns the last IBAN card counter. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classmain_process_aee34e32e996332a7f099408858e0d0f5}{increment\+Account\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Increments and returns the last account ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classmain_process_aebd81c4cb0b172a3288e5d97df65a063}{increment\+Audit\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Increments and returns the last audit ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classmain_process_a9ad284b92bb701ea36070a6e7540b006}{increment\+Transaction\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Increments and returns the last transaction ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classmain_process_aa4cc929f57d91bc9c66cabd2996364f4}{increment\+Transaction\+Request\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Increments and returns the last transaction request ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classmain_process_a2c14b8cc6470284a7cfe9a5e64da9a1a}{get\+Last\+Session\+ID}} ()
+\item 
+std\+::string \mbox{\hyperlink{classmain_process_a6c6fb3fa01287dea2d0491b33b6d17a8}{get\+Account\+DBPath}} ()
+\begin{DoxyCompactList}\small\item\em Returns account database path. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classmain_process_a57ee00e140bbcc6881109374d648d99a}{get\+User\+DBPath}} ()
+\begin{DoxyCompactList}\small\item\em Returns user database path. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classmain_process_ae7fe6c24f892f2c41fc5ddeb0dd2d838}{get\+Transaction\+Log\+DBPath}} ()
+\begin{DoxyCompactList}\small\item\em Returns transaction log database path. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classmain_process_ae7899b2259669c59ea686684aae5f23e}{get\+Audit\+Log\+DBPath}} ()
+\begin{DoxyCompactList}\small\item\em Returns audit log database path. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmain_process_ac9198fced49198dcf983f1930dbd2d58}{debug\+On}} ()
+\begin{DoxyCompactList}\small\item\em Enables debug mode and reloads configuration. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classmain_process_ad67fba6a1f5a555ccb35024c7de4eabf}{debug\+Status}} ()
+\begin{DoxyCompactList}\small\item\em Returns debug mode status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmain_process_ad6499979445d77ca57044c6d62be083d}{transaction\+\_\+request}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} handle, \mbox{\hyperlink{classaccount}{account}} \&from, \mbox{\hyperlink{classaccount}{account}} \&to, double ammount, const char \texorpdfstring{$\ast$}{*}PIN, const char \texorpdfstring{$\ast$}{*}CVV, \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}} op\+\_\+type, std\+::string comment="{}\#"{})
+\begin{DoxyCompactList}\small\item\em Handles a transaction request from one account to another. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classmain_process_a9937f5c1ba2def5a8f85b4de561053b0}{check\+\_\+requests}} ()
+\item 
+void \mbox{\hyperlink{classmain_process_a793ccaad393b3b0c9f7dac9a2cd9efb2}{allow\+\_\+transaction}} (int transaction\+\_\+id, \mbox{\hyperlink{structhandle_info}{handle\+Info}} \&user\+\_\+handle, std\+::string comment)
+\begin{DoxyCompactList}\small\item\em Allows a pending transaction by updating its status to ALLOW. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classmain_process_af38220d892f7653220f144d864d17a80}{savecfg}} ()
+\begin{DoxyCompactList}\small\item\em Saves current session and card counters to configuration file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classmain_process_ac600b67cf989a2341e6a376a9da6017f}{last\+\_\+session\+\_\+id}}
+\item 
+int \mbox{\hyperlink{classmain_process_aeb64d1e1eae13b15525b479f1b8aba7f}{last\+\_\+card\+\_\+\+PAN}}
+\item 
+int \mbox{\hyperlink{classmain_process_a3c921c59c69b2310b4954efd767252b8}{last\+\_\+card\+\_\+\+IBAN}}
+\item 
+int \mbox{\hyperlink{classmain_process_abbe43bbe1c723e0ea4a537d04020e483}{last\+\_\+audit\+\_\+id}}
+\item 
+int \mbox{\hyperlink{classmain_process_a18b800db4b70f42465c0ba860f9c3b24}{last\+\_\+account\+\_\+id}}
+\item 
+int \mbox{\hyperlink{classmain_process_a6b1b22d18ccf29c5ea303f03b8bf7b0b}{last\+\_\+transaction\+\_\+id}}
+\item 
+int \mbox{\hyperlink{classmain_process_aa2b48ce1772513d4fc5c16e1b981ee96}{last\+\_\+transaction\+\_\+request\+\_\+id}}
+\item 
+std\+::string \mbox{\hyperlink{classmain_process_a95ec7291cc04d61c7c46662e7ae40263}{account\+\_\+db\+\_\+path}}
+\item 
+std\+::string \mbox{\hyperlink{classmain_process_a377a12ba9c903f938fe428ddd1b37c44}{user\+\_\+db\+\_\+path}}
+\item 
+std\+::string \mbox{\hyperlink{classmain_process_a0972867a7a7809a00fb0a477f92f848d}{transaction\+\_\+log\+\_\+db\+\_\+path}}
+\item 
+std\+::string \mbox{\hyperlink{classmain_process_af07dce7e0330530e0dd3c9f4374e22cc}{audit\+\_\+log\+\_\+db\+\_\+path}}
+\item 
+bool \mbox{\hyperlink{classmain_process_adad34cb02191047478e64a461d8b2ab0}{debug}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_session}{Session}} $>$ \mbox{\hyperlink{classmain_process_a09143f6f39261e1d949049a6619dbe91}{loggined\+\_\+users}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main class for session, user, transaction, and configuration management. 
+
+The \doxylink{classmain_process}{main\+Process} class handles\+:
+\begin{DoxyItemize}
+\item \doxylink{class_user}{User} session management (create, login, logout, generate authentication keys)
+\item Database operations (file paths, incrementing PAN, IBAN, transaction IDs)
+\item Transaction handling and logging via Audit
+\item Debug mode management
+\item Reading and writing configuration files \begin{DoxyNote}{Note}
+Requires\+: \doxylink{_bank___system_2basic__functions_8cpp_a248127881de11156f58e4dd2fd879f6a}{read\+Config()}, \doxylink{_bank___system_2basic__functions_8cpp_a006014cced648ca7880d24c53223bdd4}{write\+Config()}, $<$vector$>$, $<$string$>$, $<$map$>$, \doxylink{class_logger}{Logger}, \doxylink{structsession_construct}{session\+Construct}, \doxylink{struct_session}{Session}, \doxylink{class_user}{User}, account @required For all core program operations (\doxylink{class_commands_manager}{Commands\+Manager}, Handle\+Client, \doxylink{classuser_login_command}{user\+Login\+Command}, transaction\+\_\+request, etc.) @used For\+:
+\end{DoxyNote}
+
+\item Processing client sessions
+\item \doxylink{class_user}{User} login/logout
+\item Creating and approving transactions
+\item Configuration file management 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{classmain_process_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classmain_process_aae457b30b1820aa1b15fa77ab4b687c2}\index{mainProcess@{mainProcess}!mainProcess@{mainProcess}}
+\index{mainProcess@{mainProcess}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{mainProcess()}{mainProcess()}}
+{\footnotesize\ttfamily \label{classmain_process_aae457b30b1820aa1b15fa77ab4b687c2} 
+main\+Process\+::main\+Process (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes \doxylink{classmain_process}{main\+Process} by reading configuration values from config\+Name. 
+
+Reads the configuration file specified by config\+Name and loads last session ID, card counters, database paths, and other persistent variables. \begin{DoxyNote}{Note}
+Uses \doxylink{_bank___system_2basic__functions_8cpp_a248127881de11156f58e4dd2fd879f6a}{read\+Config()} and $<$map$>$, $<$string$>$, $<$iostream$>$. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_bank___system_2basic__functions_8cpp_a248127881de11156f58e4dd2fd879f6a}{read\+Config()} 
+\end{DoxySeeAlso}
+
+
+\label{doc-func-members}
+\Hypertarget{classmain_process_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmain_process_a793ccaad393b3b0c9f7dac9a2cd9efb2}\index{mainProcess@{mainProcess}!allow\_transaction@{allow\_transaction}}
+\index{allow\_transaction@{allow\_transaction}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{allow\_transaction()}{allow\_transaction()}}
+{\footnotesize\ttfamily \label{classmain_process_a793ccaad393b3b0c9f7dac9a2cd9efb2} 
+void main\+Process\+::allow\+\_\+transaction (\begin{DoxyParamCaption}\item[{int}]{transaction\+\_\+id}{, }\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{user\+\_\+handle}{, }\item[{std\+::string}]{comment}{}\end{DoxyParamCaption})}
+
+
+
+Allows a pending transaction by updating its status to ALLOW. 
+
+Approves a transaction request
+
+
+\begin{DoxyParams}{Parameters}
+{\em transaction\+\_\+id} & Transaction identifier. \\
+\hline
+{\em user\+\_\+handle} & Client handle info. \\
+\hline
+{\em comment} & Optional comment for transaction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requirements\+: \doxylink{struct_session}{Session}, \doxylink{class_transaction_log}{Transaction\+Log} 
+\end{DoxyNote}
+\Hypertarget{classmain_process_a9937f5c1ba2def5a8f85b4de561053b0}\index{mainProcess@{mainProcess}!check\_requests@{check\_requests}}
+\index{check\_requests@{check\_requests}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{check\_requests()}{check\_requests()}}
+{\footnotesize\ttfamily \label{classmain_process_a9937f5c1ba2def5a8f85b4de561053b0} 
+void main\+Process\+::check\+\_\+requests (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Checks all pending transaction requests \Hypertarget{classmain_process_a161c906f54cf24c0fa200e42b5cc7139}\index{mainProcess@{mainProcess}!compareAuthKey@{compareAuthKey}}
+\index{compareAuthKey@{compareAuthKey}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{compareAuthKey()}{compareAuthKey()}}
+{\footnotesize\ttfamily \label{classmain_process_a161c906f54cf24c0fa200e42b5cc7139} 
+bool main\+Process\+::compare\+Auth\+Key (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structsession_construct}{session\+Construct}} \&}]{sc}{, }\item[{const \mbox{\hyperlink{struct_session}{Session}} \&}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Compares auth\+\_\+key from \doxylink{structsession_construct}{session\+Construct} with session. 
+
+Compares session auth keys
+
+
+\begin{DoxyParams}{Parameters}
+{\em sc} & \doxylink{structsession_construct}{session\+Construct} object. \\
+\hline
+{\em s} & \doxylink{struct_session}{Session} object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true If keys match. 
+
+false Otherwise. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requirements\+: \doxylink{struct_session}{Session}, \doxylink{structsession_construct}{session\+Construct}, $<$cstring$>$ 
+\end{DoxyNote}
+\Hypertarget{classmain_process_ac9198fced49198dcf983f1930dbd2d58}\index{mainProcess@{mainProcess}!debugOn@{debugOn}}
+\index{debugOn@{debugOn}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{debugOn()}{debugOn()}}
+{\footnotesize\ttfamily \label{classmain_process_ac9198fced49198dcf983f1930dbd2d58} 
+bool main\+Process\+::debug\+On (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Enables debug mode and reloads configuration. 
+
+Enables debug mode and reloads configuration
+
+\begin{DoxyReturn}{Returns}
+true Always returns true after setting debug mode. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_ad67fba6a1f5a555ccb35024c7de4eabf}\index{mainProcess@{mainProcess}!debugStatus@{debugStatus}}
+\index{debugStatus@{debugStatus}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{debugStatus()}{debugStatus()}}
+{\footnotesize\ttfamily \label{classmain_process_ad67fba6a1f5a555ccb35024c7de4eabf} 
+bool main\+Process\+::debug\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns debug mode status. 
+
+Returns debug mode status
+
+\begin{DoxyReturn}{Returns}
+true If debug mode is enabled. 
+
+false Otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_a5dc7f5e4fef1b4d0707cc5f5f6b9f83a}\index{mainProcess@{mainProcess}!generateAuthKey@{generateAuthKey}}
+\index{generateAuthKey@{generateAuthKey}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{generateAuthKey()}{generateAuthKey()}}
+{\footnotesize\ttfamily \label{classmain_process_a5dc7f5e4fef1b4d0707cc5f5f6b9f83a} 
+void main\+Process\+::generate\+Auth\+Key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_session}{Session}} \&}]{session}{, }\item[{\mbox{\hyperlink{structsession_construct}{session\+Construct}} \&}]{session\+Data}{}\end{DoxyParamCaption})}
+
+
+
+Generates random 40-\/character auth\+\_\+key for a session and copies it to session\+Data. 
+
+Generates a 40-\/character auth\+\_\+key
+
+
+\begin{DoxyParams}{Parameters}
+{\em session} & \doxylink{struct_session}{Session} object to assign key. \\
+\hline
+{\em session\+Data} & \doxylink{structsession_construct}{session\+Construct} object to copy key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requirements\+: $<$random$>$, $<$cstring$>$, \doxylink{struct_session}{Session}, \doxylink{structsession_construct}{session\+Construct} 
+\end{DoxyNote}
+\Hypertarget{classmain_process_a6c6fb3fa01287dea2d0491b33b6d17a8}\index{mainProcess@{mainProcess}!getAccountDBPath@{getAccountDBPath}}
+\index{getAccountDBPath@{getAccountDBPath}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{getAccountDBPath()}{getAccountDBPath()}}
+{\footnotesize\ttfamily \label{classmain_process_a6c6fb3fa01287dea2d0491b33b6d17a8} 
+string main\+Process\+::get\+Account\+DBPath (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns account database path. 
+
+Returns account database path
+
+\begin{DoxyReturn}{Returns}
+string Path string. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_ae7899b2259669c59ea686684aae5f23e}\index{mainProcess@{mainProcess}!getAuditLogDBPath@{getAuditLogDBPath}}
+\index{getAuditLogDBPath@{getAuditLogDBPath}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{getAuditLogDBPath()}{getAuditLogDBPath()}}
+{\footnotesize\ttfamily \label{classmain_process_ae7899b2259669c59ea686684aae5f23e} 
+string main\+Process\+::get\+Audit\+Log\+DBPath (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns audit log database path. 
+
+Returns audit log file path
+
+\begin{DoxyReturn}{Returns}
+string Path string. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_a2c14b8cc6470284a7cfe9a5e64da9a1a}\index{mainProcess@{mainProcess}!getLastSessionID@{getLastSessionID}}
+\index{getLastSessionID@{getLastSessionID}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{getLastSessionID()}{getLastSessionID()}}
+{\footnotesize\ttfamily \label{classmain_process_a2c14b8cc6470284a7cfe9a5e64da9a1a} 
+int main\+Process\+::get\+Last\+Session\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Returns last session ID \Hypertarget{classmain_process_aeca921d85a9735b866d06751c9bb3704}\index{mainProcess@{mainProcess}!getSessionByID@{getSessionByID}}
+\index{getSessionByID@{getSessionByID}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{getSessionByID()}{getSessionByID()}}
+{\footnotesize\ttfamily \label{classmain_process_aeca921d85a9735b866d06751c9bb3704} 
+\mbox{\hyperlink{struct_session}{Session}} \& main\+Process\+::get\+Session\+By\+ID (\begin{DoxyParamCaption}\item[{int}]{session\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Returns reference to a session by session\+\_\+id, or empty\+Session if not found. 
+
+Returns session by ID
+
+
+\begin{DoxyParams}{Parameters}
+{\em session\+\_\+id} & \doxylink{struct_session}{Session} identifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_session}{Session}\& Reference to session object. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_add1af2af25696f7c7be9305bad656175}\index{mainProcess@{mainProcess}!getSessions@{getSessions}}
+\index{getSessions@{getSessions}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{getSessions()}{getSessions()}}
+{\footnotesize\ttfamily \label{classmain_process_add1af2af25696f7c7be9305bad656175} 
+vector$<$ \mbox{\hyperlink{struct_session}{Session}} $>$ main\+Process\+::get\+Sessions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns vector of logged-\/in sessions. 
+
+Returns all sessions
+
+\begin{DoxyReturn}{Returns}
+vector$<$\+Session$>$ Vector of sessions. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_ae7fe6c24f892f2c41fc5ddeb0dd2d838}\index{mainProcess@{mainProcess}!getTransactionLogDBPath@{getTransactionLogDBPath}}
+\index{getTransactionLogDBPath@{getTransactionLogDBPath}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{getTransactionLogDBPath()}{getTransactionLogDBPath()}}
+{\footnotesize\ttfamily \label{classmain_process_ae7fe6c24f892f2c41fc5ddeb0dd2d838} 
+string main\+Process\+::get\+Transaction\+Log\+DBPath (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns transaction log database path. 
+
+Returns transaction log file path
+
+\begin{DoxyReturn}{Returns}
+string Path string. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_a57ee00e140bbcc6881109374d648d99a}\index{mainProcess@{mainProcess}!getUserDBPath@{getUserDBPath}}
+\index{getUserDBPath@{getUserDBPath}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{getUserDBPath()}{getUserDBPath()}}
+{\footnotesize\ttfamily \label{classmain_process_a57ee00e140bbcc6881109374d648d99a} 
+string main\+Process\+::get\+User\+DBPath (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns user database path. 
+
+Returns user database path
+
+\begin{DoxyReturn}{Returns}
+string Path string. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_a907d64c9dff50858dac9fb33310a9f48}\index{mainProcess@{mainProcess}!getUserSession@{getUserSession}}
+\index{getUserSession@{getUserSession}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{getUserSession()}{getUserSession()}}
+{\footnotesize\ttfamily \label{classmain_process_a907d64c9dff50858dac9fb33310a9f48} 
+\mbox{\hyperlink{struct_session}{Session}} \& main\+Process\+::get\+User\+Session (\begin{DoxyParamCaption}\item[{int}]{session\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Returns reference to a session by session\+\_\+id, or empty\+Session if not found. 
+
+Returns reference to session by ID
+
+
+\begin{DoxyParams}{Parameters}
+{\em session\+\_\+id} & \doxylink{struct_session}{Session} identifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{struct_session}{Session}\& Reference to session object. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requirements\+: vector$<$\+Session$>$ 
+\end{DoxyNote}
+\Hypertarget{classmain_process_aee34e32e996332a7f099408858e0d0f5}\index{mainProcess@{mainProcess}!incrementAccountID@{incrementAccountID}}
+\index{incrementAccountID@{incrementAccountID}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{incrementAccountID()}{incrementAccountID()}}
+{\footnotesize\ttfamily \label{classmain_process_aee34e32e996332a7f099408858e0d0f5} 
+int main\+Process\+::increment\+Account\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Increments and returns the last account ID. 
+
+Increments account ID and saves config
+
+\begin{DoxyReturn}{Returns}
+int Updated account ID. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_aebd81c4cb0b172a3288e5d97df65a063}\index{mainProcess@{mainProcess}!incrementAuditID@{incrementAuditID}}
+\index{incrementAuditID@{incrementAuditID}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{incrementAuditID()}{incrementAuditID()}}
+{\footnotesize\ttfamily \label{classmain_process_aebd81c4cb0b172a3288e5d97df65a063} 
+int main\+Process\+::increment\+Audit\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Increments and returns the last audit ID. 
+
+Increments audit ID and saves config
+
+\begin{DoxyReturn}{Returns}
+int Updated audit ID. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_ac08e7f615e38f86a6ba5c9ab92859285}\index{mainProcess@{mainProcess}!incrementCardIBAN@{incrementCardIBAN}}
+\index{incrementCardIBAN@{incrementCardIBAN}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{incrementCardIBAN()}{incrementCardIBAN()}}
+{\footnotesize\ttfamily \label{classmain_process_ac08e7f615e38f86a6ba5c9ab92859285} 
+int main\+Process\+::increment\+Card\+IBAN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Increments and returns the last IBAN card counter. 
+
+Increments IBAN counter and saves config
+
+\begin{DoxyReturn}{Returns}
+int Updated IBAN value. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_a2c36de84164f4cd81fcabe7a38188a5a}\index{mainProcess@{mainProcess}!incrementCardPAN@{incrementCardPAN}}
+\index{incrementCardPAN@{incrementCardPAN}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{incrementCardPAN()}{incrementCardPAN()}}
+{\footnotesize\ttfamily \label{classmain_process_a2c36de84164f4cd81fcabe7a38188a5a} 
+int main\+Process\+::increment\+Card\+PAN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Increments and returns the last PAN card counter. 
+
+Increments PAN counter and saves config
+
+\begin{DoxyReturn}{Returns}
+int Updated PAN value. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_a9ad284b92bb701ea36070a6e7540b006}\index{mainProcess@{mainProcess}!incrementTransactionID@{incrementTransactionID}}
+\index{incrementTransactionID@{incrementTransactionID}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{incrementTransactionID()}{incrementTransactionID()}}
+{\footnotesize\ttfamily \label{classmain_process_a9ad284b92bb701ea36070a6e7540b006} 
+int main\+Process\+::increment\+Transaction\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Increments and returns the last transaction ID. 
+
+Increments transaction ID and saves config
+
+\begin{DoxyReturn}{Returns}
+int Updated transaction ID. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_aa4cc929f57d91bc9c66cabd2996364f4}\index{mainProcess@{mainProcess}!incrementTransactionRequestID@{incrementTransactionRequestID}}
+\index{incrementTransactionRequestID@{incrementTransactionRequestID}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{incrementTransactionRequestID()}{incrementTransactionRequestID()}}
+{\footnotesize\ttfamily \label{classmain_process_aa4cc929f57d91bc9c66cabd2996364f4} 
+int main\+Process\+::increment\+Transaction\+Request\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Increments and returns the last transaction request ID. 
+
+Increments transaction request ID and saves config
+
+\begin{DoxyReturn}{Returns}
+int Updated transaction request ID. 
+\end{DoxyReturn}
+\Hypertarget{classmain_process_a695066867863263aca8b0156539ed397}\index{mainProcess@{mainProcess}!login@{login}}
+\index{login@{login}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily \label{classmain_process_a695066867863263aca8b0156539ed397} 
+void main\+Process\+::login (\begin{DoxyParamCaption}\item[{int}]{session\+\_\+id}{, }\item[{char}]{login}{\mbox{[}32\mbox{]}, }\item[{char}]{password}{\mbox{[}32\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Logs in a user by setting user ID in the session structure. 
+
+Logs in a user into a session
+
+
+\begin{DoxyParams}{Parameters}
+{\em session\+\_\+id} & \doxylink{struct_session}{Session} identifier. \\
+\hline
+{\em login} & \doxylink{class_user}{User} login string. \\
+\hline
+{\em password} & \doxylink{class_user}{User} password string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requirements\+: \doxylink{_user_8cpp_acf075e84c512170ca555c32e2960298f}{get\+User\+\_\+by\+Login()}, vector$<$\+Session$>$ 
+\end{DoxyNote}
+\Hypertarget{classmain_process_a0405b9392a203b5afee0bc8403a44b74}\index{mainProcess@{mainProcess}!logout@{logout}}
+\index{logout@{logout}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{logout()}{logout()}}
+{\footnotesize\ttfamily \label{classmain_process_a0405b9392a203b5afee0bc8403a44b74} 
+void main\+Process\+::logout (\begin{DoxyParamCaption}\item[{int}]{session\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Logs out a session by resetting its user\+\_\+id and auth\+\_\+key. 
+
+Logs out a session
+
+
+\begin{DoxyParams}{Parameters}
+{\em session\+\_\+id} & \doxylink{struct_session}{Session} identifier to logout. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requirements\+: vector$<$\+Session$>$ 
+\end{DoxyNote}
+\Hypertarget{classmain_process_acd985b507420bd2aa4e86142ff5c3ed5}\index{mainProcess@{mainProcess}!new\_session@{new\_session}}
+\index{new\_session@{new\_session}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{new\_session()}{new\_session()}}
+{\footnotesize\ttfamily \label{classmain_process_acd985b507420bd2aa4e86142ff5c3ed5} 
+int main\+Process\+::new\+\_\+session (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Creates a new session, increments last\+\_\+session\+\_\+id and adds session to logged users. 
+
+Creates a new session, adds to logged users, returns session ID
+
+\begin{DoxyReturn}{Returns}
+int Returns the ID of the newly created session. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Requirements\+: \doxylink{classmain_process_af38220d892f7653220f144d864d17a80}{savecfg()}, vector$<$\+Session$>$ 
+\end{DoxyNote}
+\Hypertarget{classmain_process_af3fb877bea6082d8f432bcd51816f924}\index{mainProcess@{mainProcess}!printConfig@{printConfig}}
+\index{printConfig@{printConfig}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{printConfig()}{printConfig()}}
+{\footnotesize\ttfamily \label{classmain_process_af3fb877bea6082d8f432bcd51816f924} 
+void main\+Process\+::print\+Config (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Prints all key-\/value pairs from the configuration file. 
+
+Prints all key-\/value pairs from configuration
+
+Reads the configuration and prints each key and value to the console. \begin{DoxyNote}{Note}
+Requirements\+: \doxylink{_bank___system_2basic__functions_8cpp_a248127881de11156f58e4dd2fd879f6a}{read\+Config()}, $<$map$>$, $<$iostream$>$ 
+\end{DoxyNote}
+\Hypertarget{classmain_process_a7aa73f43d68883b49bc20b9e757c143d}\index{mainProcess@{mainProcess}!printSessions@{printSessions}}
+\index{printSessions@{printSessions}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{printSessions()}{printSessions()}}
+{\footnotesize\ttfamily \label{classmain_process_a7aa73f43d68883b49bc20b9e757c143d} 
+void main\+Process\+::print\+Sessions (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Prints all logged sessions to console. 
+
+Prints all active sessions
+
+\begin{DoxyNote}{Note}
+Requirements\+: vector$<$\+Session$>$, $<$iostream$>$ 
+\end{DoxyNote}
+\Hypertarget{classmain_process_af38220d892f7653220f144d864d17a80}\index{mainProcess@{mainProcess}!savecfg@{savecfg}}
+\index{savecfg@{savecfg}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{savecfg()}{savecfg()}}
+{\footnotesize\ttfamily \label{classmain_process_af38220d892f7653220f144d864d17a80} 
+void main\+Process\+::savecfg (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Saves current session and card counters to configuration file. 
+
+Saves current counters to configuration file
+
+Persists the current state of \doxylink{classmain_process}{main\+Process} including last session ID, card counters, account, user, transaction log, and audit log paths.
+
+\begin{DoxyNote}{Note}
+Uses \doxylink{_bank___system_2basic__functions_8cpp_a006014cced648ca7880d24c53223bdd4}{write\+Config()}, $<$map$>$, $<$string$>$. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_bank___system_2basic__functions_8cpp_a006014cced648ca7880d24c53223bdd4}{write\+Config()} 
+\end{DoxySeeAlso}
+\Hypertarget{classmain_process_a2292b748e6991cc73433259a9cd078cf}\index{mainProcess@{mainProcess}!setDebugMode@{setDebugMode}}
+\index{setDebugMode@{setDebugMode}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{setDebugMode()}{setDebugMode()}}
+{\footnotesize\ttfamily \label{classmain_process_a2292b748e6991cc73433259a9cd078cf} 
+void main\+Process\+::set\+Debug\+Mode (\begin{DoxyParamCaption}\item[{bool}]{mode}{}\end{DoxyParamCaption})}
+
+Sets debug mode \Hypertarget{classmain_process_ad6499979445d77ca57044c6d62be083d}\index{mainProcess@{mainProcess}!transaction\_request@{transaction\_request}}
+\index{transaction\_request@{transaction\_request}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{transaction\_request()}{transaction\_request()}}
+{\footnotesize\ttfamily \label{classmain_process_ad6499979445d77ca57044c6d62be083d} 
+void main\+Process\+::transaction\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}}}]{handle}{, }\item[{\mbox{\hyperlink{classaccount}{account}} \&}]{from}{, }\item[{\mbox{\hyperlink{classaccount}{account}} \&}]{to}{, }\item[{double}]{ammount}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{PIN}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{CVV}{, }\item[{\mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}}]{op\+\_\+type}{, }\item[{std\+::string}]{comment}{ = {\ttfamily "{}\#"{}}}\end{DoxyParamCaption})}
+
+
+
+Handles a transaction request from one account to another. 
+
+Creates a transaction request
+
+
+\begin{DoxyParams}{Parameters}
+{\em handle} & Client handle info. \\
+\hline
+{\em from} & Sender account. \\
+\hline
+{\em to} & Receiver account. \\
+\hline
+{\em ammount} & Transaction amount. \\
+\hline
+{\em PIN} & PIN for authentication. \\
+\hline
+{\em CVV} & CVV for authentication. \\
+\hline
+{\em op\+\_\+type} & Operation type. \\
+\hline
+{\em comment} & Optional comment for transaction. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requirements\+: \doxylink{struct_session}{Session}, account, \doxylink{class_transaction_log}{Transaction\+Log} 
+\end{DoxyNote}
+\Hypertarget{classmain_process_a710cf408d62c85190d34e6755f648a4a}\index{mainProcess@{mainProcess}!transferBridge@{transferBridge}}
+\index{transferBridge@{transferBridge}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{transferBridge()}{transferBridge()}}
+{\footnotesize\ttfamily \label{classmain_process_a710cf408d62c85190d34e6755f648a4a} 
+void main\+Process\+::transfer\+Bridge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classaccount}{account}} \&}]{from}{, }\item[{\mbox{\hyperlink{classaccount}{account}} \&}]{to}{, }\item[{double}]{amount}{}\end{DoxyParamCaption})}
+
+Performs internal transfer 
+
+\label{doc-variable-members}
+\Hypertarget{classmain_process_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmain_process_a95ec7291cc04d61c7c46662e7ae40263}\index{mainProcess@{mainProcess}!account\_db\_path@{account\_db\_path}}
+\index{account\_db\_path@{account\_db\_path}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{account\_db\_path}{account\_db\_path}}
+{\footnotesize\ttfamily \label{classmain_process_a95ec7291cc04d61c7c46662e7ae40263} 
+std\+::string main\+Process\+::account\+\_\+db\+\_\+path\hspace{0.3cm}{\ttfamily [private]}}
+
+Account database file path \Hypertarget{classmain_process_af07dce7e0330530e0dd3c9f4374e22cc}\index{mainProcess@{mainProcess}!audit\_log\_db\_path@{audit\_log\_db\_path}}
+\index{audit\_log\_db\_path@{audit\_log\_db\_path}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{audit\_log\_db\_path}{audit\_log\_db\_path}}
+{\footnotesize\ttfamily \label{classmain_process_af07dce7e0330530e0dd3c9f4374e22cc} 
+std\+::string main\+Process\+::audit\+\_\+log\+\_\+db\+\_\+path\hspace{0.3cm}{\ttfamily [private]}}
+
+Audit log file path \Hypertarget{classmain_process_adad34cb02191047478e64a461d8b2ab0}\index{mainProcess@{mainProcess}!debug@{debug}}
+\index{debug@{debug}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily \label{classmain_process_adad34cb02191047478e64a461d8b2ab0} 
+bool main\+Process\+::debug\hspace{0.3cm}{\ttfamily [private]}}
+
+Debug mode flag \Hypertarget{classmain_process_a18b800db4b70f42465c0ba860f9c3b24}\index{mainProcess@{mainProcess}!last\_account\_id@{last\_account\_id}}
+\index{last\_account\_id@{last\_account\_id}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{last\_account\_id}{last\_account\_id}}
+{\footnotesize\ttfamily \label{classmain_process_a18b800db4b70f42465c0ba860f9c3b24} 
+int main\+Process\+::last\+\_\+account\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+Last account ID \Hypertarget{classmain_process_abbe43bbe1c723e0ea4a537d04020e483}\index{mainProcess@{mainProcess}!last\_audit\_id@{last\_audit\_id}}
+\index{last\_audit\_id@{last\_audit\_id}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{last\_audit\_id}{last\_audit\_id}}
+{\footnotesize\ttfamily \label{classmain_process_abbe43bbe1c723e0ea4a537d04020e483} 
+int main\+Process\+::last\+\_\+audit\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+Last audit record ID \Hypertarget{classmain_process_a3c921c59c69b2310b4954efd767252b8}\index{mainProcess@{mainProcess}!last\_card\_IBAN@{last\_card\_IBAN}}
+\index{last\_card\_IBAN@{last\_card\_IBAN}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{last\_card\_IBAN}{last\_card\_IBAN}}
+{\footnotesize\ttfamily \label{classmain_process_a3c921c59c69b2310b4954efd767252b8} 
+int main\+Process\+::last\+\_\+card\+\_\+\+IBAN\hspace{0.3cm}{\ttfamily [private]}}
+
+Last card IBAN \Hypertarget{classmain_process_aeb64d1e1eae13b15525b479f1b8aba7f}\index{mainProcess@{mainProcess}!last\_card\_PAN@{last\_card\_PAN}}
+\index{last\_card\_PAN@{last\_card\_PAN}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{last\_card\_PAN}{last\_card\_PAN}}
+{\footnotesize\ttfamily \label{classmain_process_aeb64d1e1eae13b15525b479f1b8aba7f} 
+int main\+Process\+::last\+\_\+card\+\_\+\+PAN\hspace{0.3cm}{\ttfamily [private]}}
+
+Last card PAN \Hypertarget{classmain_process_ac600b67cf989a2341e6a376a9da6017f}\index{mainProcess@{mainProcess}!last\_session\_id@{last\_session\_id}}
+\index{last\_session\_id@{last\_session\_id}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{last\_session\_id}{last\_session\_id}}
+{\footnotesize\ttfamily \label{classmain_process_ac600b67cf989a2341e6a376a9da6017f} 
+int main\+Process\+::last\+\_\+session\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+Last session identifier \Hypertarget{classmain_process_a6b1b22d18ccf29c5ea303f03b8bf7b0b}\index{mainProcess@{mainProcess}!last\_transaction\_id@{last\_transaction\_id}}
+\index{last\_transaction\_id@{last\_transaction\_id}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{last\_transaction\_id}{last\_transaction\_id}}
+{\footnotesize\ttfamily \label{classmain_process_a6b1b22d18ccf29c5ea303f03b8bf7b0b} 
+int main\+Process\+::last\+\_\+transaction\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+Last transaction ID \Hypertarget{classmain_process_aa2b48ce1772513d4fc5c16e1b981ee96}\index{mainProcess@{mainProcess}!last\_transaction\_request\_id@{last\_transaction\_request\_id}}
+\index{last\_transaction\_request\_id@{last\_transaction\_request\_id}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{last\_transaction\_request\_id}{last\_transaction\_request\_id}}
+{\footnotesize\ttfamily \label{classmain_process_aa2b48ce1772513d4fc5c16e1b981ee96} 
+int main\+Process\+::last\+\_\+transaction\+\_\+request\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+Last transaction request ID \Hypertarget{classmain_process_a09143f6f39261e1d949049a6619dbe91}\index{mainProcess@{mainProcess}!loggined\_users@{loggined\_users}}
+\index{loggined\_users@{loggined\_users}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{loggined\_users}{loggined\_users}}
+{\footnotesize\ttfamily \label{classmain_process_a09143f6f39261e1d949049a6619dbe91} 
+std\+::vector$<$\mbox{\hyperlink{struct_session}{Session}}$>$ main\+Process\+::loggined\+\_\+users\hspace{0.3cm}{\ttfamily [private]}}
+
+Vector of active sessions \Hypertarget{classmain_process_a0972867a7a7809a00fb0a477f92f848d}\index{mainProcess@{mainProcess}!transaction\_log\_db\_path@{transaction\_log\_db\_path}}
+\index{transaction\_log\_db\_path@{transaction\_log\_db\_path}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{transaction\_log\_db\_path}{transaction\_log\_db\_path}}
+{\footnotesize\ttfamily \label{classmain_process_a0972867a7a7809a00fb0a477f92f848d} 
+std\+::string main\+Process\+::transaction\+\_\+log\+\_\+db\+\_\+path\hspace{0.3cm}{\ttfamily [private]}}
+
+Transaction log file path \Hypertarget{classmain_process_a377a12ba9c903f938fe428ddd1b37c44}\index{mainProcess@{mainProcess}!user\_db\_path@{user\_db\_path}}
+\index{user\_db\_path@{user\_db\_path}!mainProcess@{mainProcess}}
+\doxysubsubsection{\texorpdfstring{user\_db\_path}{user\_db\_path}}
+{\footnotesize\ttfamily \label{classmain_process_a377a12ba9c903f938fe428ddd1b37c44} 
+std\+::string main\+Process\+::user\+\_\+db\+\_\+path\hspace{0.3cm}{\ttfamily [private]}}
+
+\doxylink{class_user}{User} database file path 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{main_process_8h}{main\+Process.\+h}}\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{main_process_8cpp}{main\+Process.\+cpp}}\end{DoxyCompactItemize}

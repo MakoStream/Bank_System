@@ -1,0 +1,69 @@
+\doxysection{Unit\+Test\+Command Class Reference}
+\hypertarget{class_unit_test_command}{}\label{class_unit_test_command}\index{UnitTestCommand@{UnitTestCommand}}
+
+
+Executes unit tests for user or server clients.  
+
+
+
+
+{\ttfamily \#include $<$Unit\+Test\+Command.\+h$>$}
+
+Inheritance diagram for Unit\+Test\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_unit_test_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_unit_test_command_ad97bd77280dc6e2e9455e9a354e42d07}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle) override
+\item 
+string \mbox{\hyperlink{class_unit_test_command_ae74d8800d3183dd95ee63e805768c229}{name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_command}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_command_aa545a53d35818f9efb936daf3fa16c61}{\texorpdfstring{$\sim$}{\string~}\+Command}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Executes unit tests for user or server clients. 
+
+Checks debug mode, deletes old databases if needed, runs tests, logs all actions via log\+Eye. \begin{DoxyNote}{Note}
+Requires\+: \doxylink{structhandle_info}{handle\+Info}, log\+Eye, $<$filesystem$>$ 
+
+Syntax\+: unit\+\_\+test $<$client\+\_\+type$>$ 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{class_unit_test_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_unit_test_command_ad97bd77280dc6e2e9455e9a354e42d07}\index{UnitTestCommand@{UnitTestCommand}!execute@{execute}}
+\index{execute@{execute}!UnitTestCommand@{UnitTestCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{class_unit_test_command_ad97bd77280dc6e2e9455e9a354e42d07} 
+void Unit\+Test\+Command\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command}}.
+
+\Hypertarget{class_unit_test_command_ae74d8800d3183dd95ee63e805768c229}\index{UnitTestCommand@{UnitTestCommand}!name@{name}}
+\index{name@{name}!UnitTestCommand@{UnitTestCommand}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \label{class_unit_test_command_ae74d8800d3183dd95ee63e805768c229} 
+string Unit\+Test\+Command\+::name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a87b16bdc7005f072d4b352666d3c1489}{Command}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/commands/\mbox{\hyperlink{_unit_test_command_8h}{Unit\+Test\+Command.\+h}}\end{DoxyCompactItemize}

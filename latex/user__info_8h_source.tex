@@ -1,0 +1,47 @@
+\doxysection{user\+\_\+info.\+h}
+\hypertarget{user__info_8h_source}{}\label{user__info_8h_source}\index{Bank\_System\_User/user\_info.h@{Bank\_System\_User/user\_info.h}}
+\mbox{\hyperlink{user__info_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}windows.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{cardStatus}}\ \{\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}{AVAILABLE}},\ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61}{BLOCKED}}\ \};}
+\DoxyCodeLine{00010\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{cardType}}\ \{\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18ac1b583024752a086f49bf2061478409e}{DEPOSITE}},\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}},\ \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a5b9c7596aea45aa4b6b3fc93a907391d}{CREDIT}}\ \};}
+\DoxyCodeLine{00011\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balanceType}}\ \{\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}},\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a73bf3800553f080d112618f5742f617e}{DLR}},\ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a0c1560edca52d24f8b6c3118f965ed71}{EUR}}\ \};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsession_construct}{sessionConstruct}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}\ =\ -\/1;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structsession_construct_a17eae4deff08c0be7a6db9e198474f67}{userId}}\ =\ -\/1;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[10];}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}}[256];}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structsession_construct_ae85f86b1edbf9e0294b8204d5ecb32cc}{auth\_key}}[41];}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//vector\ <string>\ msg;}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[10][1024];}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structfronted___user}{fronted\_User}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structfronted___user_a627fc676763e95275737d0d269c11814}{name}}[64];}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structfronted___user_a1fdc37999413c9482753629af50adf2e}{surname}}[64];}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structfronted___user_acac99dea5c49585421589b672c565a0f}{login}}[32];}
+\DoxyCodeLine{00030\ \ \ \ \ vector<int>\ \mbox{\hyperlink{structfronted___user_afa1ff8df8315a21afcab9d7d45bc9da7}{accounts\_id}};}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhandle_info}{handleInfo}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ HANDLE\ \mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}};}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{structsession_construct}{sessionConstruct}}\&\ \mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}};}
+\DoxyCodeLine{00036\ \ \ \ \ DWORD\ \mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}};}
+\DoxyCodeLine{00037\ \ \ \ \ DWORD\ \mbox{\hyperlink{structhandle_info_aacbd0ceaccd6ab462b301289634c1b6a}{bytesWritten}};}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structfronted___user}{fronted\_User}}\ \mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structfronted___user}{fronted\_User}}\ \mbox{\hyperlink{_bank___system_8cpp_a824c80a5364fc01142e0849490db0544}{emptyUser}};}
+
+\end{DoxyCode}

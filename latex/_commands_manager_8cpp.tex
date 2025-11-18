@@ -1,0 +1,36 @@
+\doxysection{Bank\+\_\+\+System/\+Commands\+Manager.cpp File Reference}
+\hypertarget{_commands_manager_8cpp}{}\label{_commands_manager_8cpp}\index{Bank\_System/CommandsManager.cpp@{Bank\_System/CommandsManager.cpp}}
+
+
+Implementation of \doxylink{class_commands_manager}{Commands\+Manager} class methods.  
+
+
+{\ttfamily \#include "{}Commands\+Manager.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Create\+DBCommand.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Register\+User\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Print\+User\+List\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/user\+Login\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/user\+Logout\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/get\+Session\+Id\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Print\+Account\+List\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+New\+Account\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Account\+Verify\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Account\+Ban\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+User\+Info\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Debug\+On\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Unit\+Test\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Account\+Info\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Set\+Account\+Comand.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+Transaction\+Request\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/get\+User\+Accounts\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+DEBUG/\+DEBUG\+\_\+set\+Account\+Currency\+Command.\+h"{}}\newline
+{\ttfamily \#include "{}commands/\+DEBUG/\+DEBUG\+\_\+remove\+DBCommand.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+
+
+\doxysubsection{Detailed Description}
+Implementation of \doxylink{class_commands_manager}{Commands\+Manager} class methods. 
+
+Defines the constructor to register all commands and the execute method to process incoming commands from clients.\+Includes both regular and debug / test commands. \begin{DoxyNote}{Note}
+Required headers \+: \doxylink{_commands_manager_8h}{Commands\+Manager.\+h}, headers of all command classes, $<$iostream$>$. 
+\end{DoxyNote}

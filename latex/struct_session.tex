@@ -1,0 +1,51 @@
+\doxysection{Session Struct Reference}
+\hypertarget{struct_session}{}\label{struct_session}\index{Session@{Session}}
+
+
+Represents a user session.  
+
+
+
+
+{\ttfamily \#include $<$main\+Process.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_session_aeb5ad3bb270afcb7a17e413edf5269e7}{session\+\_\+id}}
+\item 
+int \mbox{\hyperlink{struct_session_ae33f99c74a9f433e660bf8ae48945357}{user\+\_\+id}}
+\item 
+char \mbox{\hyperlink{struct_session_a1c42c57d00a4c68ed191c1fcf5fe865c}{auth\+\_\+key}} \mbox{[}41\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a user session. 
+
+\label{doc-variable-members}
+\Hypertarget{struct_session_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_session_a1c42c57d00a4c68ed191c1fcf5fe865c}\index{Session@{Session}!auth\_key@{auth\_key}}
+\index{auth\_key@{auth\_key}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{auth\_key}{auth\_key}}
+{\footnotesize\ttfamily \label{struct_session_a1c42c57d00a4c68ed191c1fcf5fe865c} 
+char Session\+::auth\+\_\+key\mbox{[}41\mbox{]}}
+
+Authentication key (40 chars + null terminator) \Hypertarget{struct_session_aeb5ad3bb270afcb7a17e413edf5269e7}\index{Session@{Session}!session\_id@{session\_id}}
+\index{session\_id@{session\_id}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{session\_id}{session\_id}}
+{\footnotesize\ttfamily \label{struct_session_aeb5ad3bb270afcb7a17e413edf5269e7} 
+int Session\+::session\+\_\+id}
+
+Unique session identifier \Hypertarget{struct_session_ae33f99c74a9f433e660bf8ae48945357}\index{Session@{Session}!user\_id@{user\_id}}
+\index{user\_id@{user\_id}!Session@{Session}}
+\doxysubsubsection{\texorpdfstring{user\_id}{user\_id}}
+{\footnotesize\ttfamily \label{struct_session_ae33f99c74a9f433e660bf8ae48945357} 
+int Session\+::user\+\_\+id}
+
+Associated user ID 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{main_process_8h}{main\+Process.\+h}}\end{DoxyCompactItemize}

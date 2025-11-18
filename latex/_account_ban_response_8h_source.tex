@@ -1,0 +1,49 @@
+\doxysection{Account\+Ban\+Response.\+h}
+\hypertarget{_account_ban_response_8h_source}{}\label{_account_ban_response_8h_source}\index{Bank\_System\_User/responses/AccountBanResponse.h@{Bank\_System\_User/responses/AccountBanResponse.h}}
+\mbox{\hyperlink{_account_ban_response_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_response_8h}{../Response.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_account_ban_response}{AccountBanResponse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00004\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_account_ban_response_a552cc5f713de966ac23529f808354832}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ ReadFile(handle.\mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}},\ \&handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}},\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}),\ \&handle.\mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}},\ NULL);}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ ==\ 0)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Помилка:\ "{}}\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[0]\ <<\ endl;}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ ==\ 1)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Обліковий запис успішно заблоковано."{}}\ <<\ endl;}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Помилка:\ Не\ вдалося\ заблокувати обліковий запис.\(\backslash\)n"{}};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00018\ \ \ \ \ \};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{struct_account_ban_response_aa5a23fb7d6a8b6bc4662d16da2319003}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}account\_ban"{}};}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_account_unban_response}{AccountUnbanResponse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{struct_account_unban_response_a269d00db320838979b885edc9ff59a87}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ ReadFile(handle.\mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}},\ \&handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}},\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}),\ \&handle.\mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}},\ NULL);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ ==\ 0)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Помилка:\ "{}}\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[0]\ <<\ endl;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ ==\ 1)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Обліковий запис успішно розблоковано."{}}\ <<\ endl;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Помилка:\ Не\ вдалося\ розблокувати обліковий запис.\(\backslash\)n"{}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{struct_account_unban_response_a09198c4f5b66d99e1e6d7a78fa9687f2}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}account\_unban"{}};}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \};}
+
+\end{DoxyCode}

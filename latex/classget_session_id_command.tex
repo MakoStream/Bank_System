@@ -1,0 +1,69 @@
+\doxysection{get\+Session\+Id\+Command Class Reference}
+\hypertarget{classget_session_id_command}{}\label{classget_session_id_command}\index{getSessionIdCommand@{getSessionIdCommand}}
+
+
+Generates a new session ID for the client.  
+
+
+
+
+{\ttfamily \#include $<$get\+Session\+Id\+Command.\+h$>$}
+
+Inheritance diagram for get\+Session\+Id\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classget_session_id_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classget_session_id_command_ad3042a7dd9f80f5f88718167c654f166}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle) override
+\item 
+std\+::string \mbox{\hyperlink{classget_session_id_command_a4637bb96ec3fef0059c67a55ca74b2a1}{name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_command}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_command_aa545a53d35818f9efb936daf3fa16c61}{\texorpdfstring{$\sim$}{\string~}\+Command}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Generates a new session ID for the client. 
+
+Logs session creation and provides session ID. \begin{DoxyNote}{Note}
+Requires\+: \doxylink{structhandle_info}{handle\+Info}, log\+Eye 
+
+Syntax\+: get\+SID 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{classget_session_id_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classget_session_id_command_ad3042a7dd9f80f5f88718167c654f166}\index{getSessionIdCommand@{getSessionIdCommand}!execute@{execute}}
+\index{execute@{execute}!getSessionIdCommand@{getSessionIdCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{classget_session_id_command_ad3042a7dd9f80f5f88718167c654f166} 
+void get\+Session\+Id\+Command\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command}}.
+
+\Hypertarget{classget_session_id_command_a4637bb96ec3fef0059c67a55ca74b2a1}\index{getSessionIdCommand@{getSessionIdCommand}!name@{name}}
+\index{name@{name}!getSessionIdCommand@{getSessionIdCommand}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \label{classget_session_id_command_a4637bb96ec3fef0059c67a55ca74b2a1} 
+std\+::string get\+Session\+Id\+Command\+::name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a87b16bdc7005f072d4b352666d3c1489}{Command}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/commands/\mbox{\hyperlink{get_session_id_command_8h}{get\+Session\+Id\+Command.\+h}}\end{DoxyCompactItemize}

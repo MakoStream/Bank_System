@@ -1,0 +1,35 @@
+\doxysection{Bank\+\_\+\+System/\+Command.cpp File Reference}
+\hypertarget{_command_8cpp}{}\label{_command_8cpp}\index{Bank\_System/Command.cpp@{Bank\_System/Command.cpp}}
+{\ttfamily \#include "{}Command.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\+\_\+response}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle, const std\+::string \&msg)
+\begin{DoxyCompactList}\small\item\em Sends a response message to the client. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_command_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_command_8cpp_a718cac29a2de76923315d12032ef77ab}\index{Command.cpp@{Command.cpp}!throw\_response@{throw\_response}}
+\index{throw\_response@{throw\_response}!Command.cpp@{Command.cpp}}
+\doxysubsubsection{\texorpdfstring{throw\_response()}{throw\_response()}}
+{\footnotesize\ttfamily \label{_command_8cpp_a718cac29a2de76923315d12032ef77ab} 
+void throw\+\_\+response (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{, }\item[{const std\+::string \&}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Sends a response message to the client. 
+
+Copies the given message into the first slot of session\+Data.\+msg and writes the updated session\+Data structure to the pipe associated with the handle. 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Reference to \doxylink{structhandle_info}{handle\+Info} containing the pipe and session\+Data. \\
+\hline
+{\em msg} & The message string to send to the client. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$string$>$, $<$cstring$>$, \texorpdfstring{$<$}{<}windows.\+h\texorpdfstring{$>$}{>}. 
+
+Used by \doxylink{class_command}{Command} and all derived command classes to send messages to clients. 
+\end{DoxyNote}

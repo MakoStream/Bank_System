@@ -1,0 +1,124 @@
+\doxysection{Logger Class Reference}
+\hypertarget{class_logger}{}\label{class_logger}\index{Logger@{Logger}}
+
+
+{\ttfamily \#include $<$Logger.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_logger_abc41bfb031d896170c7675fa96a6b30c}{Logger}} ()
+\item 
+void \mbox{\hyperlink{class_logger_ab1bf9a557e3e24536205cfa95958a6b7}{write}} (const std\+::string \&message)
+\item 
+void \mbox{\hyperlink{class_logger_accca60aa984a93e145b2432201dc3587}{cmd}} (int session\+\_\+id, int user\+\_\+id, vector$<$ string $>$ \&args)
+\item 
+void \mbox{\hyperlink{class_logger_a14d6ff5bd189d5caa2042d88248d0f6b}{new\+Session}} (int session\+\_\+id, int client\+\_\+type)
+\item 
+void \mbox{\hyperlink{class_logger_a8906cb83011f1317191c9ee5d786271b}{user\+Loggined}} (\mbox{\hyperlink{struct_session}{Session}} user)
+\item 
+void \mbox{\hyperlink{class_logger_a2d78f9f6b0952852e5c4ed2fbf1e80b2}{created\+DB}} (\mbox{\hyperlink{struct_session}{Session}} user)
+\item 
+void \mbox{\hyperlink{class_logger_aae0bf57fb01069e3849061db8f19b07a}{Access\+Danied}} (string command\+\_\+name, \mbox{\hyperlink{struct_session}{Session}} user)
+\item 
+void \mbox{\hyperlink{class_logger_a4908862c28c1dc8876deac709ae75686}{exit}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_logger_a139da25b5779da772d9f7a67580056a3}{current\+Date}} ()
+\item 
+std\+::string \mbox{\hyperlink{class_logger_a3bc26d255e653b2acaae16554530ba71}{current\+Time}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_logger_a3dc198309aa6b96f0c9f535eb5f24738}{log\+File\+Name}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_logger_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_logger_abc41bfb031d896170c7675fa96a6b30c}\index{Logger@{Logger}!Logger@{Logger}}
+\index{Logger@{Logger}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{Logger()}{Logger()}}
+{\footnotesize\ttfamily \label{class_logger_abc41bfb031d896170c7675fa96a6b30c} 
+Logger\+::\+Logger (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_logger_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_logger_aae0bf57fb01069e3849061db8f19b07a}\index{Logger@{Logger}!AccessDanied@{AccessDanied}}
+\index{AccessDanied@{AccessDanied}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{AccessDanied()}{AccessDanied()}}
+{\footnotesize\ttfamily \label{class_logger_aae0bf57fb01069e3849061db8f19b07a} 
+void Logger\+::\+Access\+Danied (\begin{DoxyParamCaption}\item[{string}]{command\+\_\+name}{, }\item[{\mbox{\hyperlink{struct_session}{Session}}}]{user}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_logger_accca60aa984a93e145b2432201dc3587}\index{Logger@{Logger}!cmd@{cmd}}
+\index{cmd@{cmd}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{cmd()}{cmd()}}
+{\footnotesize\ttfamily \label{class_logger_accca60aa984a93e145b2432201dc3587} 
+void Logger\+::cmd (\begin{DoxyParamCaption}\item[{int}]{session\+\_\+id}{, }\item[{int}]{user\+\_\+id}{, }\item[{vector$<$ string $>$ \&}]{args}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_logger_a2d78f9f6b0952852e5c4ed2fbf1e80b2}\index{Logger@{Logger}!createdDB@{createdDB}}
+\index{createdDB@{createdDB}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{createdDB()}{createdDB()}}
+{\footnotesize\ttfamily \label{class_logger_a2d78f9f6b0952852e5c4ed2fbf1e80b2} 
+void Logger\+::created\+DB (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_session}{Session}}}]{user}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_logger_a139da25b5779da772d9f7a67580056a3}\index{Logger@{Logger}!currentDate@{currentDate}}
+\index{currentDate@{currentDate}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{currentDate()}{currentDate()}}
+{\footnotesize\ttfamily \label{class_logger_a139da25b5779da772d9f7a67580056a3} 
+string Logger\+::current\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_logger_a3bc26d255e653b2acaae16554530ba71}\index{Logger@{Logger}!currentTime@{currentTime}}
+\index{currentTime@{currentTime}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{currentTime()}{currentTime()}}
+{\footnotesize\ttfamily \label{class_logger_a3bc26d255e653b2acaae16554530ba71} 
+string Logger\+::current\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_logger_a4908862c28c1dc8876deac709ae75686}\index{Logger@{Logger}!exit@{exit}}
+\index{exit@{exit}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{exit()}{exit()}}
+{\footnotesize\ttfamily \label{class_logger_a4908862c28c1dc8876deac709ae75686} 
+void Logger\+::exit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_logger_a14d6ff5bd189d5caa2042d88248d0f6b}\index{Logger@{Logger}!newSession@{newSession}}
+\index{newSession@{newSession}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{newSession()}{newSession()}}
+{\footnotesize\ttfamily \label{class_logger_a14d6ff5bd189d5caa2042d88248d0f6b} 
+void Logger\+::new\+Session (\begin{DoxyParamCaption}\item[{int}]{session\+\_\+id}{, }\item[{int}]{client\+\_\+type}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_logger_a8906cb83011f1317191c9ee5d786271b}\index{Logger@{Logger}!userLoggined@{userLoggined}}
+\index{userLoggined@{userLoggined}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{userLoggined()}{userLoggined()}}
+{\footnotesize\ttfamily \label{class_logger_a8906cb83011f1317191c9ee5d786271b} 
+void Logger\+::user\+Loggined (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_session}{Session}}}]{user}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_logger_ab1bf9a557e3e24536205cfa95958a6b7}\index{Logger@{Logger}!write@{write}}
+\index{write@{write}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{class_logger_ab1bf9a557e3e24536205cfa95958a6b7} 
+void Logger\+::write (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{message}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_logger_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_logger_a3dc198309aa6b96f0c9f535eb5f24738}\index{Logger@{Logger}!logFileName@{logFileName}}
+\index{logFileName@{logFileName}!Logger@{Logger}}
+\doxysubsubsection{\texorpdfstring{logFileName}{logFileName}}
+{\footnotesize\ttfamily \label{class_logger_a3dc198309aa6b96f0c9f535eb5f24738} 
+std\+::string Logger\+::log\+File\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{_logger_8h}{Logger.\+h}}\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{_logger_8cpp}{Logger.\+cpp}}\end{DoxyCompactItemize}

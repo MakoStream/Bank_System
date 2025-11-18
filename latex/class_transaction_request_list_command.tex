@@ -1,0 +1,69 @@
+\doxysection{Transaction\+Request\+List\+Command Class Reference}
+\hypertarget{class_transaction_request_list_command}{}\label{class_transaction_request_list_command}\index{TransactionRequestListCommand@{TransactionRequestListCommand}}
+
+
+Prints a paginated list of transaction requests.  
+
+
+
+
+{\ttfamily \#include $<$Transaction\+Request\+Command.\+h$>$}
+
+Inheritance diagram for Transaction\+Request\+List\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_transaction_request_list_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_transaction_request_list_command_aff6c89307e02a05afe83ad2496081bca}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle) override
+\item 
+std\+::string \mbox{\hyperlink{class_transaction_request_list_command_ab9e46cee511ee1b14ab8e670bfcd6a2c}{name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_command}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_command_aa545a53d35818f9efb936daf3fa16c61}{\texorpdfstring{$\sim$}{\string~}\+Command}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Prints a paginated list of transaction requests. 
+
+Validates page number, prints requests page by page, logs all actions via log\+Eye. \begin{DoxyNote}{Note}
+Requires\+: \doxylink{structhandle_info}{handle\+Info}, log\+Eye, $<$vector$>$, $<$string$>$ 
+
+Syntax\+: request\+\_\+list $<$page$>$ 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{class_transaction_request_list_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_transaction_request_list_command_aff6c89307e02a05afe83ad2496081bca}\index{TransactionRequestListCommand@{TransactionRequestListCommand}!execute@{execute}}
+\index{execute@{execute}!TransactionRequestListCommand@{TransactionRequestListCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{class_transaction_request_list_command_aff6c89307e02a05afe83ad2496081bca} 
+void Transaction\+Request\+List\+Command\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command}}.
+
+\Hypertarget{class_transaction_request_list_command_ab9e46cee511ee1b14ab8e670bfcd6a2c}\index{TransactionRequestListCommand@{TransactionRequestListCommand}!name@{name}}
+\index{name@{name}!TransactionRequestListCommand@{TransactionRequestListCommand}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \label{class_transaction_request_list_command_ab9e46cee511ee1b14ab8e670bfcd6a2c} 
+std\+::string Transaction\+Request\+List\+Command\+::name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a87b16bdc7005f072d4b352666d3c1489}{Command}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/commands/\mbox{\hyperlink{_transaction_request_command_8h}{Transaction\+Request\+Command.\+h}}\end{DoxyCompactItemize}

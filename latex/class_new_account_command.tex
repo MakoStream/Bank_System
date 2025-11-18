@@ -1,0 +1,69 @@
+\doxysection{New\+Account\+Command Class Reference}
+\hypertarget{class_new_account_command}{}\label{class_new_account_command}\index{NewAccountCommand@{NewAccountCommand}}
+
+
+Creates a new bank account for a user.  
+
+
+
+
+{\ttfamily \#include $<$New\+Account\+Command.\+h$>$}
+
+Inheritance diagram for New\+Account\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_new_account_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_new_account_command_a2c287133987f6f10548d5537550dba69}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle) override
+\item 
+string \mbox{\hyperlink{class_new_account_command_a45c41650452646c227c7efb9ebd7e48a}{name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_command}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_command_aa545a53d35818f9efb936daf3fa16c61}{\texorpdfstring{$\sim$}{\string~}\+Command}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Creates a new bank account for a user. 
+
+Validates user ID, currency, card type, and account type, adds account to storage, logs all actions via log\+Eye. \begin{DoxyNote}{Note}
+Requires\+: \doxylink{structhandle_info}{handle\+Info}, log\+Eye, Account 
+
+Syntax\+: new\+\_\+account $<$user\+\_\+id$>$ $<$currency$>$ $<$card\+\_\+type$>$ $<$account\+\_\+type$>$ 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{class_new_account_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_new_account_command_a2c287133987f6f10548d5537550dba69}\index{NewAccountCommand@{NewAccountCommand}!execute@{execute}}
+\index{execute@{execute}!NewAccountCommand@{NewAccountCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{class_new_account_command_a2c287133987f6f10548d5537550dba69} 
+void New\+Account\+Command\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command}}.
+
+\Hypertarget{class_new_account_command_a45c41650452646c227c7efb9ebd7e48a}\index{NewAccountCommand@{NewAccountCommand}!name@{name}}
+\index{name@{name}!NewAccountCommand@{NewAccountCommand}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \label{class_new_account_command_a45c41650452646c227c7efb9ebd7e48a} 
+string New\+Account\+Command\+::name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a87b16bdc7005f072d4b352666d3c1489}{Command}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/commands/\mbox{\hyperlink{_new_account_command_8h}{New\+Account\+Command.\+h}}\end{DoxyCompactItemize}

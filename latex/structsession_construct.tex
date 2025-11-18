@@ -1,0 +1,76 @@
+\doxysection{session\+Construct Struct Reference}
+\hypertarget{structsession_construct}{}\label{structsession_construct}\index{sessionConstruct@{sessionConstruct}}
+
+
+Structure for client session data used in pipes.  
+
+
+
+
+{\ttfamily \#include $<$main\+Process.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{session\+Id}} = -\/1
+\item 
+int \mbox{\hyperlink{structsession_construct_a17eae4deff08c0be7a6db9e198474f67}{user\+Id}} = -\/1
+\item 
+int \mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}} \mbox{[}10\mbox{]}
+\item 
+char \mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}} \mbox{[}256\mbox{]}
+\item 
+char \mbox{\hyperlink{structsession_construct_ae85f86b1edbf9e0294b8204d5ecb32cc}{auth\+\_\+key}} \mbox{[}41\mbox{]}
+\item 
+char \mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}} \mbox{[}10\mbox{]}\mbox{[}1024\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure for client session data used in pipes. 
+
+\label{doc-variable-members}
+\Hypertarget{structsession_construct_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structsession_construct_ae85f86b1edbf9e0294b8204d5ecb32cc}\index{sessionConstruct@{sessionConstruct}!auth\_key@{auth\_key}}
+\index{auth\_key@{auth\_key}!sessionConstruct@{sessionConstruct}}
+\doxysubsubsection{\texorpdfstring{auth\_key}{auth\_key}}
+{\footnotesize\ttfamily \label{structsession_construct_ae85f86b1edbf9e0294b8204d5ecb32cc} 
+char session\+Construct\+::auth\+\_\+key}
+
+Authentication key (40 chars + null terminator) \Hypertarget{structsession_construct_a4865d0ae94dc307463d7200540799650}\index{sessionConstruct@{sessionConstruct}!cmd@{cmd}}
+\index{cmd@{cmd}!sessionConstruct@{sessionConstruct}}
+\doxysubsubsection{\texorpdfstring{cmd}{cmd}}
+{\footnotesize\ttfamily \label{structsession_construct_a4865d0ae94dc307463d7200540799650} 
+char session\+Construct\+::cmd}
+
+\doxylink{class_command}{Command} string sent by client \Hypertarget{structsession_construct_a80eb2bc7a318597244776c7831888d00}\index{sessionConstruct@{sessionConstruct}!hash@{hash}}
+\index{hash@{hash}!sessionConstruct@{sessionConstruct}}
+\doxysubsubsection{\texorpdfstring{hash}{hash}}
+{\footnotesize\ttfamily \label{structsession_construct_a80eb2bc7a318597244776c7831888d00} 
+int session\+Construct\+::hash}
+
+Hash array (unused/optional) \Hypertarget{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}\index{sessionConstruct@{sessionConstruct}!msg@{msg}}
+\index{msg@{msg}!sessionConstruct@{sessionConstruct}}
+\doxysubsubsection{\texorpdfstring{msg}{msg}}
+{\footnotesize\ttfamily \label{structsession_construct_a45ce82eddccd1fdde37941384e2e335e} 
+char session\+Construct\+::msg}
+
+Array of messages for client \Hypertarget{structsession_construct_acaf28896a07bfb25f535ddfc60329815}\index{sessionConstruct@{sessionConstruct}!sessionId@{sessionId}}
+\index{sessionId@{sessionId}!sessionConstruct@{sessionConstruct}}
+\doxysubsubsection{\texorpdfstring{sessionId}{sessionId}}
+{\footnotesize\ttfamily \label{structsession_construct_acaf28896a07bfb25f535ddfc60329815} 
+int session\+Construct\+::session\+Id = -\/1}
+
+Unique session ID \Hypertarget{structsession_construct_a17eae4deff08c0be7a6db9e198474f67}\index{sessionConstruct@{sessionConstruct}!userId@{userId}}
+\index{userId@{userId}!sessionConstruct@{sessionConstruct}}
+\doxysubsubsection{\texorpdfstring{userId}{userId}}
+{\footnotesize\ttfamily \label{structsession_construct_a17eae4deff08c0be7a6db9e198474f67} 
+int session\+Construct\+::user\+Id = -\/1}
+
+Associated user ID 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{main_process_8h}{main\+Process.\+h}}\item 
+Bank\+\_\+\+System\+\_\+\+User/\mbox{\hyperlink{user__info_8h}{user\+\_\+info.\+h}}\end{DoxyCompactItemize}

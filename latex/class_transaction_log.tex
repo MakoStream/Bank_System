@@ -1,0 +1,425 @@
+\doxysection{Transaction\+Log Class Reference}
+\hypertarget{class_transaction_log}{}\label{class_transaction_log}\index{TransactionLog@{TransactionLog}}
+
+
+{\ttfamily \#include $<$Audit.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_transaction_log_aa8f14d6ef064f7a75bf10a3db1871f9e}{Transaction\+Log}} ()
+\item 
+\mbox{\hyperlink{class_transaction_log_a4dbe060c682bb6ded6dfd2830a069445}{Transaction\+Log}} (int \+\_\+id, int \+\_\+transaction\+\_\+id, \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}} op, \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}} st, bool other\+Cur, bool blocked, const char \texorpdfstring{$\ast$}{*}from\+Iban, const char \texorpdfstring{$\ast$}{*}from\+Card, const char \texorpdfstring{$\ast$}{*}to\+Iban, const char \texorpdfstring{$\ast$}{*}to\+Card, bool other\+Bank, int uid, double curr, const int \+\_\+allowed\+\_\+by, const char \texorpdfstring{$\ast$}{*}comm)
+\item 
+void \mbox{\hyperlink{class_transaction_log_a01f9fb3360de1b0b0e8abd8fa298f989}{change\+\_\+id}} (int \+\_\+id)
+\item 
+int \mbox{\hyperlink{class_transaction_log_a60da775eb6a4e74e26f12822cf9c14e1}{get\+ID}} () const
+\item 
+int \mbox{\hyperlink{class_transaction_log_a38cc54c93efd8e6c126761622b171c31}{get\+Transaction\+ID}} () const
+\item 
+\mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}} \mbox{\hyperlink{class_transaction_log_a95a9cd398564bb23e5ea8040a6b9f098}{get\+Operation\+Type}} () const
+\item 
+\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}} \mbox{\hyperlink{class_transaction_log_a30028a64de5840fb77f858fa652974ee}{get\+Status}} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_transaction_log_a0800ad9492ecd76ad1a160a374baff17}{get\+Time}} () const
+\item 
+bool \mbox{\hyperlink{class_transaction_log_aab419762c2df215c85e30cac50cc26c3}{is\+Other\+Currency}} () const
+\item 
+bool \mbox{\hyperlink{class_transaction_log_a043c3ae90786d3bf7ee3e99c4172ec7e}{is\+Blocked\+Money}} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_transaction_log_a2bc4e0da3a6f6a8e5b163fee40bc1fa5}{get\+From\+IBAN}} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_transaction_log_aeecd112ee00a9d16415217cd9fd92e18}{get\+From\+Card\+Number}} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_transaction_log_a4a2b2fc3279d52225b0301ff05a8df49}{get\+To\+IBAN}} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_transaction_log_a890a24866e32b69cd6331776ce415975}{get\+To\+Card\+Number}} () const
+\item 
+bool \mbox{\hyperlink{class_transaction_log_aab121730979c10770ac535c0b46dfcfe}{is\+Other\+Bank\+User}} () const
+\item 
+int \mbox{\hyperlink{class_transaction_log_ab63457ed54c19278f06c2c40fb3c461e}{get\+User\+ID}} () const
+\item 
+double \mbox{\hyperlink{class_transaction_log_a66fdef7e5f5635cc638374fae1cbbcdb}{get\+Currency}} () const
+\item 
+\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} \mbox{\hyperlink{class_transaction_log_a5a675d1d6eb78566ce716b6e17fbbb5f}{get\+Currency\+Type}} () const
+\item 
+const int \mbox{\hyperlink{class_transaction_log_af9bc39d5222cd8dec6c32b0b53e072c7}{get\+Allowed\+By}} () const
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_transaction_log_a118927c867bdcda54eb8c3c647b735ea}{get\+Comment}} () const
+\item 
+bool \mbox{\hyperlink{class_transaction_log_abfdcffae9dd610b2012a21fb64cc4887}{allow}} (int allowed\+\_\+by\+\_\+user\+\_\+id)
+\item 
+void \mbox{\hyperlink{class_transaction_log_aace3040202add776273fa2f6546a8cd1}{set\+Comment}} (string new\+\_\+comment)
+\item 
+bool \mbox{\hyperlink{class_transaction_log_aadd652d67d61bc8553dc030733809318}{deny}} ()
+\item 
+void \mbox{\hyperlink{class_transaction_log_af13c41e4c283564cc3aa18f76c278a35}{fail}} (\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}} fail\+\_\+status)
+\item 
+void \mbox{\hyperlink{class_transaction_log_ab36e36692e867a5ba65ec77a1d012ed2}{save\+To\+File}} (std\+::ostream \&out) const
+\item 
+void \mbox{\hyperlink{class_transaction_log_a0cebe2fe72fdd5ca5001c7b28f6aba38}{load\+From\+File}} (std\+::istream \&in)
+\item 
+void \mbox{\hyperlink{class_transaction_log_a1b941dbc3465bdf69365f0451ecd873b}{print}} () const
+\item 
+bool \mbox{\hyperlink{class_transaction_log_a5dc5b521daebf61cf7f02a0d5ddcd659}{update\+In\+File}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_transaction_log_ae6eb448528322e84f6de45a8d14295b3}{id}}
+\item 
+int \mbox{\hyperlink{class_transaction_log_a645047001e1d8562d22489e323c7c441}{transaction\+\_\+id}}
+\item 
+\mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}} \mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\+\_\+type}}
+\item 
+\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}} \mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}
+\item 
+char \mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}} \mbox{[}25\mbox{]}
+\item 
+bool \mbox{\hyperlink{class_transaction_log_ad531dabd4412f6034b6a27a823112196}{other\+\_\+currency}}
+\item 
+bool \mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\+\_\+money}}
+\item 
+char \mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\+\_\+\+IBAN}} \mbox{[}36\mbox{]}
+\item 
+char \mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\+\_\+card\+Number}} \mbox{[}17\mbox{]}
+\item 
+double \mbox{\hyperlink{class_transaction_log_a09b728fdd8ca116e03bc703f075b38a7}{from\+\_\+currency\+\_\+before}}
+\item 
+double \mbox{\hyperlink{class_transaction_log_ab7d7e4b18f1f3e5619161fcb1a1ee2d7}{from\+\_\+currency\+\_\+after}}
+\item 
+char \mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\+\_\+\+IBAN}} \mbox{[}36\mbox{]}
+\item 
+char \mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\+\_\+card\+Number}} \mbox{[}17\mbox{]}
+\item 
+double \mbox{\hyperlink{class_transaction_log_aa7038afc271c7ce7c28daca58d8139fd}{to\+\_\+currency\+\_\+before}}
+\item 
+double \mbox{\hyperlink{class_transaction_log_a2170e5db22ae641d0c8e8cdc48124e46}{to\+\_\+currency\+\_\+after}}
+\item 
+bool \mbox{\hyperlink{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}{other\+\_\+bank\+\_\+user}}
+\item 
+int \mbox{\hyperlink{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}{user\+\_\+id}}
+\item 
+double \mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}}
+\item 
+\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} \mbox{\hyperlink{class_transaction_log_ac5f18fd858346f294013a527beaebdca}{currency\+\_\+type}}
+\item 
+int \mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\+\_\+by}}
+\item 
+char \mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}} \mbox{[}255\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_transaction_log_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_transaction_log_aa8f14d6ef064f7a75bf10a3db1871f9e}\index{TransactionLog@{TransactionLog}!TransactionLog@{TransactionLog}}
+\index{TransactionLog@{TransactionLog}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{TransactionLog()}{TransactionLog()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_transaction_log_aa8f14d6ef064f7a75bf10a3db1871f9e} 
+Transaction\+Log\+::\+Transaction\+Log (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a4dbe060c682bb6ded6dfd2830a069445}\index{TransactionLog@{TransactionLog}!TransactionLog@{TransactionLog}}
+\index{TransactionLog@{TransactionLog}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{TransactionLog()}{TransactionLog()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_transaction_log_a4dbe060c682bb6ded6dfd2830a069445} 
+Transaction\+Log\+::\+Transaction\+Log (\begin{DoxyParamCaption}\item[{int}]{\+\_\+id}{, }\item[{int}]{\+\_\+transaction\+\_\+id}{, }\item[{\mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}}]{op}{, }\item[{\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}}}]{st}{, }\item[{bool}]{other\+Cur}{, }\item[{bool}]{blocked}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{from\+Iban}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{from\+Card}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{to\+Iban}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{to\+Card}{, }\item[{bool}]{other\+Bank}{, }\item[{int}]{uid}{, }\item[{double}]{curr}{, }\item[{const int}]{\+\_\+allowed\+\_\+by}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{comm}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_transaction_log_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_transaction_log_abfdcffae9dd610b2012a21fb64cc4887}\index{TransactionLog@{TransactionLog}!allow@{allow}}
+\index{allow@{allow}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{allow()}{allow()}}
+{\footnotesize\ttfamily \label{class_transaction_log_abfdcffae9dd610b2012a21fb64cc4887} 
+bool Transaction\+Log\+::allow (\begin{DoxyParamCaption}\item[{int}]{allowed\+\_\+by\+\_\+user\+\_\+id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a01f9fb3360de1b0b0e8abd8fa298f989}\index{TransactionLog@{TransactionLog}!change\_id@{change\_id}}
+\index{change\_id@{change\_id}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{change\_id()}{change\_id()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a01f9fb3360de1b0b0e8abd8fa298f989} 
+void Transaction\+Log\+::change\+\_\+id (\begin{DoxyParamCaption}\item[{int}]{\+\_\+id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_aadd652d67d61bc8553dc030733809318}\index{TransactionLog@{TransactionLog}!deny@{deny}}
+\index{deny@{deny}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{deny()}{deny()}}
+{\footnotesize\ttfamily \label{class_transaction_log_aadd652d67d61bc8553dc030733809318} 
+bool Transaction\+Log\+::deny (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_af13c41e4c283564cc3aa18f76c278a35}\index{TransactionLog@{TransactionLog}!fail@{fail}}
+\index{fail@{fail}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{fail()}{fail()}}
+{\footnotesize\ttfamily \label{class_transaction_log_af13c41e4c283564cc3aa18f76c278a35} 
+void Transaction\+Log\+::fail (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}}}]{fail\+\_\+status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_af9bc39d5222cd8dec6c32b0b53e072c7}\index{TransactionLog@{TransactionLog}!getAllowedBy@{getAllowedBy}}
+\index{getAllowedBy@{getAllowedBy}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getAllowedBy()}{getAllowedBy()}}
+{\footnotesize\ttfamily \label{class_transaction_log_af9bc39d5222cd8dec6c32b0b53e072c7} 
+const int Transaction\+Log\+::get\+Allowed\+By (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a118927c867bdcda54eb8c3c647b735ea}\index{TransactionLog@{TransactionLog}!getComment@{getComment}}
+\index{getComment@{getComment}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getComment()}{getComment()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a118927c867bdcda54eb8c3c647b735ea} 
+const char \texorpdfstring{$\ast$}{*} Transaction\+Log\+::get\+Comment (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a66fdef7e5f5635cc638374fae1cbbcdb}\index{TransactionLog@{TransactionLog}!getCurrency@{getCurrency}}
+\index{getCurrency@{getCurrency}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getCurrency()}{getCurrency()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a66fdef7e5f5635cc638374fae1cbbcdb} 
+double Transaction\+Log\+::get\+Currency (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a5a675d1d6eb78566ce716b6e17fbbb5f}\index{TransactionLog@{TransactionLog}!getCurrencyType@{getCurrencyType}}
+\index{getCurrencyType@{getCurrencyType}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getCurrencyType()}{getCurrencyType()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a5a675d1d6eb78566ce716b6e17fbbb5f} 
+\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} Transaction\+Log\+::get\+Currency\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_aeecd112ee00a9d16415217cd9fd92e18}\index{TransactionLog@{TransactionLog}!getFromCardNumber@{getFromCardNumber}}
+\index{getFromCardNumber@{getFromCardNumber}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getFromCardNumber()}{getFromCardNumber()}}
+{\footnotesize\ttfamily \label{class_transaction_log_aeecd112ee00a9d16415217cd9fd92e18} 
+const char \texorpdfstring{$\ast$}{*} Transaction\+Log\+::get\+From\+Card\+Number (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a2bc4e0da3a6f6a8e5b163fee40bc1fa5}\index{TransactionLog@{TransactionLog}!getFromIBAN@{getFromIBAN}}
+\index{getFromIBAN@{getFromIBAN}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getFromIBAN()}{getFromIBAN()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a2bc4e0da3a6f6a8e5b163fee40bc1fa5} 
+const char \texorpdfstring{$\ast$}{*} Transaction\+Log\+::get\+From\+IBAN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a60da775eb6a4e74e26f12822cf9c14e1}\index{TransactionLog@{TransactionLog}!getID@{getID}}
+\index{getID@{getID}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getID()}{getID()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a60da775eb6a4e74e26f12822cf9c14e1} 
+int Transaction\+Log\+::get\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a95a9cd398564bb23e5ea8040a6b9f098}\index{TransactionLog@{TransactionLog}!getOperationType@{getOperationType}}
+\index{getOperationType@{getOperationType}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getOperationType()}{getOperationType()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a95a9cd398564bb23e5ea8040a6b9f098} 
+\mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}} Transaction\+Log\+::get\+Operation\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a30028a64de5840fb77f858fa652974ee}\index{TransactionLog@{TransactionLog}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getStatus()}{getStatus()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a30028a64de5840fb77f858fa652974ee} 
+\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}} Transaction\+Log\+::get\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a0800ad9492ecd76ad1a160a374baff17}\index{TransactionLog@{TransactionLog}!getTime@{getTime}}
+\index{getTime@{getTime}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getTime()}{getTime()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a0800ad9492ecd76ad1a160a374baff17} 
+const char \texorpdfstring{$\ast$}{*} Transaction\+Log\+::get\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a890a24866e32b69cd6331776ce415975}\index{TransactionLog@{TransactionLog}!getToCardNumber@{getToCardNumber}}
+\index{getToCardNumber@{getToCardNumber}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getToCardNumber()}{getToCardNumber()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a890a24866e32b69cd6331776ce415975} 
+const char \texorpdfstring{$\ast$}{*} Transaction\+Log\+::get\+To\+Card\+Number (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a4a2b2fc3279d52225b0301ff05a8df49}\index{TransactionLog@{TransactionLog}!getToIBAN@{getToIBAN}}
+\index{getToIBAN@{getToIBAN}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getToIBAN()}{getToIBAN()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a4a2b2fc3279d52225b0301ff05a8df49} 
+const char \texorpdfstring{$\ast$}{*} Transaction\+Log\+::get\+To\+IBAN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a38cc54c93efd8e6c126761622b171c31}\index{TransactionLog@{TransactionLog}!getTransactionID@{getTransactionID}}
+\index{getTransactionID@{getTransactionID}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getTransactionID()}{getTransactionID()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a38cc54c93efd8e6c126761622b171c31} 
+int Transaction\+Log\+::get\+Transaction\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_ab63457ed54c19278f06c2c40fb3c461e}\index{TransactionLog@{TransactionLog}!getUserID@{getUserID}}
+\index{getUserID@{getUserID}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{getUserID()}{getUserID()}}
+{\footnotesize\ttfamily \label{class_transaction_log_ab63457ed54c19278f06c2c40fb3c461e} 
+int Transaction\+Log\+::get\+User\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a043c3ae90786d3bf7ee3e99c4172ec7e}\index{TransactionLog@{TransactionLog}!isBlockedMoney@{isBlockedMoney}}
+\index{isBlockedMoney@{isBlockedMoney}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{isBlockedMoney()}{isBlockedMoney()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a043c3ae90786d3bf7ee3e99c4172ec7e} 
+bool Transaction\+Log\+::is\+Blocked\+Money (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_aab121730979c10770ac535c0b46dfcfe}\index{TransactionLog@{TransactionLog}!isOtherBankUser@{isOtherBankUser}}
+\index{isOtherBankUser@{isOtherBankUser}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{isOtherBankUser()}{isOtherBankUser()}}
+{\footnotesize\ttfamily \label{class_transaction_log_aab121730979c10770ac535c0b46dfcfe} 
+bool Transaction\+Log\+::is\+Other\+Bank\+User (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_aab419762c2df215c85e30cac50cc26c3}\index{TransactionLog@{TransactionLog}!isOtherCurrency@{isOtherCurrency}}
+\index{isOtherCurrency@{isOtherCurrency}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{isOtherCurrency()}{isOtherCurrency()}}
+{\footnotesize\ttfamily \label{class_transaction_log_aab419762c2df215c85e30cac50cc26c3} 
+bool Transaction\+Log\+::is\+Other\+Currency (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a0cebe2fe72fdd5ca5001c7b28f6aba38}\index{TransactionLog@{TransactionLog}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a0cebe2fe72fdd5ca5001c7b28f6aba38} 
+void Transaction\+Log\+::load\+From\+File (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{in}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a1b941dbc3465bdf69365f0451ecd873b}\index{TransactionLog@{TransactionLog}!print@{print}}
+\index{print@{print}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a1b941dbc3465bdf69365f0451ecd873b} 
+void Transaction\+Log\+::print (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_ab36e36692e867a5ba65ec77a1d012ed2}\index{TransactionLog@{TransactionLog}!saveToFile@{saveToFile}}
+\index{saveToFile@{saveToFile}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{saveToFile()}{saveToFile()}}
+{\footnotesize\ttfamily \label{class_transaction_log_ab36e36692e867a5ba65ec77a1d012ed2} 
+void Transaction\+Log\+::save\+To\+File (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_aace3040202add776273fa2f6546a8cd1}\index{TransactionLog@{TransactionLog}!setComment@{setComment}}
+\index{setComment@{setComment}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{setComment()}{setComment()}}
+{\footnotesize\ttfamily \label{class_transaction_log_aace3040202add776273fa2f6546a8cd1} 
+void Transaction\+Log\+::set\+Comment (\begin{DoxyParamCaption}\item[{string}]{new\+\_\+comment}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_transaction_log_a5dc5b521daebf61cf7f02a0d5ddcd659}\index{TransactionLog@{TransactionLog}!updateInFile@{updateInFile}}
+\index{updateInFile@{updateInFile}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{updateInFile()}{updateInFile()}}
+{\footnotesize\ttfamily \label{class_transaction_log_a5dc5b521daebf61cf7f02a0d5ddcd659} 
+bool Transaction\+Log\+::update\+In\+File (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_transaction_log_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}\index{TransactionLog@{TransactionLog}!allowed\_by@{allowed\_by}}
+\index{allowed\_by@{allowed\_by}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{allowed\_by}{allowed\_by}}
+{\footnotesize\ttfamily \label{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb} 
+int Transaction\+Log\+::allowed\+\_\+by\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_a9889cd41885846a08be64417125258eb}\index{TransactionLog@{TransactionLog}!blocked\_money@{blocked\_money}}
+\index{blocked\_money@{blocked\_money}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{blocked\_money}{blocked\_money}}
+{\footnotesize\ttfamily \label{class_transaction_log_a9889cd41885846a08be64417125258eb} 
+bool Transaction\+Log\+::blocked\+\_\+money\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}\index{TransactionLog@{TransactionLog}!comment@{comment}}
+\index{comment@{comment}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{comment}{comment}}
+{\footnotesize\ttfamily \label{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0} 
+char Transaction\+Log\+::comment\mbox{[}255\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_aa474fecbc0fdd6376624679896d353de}\index{TransactionLog@{TransactionLog}!currency@{currency}}
+\index{currency@{currency}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{currency}{currency}}
+{\footnotesize\ttfamily \label{class_transaction_log_aa474fecbc0fdd6376624679896d353de} 
+double Transaction\+Log\+::currency\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_ac5f18fd858346f294013a527beaebdca}\index{TransactionLog@{TransactionLog}!currency\_type@{currency\_type}}
+\index{currency\_type@{currency\_type}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{currency\_type}{currency\_type}}
+{\footnotesize\ttfamily \label{class_transaction_log_ac5f18fd858346f294013a527beaebdca} 
+\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} Transaction\+Log\+::currency\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}\index{TransactionLog@{TransactionLog}!from\_cardNumber@{from\_cardNumber}}
+\index{from\_cardNumber@{from\_cardNumber}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{from\_cardNumber}{from\_cardNumber}}
+{\footnotesize\ttfamily \label{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42} 
+char Transaction\+Log\+::from\+\_\+card\+Number\mbox{[}17\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_ab7d7e4b18f1f3e5619161fcb1a1ee2d7}\index{TransactionLog@{TransactionLog}!from\_currency\_after@{from\_currency\_after}}
+\index{from\_currency\_after@{from\_currency\_after}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{from\_currency\_after}{from\_currency\_after}}
+{\footnotesize\ttfamily \label{class_transaction_log_ab7d7e4b18f1f3e5619161fcb1a1ee2d7} 
+double Transaction\+Log\+::from\+\_\+currency\+\_\+after\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_a09b728fdd8ca116e03bc703f075b38a7}\index{TransactionLog@{TransactionLog}!from\_currency\_before@{from\_currency\_before}}
+\index{from\_currency\_before@{from\_currency\_before}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{from\_currency\_before}{from\_currency\_before}}
+{\footnotesize\ttfamily \label{class_transaction_log_a09b728fdd8ca116e03bc703f075b38a7} 
+double Transaction\+Log\+::from\+\_\+currency\+\_\+before\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}\index{TransactionLog@{TransactionLog}!from\_IBAN@{from\_IBAN}}
+\index{from\_IBAN@{from\_IBAN}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{from\_IBAN}{from\_IBAN}}
+{\footnotesize\ttfamily \label{class_transaction_log_a95c84ee02b649406772192e466cb5ea7} 
+char Transaction\+Log\+::from\+\_\+\+IBAN\mbox{[}36\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_ae6eb448528322e84f6de45a8d14295b3}\index{TransactionLog@{TransactionLog}!id@{id}}
+\index{id@{id}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{class_transaction_log_ae6eb448528322e84f6de45a8d14295b3} 
+int Transaction\+Log\+::id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}\index{TransactionLog@{TransactionLog}!operation\_type@{operation\_type}}
+\index{operation\_type@{operation\_type}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{operation\_type}{operation\_type}}
+{\footnotesize\ttfamily \label{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2} 
+\mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}} Transaction\+Log\+::operation\+\_\+type\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}\index{TransactionLog@{TransactionLog}!other\_bank\_user@{other\_bank\_user}}
+\index{other\_bank\_user@{other\_bank\_user}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{other\_bank\_user}{other\_bank\_user}}
+{\footnotesize\ttfamily \label{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b} 
+bool Transaction\+Log\+::other\+\_\+bank\+\_\+user\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_ad531dabd4412f6034b6a27a823112196}\index{TransactionLog@{TransactionLog}!other\_currency@{other\_currency}}
+\index{other\_currency@{other\_currency}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{other\_currency}{other\_currency}}
+{\footnotesize\ttfamily \label{class_transaction_log_ad531dabd4412f6034b6a27a823112196} 
+bool Transaction\+Log\+::other\+\_\+currency\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}\index{TransactionLog@{TransactionLog}!status@{status}}
+\index{status@{status}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729} 
+\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\+\_\+status}} Transaction\+Log\+::status\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}\index{TransactionLog@{TransactionLog}!time@{time}}
+\index{time@{time}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily \label{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6} 
+char Transaction\+Log\+::time\mbox{[}25\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}\index{TransactionLog@{TransactionLog}!to\_cardNumber@{to\_cardNumber}}
+\index{to\_cardNumber@{to\_cardNumber}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{to\_cardNumber}{to\_cardNumber}}
+{\footnotesize\ttfamily \label{class_transaction_log_ac660e17da6ee372581dca9ee601f7743} 
+char Transaction\+Log\+::to\+\_\+card\+Number\mbox{[}17\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_a2170e5db22ae641d0c8e8cdc48124e46}\index{TransactionLog@{TransactionLog}!to\_currency\_after@{to\_currency\_after}}
+\index{to\_currency\_after@{to\_currency\_after}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{to\_currency\_after}{to\_currency\_after}}
+{\footnotesize\ttfamily \label{class_transaction_log_a2170e5db22ae641d0c8e8cdc48124e46} 
+double Transaction\+Log\+::to\+\_\+currency\+\_\+after\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_aa7038afc271c7ce7c28daca58d8139fd}\index{TransactionLog@{TransactionLog}!to\_currency\_before@{to\_currency\_before}}
+\index{to\_currency\_before@{to\_currency\_before}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{to\_currency\_before}{to\_currency\_before}}
+{\footnotesize\ttfamily \label{class_transaction_log_aa7038afc271c7ce7c28daca58d8139fd} 
+double Transaction\+Log\+::to\+\_\+currency\+\_\+before\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}\index{TransactionLog@{TransactionLog}!to\_IBAN@{to\_IBAN}}
+\index{to\_IBAN@{to\_IBAN}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{to\_IBAN}{to\_IBAN}}
+{\footnotesize\ttfamily \label{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d} 
+char Transaction\+Log\+::to\+\_\+\+IBAN\mbox{[}36\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_a645047001e1d8562d22489e323c7c441}\index{TransactionLog@{TransactionLog}!transaction\_id@{transaction\_id}}
+\index{transaction\_id@{transaction\_id}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{transaction\_id}{transaction\_id}}
+{\footnotesize\ttfamily \label{class_transaction_log_a645047001e1d8562d22489e323c7c441} 
+int Transaction\+Log\+::transaction\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}\index{TransactionLog@{TransactionLog}!user\_id@{user\_id}}
+\index{user\_id@{user\_id}!TransactionLog@{TransactionLog}}
+\doxysubsubsection{\texorpdfstring{user\_id}{user\_id}}
+{\footnotesize\ttfamily \label{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f} 
+int Transaction\+Log\+::user\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/\+Audit/\mbox{\hyperlink{_audit_8h}{Audit.\+h}}\item 
+Bank\+\_\+\+System/\+Audit/\mbox{\hyperlink{_audit_8cpp}{Audit.\+cpp}}\end{DoxyCompactItemize}

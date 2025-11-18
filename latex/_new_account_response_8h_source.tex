@@ -1,0 +1,23 @@
+\doxysection{New\+Account\+Response.\+h}
+\hypertarget{_new_account_response_8h_source}{}\label{_new_account_response_8h_source}\index{Bank\_System\_User/responses/NewAccountResponse.h@{Bank\_System\_User/responses/NewAccountResponse.h}}
+\mbox{\hyperlink{_new_account_response_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_response_8h}{../Response.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_new_account_response}{NewAccountResponse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00004\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_new_account_response_a44f99551a8f4b228e1d340ab194fcb47}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ the\ new\ account\ response}}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ ReadFile(handle.\mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}},\ \&handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}},\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}),\ \&handle.\mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}},\ NULL);}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ std::cout\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[0]\ <<\ std::endl;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \}}
+\DoxyCodeLine{00014\ \ \ \ \ std::string\ \mbox{\hyperlink{class_new_account_response_a20c9a1482f33711003977a594cb5685c}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}new\_account"{}};}
+\DoxyCodeLine{00016\ \ \ \ \ \}}
+\DoxyCodeLine{00017\ \};}
+
+\end{DoxyCode}

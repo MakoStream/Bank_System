@@ -1,0 +1,35 @@
+\doxysection{basic\+\_\+functions.\+h}
+\hypertarget{_bank___system_2basic__functions_8h_source}{}\label{_bank___system_2basic__functions_8h_source}\index{Bank\_System/basic\_functions.h@{Bank\_System/basic\_functions.h}}
+\mbox{\hyperlink{_bank___system_2basic__functions_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <cctype>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <cctype>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_bank___system_2basic__functions_8h_ac7fca25fdc73fab164035766f788b9d0}{isStringDigit}}(\textcolor{keyword}{const}\ std::string\&\ s);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{_bank___system_2basic__functions_8h_a9a01b0ef5a55bb2332b04ff54789f27d}{isPhone}}(\textcolor{keyword}{const}\ std::string\&\ s);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00054\ std::vector\ <std::string>\ \mbox{\hyperlink{_bank___system_2basic__functions_8h_a22d8a86d9030d2cfef90844536909574}{split}}(\textcolor{keyword}{const}\ std::string\&\ input);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_bank___system_2basic__functions_8h_ac81e8ace8f8b6d4c09572038c5d48cf4}{trim}}(std::string\&\ s);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00076\ std::map<std::string,\ std::string>\ \mbox{\hyperlink{_bank___system_2basic__functions_8h_a248127881de11156f58e4dd2fd879f6a}{readConfig}}(\textcolor{keyword}{const}\ std::string\&\ filename);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_bank___system_2basic__functions_8h_a006014cced648ca7880d24c53223bdd4}{writeConfig}}(\textcolor{keyword}{const}\ std::string\&\ filename,\ \textcolor{keyword}{const}\ std::map<std::string,\ std::string>\&\ config);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00094\ std::string\ \mbox{\hyperlink{_bank___system_2basic__functions_8h_a267ef521bc704496e86a915730403e7b}{getTimestamp}}();}
+
+\end{DoxyCode}

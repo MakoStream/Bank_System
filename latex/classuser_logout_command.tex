@@ -1,0 +1,74 @@
+\doxysection{user\+Logout\+Command Class Reference}
+\hypertarget{classuser_logout_command}{}\label{classuser_logout_command}\index{userLogoutCommand@{userLogoutCommand}}
+
+
+\doxylink{class_command}{Command} class for user logout.  
+
+
+
+
+{\ttfamily \#include $<$user\+Logout\+Command.\+h$>$}
+
+Inheritance diagram for user\+Logout\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classuser_logout_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classuser_logout_command_abf0ebde65367bd06a29a2ea11c2da83d}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle) override
+\item 
+string \mbox{\hyperlink{classuser_logout_command_a99aa652cc3607edda765b4b5c8153ab1}{name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_command}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_command_aa545a53d35818f9efb936daf3fa16c61}{\texorpdfstring{$\sim$}{\string~}\+Command}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_command}{Command} class for user logout. 
+
+Handles\+:
+\begin{DoxyItemize}
+\item Terminating the current user session
+\item Logging the logout action via \doxylink{class_logger}{Logger} \begin{DoxyNote}{Note}
+Requires\+: \doxylink{struct_session}{Session}, \doxylink{class_log_eye}{Log\+Eye} 
+
+Syntax\+: logout @used For\+:
+\end{DoxyNote}
+
+\item Ending active sessions safely 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{classuser_logout_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classuser_logout_command_abf0ebde65367bd06a29a2ea11c2da83d}\index{userLogoutCommand@{userLogoutCommand}!execute@{execute}}
+\index{execute@{execute}!userLogoutCommand@{userLogoutCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{classuser_logout_command_abf0ebde65367bd06a29a2ea11c2da83d} 
+void user\+Logout\+Command\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command}}.
+
+\Hypertarget{classuser_logout_command_a99aa652cc3607edda765b4b5c8153ab1}\index{userLogoutCommand@{userLogoutCommand}!name@{name}}
+\index{name@{name}!userLogoutCommand@{userLogoutCommand}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \label{classuser_logout_command_a99aa652cc3607edda765b4b5c8153ab1} 
+string user\+Logout\+Command\+::name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a87b16bdc7005f072d4b352666d3c1489}{Command}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/commands/\mbox{\hyperlink{user_logout_command_8h}{user\+Logout\+Command.\+h}}\end{DoxyCompactItemize}

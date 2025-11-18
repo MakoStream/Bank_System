@@ -1,0 +1,84 @@
+\doxysection{handle\+Info Struct Reference}
+\hypertarget{structhandle_info}{}\label{structhandle_info}\index{handleInfo@{handleInfo}}
+
+
+Helper structure to pass pipe handles and session data.  
+
+
+
+
+{\ttfamily \#include $<$main\+Process.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+HANDLE \& \mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{h\+Pipe}}
+\item 
+\mbox{\hyperlink{structsession_construct}{session\+Construct}} \& \mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{session\+Data}}
+\item 
+DWORD \& \mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytes\+Read}}
+\item 
+DWORD \& \mbox{\hyperlink{structhandle_info_aacbd0ceaccd6ab462b301289634c1b6a}{bytes\+Written}}
+\item 
+HANDLE \mbox{\hyperlink{structhandle_info_aef7d89c7bd9314fac0ba2ac643aab7f1}{h\+Pipe}}
+\item 
+DWORD \mbox{\hyperlink{structhandle_info_a4fb28340fe94a207e99f39d680b9414e}{bytes\+Read}}
+\item 
+DWORD \mbox{\hyperlink{structhandle_info_a8640bd353e3047c4b66cc54a941a3e34}{bytes\+Written}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper structure to pass pipe handles and session data. 
+
+\label{doc-variable-members}
+\Hypertarget{structhandle_info_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhandle_info_a3e025171d4d7361b86a03b43e0117126}\index{handleInfo@{handleInfo}!bytesRead@{bytesRead}}
+\index{bytesRead@{bytesRead}!handleInfo@{handleInfo}}
+\doxysubsubsection{\texorpdfstring{bytesRead}{bytesRead}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{structhandle_info_a3e025171d4d7361b86a03b43e0117126} 
+DWORD\& handle\+Info\+::bytes\+Read}
+
+Number of bytes read from pipe \Hypertarget{structhandle_info_a4fb28340fe94a207e99f39d680b9414e}\index{handleInfo@{handleInfo}!bytesRead@{bytesRead}}
+\index{bytesRead@{bytesRead}!handleInfo@{handleInfo}}
+\doxysubsubsection{\texorpdfstring{bytesRead}{bytesRead}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{structhandle_info_a4fb28340fe94a207e99f39d680b9414e} 
+DWORD handle\+Info\+::bytes\+Read}
+
+\Hypertarget{structhandle_info_aacbd0ceaccd6ab462b301289634c1b6a}\index{handleInfo@{handleInfo}!bytesWritten@{bytesWritten}}
+\index{bytesWritten@{bytesWritten}!handleInfo@{handleInfo}}
+\doxysubsubsection{\texorpdfstring{bytesWritten}{bytesWritten}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{structhandle_info_aacbd0ceaccd6ab462b301289634c1b6a} 
+DWORD\& handle\+Info\+::bytes\+Written}
+
+Number of bytes written to pipe \Hypertarget{structhandle_info_a8640bd353e3047c4b66cc54a941a3e34}\index{handleInfo@{handleInfo}!bytesWritten@{bytesWritten}}
+\index{bytesWritten@{bytesWritten}!handleInfo@{handleInfo}}
+\doxysubsubsection{\texorpdfstring{bytesWritten}{bytesWritten}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{structhandle_info_a8640bd353e3047c4b66cc54a941a3e34} 
+DWORD handle\+Info\+::bytes\+Written}
+
+\Hypertarget{structhandle_info_a6917413af32177011307e15fca7727a3}\index{handleInfo@{handleInfo}!hPipe@{hPipe}}
+\index{hPipe@{hPipe}!handleInfo@{handleInfo}}
+\doxysubsubsection{\texorpdfstring{hPipe}{hPipe}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{structhandle_info_a6917413af32177011307e15fca7727a3} 
+HANDLE\& handle\+Info\+::h\+Pipe}
+
+Named pipe handle \Hypertarget{structhandle_info_aef7d89c7bd9314fac0ba2ac643aab7f1}\index{handleInfo@{handleInfo}!hPipe@{hPipe}}
+\index{hPipe@{hPipe}!handleInfo@{handleInfo}}
+\doxysubsubsection{\texorpdfstring{hPipe}{hPipe}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{structhandle_info_aef7d89c7bd9314fac0ba2ac643aab7f1} 
+HANDLE handle\+Info\+::h\+Pipe}
+
+\Hypertarget{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}\index{handleInfo@{handleInfo}!sessionData@{sessionData}}
+\index{sessionData@{sessionData}!handleInfo@{handleInfo}}
+\doxysubsubsection{\texorpdfstring{sessionData}{sessionData}}
+{\footnotesize\ttfamily \label{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae} 
+\mbox{\hyperlink{structsession_construct}{session\+Construct}} \& handle\+Info\+::session\+Data}
+
+\doxylink{struct_session}{Session} data structure 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{main_process_8h}{main\+Process.\+h}}\item 
+Bank\+\_\+\+System\+\_\+\+User/\mbox{\hyperlink{user__info_8h}{user\+\_\+info.\+h}}\end{DoxyCompactItemize}

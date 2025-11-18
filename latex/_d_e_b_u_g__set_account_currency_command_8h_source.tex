@@ -1,0 +1,50 @@
+\doxysection{DEBUG\+\_\+set\+Account\+Currency\+Command.\+h}
+\hypertarget{_d_e_b_u_g__set_account_currency_command_8h_source}{}\label{_d_e_b_u_g__set_account_currency_command_8h_source}\index{Bank\_System/commands/DEBUG/DEBUG\_setAccountCurrencyCommand.h@{Bank\_System/commands/DEBUG/DEBUG\_setAccountCurrencyCommand.h}}
+\mbox{\hyperlink{_d_e_b_u_g__set_account_currency_command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_command_8h}{../../Command.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{main_process_8h}{../../mainProcess.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bank___system_2basic__functions_8h}{../../basic\_functions.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_account_8h}{../../Account.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_d_e_b_u_g__set_account_currency_command}{DEBUG\_setAccountCurrencyCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_command}{Command}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_d_e_b_u_g__set_account_currency_command_ace705c6ead08186f5bb5555550e36d8a}{execute}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{\ \ \textcolor{comment}{//\ setMoney\ <account\_PAN>\ <currency>}}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}});}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ vector<string>\ args\ =\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_acb3b421c46ad175157857d818818bdab}{split}}(input);}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}.debugStatus())\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}WARNING!\ This\ command\ work\ only\ on\ debug\ mode!"{}});}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args.size()\ <\ 3)\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Not\ enough\ arguments"{}});}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args[1].length()\ !=\ 16)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Card\ number\ is\ incorect"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{_bank___system_2basic__functions_8cpp_ac7fca25fdc73fab164035766f788b9d0}{isStringDigit}}(args[2]))\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Currency\ must\ be\ a\ number"{}});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ currency\ =\ stoi(args[2]);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ cardNumber[17];}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ strcpy(cardNumber,\ args[1].c\_str());}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*if\ (!isAccountExist\_byCardNumber(cardNumber))\ \{}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ throw\_response(handle,\ "{}Account\ with\ this\ card\ number\ does\ not\ exist"{});}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ return;}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ \ \ \ \ \};*/}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classaccount}{account}}\ acc\ =\ \mbox{\hyperlink{_account_8cpp_a56710721192c273c14e555742b245a9a}{getAccount\_byCardNumber}}(cardNumber);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_account_8cpp_a5fb03ffabc9421b8f5a840b0a0774134}{setAccountBalance}}(acc,\ currency);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 1;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}Account\ currency\ set\ successfully"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_d_e_b_u_g__set_account_currency_command_a4e6a79ea20989876e24867bbf5e2ec8f}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}setMoney"{}};}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \};}
+
+\end{DoxyCode}

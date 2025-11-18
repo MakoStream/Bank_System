@@ -3,6 +3,15 @@
 #include "../LogEye.h"
 
 
+/**
+ * @class AccountVerifyCommand
+ * @brief Verifies a bank account.
+ * @details Validates IBAN, checks if account exists,
+ * performs verification, updates storage,
+ * logs all actions via logEye.
+ * @note Requires: <string>, Account, handleInfo, logEye
+ * @note Syntax: account_verify <IBAN>
+ */
 
 class AccountVerifyCommand : public Command {
 public:

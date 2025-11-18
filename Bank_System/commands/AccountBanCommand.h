@@ -3,7 +3,18 @@
 #include "../LogEye.h"
 //# include "../mainProcess.h"
 
-
+/**
+ * @class AccountBanCommand
+ * @brief Handles banning of a bank account.
+ * @details The AccountBanCommand class performs:
+ * - Validates IBAN and optional reason
+ * - Checks if the account exists
+ * - Bans the account and updates storage
+ * - Sets hash[0] = 1 on success
+ * - Logs all actions via logEye
+ * @note Requires: <string>, Account, handleInfo, logEye
+ * @note Syntax: account_ban <IBAN> [reason]
+ */
 class AccountBanCommand : public Command {
 public:
 	void execute(handleInfo& handle) override { // account_ban <account_number> <reason>
@@ -56,6 +67,16 @@ public:
 	}
 };
 
+
+/**
+ * @class AccountUnbanCommand
+ * @brief Handles unbanning of a bank account.
+ * @details Validates IBAN, checks if account exists,
+ * unbans the account, updates storage,
+ * logs all actions via logEye.
+ * @note Requires: <string>, Account, handleInfo, logEye
+ * @note Syntax: account_unban <IBAN>
+ */
 class AccountUnbanCommand : public Command {
 public:
 	void execute(handleInfo& handle) override { // account_unban <account_number>

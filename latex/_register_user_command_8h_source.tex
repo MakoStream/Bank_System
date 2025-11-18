@@ -1,0 +1,93 @@
+\doxysection{Register\+User\+Command.\+h}
+\hypertarget{_register_user_command_8h_source}{}\label{_register_user_command_8h_source}\index{Bank\_System/commands/RegisterUserCommand.h@{Bank\_System/commands/RegisterUserCommand.h}}
+\mbox{\hyperlink{_register_user_command_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_command_8h}{../Command.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_user_8h}{../User.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{main_process_8h}{../mainProcess.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_log_eye_8h}{../LogEye.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_register_user_command}{RegisterUserCommand}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_command}{Command}}\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_register_user_command_a7899f196aa7b49a0c50df9ad5224e13f}{execute}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{\ \textcolor{comment}{//\ reg\_user\ <login>\ <password>\ <name>\ <surname>\ <phone>\ //example:\ reg\_user\ user1\ pass1\ John\ Doe\ 1234567890}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ log\_id\ =\ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.logTrace(\textcolor{stringliteral}{"{}reg\_user\ Command"{}});}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}Session\ Id"{}},\ to\_string(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}User\ Id"{}},\ to\_string(\mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}.getUserSession(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}).user\_id),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.msgTrace(log\_id,\ \textcolor{stringliteral}{"{}input\ data"{}},\ \textcolor{keywordtype}{string}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}}),\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ input\ (handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}});}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ vector<string>\ args\ =\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_acb3b421c46ad175157857d818818bdab}{split}}(input);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 0;\ \textcolor{comment}{//\ default\ fail}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ cout\ <<\ endl;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.commentTrace(log\_id,\ \textcolor{stringliteral}{"{}Check\ input\ requirement"{}});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args.size()\ <\ 6)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}not\ enough\ arguments\ for\ reg\_user"{}});}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}not\ enough\ arguments\ for\ reg\_user"{}});}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args[1].size()\ >\ 32\ or\ args[2].size()\ >\ 32\ or\ args[3].size()\ >\ 64)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}one\ of\ the\ arguments\ is\ too\ long"{}});}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}one\ of\ the\ arguments\ is\ too\ long"{}});}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ phone;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_bank___system_2basic__functions_8cpp_a9a01b0ef5a55bb2332b04ff54789f27d}{isPhone}}(args[5]))\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ phone\ =\ stoi(args[5]);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}phone\ number\ is\ invalid"{}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}phone\ number\ is\ invalid"{}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ newUserLogin\ =\ args[1].c\_str();}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_user_8cpp_a4684f54ede335a61198dd93867f0aa42}{isUserExist\_byLogin}}(newUserLogin))\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}user\ with\ this\ login\ already\ exists"{}});}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}user\ with\ this\ login\ already\ exists"{}});}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ newUserId\ =\ 0;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_user}{User}}\ lastUser\ =\ \mbox{\hyperlink{_user_8cpp_a9ab483de47cccd849b1da00dc4e6597b}{loadLastUser}}();}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lastUser.\mbox{\hyperlink{class_user_a010077fcd52d32fd3b4e1171f748a86a}{getId}}()\ >=\ 0)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ newUserId\ =\ lastUser.\mbox{\hyperlink{class_user_a010077fcd52d32fd3b4e1171f748a86a}{getId}}()\ +\ 1;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.commentTrace(log\_id,\ \textcolor{stringliteral}{"{}Creating\ new\ user\ with\ ID:\ "{}}\ +\ to\_string(newUserId));}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_user}{User}}\ newUser(}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ newUserId,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ args[1].c\_str(),\ \textcolor{comment}{//\ login}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ args[2].c\_str(),\ \textcolor{comment}{//\ password}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ args[3].c\_str(),\ \textcolor{comment}{//\ name}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ args[4].c\_str(),\ \textcolor{comment}{//\ surname}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ phone,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a25d4977b41069615a2b0da1fcc7fc585}{emptyPassport}},}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a277c4299c60647069204311addfb6532}{USER\_NONVERIFED}},}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42ae2d30a195cee6b2961cc2c23ea4b520b}{USER}}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_user_8cpp_a3d004748aec1ac5e31bead3264418421}{DB\_newUser}}(newUser);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.commentTrace(log\_id,\ \textcolor{stringliteral}{"{}New\ user\ created\ successfully:\ "{}}\ +\ \textcolor{keywordtype}{string}(newUserLogin));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//cout\ <<\ "{}User\ "{}\ <<\ newUserLogin\ <<\ "{}\ registered!"{}\ <<\ endl;}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ =\ 1;\ \textcolor{comment}{//\ success}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_command_8cpp_a718cac29a2de76923315d12032ef77ab}{throw\_response}}(handle,\ \textcolor{stringliteral}{"{}user\ registered\ successfully"{}});}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{logEye}}.endTrace(log\_id,\ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}},\ \textcolor{stringliteral}{"{}user\ registered\ successfully:\ "{}}\ +\ \textcolor{keywordtype}{string}(newUserLogin));}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ std::string\ \mbox{\hyperlink{class_register_user_command_a6271f05813d52840ed49e6812f45be91}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}reg\_user"{}};}
+\DoxyCodeLine{00094\ \ \ \ \ \};}
+\DoxyCodeLine{00095\ \};}
+
+\end{DoxyCode}

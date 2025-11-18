@@ -6,7 +6,14 @@
 #include "../mainProcess.h"
 #include "../LogEye.h"
 
-
+/**
+ * @class PrintUserListCommand
+ * @brief Prints a paginated list of all users.
+ * @details Validates page number, prints users page by page,
+ * logs all actions via logEye.
+ * @note Requires: handleInfo, logEye
+ * @note Syntax: user_list <page>
+ */
 class PrintUserListCommand : public Command {
     Logger* logger;
 public:

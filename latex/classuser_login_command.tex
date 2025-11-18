@@ -1,0 +1,75 @@
+\doxysection{user\+Login\+Command Class Reference}
+\hypertarget{classuser_login_command}{}\label{classuser_login_command}\index{userLoginCommand@{userLoginCommand}}
+
+
+\doxylink{class_command}{Command} class for user login.  
+
+
+
+
+{\ttfamily \#include $<$user\+Login\+Command.\+h$>$}
+
+Inheritance diagram for user\+Login\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classuser_login_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classuser_login_command_a3ef50514785261225bc1ebc27ed0d730}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle) override
+\item 
+std\+::string \mbox{\hyperlink{classuser_login_command_a3bdc21cac5f1b784da380ac738898673}{name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_command}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_command_aa545a53d35818f9efb936daf3fa16c61}{\texorpdfstring{$\sim$}{\string~}\+Command}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_command}{Command} class for user login. 
+
+Handles\+:
+\begin{DoxyItemize}
+\item Prompting for user credentials (username/password)
+\item Verifying credentials against \doxylink{class_user}{User} database
+\item Creating a session upon successful login \begin{DoxyNote}{Note}
+Requires\+: $<$string$>$, $<$iostream$>$, \doxylink{class_user}{User}, \doxylink{struct_session}{Session}, \doxylink{class_logger}{Logger} 
+
+Syntax\+: login $<$login$>$ $<$password$>$ @used For\+:
+\end{DoxyNote}
+
+\item Initiating user sessions 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{classuser_login_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classuser_login_command_a3ef50514785261225bc1ebc27ed0d730}\index{userLoginCommand@{userLoginCommand}!execute@{execute}}
+\index{execute@{execute}!userLoginCommand@{userLoginCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{classuser_login_command_a3ef50514785261225bc1ebc27ed0d730} 
+void user\+Login\+Command\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command}}.
+
+\Hypertarget{classuser_login_command_a3bdc21cac5f1b784da380ac738898673}\index{userLoginCommand@{userLoginCommand}!name@{name}}
+\index{name@{name}!userLoginCommand@{userLoginCommand}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \label{classuser_login_command_a3bdc21cac5f1b784da380ac738898673} 
+std\+::string user\+Login\+Command\+::name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a87b16bdc7005f072d4b352666d3c1489}{Command}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/commands/\mbox{\hyperlink{user_login_command_8h}{user\+Login\+Command.\+h}}\end{DoxyCompactItemize}

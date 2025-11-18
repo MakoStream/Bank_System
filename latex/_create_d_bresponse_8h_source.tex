@@ -1,0 +1,28 @@
+\doxysection{Create\+DBresponse.\+h}
+\hypertarget{_create_d_bresponse_8h_source}{}\label{_create_d_bresponse_8h_source}\index{Bank\_System\_User/responses/CreateDBresponse.h@{Bank\_System\_User/responses/CreateDBresponse.h}}
+\mbox{\hyperlink{_create_d_bresponse_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_response_8h}{../Response.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_create_d_b_response}{CreateDBResponse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00004\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_create_d_b_response_a2f0ec3b4609317b0cd944fd84d4dab83}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ ReadFile(handle.\mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}},\ \&handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}},\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}),\ \&handle.\mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}},\ NULL);}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ ==\ 0)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Error:\ "{}}\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[0]\ <<\ endl;}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ ==\ 1)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Database\ created\ successfully."{}}\ <<\ endl;}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Error:\ Failed\ to\ create\ database.\(\backslash\)n"{}};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00018\ \ \ \ \ \};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_create_d_b_response_ae8355a835d21671f260b5fc1a685564a}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}create\_db"{}};}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \};}
+
+\end{DoxyCode}

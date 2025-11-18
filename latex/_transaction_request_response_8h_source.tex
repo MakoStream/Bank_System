@@ -1,0 +1,38 @@
+\doxysection{Transaction\+Request\+Response.\+h}
+\hypertarget{_transaction_request_response_8h_source}{}\label{_transaction_request_response_8h_source}\index{Bank\_System\_User/responses/TransactionRequestResponse.h@{Bank\_System\_User/responses/TransactionRequestResponse.h}}
+\mbox{\hyperlink{_transaction_request_response_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_response_8h}{../Response.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_transaction_request_p_a_n_response}{TransactionRequestPANResponse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transaction_request_p_a_n_response_a1b099e2a7346f6338e7da4ba710d2da0}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implementation\ of\ response\ handling\ for\ TransactionRequestPAN}}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ ReadFile(handle.\mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}},\ \&handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}},\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}),\ \&handle.\mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}},\ NULL);}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Transaction\ Request\ Response:\ "{}}\ <<\ (handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ ?\ \textcolor{stringliteral}{"{}Success"{}}\ :\ \textcolor{stringliteral}{"{}Failure"{}})\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Message:\ "{}}\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[0]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00011\ \ \ \ \ \};}
+\DoxyCodeLine{00012\ \ \ \ \ std::string\ \mbox{\hyperlink{class_transaction_request_p_a_n_response_ab996c692def7dcd0d7b76a675346c2d2}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}request\_PAN"{}};}
+\DoxyCodeLine{00014\ \ \ \ \ \}}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_transaction_request_list_response}{TransactionRequestListResponse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transaction_request_list_response_a5a5186fe49f9d873ca0585462691f064}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Implementation\ of\ response\ handling\ for\ TransactionRequestList}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ ReadFile(handle.\mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}},\ \&handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}},\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}),\ \&handle.\mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}},\ NULL);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Transaction\ Request\ List\ Response:\(\backslash\)n"{}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 10;\ ++i)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (strlen(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[i])\ >\ 0)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[i]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \};}
+\DoxyCodeLine{00029\ \ \ \ \ std::string\ \mbox{\hyperlink{class_transaction_request_list_response_a94517e9330cd7a26098b963831a8a997}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}request\_list"{}};}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \};}
+
+\end{DoxyCode}

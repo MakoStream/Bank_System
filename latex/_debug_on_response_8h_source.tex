@@ -1,0 +1,18 @@
+\doxysection{Debug\+On\+Response.\+h}
+\hypertarget{_debug_on_response_8h_source}{}\label{_debug_on_response_8h_source}\index{Bank\_System\_User/responses/DebugOnResponse.h@{Bank\_System\_User/responses/DebugOnResponse.h}}
+\mbox{\hyperlink{_debug_on_response_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_response_8h}{../Response.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_debug_on_response}{DebugOnResponse}}\ :\textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_on_response_a0574fce8bdb951fcaf10b9f79bf26605}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ ReadFile(handle.\mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}},\ \&handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}},\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}),\ \&handle.\mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}},\ NULL);}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[2J\(\backslash\)033[H"{}};}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ cout\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[0]\ <<\ endl;}
+\DoxyCodeLine{00010\ \ \ \ \ \};}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_debug_on_response_a582b9a777b1612afa62d40f184482da6}{name}}()\textcolor{keyword}{\ const\ override\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}debug"{}};\ \};}
+\DoxyCodeLine{00012\ \};}
+
+\end{DoxyCode}

@@ -7,6 +7,14 @@
 #include "../Audit/Audit.h"
 #include "../LogEye.h"
 
+/**
+ * @class CreateDBCommand
+ * @brief Creates specified database tables.
+ * @details Supports creation of users, accounts, transactions, and audit databases.
+ * Logs all actions via logEye.
+ * @note Requires: <string>, handleInfo, logEye
+ * @note Syntax: create_db <users|accounts|transactions|audit>
+ */
 class CreateDBCommand : public Command {
 public:
     void execute(handleInfo& handle) override {

@@ -1,0 +1,23 @@
+\doxysection{Commands\+Manager.\+h}
+\hypertarget{_commands_manager_8h_source}{}\label{_commands_manager_8h_source}\index{Bank\_System/CommandsManager.h@{Bank\_System/CommandsManager.h}}
+\mbox{\hyperlink{_commands_manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_command_8h}{Command.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bank___system_2basic__functions_8h}{basic\_functions.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_commands_manager_a620ebdd3b164ef16266454a719490013}{CommandsManager}}\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ std::vector<std::unique\_ptr<Command>>\ \mbox{\hyperlink{class_commands_manager_a4c8de02dca75b2025b458559912077bf}{commands}};}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_commands_manager_a620ebdd3b164ef16266454a719490013}{CommandsManager}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_commands_manager_af5d22a45a038bae0956f07556e8e6ccb}{execute}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle);}
+\DoxyCodeLine{00034\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,246 @@
+\doxysection{Bank\+\_\+\+System\+\_\+\+User/\+Unit\+Test/\+User\+Client\+Test.cpp File Reference}
+\hypertarget{_user_client_test_8cpp}{}\label{_user_client_test_8cpp}\index{Bank\_System\_User/UnitTest/UserClientTest.cpp@{Bank\_System\_User/UnitTest/UserClientTest.cpp}}
+{\ttfamily \#include $<$boost/test/unit\+\_\+test.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/test/unit\+\_\+test\+\_\+monitor.\+hpp$>$}\newline
+{\ttfamily \#include "{}User\+Client\+Test.\+h"{}}\newline
+{\ttfamily \#include $<$boost/bind.\+hpp$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_user_client_test_8cpp_af08ec37a8c99d747fb60fa15bc28678b}{\+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}}
+\item 
+\#define \mbox{\hyperlink{_user_client_test_8cpp_a139f00d2466d591f60b8d6a73c8273f1}{BOOST\+\_\+\+TEST\+\_\+\+DYN\+\_\+\+LINK}}
+\item 
+\#define \mbox{\hyperlink{_user_client_test_8cpp_a71809484a26cd96c6abe839a0a8a289d}{byte}}~unsigned char
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a9fd54f8d55957bfe3175c2bea8cf0d33}{test\+\_\+split\+String}} ()
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a096fceae25d31a48c0f7c1d3f7b4d9d8}{test\+\_\+is\+String\+Digit}} ()
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a54b4a8634f2cb481465b4a263b4e2b35}{test\+\_\+is\+Phone}} ()
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_ad4c0c9273a9a0872f7713bb1ff8fd95d}{test\+\_\+\+Timestamp}} ()
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a81690d21d12ac87fa7ccc8db381bcdd3}{test\+\_\+get\+SID}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a233fce3f646c5d98122934c903003f67}{test\+\_\+login1}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_ae4f95ef39943f8d4d09e18f9844af118}{test\+\_\+create\+\_\+db\+\_\+users}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_aa5efee537c51d9315dac7572afb44b38}{test\+\_\+reg\+\_\+user1}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_adfc220bbd5477a02569e75ecb1dab3d7}{test\+\_\+login2}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_afa1ae82974b4ac20c771867040041a0b}{test\+\_\+login3}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_ae2471d632532f5b485eef2ffaf96f6c4}{test\+\_\+me}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a2094ce65303bd2a1f50688af1da8fa0d}{test\+\_\+reg\+\_\+user2}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_ae8d38da3d12e70746d25892e4652109f}{test\+\_\+user\+\_\+list}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a72b8db156d3bd3fe03138302a90f9c0f}{test\+\_\+user\+\_\+info}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_aeb155f441c2835a2f0e77f80ecd77d9c}{test\+\_\+create\+\_\+db\+\_\+accounts}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a7603063a1dcc0596df08f7c202eef784}{test\+\_\+new\+\_\+account}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a43de968d66747da3a69db08c2e4ce090}{test\+\_\+account\+\_\+list}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_ab4479ff4b3b51b8005673b4efe541627}{test\+\_\+account\+\_\+info}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a6a59a7bc06acfc4904f3d35a27155840}{test\+\_\+account\+\_\+verify}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_afd9c97f402265f2181212c3f4a8c6d19}{test\+\_\+account\+\_\+ban\+\_\+unban}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a23915c3691b836e16244f375f3c548cb}{test\+\_\+logout}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\item 
+bool \mbox{\hyperlink{_user_client_test_8cpp_a1ff227753c645419e0e1a9cf3cfaaa69}{init\+\_\+function}} ()
+\item 
+void \mbox{\hyperlink{_user_client_test_8cpp_a0da75990207a5e37a2b4252131adbde9}{run\+Unit\+Test}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhandle_info}{handle\+Info}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_user_client_test_8cpp_a640dfa4dbe3373205b177d8d12de0069}{g\+\_\+handle}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_user_client_test_8cpp_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_user_client_test_8cpp_af08ec37a8c99d747fb60fa15bc28678b}\index{UserClientTest.cpp@{UserClientTest.cpp}!\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}}
+\index{\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{\_CRT\_SECURE\_NO\_WARNINGS}{\_CRT\_SECURE\_NO\_WARNINGS}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_af08ec37a8c99d747fb60fa15bc28678b} 
+\#define \+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}
+
+\Hypertarget{_user_client_test_8cpp_a139f00d2466d591f60b8d6a73c8273f1}\index{UserClientTest.cpp@{UserClientTest.cpp}!BOOST\_TEST\_DYN\_LINK@{BOOST\_TEST\_DYN\_LINK}}
+\index{BOOST\_TEST\_DYN\_LINK@{BOOST\_TEST\_DYN\_LINK}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{BOOST\_TEST\_DYN\_LINK}{BOOST\_TEST\_DYN\_LINK}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a139f00d2466d591f60b8d6a73c8273f1} 
+\#define BOOST\+\_\+\+TEST\+\_\+\+DYN\+\_\+\+LINK}
+
+\Hypertarget{_user_client_test_8cpp_a71809484a26cd96c6abe839a0a8a289d}\index{UserClientTest.cpp@{UserClientTest.cpp}!byte@{byte}}
+\index{byte@{byte}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{byte}{byte}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a71809484a26cd96c6abe839a0a8a289d} 
+\#define byte~unsigned char}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_user_client_test_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_user_client_test_8cpp_a1ff227753c645419e0e1a9cf3cfaaa69}\index{UserClientTest.cpp@{UserClientTest.cpp}!init\_function@{init\_function}}
+\index{init\_function@{init\_function}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{init\_function()}{init\_function()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a1ff227753c645419e0e1a9cf3cfaaa69} 
+bool init\+\_\+function (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a0da75990207a5e37a2b4252131adbde9}\index{UserClientTest.cpp@{UserClientTest.cpp}!runUnitTest@{runUnitTest}}
+\index{runUnitTest@{runUnitTest}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{runUnitTest()}{runUnitTest()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a0da75990207a5e37a2b4252131adbde9} 
+void run\+Unit\+Test (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_afd9c97f402265f2181212c3f4a8c6d19}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_account\_ban\_unban@{test\_account\_ban\_unban}}
+\index{test\_account\_ban\_unban@{test\_account\_ban\_unban}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_account\_ban\_unban()}{test\_account\_ban\_unban()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_afd9c97f402265f2181212c3f4a8c6d19} 
+void test\+\_\+account\+\_\+ban\+\_\+unban (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_ab4479ff4b3b51b8005673b4efe541627}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_account\_info@{test\_account\_info}}
+\index{test\_account\_info@{test\_account\_info}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_account\_info()}{test\_account\_info()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_ab4479ff4b3b51b8005673b4efe541627} 
+void test\+\_\+account\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a43de968d66747da3a69db08c2e4ce090}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_account\_list@{test\_account\_list}}
+\index{test\_account\_list@{test\_account\_list}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_account\_list()}{test\_account\_list()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a43de968d66747da3a69db08c2e4ce090} 
+void test\+\_\+account\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a6a59a7bc06acfc4904f3d35a27155840}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_account\_verify@{test\_account\_verify}}
+\index{test\_account\_verify@{test\_account\_verify}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_account\_verify()}{test\_account\_verify()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a6a59a7bc06acfc4904f3d35a27155840} 
+void test\+\_\+account\+\_\+verify (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_aeb155f441c2835a2f0e77f80ecd77d9c}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_create\_db\_accounts@{test\_create\_db\_accounts}}
+\index{test\_create\_db\_accounts@{test\_create\_db\_accounts}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_create\_db\_accounts()}{test\_create\_db\_accounts()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_aeb155f441c2835a2f0e77f80ecd77d9c} 
+void test\+\_\+create\+\_\+db\+\_\+accounts (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_ae4f95ef39943f8d4d09e18f9844af118}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_create\_db\_users@{test\_create\_db\_users}}
+\index{test\_create\_db\_users@{test\_create\_db\_users}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_create\_db\_users()}{test\_create\_db\_users()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_ae4f95ef39943f8d4d09e18f9844af118} 
+void test\+\_\+create\+\_\+db\+\_\+users (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a81690d21d12ac87fa7ccc8db381bcdd3}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_getSID@{test\_getSID}}
+\index{test\_getSID@{test\_getSID}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_getSID()}{test\_getSID()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a81690d21d12ac87fa7ccc8db381bcdd3} 
+void test\+\_\+get\+SID (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a54b4a8634f2cb481465b4a263b4e2b35}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_isPhone@{test\_isPhone}}
+\index{test\_isPhone@{test\_isPhone}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_isPhone()}{test\_isPhone()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a54b4a8634f2cb481465b4a263b4e2b35} 
+void test\+\_\+is\+Phone (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a096fceae25d31a48c0f7c1d3f7b4d9d8}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_isStringDigit@{test\_isStringDigit}}
+\index{test\_isStringDigit@{test\_isStringDigit}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_isStringDigit()}{test\_isStringDigit()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a096fceae25d31a48c0f7c1d3f7b4d9d8} 
+void test\+\_\+is\+String\+Digit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a233fce3f646c5d98122934c903003f67}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_login1@{test\_login1}}
+\index{test\_login1@{test\_login1}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_login1()}{test\_login1()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a233fce3f646c5d98122934c903003f67} 
+void test\+\_\+login1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_adfc220bbd5477a02569e75ecb1dab3d7}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_login2@{test\_login2}}
+\index{test\_login2@{test\_login2}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_login2()}{test\_login2()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_adfc220bbd5477a02569e75ecb1dab3d7} 
+void test\+\_\+login2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_afa1ae82974b4ac20c771867040041a0b}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_login3@{test\_login3}}
+\index{test\_login3@{test\_login3}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_login3()}{test\_login3()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_afa1ae82974b4ac20c771867040041a0b} 
+void test\+\_\+login3 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a23915c3691b836e16244f375f3c548cb}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_logout@{test\_logout}}
+\index{test\_logout@{test\_logout}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_logout()}{test\_logout()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a23915c3691b836e16244f375f3c548cb} 
+void test\+\_\+logout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_ae2471d632532f5b485eef2ffaf96f6c4}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_me@{test\_me}}
+\index{test\_me@{test\_me}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_me()}{test\_me()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_ae2471d632532f5b485eef2ffaf96f6c4} 
+void test\+\_\+me (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a7603063a1dcc0596df08f7c202eef784}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_new\_account@{test\_new\_account}}
+\index{test\_new\_account@{test\_new\_account}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_new\_account()}{test\_new\_account()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a7603063a1dcc0596df08f7c202eef784} 
+void test\+\_\+new\+\_\+account (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_aa5efee537c51d9315dac7572afb44b38}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_reg\_user1@{test\_reg\_user1}}
+\index{test\_reg\_user1@{test\_reg\_user1}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_reg\_user1()}{test\_reg\_user1()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_aa5efee537c51d9315dac7572afb44b38} 
+void test\+\_\+reg\+\_\+user1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a2094ce65303bd2a1f50688af1da8fa0d}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_reg\_user2@{test\_reg\_user2}}
+\index{test\_reg\_user2@{test\_reg\_user2}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_reg\_user2()}{test\_reg\_user2()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a2094ce65303bd2a1f50688af1da8fa0d} 
+void test\+\_\+reg\+\_\+user2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a9fd54f8d55957bfe3175c2bea8cf0d33}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_splitString@{test\_splitString}}
+\index{test\_splitString@{test\_splitString}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_splitString()}{test\_splitString()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a9fd54f8d55957bfe3175c2bea8cf0d33} 
+void test\+\_\+split\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_ad4c0c9273a9a0872f7713bb1ff8fd95d}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_Timestamp@{test\_Timestamp}}
+\index{test\_Timestamp@{test\_Timestamp}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_Timestamp()}{test\_Timestamp()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_ad4c0c9273a9a0872f7713bb1ff8fd95d} 
+void test\+\_\+\+Timestamp (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_a72b8db156d3bd3fe03138302a90f9c0f}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_user\_info@{test\_user\_info}}
+\index{test\_user\_info@{test\_user\_info}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_user\_info()}{test\_user\_info()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a72b8db156d3bd3fe03138302a90f9c0f} 
+void test\+\_\+user\+\_\+info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_user_client_test_8cpp_ae8d38da3d12e70746d25892e4652109f}\index{UserClientTest.cpp@{UserClientTest.cpp}!test\_user\_list@{test\_user\_list}}
+\index{test\_user\_list@{test\_user\_list}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{test\_user\_list()}{test\_user\_list()}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_ae8d38da3d12e70746d25892e4652109f} 
+void test\+\_\+user\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-var-members}
+\Hypertarget{_user_client_test_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_user_client_test_8cpp_a640dfa4dbe3373205b177d8d12de0069}\index{UserClientTest.cpp@{UserClientTest.cpp}!g\_handle@{g\_handle}}
+\index{g\_handle@{g\_handle}!UserClientTest.cpp@{UserClientTest.cpp}}
+\doxysubsubsection{\texorpdfstring{g\_handle}{g\_handle}}
+{\footnotesize\ttfamily \label{_user_client_test_8cpp_a640dfa4dbe3373205b177d8d12de0069} 
+\mbox{\hyperlink{structhandle_info}{handle\+Info}}\texorpdfstring{$\ast$}{*} g\+\_\+handle = nullptr}
+

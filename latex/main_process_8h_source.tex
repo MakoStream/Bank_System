@@ -1,0 +1,120 @@
+\doxysection{main\+Process.\+h}
+\hypertarget{main_process_8h_source}{}\label{main_process_8h_source}\index{Bank\_System/mainProcess.h@{Bank\_System/mainProcess.h}}
+\mbox{\hyperlink{main_process_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ \_CRT\_SECURE\_NO\_WARNINGS}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\#include\ <iostream>}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\#include\ "{}Command.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_logger_8h}{Logger.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <csignal>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_account_8h}{Account.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bank___system_2basic__functions_8h}{basic\_functions.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\#include\ "{}Command.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_audit_8h}{Audit/Audit.h}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{_bank___system_8cpp_a73284a437ebc36a15a222a2660de8bb4}{configName}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_session}{Session}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_session_aeb5ad3bb270afcb7a17e413edf5269e7}{session\_id}};\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_session_ae33f99c74a9f433e660bf8ae48945357}{user\_id}};\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_session_a1c42c57d00a4c68ed191c1fcf5fe865c}{auth\_key}}[41];\ }
+\DoxyCodeLine{00037\ \}\ \mbox{\hyperlink{struct_session}{Session}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsession_construct}{sessionConstruct}}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structsession_construct_acaf28896a07bfb25f535ddfc60329815}{sessionId}}\ =\ -\/1;\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structsession_construct_a17eae4deff08c0be7a6db9e198474f67}{userId}}\ =\ -\/1;\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[10];\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}}[256];\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structsession_construct_ae85f86b1edbf9e0294b8204d5ecb32cc}{auth\_key}}[41];\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[10][1024];\ }
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhandle_info}{handleInfo}}\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ HANDLE\&\ \mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}};\ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{structsession_construct}{sessionConstruct}}\&\ \mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}};\ }
+\DoxyCodeLine{00060\ \ \ \ \ DWORD\&\ \mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}};\ }
+\DoxyCodeLine{00061\ \ \ \ \ DWORD\&\ \mbox{\hyperlink{structhandle_info_aacbd0ceaccd6ab462b301289634c1b6a}{bytesWritten}};\ }
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_session}{Session}}\ \mbox{\hyperlink{main_process_8cpp_a34e50bd064592714d0e0d7360a61af35}{emptySession}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmain_process_aae457b30b1820aa1b15fa77ab4b687c2}{mainProcess}}\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_ac600b67cf989a2341e6a376a9da6017f}{last\_session\_id}};\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_aeb64d1e1eae13b15525b479f1b8aba7f}{last\_card\_PAN}};\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_a3c921c59c69b2310b4954efd767252b8}{last\_card\_IBAN}};\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_abbe43bbe1c723e0ea4a537d04020e483}{last\_audit\_id}};\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_a18b800db4b70f42465c0ba860f9c3b24}{last\_account\_id}};\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_a6b1b22d18ccf29c5ea303f03b8bf7b0b}{last\_transaction\_id}};\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_aa2b48ce1772513d4fc5c16e1b981ee96}{last\_transaction\_request\_id}};\ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ std::string\ \mbox{\hyperlink{classmain_process_a95ec7291cc04d61c7c46662e7ae40263}{account\_db\_path}};\ }
+\DoxyCodeLine{00093\ \ \ \ \ std::string\ \mbox{\hyperlink{classmain_process_a377a12ba9c903f938fe428ddd1b37c44}{user\_db\_path}};\ }
+\DoxyCodeLine{00094\ \ \ \ \ std::string\ \mbox{\hyperlink{classmain_process_a0972867a7a7809a00fb0a477f92f848d}{transaction\_log\_db\_path}};\ }
+\DoxyCodeLine{00095\ \ \ \ \ std::string\ \mbox{\hyperlink{classmain_process_af07dce7e0330530e0dd3c9f4374e22cc}{audit\_log\_db\_path}};\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmain_process_adad34cb02191047478e64a461d8b2ab0}{debug}};\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ std::vector<Session>\ \mbox{\hyperlink{classmain_process_a09143f6f39261e1d949049a6619dbe91}{loggined\_users}};\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_af38220d892f7653220f144d864d17a80}{savecfg}}();\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{classmain_process_aae457b30b1820aa1b15fa77ab4b687c2}{mainProcess}}();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ Session\ management}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_acd985b507420bd2aa4e86142ff5c3ed5}{new\_session}}();\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_a2292b748e6991cc73433259a9cd078cf}{setDebugMode}}(\textcolor{keywordtype}{bool}\ mode);\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_af3fb877bea6082d8f432bcd51816f924}{printConfig}}();\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_a695066867863263aca8b0156539ed397}{login}}(\textcolor{keywordtype}{int}\ session\_id,\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{classmain_process_a695066867863263aca8b0156539ed397}{login}}[32],\ \textcolor{keywordtype}{char}\ password[32]);\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_a0405b9392a203b5afee0bc8403a44b74}{logout}}(\textcolor{keywordtype}{int}\ session\_id);\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_a7aa73f43d68883b49bc20b9e757c143d}{printSessions}}();\ }
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{struct_session}{Session}}\&\ \mbox{\hyperlink{classmain_process_a907d64c9dff50858dac9fb33310a9f48}{getUserSession}}(\textcolor{keywordtype}{int}\ session\_id);\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_a5dc7f5e4fef1b4d0707cc5f5f6b9f83a}{generateAuthKey}}(\mbox{\hyperlink{struct_session}{Session}}\&\ session,\ \mbox{\hyperlink{structsession_construct}{sessionConstruct}}\&\ sessionData);\ }
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{struct_session}{Session}}\&\ \mbox{\hyperlink{classmain_process_aeca921d85a9735b866d06751c9bb3704}{getSessionByID}}(\textcolor{keywordtype}{int}\ session\_id);\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmain_process_a161c906f54cf24c0fa200e42b5cc7139}{compareAuthKey}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structsession_construct}{sessionConstruct}}\&\ sc,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_session}{Session}}\&\ s);\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_a710cf408d62c85190d34e6755f648a4a}{transferBridge}}(\mbox{\hyperlink{classaccount}{account}}\&\ from,\ \mbox{\hyperlink{classaccount}{account}}\&\ to,\ \textcolor{keywordtype}{double}\ amount);\ }
+\DoxyCodeLine{00124\ \ \ \ \ std::vector<Session>\ \mbox{\hyperlink{classmain_process_add1af2af25696f7c7be9305bad656175}{getSessions}}();\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ Audit\ management}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_a2c36de84164f4cd81fcabe7a38188a5a}{incrementCardPAN}}();\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_ac08e7f615e38f86a6ba5c9ab92859285}{incrementCardIBAN}}();\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_aee34e32e996332a7f099408858e0d0f5}{incrementAccountID}}();\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_aebd81c4cb0b172a3288e5d97df65a063}{incrementAuditID}}();\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_a9ad284b92bb701ea36070a6e7540b006}{incrementTransactionID}}();\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_aa4cc929f57d91bc9c66cabd2996364f4}{incrementTransactionRequestID}}();\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmain_process_a2c14b8cc6470284a7cfe9a5e64da9a1a}{getLastSessionID}}();\ }
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ Database\ paths}}
+\DoxyCodeLine{00136\ \ \ \ \ std::string\ \mbox{\hyperlink{classmain_process_a6c6fb3fa01287dea2d0491b33b6d17a8}{getAccountDBPath}}();\ }
+\DoxyCodeLine{00137\ \ \ \ \ std::string\ \mbox{\hyperlink{classmain_process_a57ee00e140bbcc6881109374d648d99a}{getUserDBPath}}();\ }
+\DoxyCodeLine{00138\ \ \ \ \ std::string\ \mbox{\hyperlink{classmain_process_ae7fe6c24f892f2c41fc5ddeb0dd2d838}{getTransactionLogDBPath}}();\ }
+\DoxyCodeLine{00139\ \ \ \ \ std::string\ \mbox{\hyperlink{classmain_process_ae7899b2259669c59ea686684aae5f23e}{getAuditLogDBPath}}();\ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Debug\ mode}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmain_process_ac9198fced49198dcf983f1930dbd2d58}{debugOn}}();\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classmain_process_ad67fba6a1f5a555ccb35024c7de4eabf}{debugStatus}}();\ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ Transactions}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_ad6499979445d77ca57044c6d62be083d}{transaction\_request}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\ handle,\ \mbox{\hyperlink{classaccount}{account}}\&\ from,\ \mbox{\hyperlink{classaccount}{account}}\&\ to,\ \textcolor{keywordtype}{double}\ ammount,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ PIN,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ CVV,\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}\ op\_type,\ std::string\ comment\ =\ \textcolor{stringliteral}{"{}\#"{}});\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_a9937f5c1ba2def5a8f85b4de561053b0}{check\_requests}}();\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classmain_process_a793ccaad393b3b0c9f7dac9a2cd9efb2}{allow\_transaction}}(\textcolor{keywordtype}{int}\ transaction\_id,\ \mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ user\_handle,\ std::string\ comment);\ }
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{classmain_process}{mainProcess}}\ \mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ }
+
+\end{DoxyCode}

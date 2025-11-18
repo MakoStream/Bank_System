@@ -1,0 +1,197 @@
+\doxysection{Bank\+\_\+\+System/\+Bank\+\_\+\+System.cpp File Reference}
+\hypertarget{_bank___system_8cpp}{}\label{_bank___system_8cpp}\index{Bank\_System/Bank\_System.cpp@{Bank\_System/Bank\_System.cpp}}
+
+
+Main module of the bank system server.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include "{}Logger.\+h"{}}\newline
+{\ttfamily \#include "{}main\+Process.\+h"{}}\newline
+{\ttfamily \#include "{}basic\+\_\+functions.\+h"{}}\newline
+{\ttfamily \#include "{}Log\+Eye.\+h"{}}\newline
+{\ttfamily \#include "{}Commands\+Manager.\+h"{}}\newline
+{\ttfamily \#include $<$csignal$>$}\newline
+{\ttfamily \#include "{}User.\+h"{}}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_bank___system_8cpp_af08ec37a8c99d747fb60fa15bc28678b}{\+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_bank___system_8cpp_a79f870e97bd361cefde49cdc5920c84e}{Handle\+Client}} (HANDLE h\+Pipe)
+\begin{DoxyCompactList}\small\item\em Handles a single client request through a named pipe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_bank___system_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}{signal\+Handler}} (int signal)
+\begin{DoxyCompactList}\small\item\em Handles system termination signals and logs the shutdown event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_bank___system_8cpp_af7dcec3988ba4d873f365b75373e5b09}{on\+Exit}} ()
+\begin{DoxyCompactList}\small\item\em Called automatically at normal program termination. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_bank___system_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Main program entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_log_eye}{Log\+Eye}} \mbox{\hyperlink{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}{log\+Eye}}
+\item 
+string \mbox{\hyperlink{_bank___system_8cpp_a73284a437ebc36a15a222a2660de8bb4}{config\+Name}} = "{}config.\+ini"{}
+\item 
+\mbox{\hyperlink{structpassport_data}{passport\+Data}} \mbox{\hyperlink{_bank___system_8cpp_a25d4977b41069615a2b0da1fcc7fc585}{empty\+Passport}} = \{ "{}"{}, 0, "{}"{}, "{}"{}, "{}"{} \}
+\item 
+\mbox{\hyperlink{class_user}{User}} \mbox{\hyperlink{_bank___system_8cpp_a824c80a5364fc01142e0849490db0544}{empty\+User}} (-\/1, "{}"{}, "{}"{}, "{}"{}, "{}"{}, 0, \mbox{\hyperlink{_bank___system_8cpp_a25d4977b41069615a2b0da1fcc7fc585}{empty\+Passport}}, 0, \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a8ba576de68566f5d774c3f01beaa86f7}{USER\+\_\+\+AVAILABLE}}, \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42ae2d30a195cee6b2961cc2c23ea4b520b}{USER}})
+\item 
+\mbox{\hyperlink{class_logger}{Logger}} \mbox{\hyperlink{_bank___system_8cpp_a5b27630dbcf231bfda3a7d79e1eefce5}{logger}}
+\item 
+\mbox{\hyperlink{classmain_process}{main\+Process}} \mbox{\hyperlink{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}{process}}
+\item 
+\mbox{\hyperlink{class_commands_manager}{Commands\+Manager}} \mbox{\hyperlink{_bank___system_8cpp_a21bdbd6c96714ce53522635f047145ae}{manager}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main module of the bank system server. 
+
+This file defines the central logic of the bank server. It initializes global objects, configures logging, loads system settings, registers signal handlers and exit callbacks, and starts the main loop. The module creates a named pipe for inter-\/process communication and spawns a new thread for each client connection using \doxylink{_bank___system_8cpp_a79f870e97bd361cefde49cdc5920c84e}{Handle\+Client()}. This file orchestrates the entire runtime behavior of the bank system. \begin{DoxyNote}{Note}
+This is the core file required for the entire system to function. 
+\end{DoxyNote}
+
+
+\label{doc-define-members}
+\Hypertarget{_bank___system_8cpp_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_bank___system_8cpp_af08ec37a8c99d747fb60fa15bc28678b}\index{Bank\_System.cpp@{Bank\_System.cpp}!\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}}
+\index{\_CRT\_SECURE\_NO\_WARNINGS@{\_CRT\_SECURE\_NO\_WARNINGS}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{\_CRT\_SECURE\_NO\_WARNINGS}{\_CRT\_SECURE\_NO\_WARNINGS}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_af08ec37a8c99d747fb60fa15bc28678b} 
+\#define \+\_\+\+CRT\+\_\+\+SECURE\+\_\+\+NO\+\_\+\+WARNINGS}
+
+
+
+\label{doc-func-members}
+\Hypertarget{_bank___system_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_bank___system_8cpp_a79f870e97bd361cefde49cdc5920c84e}\index{Bank\_System.cpp@{Bank\_System.cpp}!HandleClient@{HandleClient}}
+\index{HandleClient@{HandleClient}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{HandleClient()}{HandleClient()}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_a79f870e97bd361cefde49cdc5920c84e} 
+void Handle\+Client (\begin{DoxyParamCaption}\item[{HANDLE}]{h\+Pipe}{}\end{DoxyParamCaption})}
+
+
+
+Handles a single client request through a named pipe. 
+
+The function splits an input string into words separated by whitespace, converts them into a vector of strings, and passes the processed data to the main loop. 
+\begin{DoxyParams}{Parameters}
+{\em h\+Pipe} & Handle to the pipe through which client data is received. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$string$>$, $<$sstream$>$, $<$vector$>$. 
+
+Used for input parsing in the main loop (\doxylink{_bank___system_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main()}). 
+\end{DoxyNote}
+\Hypertarget{_bank___system_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{Bank\_System.cpp@{Bank\_System.cpp}!main@{main}}
+\index{main@{main}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Main program entry point. 
+
+Initializes the application, sets up signal handlers, registers exit callbacks, loads configuration, starts logging, and enters the main loop that accepts clients through a named pipe. Each client connection is handled by a separate thread using \doxylink{_bank___system_8cpp_a79f870e97bd361cefde49cdc5920c84e}{Handle\+Client()}. \begin{DoxyNote}{Note}
+Requirements\+: \doxylink{_bank___system_2basic__functions_8cpp_acb3b421c46ad175157857d818818bdab}{split()}, \doxylink{class_logger}{Logger}, commands class, signal handling. 
+
+Required for entire program execution. 
+\end{DoxyNote}
+\Hypertarget{_bank___system_8cpp_af7dcec3988ba4d873f365b75373e5b09}\index{Bank\_System.cpp@{Bank\_System.cpp}!onExit@{onExit}}
+\index{onExit@{onExit}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{onExit()}{onExit()}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_af7dcec3988ba4d873f365b75373e5b09} 
+void on\+Exit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Called automatically at normal program termination. 
+
+This function is executed when the program exits normally and writes a termination record using the logger. \begin{DoxyNote}{Note}
+Requires a logger instance. 
+
+Used in \doxylink{_bank___system_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main()} to log program termination. 
+\end{DoxyNote}
+\Hypertarget{_bank___system_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7}\index{Bank\_System.cpp@{Bank\_System.cpp}!signalHandler@{signalHandler}}
+\index{signalHandler@{signalHandler}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{signalHandler()}{signalHandler()}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_ad2e59c7203b3bddc1bc9a2224b52e8e7} 
+void signal\+Handler (\begin{DoxyParamCaption}\item[{int}]{signal}{}\end{DoxyParamCaption})}
+
+
+
+Handles system termination signals and logs the shutdown event. 
+
+The function processes incoming system signals such as SIGINT, SIGABRT, and SIGTERM. When a signal is received, it writes a log message and terminates the program using exit(). 
+\begin{DoxyParams}{Parameters}
+{\em signal} & The system signal number that triggered the handler. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$csignal$>$. 
+
+Requires a logger instance. 
+
+Used in \doxylink{_bank___system_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main()} to ensure clean shutdown and logging. 
+\end{DoxyNote}
+
+
+\label{doc-var-members}
+\Hypertarget{_bank___system_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_bank___system_8cpp_a73284a437ebc36a15a222a2660de8bb4}\index{Bank\_System.cpp@{Bank\_System.cpp}!configName@{configName}}
+\index{configName@{configName}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{configName}{configName}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_a73284a437ebc36a15a222a2660de8bb4} 
+string config\+Name = "{}config.\+ini"{}}
+
+\Hypertarget{_bank___system_8cpp_a25d4977b41069615a2b0da1fcc7fc585}\index{Bank\_System.cpp@{Bank\_System.cpp}!emptyPassport@{emptyPassport}}
+\index{emptyPassport@{emptyPassport}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{emptyPassport}{emptyPassport}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_a25d4977b41069615a2b0da1fcc7fc585} 
+\mbox{\hyperlink{structpassport_data}{passport\+Data}} empty\+Passport = \{ "{}"{}, 0, "{}"{}, "{}"{}, "{}"{} \}}
+
+\Hypertarget{_bank___system_8cpp_a824c80a5364fc01142e0849490db0544}\index{Bank\_System.cpp@{Bank\_System.cpp}!emptyUser@{emptyUser}}
+\index{emptyUser@{emptyUser}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{emptyUser}{emptyUser}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_a824c80a5364fc01142e0849490db0544} 
+\mbox{\hyperlink{class_user}{User}} empty\+User(-\/1, "{}"{}, "{}"{}, "{}"{}, "{}"{}, 0, \mbox{\hyperlink{_bank___system_8cpp_a25d4977b41069615a2b0da1fcc7fc585}{empty\+Passport}}, 0, \mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a8ba576de68566f5d774c3f01beaa86f7}{USER\+\_\+\+AVAILABLE}}, \mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42ae2d30a195cee6b2961cc2c23ea4b520b}{USER}}) (\begin{DoxyParamCaption}\item[{-\/}]{1}{, }\item[{"{}"{}}]{}{, }\item[{"{}"{}}]{}{, }\item[{"{}"{}}]{}{, }\item[{"{}"{}}]{}{, }\item[{0}]{}{, }\item[{\mbox{\hyperlink{_bank___system_8cpp_a25d4977b41069615a2b0da1fcc7fc585}{empty\+Passport}}}]{}{, }\item[{0}]{}{, }\item[{\mbox{\hyperlink{_user_8h_a6c4fc4fe5662d5736af4f8889de0cb41a8ba576de68566f5d774c3f01beaa86f7}{USER\+\_\+\+AVAILABLE}}}]{}{, }\item[{\mbox{\hyperlink{_user_8h_a41186431fd900b4c0ba096f1302c5e42ae2d30a195cee6b2961cc2c23ea4b520b}{USER}}}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70}\index{Bank\_System.cpp@{Bank\_System.cpp}!logEye@{logEye}}
+\index{logEye@{logEye}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{logEye}{logEye}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_a09465ee9560b09e5ee88c6d8e4515d70} 
+\mbox{\hyperlink{class_log_eye}{Log\+Eye}} log\+Eye}
+
+\Hypertarget{_bank___system_8cpp_a5b27630dbcf231bfda3a7d79e1eefce5}\index{Bank\_System.cpp@{Bank\_System.cpp}!logger@{logger}}
+\index{logger@{logger}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_a5b27630dbcf231bfda3a7d79e1eefce5} 
+\mbox{\hyperlink{class_logger}{Logger}} logger}
+
+\Hypertarget{_bank___system_8cpp_a21bdbd6c96714ce53522635f047145ae}\index{Bank\_System.cpp@{Bank\_System.cpp}!manager@{manager}}
+\index{manager@{manager}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{manager}{manager}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_a21bdbd6c96714ce53522635f047145ae} 
+\mbox{\hyperlink{class_commands_manager}{Commands\+Manager}} manager}
+
+\Hypertarget{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33}\index{Bank\_System.cpp@{Bank\_System.cpp}!process@{process}}
+\index{process@{process}!Bank\_System.cpp@{Bank\_System.cpp}}
+\doxysubsubsection{\texorpdfstring{process}{process}}
+{\footnotesize\ttfamily \label{_bank___system_8cpp_a31607588183278c556138cdb6a0e1f33} 
+\mbox{\hyperlink{classmain_process}{main\+Process}} process}
+

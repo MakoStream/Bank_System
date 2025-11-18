@@ -166,6 +166,15 @@ extern account emptyAccount;
 
 // Функції для роботи з банківськими рахунками
 void ACC_createDB(); // Створення пустого бінарного файлу accounts.dat
+
+/**
+ * @brief Adds a new account and saves it to the database
+ * @param userID Owner user ID
+ * @param balance_type Currency type
+ * @param type Card type
+ * @param accountType Account plan type
+ * @see DB_create_accounts()
+ */
 void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType); // Додавання нового рахунку
 
 /**
@@ -191,17 +200,7 @@ account ACC_getAccountByIBAN(const char* IBAN); // Пошук рахунку за IBAN
  */
 void transferFunds(account& fromAcc, account& toAcc, double amount); // Переказ коштів між рахунками
 
-/**
- * @brief Generate unique IBAN
- * @note Requires process.incrementCardIBAN()
- */
-int generateIBAN();
 
-/**
- * @brief Generate unique card number
- * @note Requires process.incrementCardPAN()
- */
-int generateCardNumber();
 
 /**
  * @brief Print accounts into paged messages
@@ -242,6 +241,7 @@ bool isAccountExistById(int id);
 /**
  * @brief Get last account in database
  * @note Requires account class, <fstream>
+ * @see ACC_addAccount()
  */
 account getLastAccount();
 

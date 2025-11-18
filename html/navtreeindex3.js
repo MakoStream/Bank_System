@@ -1,7 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"dir_fefb280e9216ab0c80d210618bcfd484.html":[1,0,1,0],
-"files.html":[1,0],
 "functions.html":[0,3,0],
 "functions.html":[0,3,0,0],
 "functions_b.html":[0,3,0,1],

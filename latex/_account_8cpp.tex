@@ -1,0 +1,319 @@
+\doxysection{Bank\+\_\+\+System/\+Account.cpp File Reference}
+\hypertarget{_account_8cpp}{}\label{_account_8cpp}\index{Bank\_System/Account.cpp@{Bank\_System/Account.cpp}}
+{\ttfamily \#include "{}Account.\+h"{}}\newline
+{\ttfamily \#include "{}main\+Process.\+h"{}}\newline
+{\ttfamily \#include "{}Log\+Eye.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_account_8cpp_a0898ecc158dd4b074e18aee467b08865}{compute\+Luhn\+Check\+Digit}} (const char \texorpdfstring{$\ast$}{*}digits\+\_\+without\+\_\+check)
+\begin{DoxyCompactList}\small\item\em Calculates the Luhn check digit for a numeric string (excluding check digit). \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_account_8cpp_a1990eb225456da915299eb1e9ed60e9e}{get\+\_\+\+Bank\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Generates a 16-\/digit bank card number with Luhn check digit. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_account_8cpp_a23bb8c4bd20b65b7e3e262bce62426e4}{get\+\_\+\+IBAN}} ()
+\begin{DoxyCompactList}\small\item\em Generates a pseudo IBAN string in the format "{}\+TB00"{} + 25-\/digit number. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_account_8cpp_a74a045b24be37ce0af71824f375d89d7}{generate\+\_\+\+CVC}} ()
+\begin{DoxyCompactList}\small\item\em Generates a random 3-\/digit CVC code. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classaccount}{account}} \mbox{\hyperlink{_account_8cpp_ae2222b66da356d1d0126579d7eab520f}{get\+Last\+Account}} ()
+\begin{DoxyCompactList}\small\item\em Get last account in database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classaccount}{account}} \mbox{\hyperlink{_account_8cpp_a8f1773ce2ae32192952e79041669c0e5}{get\+Account\+By\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Get account by ID. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_account_8cpp_a04c1e1f987c7dfd26e7e0f38dc88c2dc}{is\+Account\+Exisyt\+By\+Id}} (int id)
+\item 
+void \mbox{\hyperlink{_account_8cpp_aaa5fd9cf9e5fad16e78cde9c6d69d413}{ACC\+\_\+add\+Account}} (int user\+ID, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} balance\+\_\+type, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}} type, short account\+Type)
+\begin{DoxyCompactList}\small\item\em Adds a new account and saves it to the database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_account_8cpp_ae4a1fa018c246de48e57b71e3e18f268}{print\+All\+Accounts}} (char msg\mbox{[}5\mbox{]}\mbox{[}1024\mbox{]}, int page)
+\begin{DoxyCompactList}\small\item\em Print accounts into paged messages. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_account_8cpp_a2855b434b928b7074ca97ed8f2821c02}{DB\+\_\+create\+\_\+accounts}} ()
+\begin{DoxyCompactList}\small\item\em Create empty accounts file. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_account_8cpp_af0df86b7800d7758e8ef29de4af8d78b}{is\+Account\+Exist\+\_\+by\+Card\+Number}} (const char \texorpdfstring{$\ast$}{*}card\+Number)
+\begin{DoxyCompactList}\small\item\em Check if account exists by card number. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_account_8cpp_a71a3333731b67667f502cae089f081cf}{is\+Account\+Exist\+\_\+by\+IBAN}} (const char \texorpdfstring{$\ast$}{*}IBAN)
+\begin{DoxyCompactList}\small\item\em Check if account exists by IBAN. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classaccount}{account}} \mbox{\hyperlink{_account_8cpp_a56710721192c273c14e555742b245a9a}{get\+Account\+\_\+by\+Card\+Number}} (const char \texorpdfstring{$\ast$}{*}card\+Number)
+\item 
+\mbox{\hyperlink{classaccount}{account}} \mbox{\hyperlink{_account_8cpp_ad29696bd8aaa1b96c5e68b1754d675c7}{get\+Account\+\_\+by\+IBAN}} (const char \texorpdfstring{$\ast$}{*}IBAN)
+\item 
+void \mbox{\hyperlink{_account_8cpp_a5fb03ffabc9421b8f5a840b0a0774134}{set\+Account\+Balance}} (\mbox{\hyperlink{classaccount}{account}} \&acc, double new\+Balance)
+\begin{DoxyCompactList}\small\item\em Debug\+: set account balance. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classaccount}{account}} $>$ \mbox{\hyperlink{_account_8cpp_a8ea4f4a39bdea1809db1ff7bb3ab3f61}{get\+User\+Accounts}} (int user\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Get all accounts of a user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unordered\+\_\+map$<$ string, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} $>$ \mbox{\hyperlink{_account_8cpp_a2997a5fef35f01b92d962e6609a759ac}{balance\+Map}} = \{ \{"{}UAH"{}, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}}\}, \{"{}DLR"{}, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a73bf3800553f080d112618f5742f617e}{DLR}}\}, \{"{}EUR"{}, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a0c1560edca52d24f8b6c3118f965ed71}{EUR}}\} \}
+\item 
+unordered\+\_\+map$<$ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}}, string $>$ \mbox{\hyperlink{_account_8cpp_a3aaa99f260c8425788de65247da5c521}{balance\+Map\+To\+String}} = \{ \{\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}}, "{}UAH"{}\}, \{\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a73bf3800553f080d112618f5742f617e}{DLR}}, "{}DLR"{}\}, \{\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a0c1560edca52d24f8b6c3118f965ed71}{EUR}}, "{}EUR"{}\} \}
+\item 
+unordered\+\_\+map$<$ string, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}} $>$ \mbox{\hyperlink{_account_8cpp_a620eb1df630bf856dcd6ec690e56728c}{card\+Map}} = \{ \{"{}DEFAULT"{}, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}}\}, \{"{}DEPOSITE"{}, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18ac1b583024752a086f49bf2061478409e}{DEPOSITE}}\}, \{"{}CREDIT"{}, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a5b9c7596aea45aa4b6b3fc93a907391d}{CREDIT}}\} \}
+\item 
+unordered\+\_\+map$<$ string, \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}} $>$ \mbox{\hyperlink{_account_8cpp_a12e2b82f2d5eec6fa27f94f45df328a0}{status\+Map}} = \{ \{"{}AVAILABLE"{}, \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}{AVAILABLE}}\}, \{"{}BLOCKED"{}, \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61}{BLOCKED}}\}, \{"{}NONVERIFED"{}, \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}}\} \}
+\item 
+unordered\+\_\+map$<$ \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}}, string $>$ \mbox{\hyperlink{_account_8cpp_a0e221c28002633e4e1e6a18456140a3c}{status\+Map\+Reverse}} = \{ \{\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}{AVAILABLE}}, "{}AVAILABLE"{}\}, \{\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61}{BLOCKED}}, "{}BLOCKED"{}\}, \{\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}}, "{}NONVERIFED"{}\} \}
+\item 
+\mbox{\hyperlink{classaccount}{account}} \mbox{\hyperlink{_account_8cpp_a3d2068db832f10c8d9bdcf38b74accdf}{empty\+Account}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_account_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_account_8cpp_aaa5fd9cf9e5fad16e78cde9c6d69d413}\index{Account.cpp@{Account.cpp}!ACC\_addAccount@{ACC\_addAccount}}
+\index{ACC\_addAccount@{ACC\_addAccount}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{ACC\_addAccount()}{ACC\_addAccount()}}
+{\footnotesize\ttfamily \label{_account_8cpp_aaa5fd9cf9e5fad16e78cde9c6d69d413} 
+void ACC\+\_\+add\+Account (\begin{DoxyParamCaption}\item[{int}]{user\+ID}{, }\item[{\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}}}]{balance\+\_\+type}{, }\item[{\mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}}}]{type}{, }\item[{short}]{account\+Type}{}\end{DoxyParamCaption})}
+
+
+
+Adds a new account and saves it to the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+ID} & Owner user ID \\
+\hline
+{\em balance\+\_\+type} & Currency type \\
+\hline
+{\em type} & Card type \\
+\hline
+{\em account\+Type} & Account plan type \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_account_8h_a2855b434b928b7074ca97ed8f2821c02}{DB\+\_\+create\+\_\+accounts()} 
+\end{DoxySeeAlso}
+\Hypertarget{_account_8cpp_a0898ecc158dd4b074e18aee467b08865}\index{Account.cpp@{Account.cpp}!computeLuhnCheckDigit@{computeLuhnCheckDigit}}
+\index{computeLuhnCheckDigit@{computeLuhnCheckDigit}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{computeLuhnCheckDigit()}{computeLuhnCheckDigit()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a0898ecc158dd4b074e18aee467b08865} 
+int compute\+Luhn\+Check\+Digit (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{digits\+\_\+without\+\_\+check}{}\end{DoxyParamCaption})}
+
+
+
+Calculates the Luhn check digit for a numeric string (excluding check digit). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em digits\+\_\+without\+\_\+check} & The numeric string without the check digit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Luhn check digit (0–9) 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_account_8cpp_a1990eb225456da915299eb1e9ed60e9e}{get\+\_\+\+Bank\+ID()} 
+\end{DoxySeeAlso}
+\Hypertarget{_account_8cpp_a2855b434b928b7074ca97ed8f2821c02}\index{Account.cpp@{Account.cpp}!DB\_create\_accounts@{DB\_create\_accounts}}
+\index{DB\_create\_accounts@{DB\_create\_accounts}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{DB\_create\_accounts()}{DB\_create\_accounts()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a2855b434b928b7074ca97ed8f2821c02} 
+void DB\+\_\+create\+\_\+accounts (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Create empty accounts file. 
+
+\begin{DoxyNote}{Note}
+Requires \doxylink{_account_8h_aaa5fd9cf9e5fad16e78cde9c6d69d413}{ACC\+\_\+add\+Account()} 
+\end{DoxyNote}
+\Hypertarget{_account_8cpp_a74a045b24be37ce0af71824f375d89d7}\index{Account.cpp@{Account.cpp}!generate\_CVC@{generate\_CVC}}
+\index{generate\_CVC@{generate\_CVC}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{generate\_CVC()}{generate\_CVC()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a74a045b24be37ce0af71824f375d89d7} 
+char \texorpdfstring{$\ast$}{*} generate\+\_\+\+CVC (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Generates a random 3-\/digit CVC code. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to allocated C-\/string containing the CVC (must be deleted) 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_account_8cpp_aaa5fd9cf9e5fad16e78cde9c6d69d413}{ACC\+\_\+add\+Account()} 
+\end{DoxySeeAlso}
+\Hypertarget{_account_8cpp_a1990eb225456da915299eb1e9ed60e9e}\index{Account.cpp@{Account.cpp}!get\_BankID@{get\_BankID}}
+\index{get\_BankID@{get\_BankID}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{get\_BankID()}{get\_BankID()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a1990eb225456da915299eb1e9ed60e9e} 
+char \texorpdfstring{$\ast$}{*} get\+\_\+\+Bank\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Generates a 16-\/digit bank card number with Luhn check digit. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to allocated C-\/string containing the card number (must be freed) 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_account_8cpp_aaa5fd9cf9e5fad16e78cde9c6d69d413}{ACC\+\_\+add\+Account()} 
+\end{DoxySeeAlso}
+\Hypertarget{_account_8cpp_a23bb8c4bd20b65b7e3e262bce62426e4}\index{Account.cpp@{Account.cpp}!get\_IBAN@{get\_IBAN}}
+\index{get\_IBAN@{get\_IBAN}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{get\_IBAN()}{get\_IBAN()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a23bb8c4bd20b65b7e3e262bce62426e4} 
+char \texorpdfstring{$\ast$}{*} get\+\_\+\+IBAN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Generates a pseudo IBAN string in the format "{}\+TB00"{} + 25-\/digit number. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to allocated C-\/string containing the IBAN (must be freed) 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_account_8cpp_aaa5fd9cf9e5fad16e78cde9c6d69d413}{ACC\+\_\+add\+Account()} 
+\end{DoxySeeAlso}
+\Hypertarget{_account_8cpp_a56710721192c273c14e555742b245a9a}\index{Account.cpp@{Account.cpp}!getAccount\_byCardNumber@{getAccount\_byCardNumber}}
+\index{getAccount\_byCardNumber@{getAccount\_byCardNumber}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{getAccount\_byCardNumber()}{getAccount\_byCardNumber()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a56710721192c273c14e555742b245a9a} 
+\mbox{\hyperlink{classaccount}{account}} get\+Account\+\_\+by\+Card\+Number (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{card\+Number}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_account_8cpp_ad29696bd8aaa1b96c5e68b1754d675c7}\index{Account.cpp@{Account.cpp}!getAccount\_byIBAN@{getAccount\_byIBAN}}
+\index{getAccount\_byIBAN@{getAccount\_byIBAN}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{getAccount\_byIBAN()}{getAccount\_byIBAN()}}
+{\footnotesize\ttfamily \label{_account_8cpp_ad29696bd8aaa1b96c5e68b1754d675c7} 
+\mbox{\hyperlink{classaccount}{account}} get\+Account\+\_\+by\+IBAN (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{IBAN}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_account_8cpp_a8f1773ce2ae32192952e79041669c0e5}\index{Account.cpp@{Account.cpp}!getAccountById@{getAccountById}}
+\index{getAccountById@{getAccountById}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{getAccountById()}{getAccountById()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a8f1773ce2ae32192952e79041669c0e5} 
+\mbox{\hyperlink{classaccount}{account}} get\+Account\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+
+
+Get account by ID. 
+
+\begin{DoxyNote}{Note}
+Requires account class, $<$fstream$>$ 
+\end{DoxyNote}
+\Hypertarget{_account_8cpp_ae2222b66da356d1d0126579d7eab520f}\index{Account.cpp@{Account.cpp}!getLastAccount@{getLastAccount}}
+\index{getLastAccount@{getLastAccount}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{getLastAccount()}{getLastAccount()}}
+{\footnotesize\ttfamily \label{_account_8cpp_ae2222b66da356d1d0126579d7eab520f} 
+\mbox{\hyperlink{classaccount}{account}} get\+Last\+Account (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get last account in database. 
+
+\begin{DoxyNote}{Note}
+Requires account class, $<$fstream$>$ 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\doxylink{_account_8h_aaa5fd9cf9e5fad16e78cde9c6d69d413}{ACC\+\_\+add\+Account()} 
+\end{DoxySeeAlso}
+\Hypertarget{_account_8cpp_a8ea4f4a39bdea1809db1ff7bb3ab3f61}\index{Account.cpp@{Account.cpp}!getUserAccounts@{getUserAccounts}}
+\index{getUserAccounts@{getUserAccounts}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{getUserAccounts()}{getUserAccounts()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a8ea4f4a39bdea1809db1ff7bb3ab3f61} 
+vector$<$ \mbox{\hyperlink{classaccount}{account}} $>$ get\+User\+Accounts (\begin{DoxyParamCaption}\item[{int}]{user\+\_\+id}{}\end{DoxyParamCaption})}
+
+
+
+Get all accounts of a user. 
+
+\begin{DoxyNote}{Note}
+Requires account class, $<$fstream$>$ 
+\end{DoxyNote}
+\Hypertarget{_account_8cpp_af0df86b7800d7758e8ef29de4af8d78b}\index{Account.cpp@{Account.cpp}!isAccountExist\_byCardNumber@{isAccountExist\_byCardNumber}}
+\index{isAccountExist\_byCardNumber@{isAccountExist\_byCardNumber}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{isAccountExist\_byCardNumber()}{isAccountExist\_byCardNumber()}}
+{\footnotesize\ttfamily \label{_account_8cpp_af0df86b7800d7758e8ef29de4af8d78b} 
+bool is\+Account\+Exist\+\_\+by\+Card\+Number (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{card\+Number}{}\end{DoxyParamCaption})}
+
+
+
+Check if account exists by card number. 
+
+\begin{DoxyNote}{Note}
+Requires account class, $<$fstream$>$ 
+\end{DoxyNote}
+\Hypertarget{_account_8cpp_a71a3333731b67667f502cae089f081cf}\index{Account.cpp@{Account.cpp}!isAccountExist\_byIBAN@{isAccountExist\_byIBAN}}
+\index{isAccountExist\_byIBAN@{isAccountExist\_byIBAN}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{isAccountExist\_byIBAN()}{isAccountExist\_byIBAN()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a71a3333731b67667f502cae089f081cf} 
+bool is\+Account\+Exist\+\_\+by\+IBAN (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{IBAN}{}\end{DoxyParamCaption})}
+
+
+
+Check if account exists by IBAN. 
+
+\begin{DoxyNote}{Note}
+Requires account class, $<$fstream$>$ 
+\end{DoxyNote}
+\Hypertarget{_account_8cpp_a04c1e1f987c7dfd26e7e0f38dc88c2dc}\index{Account.cpp@{Account.cpp}!isAccountExisytById@{isAccountExisytById}}
+\index{isAccountExisytById@{isAccountExisytById}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{isAccountExisytById()}{isAccountExisytById()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a04c1e1f987c7dfd26e7e0f38dc88c2dc} 
+bool is\+Account\+Exisyt\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_account_8cpp_ae4a1fa018c246de48e57b71e3e18f268}\index{Account.cpp@{Account.cpp}!printAllAccounts@{printAllAccounts}}
+\index{printAllAccounts@{printAllAccounts}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{printAllAccounts()}{printAllAccounts()}}
+{\footnotesize\ttfamily \label{_account_8cpp_ae4a1fa018c246de48e57b71e3e18f268} 
+void print\+All\+Accounts (\begin{DoxyParamCaption}\item[{char}]{msg}{\mbox{[}5\mbox{]}\mbox{[}1024\mbox{]}, }\item[{int}]{page}{}\end{DoxyParamCaption})}
+
+
+
+Print accounts into paged messages. 
+
+\begin{DoxyNote}{Note}
+Requires account class, $<$fstream$>$, $<$sstream$>$ 
+\end{DoxyNote}
+\Hypertarget{_account_8cpp_a5fb03ffabc9421b8f5a840b0a0774134}\index{Account.cpp@{Account.cpp}!setAccountBalance@{setAccountBalance}}
+\index{setAccountBalance@{setAccountBalance}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{setAccountBalance()}{setAccountBalance()}}
+{\footnotesize\ttfamily \label{_account_8cpp_a5fb03ffabc9421b8f5a840b0a0774134} 
+void set\+Account\+Balance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classaccount}{account}} \&}]{acc}{, }\item[{double}]{new\+Balance}{}\end{DoxyParamCaption})}
+
+
+
+Debug\+: set account balance. 
+
+\begin{DoxyNote}{Note}
+Requires account class 
+\end{DoxyNote}
+
+
+\label{doc-var-members}
+\Hypertarget{_account_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_account_8cpp_a2997a5fef35f01b92d962e6609a759ac}\index{Account.cpp@{Account.cpp}!balanceMap@{balanceMap}}
+\index{balanceMap@{balanceMap}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{balanceMap}{balanceMap}}
+{\footnotesize\ttfamily \label{_account_8cpp_a2997a5fef35f01b92d962e6609a759ac} 
+unordered\+\_\+map$<$string, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}}$>$ balance\+Map = \{ \{"{}UAH"{}, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}}\}, \{"{}DLR"{}, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a73bf3800553f080d112618f5742f617e}{DLR}}\}, \{"{}EUR"{}, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a0c1560edca52d24f8b6c3118f965ed71}{EUR}}\} \}}
+
+\Hypertarget{_account_8cpp_a3aaa99f260c8425788de65247da5c521}\index{Account.cpp@{Account.cpp}!balanceMapToString@{balanceMapToString}}
+\index{balanceMapToString@{balanceMapToString}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{balanceMapToString}{balanceMapToString}}
+{\footnotesize\ttfamily \label{_account_8cpp_a3aaa99f260c8425788de65247da5c521} 
+unordered\+\_\+map$<$\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}}, string$>$ balance\+Map\+To\+String = \{ \{\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}}, "{}UAH"{}\}, \{\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a73bf3800553f080d112618f5742f617e}{DLR}}, "{}DLR"{}\}, \{\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a0c1560edca52d24f8b6c3118f965ed71}{EUR}}, "{}EUR"{}\} \}}
+
+\Hypertarget{_account_8cpp_a620eb1df630bf856dcd6ec690e56728c}\index{Account.cpp@{Account.cpp}!cardMap@{cardMap}}
+\index{cardMap@{cardMap}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{cardMap}{cardMap}}
+{\footnotesize\ttfamily \label{_account_8cpp_a620eb1df630bf856dcd6ec690e56728c} 
+unordered\+\_\+map$<$string, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}}$>$ card\+Map = \{ \{"{}DEFAULT"{}, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}}\}, \{"{}DEPOSITE"{}, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18ac1b583024752a086f49bf2061478409e}{DEPOSITE}}\}, \{"{}CREDIT"{}, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a5b9c7596aea45aa4b6b3fc93a907391d}{CREDIT}}\} \}}
+
+\Hypertarget{_account_8cpp_a3d2068db832f10c8d9bdcf38b74accdf}\index{Account.cpp@{Account.cpp}!emptyAccount@{emptyAccount}}
+\index{emptyAccount@{emptyAccount}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{emptyAccount}{emptyAccount}}
+{\footnotesize\ttfamily \label{_account_8cpp_a3d2068db832f10c8d9bdcf38b74accdf} 
+\mbox{\hyperlink{classaccount}{account}} empty\+Account}
+
+\Hypertarget{_account_8cpp_a12e2b82f2d5eec6fa27f94f45df328a0}\index{Account.cpp@{Account.cpp}!statusMap@{statusMap}}
+\index{statusMap@{statusMap}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{statusMap}{statusMap}}
+{\footnotesize\ttfamily \label{_account_8cpp_a12e2b82f2d5eec6fa27f94f45df328a0} 
+unordered\+\_\+map$<$string, \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}}$>$ status\+Map = \{ \{"{}AVAILABLE"{}, \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}{AVAILABLE}}\}, \{"{}BLOCKED"{}, \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61}{BLOCKED}}\}, \{"{}NONVERIFED"{}, \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}}\} \}}
+
+\Hypertarget{_account_8cpp_a0e221c28002633e4e1e6a18456140a3c}\index{Account.cpp@{Account.cpp}!statusMapReverse@{statusMapReverse}}
+\index{statusMapReverse@{statusMapReverse}!Account.cpp@{Account.cpp}}
+\doxysubsubsection{\texorpdfstring{statusMapReverse}{statusMapReverse}}
+{\footnotesize\ttfamily \label{_account_8cpp_a0e221c28002633e4e1e6a18456140a3c} 
+unordered\+\_\+map$<$\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}}, string$>$ status\+Map\+Reverse = \{ \{\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea1e229ccb8b53a57de4ebb11c2d15272e}{AVAILABLE}}, "{}AVAILABLE"{}\}, \{\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea376c1b6a3f75d283a2efacf737438d61}{BLOCKED}}, "{}BLOCKED"{}\}, \{\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}}, "{}NONVERIFED"{}\} \}}
+

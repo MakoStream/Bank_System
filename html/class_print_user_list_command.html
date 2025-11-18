@@ -93,6 +93,9 @@ $(function(){initNavTree('class_print_user_list_command.html','','class_print_us
 </div><!--header-->
 <div class="contents">
 
+<p>Prints a paginated list of all users.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_print_user_list_command_8h_source.html">PrintUserListCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for PrintUserListCommand:</div>
@@ -115,7 +118,12 @@ Public Member Functions</h2></td></tr>
 Private Attributes</h2></td></tr>
 <tr class="memitem:acedacdc8f92dee549946d594f4fff79e" id="r_acedacdc8f92dee549946d594f4fff79e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_logger.html">Logger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acedacdc8f92dee549946d594f4fff79e">logger</a></td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Prints a paginated list of all users. </p>
+<p>Validates page number, prints users page by page, logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="structhandle_info.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye </dd>
+<dd>
+Syntax: user_list &lt;page&gt; </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="ae1de79d01008af198fda380a3c700de8" name="ae1de79d01008af198fda380a3c700de8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1de79d01008af198fda380a3c700de8">&#9670;&#160;</a></span>execute()</h2>
 

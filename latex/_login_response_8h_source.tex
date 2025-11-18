@@ -1,0 +1,35 @@
+\doxysection{Login\+Response.\+h}
+\hypertarget{_login_response_8h_source}{}\label{_login_response_8h_source}\index{Bank\_System\_User/responses/LoginResponse.h@{Bank\_System\_User/responses/LoginResponse.h}}
+\mbox{\hyperlink{_login_response_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_response_8h}{../Response.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_login_response}{LoginResponse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00004\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_login_response_adc7b235baaca6302d9fa3650d26264a8}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ the\ login\ response}}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ ReadFile(handle.\mbox{\hyperlink{structhandle_info_a6917413af32177011307e15fca7727a3}{hPipe}},\ \&handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}},\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}),\ \&handle.\mbox{\hyperlink{structhandle_info_a3e025171d4d7361b86a03b43e0117126}{bytesRead}},\ NULL);}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a80eb2bc7a318597244776c7831888d00}{hash}}[0]\ ==\ 1)\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.login,\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[0],\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.login)\ -\/\ 1);}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.login[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.login)\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.name,\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[1],\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.name)\ -\/\ 1);}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.name[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.name)\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.surname,\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[2],\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.surname)\ -\/\ 1);}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.surname[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.surname)\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Hello,\ "{}}\ <<\ \mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.name\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ \mbox{\hyperlink{_bank___system___user_8cpp_abf53f26f833fbcbc7f1e42193d61cc0c}{currentUser}}.surname\ <<\ \textcolor{stringliteral}{"{}!\(\backslash\)n"{}}\ <<\ endl;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Login\ failed:\ "{}}\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a45ce82eddccd1fdde37941384e2e335e}{msg}}[0]\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ <<\ endl;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00025\ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ std::string\ \mbox{\hyperlink{class_login_response_a5437db7d692b46d7d5064cf995ce2d23}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}login"{}};}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \};}
+
+\end{DoxyCode}

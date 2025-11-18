@@ -1,0 +1,60 @@
+\chapter{User Client Unit Test }
+\hypertarget{md__how_to_run___unit_test}{}\label{md__how_to_run___unit_test}\index{User Client Unit Test@{User Client Unit Test}}
+\label{md__how_to_run___unit_test_autotoc_md0}%
+\Hypertarget{md__how_to_run___unit_test_autotoc_md0}%
+\hypertarget{md__how_to_run___unit_test_autotoc_md1}{}\doxysection{\texorpdfstring{1. About the Unit Test}{1. About the Unit Test}}\label{md__how_to_run___unit_test_autotoc_md1}
+This project includes a {\bfseries{unit test for the User Client}}, which interacts with a server by sending various commands and verifying the responses. The test ensures that the server and client communication works as expected, particularly focusing on user-\/related commands like\+:
+
+
+\begin{DoxyItemize}
+\item User login and registration.
+\item Session handling (getting session ID, logging in).
+\item User account management (creating users, retrieving user info).
+\item Database creation for users and accounts.
+\end{DoxyItemize}
+
+The test is implemented using the {\bfseries{Boost Unit Test Framework}} and is designed to simulate interactions with the server and analyze the received data to ensure correctness.
+
+Each unit test is aimed at testing individual commands, such as {\ttfamily login}, {\ttfamily reg\+\_\+user}, {\ttfamily me}, {\ttfamily user\+\_\+list}, and others. The main purpose of this unit test is to validate the server\textquotesingle{}s response for various client commands, checking both expected success and error messages.
+
+The following core functions are tested\+:
+\begin{DoxyItemize}
+\item {\bfseries{Login tests}} (valid and invalid login scenarios)
+\item {\bfseries{Registration tests}} (new users and existing users)
+\item {\bfseries{User information retrieval}}
+\item {\bfseries{Account creation and management}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__how_to_run___unit_test_autotoc_md3}{}\doxysection{\texorpdfstring{2. How to Run the Unit Test}{2. How to Run the Unit Test}}\label{md__how_to_run___unit_test_autotoc_md3}
+\hypertarget{md__how_to_run___unit_test_autotoc_md4}{}\doxysubsection{\texorpdfstring{Step 1\+: Set Up the Environment}{Step 1\+: Set Up the Environment}}\label{md__how_to_run___unit_test_autotoc_md4}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Clone the repository}} that contains both the server and user client code.
+\item {\bfseries{Create a {\ttfamily debug} folder}} in the root of the server repository. This will be used to store the debug build of the server and user client.
+\end{DoxyEnumerate}\hypertarget{md__how_to_run___unit_test_autotoc_md5}{}\doxysubsection{\texorpdfstring{Step 2\+: Build the Projects}{Step 2\+: Build the Projects}}\label{md__how_to_run___unit_test_autotoc_md5}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Open the server project}} and build it in {\bfseries{debug mode}} using your IDE or command line.
+\begin{DoxyItemize}
+\item If you\textquotesingle{}re using Visual Studio, open the solution and build it in {\bfseries{Debug}} configuration.
+\end{DoxyItemize}
+\item {\bfseries{Open the user client project}} and also build it in {\bfseries{debug mode}}.
+
+Both projects must be built in {\bfseries{debug mode}} to ensure that debugging information is available when running the tests.
+\end{DoxyEnumerate}\hypertarget{md__how_to_run___unit_test_autotoc_md6}{}\doxysubsection{\texorpdfstring{Step 3\+: Start the Server and User Client}{Step 3\+: Start the Server and User Client}}\label{md__how_to_run___unit_test_autotoc_md6}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Start the server}} in a terminal or your IDE. Make sure the server is running and listening for client connections.
+\item {\bfseries{Start the user client}} in another terminal or IDE instance. The client will send requests to the server and run the tests.
+\end{DoxyEnumerate}\hypertarget{md__how_to_run___unit_test_autotoc_md7}{}\doxysubsection{\texorpdfstring{Step 4\+: Run the Unit Test}{Step 4\+: Run the Unit Test}}\label{md__how_to_run___unit_test_autotoc_md7}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Activate the debug environment}} in the user client by entering the command {\ttfamily debug}. This will set up the environment for safe operations and debugging.
+\item Once the debug environment is initialized, run the unit tests by entering {\ttfamily unit\+\_\+test}
+\end{DoxyEnumerate}\hypertarget{md__how_to_run___unit_test_autotoc_md8}{}\doxysubsection{\texorpdfstring{Step 5\+: remove \texorpdfstring{$\ast$}{*}.dat files}{Step 5\+: remove \texorpdfstring{$\ast$}{*}.dat files}}\label{md__how_to_run___unit_test_autotoc_md8}
+
+\begin{DoxyEnumerate}
+\item Remove accounts.\+dat from {\ttfamily debug} folder.
+\item Remove users.\+dat from {\ttfamily debug} folder. 
+\end{DoxyEnumerate}

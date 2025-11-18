@@ -1,0 +1,69 @@
+\doxysection{get\+User\+Accounts\+Command Class Reference}
+\hypertarget{classget_user_accounts_command}{}\label{classget_user_accounts_command}\index{getUserAccountsCommand@{getUserAccountsCommand}}
+
+
+Retrieves all accounts for a specific user.  
+
+
+
+
+{\ttfamily \#include $<$Get\+User\+Accounts\+Command.\+h$>$}
+
+Inheritance diagram for get\+User\+Accounts\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classget_user_accounts_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classget_user_accounts_command_a16742215729dd87b63ddf8ca1c7973f9}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle) override
+\item 
+std\+::string \mbox{\hyperlink{classget_user_accounts_command_af7a26734e0cdb2075ca6c05e53d34868}{name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_command}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_command_aa545a53d35818f9efb936daf3fa16c61}{\texorpdfstring{$\sim$}{\string~}\+Command}} ()=default
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Retrieves all accounts for a specific user. 
+
+Fetches accounts based on user ID, returns account IDs, logs all actions via log\+Eye. \begin{DoxyNote}{Note}
+Requires\+: \doxylink{structhandle_info}{handle\+Info}, log\+Eye, Account 
+
+Syntax\+: get\+User\+Accounts 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{classget_user_accounts_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classget_user_accounts_command_a16742215729dd87b63ddf8ca1c7973f9}\index{getUserAccountsCommand@{getUserAccountsCommand}!execute@{execute}}
+\index{execute@{execute}!getUserAccountsCommand@{getUserAccountsCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{classget_user_accounts_command_a16742215729dd87b63ddf8ca1c7973f9} 
+void get\+User\+Accounts\+Command\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command}}.
+
+\Hypertarget{classget_user_accounts_command_af7a26734e0cdb2075ca6c05e53d34868}\index{getUserAccountsCommand@{getUserAccountsCommand}!name@{name}}
+\index{name@{name}!getUserAccountsCommand@{getUserAccountsCommand}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \label{classget_user_accounts_command_af7a26734e0cdb2075ca6c05e53d34868} 
+std\+::string get\+User\+Accounts\+Command\+::name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a87b16bdc7005f072d4b352666d3c1489}{Command}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/commands/\mbox{\hyperlink{_get_user_accounts_command_8h}{Get\+User\+Accounts\+Command.\+h}}\end{DoxyCompactItemize}

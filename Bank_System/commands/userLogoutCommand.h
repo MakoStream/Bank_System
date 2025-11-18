@@ -2,6 +2,17 @@
 #include "../mainProcess.h"
 #include "../LogEye.h"
 
+
+/** @class userLogoutCommand
+ *  @brief Command class for user logout.
+ *  @details Handles:
+ *   - Terminating the current user session
+ *   - Logging the logout action via Logger
+ *  @note Requires: Session, LogEye
+ *  @note Syntax: logout
+ *  @used For:
+ *   - Ending active sessions safely
+ */
 class userLogoutCommand : public Command {
 public:
 	void execute(handleInfo& handle) override {

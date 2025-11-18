@@ -1,0 +1,517 @@
+\doxysection{account Class Reference}
+\hypertarget{classaccount}{}\label{classaccount}\index{account@{account}}
+
+
+Represents a bank account with IBAN, PAN, PIN, CVV, balance, type, status, and owner ID.  
+
+
+
+
+{\ttfamily \#include $<$Account.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classaccount_a96261021a96c9792b16081e8fcaf23a3}{account}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for empty account or loading from file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classaccount_a9c18a3cb5a588c675edfebc50f3f129b}{account}} (const int \+\_\+id, const int \+\_\+user\+ID, const char \texorpdfstring{$\ast$}{*}\+\_\+\+IBAN, const char \texorpdfstring{$\ast$}{*}\+\_\+card\+Number, const char \texorpdfstring{$\ast$}{*}\+\_\+\+PIN, const char \texorpdfstring{$\ast$}{*}\+\_\+\+CVV, const char \texorpdfstring{$\ast$}{*}\+\_\+expiration\+Date, short \+\_\+\+Account\+Type, \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} \+\_\+balance\+\_\+type=\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}}, \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}} \+\_\+type=\mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}}, \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}} \+\_\+status=\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}})
+\begin{DoxyCompactList}\small\item\em Full constructor for creating an account. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Getters}\par
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classaccount_ac4962b1e5c3121f98e1afdef66a28650}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Returns account ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_user}{User}} \mbox{\hyperlink{classaccount_a7cd7f200a2e4f17d4fea007743f76b29}{get\+User}} ()
+\begin{DoxyCompactList}\small\item\em Returns user object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classaccount_a67e5b3feea84193b3943364bd323cd3b}{get\+User\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Returns owner ID. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classaccount_a1f064086bad18f46093c7715ce1cf81c}{get\+IBAN}} ()
+\begin{DoxyCompactList}\small\item\em Returns IBAN. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classaccount_a640cac1e9310f500a882206f0b8f37b8}{get\+PAN}} ()
+\begin{DoxyCompactList}\small\item\em Returns card number. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classaccount_aa72eaba454fba91a65f11508e4f1f993}{get\+PIN}} ()
+\begin{DoxyCompactList}\small\item\em Returns PIN. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classaccount_a3a83d589e92677d90f3a8b6800e524f1}{get\+CVV}} ()
+\begin{DoxyCompactList}\small\item\em Returns CVV. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classaccount_a3cf825f7c521fcd1d32f9a15f298814e}{get\+Expiration\+Date}} ()
+\begin{DoxyCompactList}\small\item\em Returns expiration date. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} \mbox{\hyperlink{classaccount_a7769a4cd9c60254a4e15f0081796b5ff}{get\+Balance\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Returns currency type. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classaccount_a67341f6f3f06a7c8431619ba8c04ed43}{get\+Balance}} ()
+\begin{DoxyCompactList}\small\item\em Returns balance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}} \mbox{\hyperlink{classaccount_ac51392c03e97b6658654edfa9fce3b89}{get\+Card\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Returns card type. \end{DoxyCompactList}\item 
+short \mbox{\hyperlink{classaccount_a231e3e63c1a791d4686b1622d524e784}{get\+Account\+Type}} ()
+\begin{DoxyCompactList}\small\item\em Returns account plan type. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}} \mbox{\hyperlink{classaccount_adf0b6c2f7e5190f87e5da1937b902d4c}{get\+Card\+Status}} ()
+\begin{DoxyCompactList}\small\item\em Returns card status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Status and access}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classaccount_a9b4a2b2f4a4389da06374e70285e9a04}{verify}} ()
+\begin{DoxyCompactList}\small\item\em Set status from NONVERIFED to AVAILABLE. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classaccount_aef9d2c94e890f0b5912b731363dcc686}{unban}} ()
+\begin{DoxyCompactList}\small\item\em Set status to AVAILABLE. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classaccount_a84cd06a4944d15b516dfdee34e8036dc}{ban}} (std\+::string reason)
+\begin{DoxyCompactList}\small\item\em Set status to BLOCKED. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ PIN/\+CVV operations}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classaccount_a2e6042cb7fd06996740a91f3042e07cb}{change\+PIN}} (const char \texorpdfstring{$\ast$}{*}new\+PIN)
+\begin{DoxyCompactList}\small\item\em Change PIN. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classaccount_a0562d41ba7864fac0a5e472c36a263e2}{set\+PIN}} (const char \texorpdfstring{$\ast$}{*}new\+PIN)
+\begin{DoxyCompactList}\small\item\em Set new PIN. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classaccount_aaa32f28c70881043705f02805c88326b}{set\+CVV}} (const char \texorpdfstring{$\ast$}{*}new\+CVV)
+\begin{DoxyCompactList}\small\item\em Set new CVV. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classaccount_ade39eb37093e7c156a7297cd812eca1d}{check\+PIN}} (const char \texorpdfstring{$\ast$}{*}input\+PIN)
+\begin{DoxyCompactList}\small\item\em Check input PIN. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classaccount_a67499cd84c8b7114d42b32e3b63fb7d1}{check\+CVV}} (const char \texorpdfstring{$\ast$}{*}input\+CVV)
+\begin{DoxyCompactList}\small\item\em Check input CVV. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Balance operations}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classaccount_a21d59306e081cd6b11e904d741d34fba}{set\+Balance}} (double amount)
+\begin{DoxyCompactList}\small\item\em Add or remove funds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ File operations}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classaccount_a66274de8deba7562d78041b9509d0021}{save}} (std\+::ofstream \&ofs)
+\begin{DoxyCompactList}\small\item\em Write account to file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classaccount_a4421fff24410f5a7ededfa68d6ae358d}{load}} (std\+::ifstream \&ifs)
+\begin{DoxyCompactList}\small\item\em Read account from file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classaccount_a20bfc751a668d2ee17c286285c19ef83}{update\+In\+File}} ()
+\begin{DoxyCompactList}\small\item\em Update account record in file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classaccount_af85403b25ba58a36d691b38b213c73ce}{id}}
+\item 
+int \mbox{\hyperlink{classaccount_a88753af536313c494b223d092c241af3}{user\+ID}}
+\item 
+char \mbox{\hyperlink{classaccount_aac00968c80c98556fffe4db34f131490}{IBAN}} \mbox{[}37\mbox{]}
+\item 
+char \mbox{\hyperlink{classaccount_aac56419af92874992abf1d1221ee1a24}{card\+Number}} \mbox{[}17\mbox{]}
+\item 
+char \mbox{\hyperlink{classaccount_a4ed7654ebd18612e3e9e54c70451c259}{PIN}} \mbox{[}4\mbox{]}
+\item 
+char \mbox{\hyperlink{classaccount_ae0ab14472e266d7afa6dba1c2f442710}{CVV}} \mbox{[}3\mbox{]}
+\item 
+char \mbox{\hyperlink{classaccount_a86843d0a908a5631c548e6fb4b1525ac}{expiration\+Date}} \mbox{[}8\mbox{]}
+\item 
+\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} \mbox{\hyperlink{classaccount_abb2560cecad76a7bd666e57e573c4b13}{balance\+\_\+type}} = \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}}
+\item 
+double \mbox{\hyperlink{classaccount_ad12a7da018413a8c5100ef243b06de56}{balance}} = 0.\+0
+\item 
+\mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}} \mbox{\hyperlink{classaccount_a3b1a849e03c173503931c076d4e06b61}{type}} = \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}}
+\item 
+short \mbox{\hyperlink{classaccount_a35b2bfb0d119f6196123555e3279a4e7}{Account\+Type}} = 0
+\item 
+\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}} \mbox{\hyperlink{classaccount_a9ed826293b787570f30fafd2aa8e8d51}{status}} = \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a bank account with IBAN, PAN, PIN, CVV, balance, type, status, and owner ID. 
+
+\begin{DoxyNote}{Note}
+Required headers\+: $<$iostream$>$, $<$fstream$>$, $<$sstream$>$, "{}\+User.\+h"{}, $<$cstring$>$ 
+\end{DoxyNote}
+
+
+\label{doc-constructors}
+\Hypertarget{classaccount_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classaccount_a96261021a96c9792b16081e8fcaf23a3}\index{account@{account}!account@{account}}
+\index{account@{account}!account@{account}}
+\doxysubsubsection{\texorpdfstring{account()}{account()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classaccount_a96261021a96c9792b16081e8fcaf23a3} 
+account\+::account (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor for empty account or loading from file. 
+
+\begin{DoxyNote}{Note}
+Requires $<$cstring$>$ 
+\end{DoxyNote}
+\Hypertarget{classaccount_a9c18a3cb5a588c675edfebc50f3f129b}\index{account@{account}!account@{account}}
+\index{account@{account}!account@{account}}
+\doxysubsubsection{\texorpdfstring{account()}{account()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classaccount_a9c18a3cb5a588c675edfebc50f3f129b} 
+account\+::account (\begin{DoxyParamCaption}\item[{const int}]{\+\_\+id}{, }\item[{const int}]{\+\_\+user\+ID}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{\+\_\+\+IBAN}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{\+\_\+card\+Number}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{\+\_\+\+PIN}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{\+\_\+\+CVV}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{\+\_\+expiration\+Date}{, }\item[{short}]{\+\_\+\+Account\+Type}{, }\item[{\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}}}]{\+\_\+balance\+\_\+type}{ = {\ttfamily \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}}}, }\item[{\mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}}}]{\+\_\+type}{ = {\ttfamily \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}}}, }\item[{\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}}}]{\+\_\+status}{ = {\ttfamily \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Full constructor for creating an account. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+id} & Unique account ID \\
+\hline
+{\em \+\_\+user\+ID} & Owner\textquotesingle{}s user ID \\
+\hline
+{\em \+\_\+\+IBAN} & IBAN string \\
+\hline
+{\em \+\_\+card\+Number} & Card number string (PAN) \\
+\hline
+{\em \+\_\+\+PIN} & PIN code \\
+\hline
+{\em \+\_\+\+CVV} & CVV code \\
+\hline
+{\em \+\_\+expiration\+Date} & Card expiration date \\
+\hline
+{\em \+\_\+\+Account\+Type} & Accounting plan type \\
+\hline
+{\em \+\_\+balance\+\_\+type} & Currency type \\
+\hline
+{\em \+\_\+type} & Card type \\
+\hline
+{\em \+\_\+status} & Card status \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Requires $<$cstring$>$ 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{classaccount_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classaccount_a84cd06a4944d15b516dfdee34e8036dc}\index{account@{account}!ban@{ban}}
+\index{ban@{ban}!account@{account}}
+\doxysubsubsection{\texorpdfstring{ban()}{ban()}}
+{\footnotesize\ttfamily \label{classaccount_a84cd06a4944d15b516dfdee34e8036dc} 
+void account\+::ban (\begin{DoxyParamCaption}\item[{std\+::string}]{reason}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set status to BLOCKED. 
+
+\Hypertarget{classaccount_a2e6042cb7fd06996740a91f3042e07cb}\index{account@{account}!changePIN@{changePIN}}
+\index{changePIN@{changePIN}!account@{account}}
+\doxysubsubsection{\texorpdfstring{changePIN()}{changePIN()}}
+{\footnotesize\ttfamily \label{classaccount_a2e6042cb7fd06996740a91f3042e07cb} 
+void account\+::change\+PIN (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{new\+PIN}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Change PIN. 
+
+\Hypertarget{classaccount_a67499cd84c8b7114d42b32e3b63fb7d1}\index{account@{account}!checkCVV@{checkCVV}}
+\index{checkCVV@{checkCVV}!account@{account}}
+\doxysubsubsection{\texorpdfstring{checkCVV()}{checkCVV()}}
+{\footnotesize\ttfamily \label{classaccount_a67499cd84c8b7114d42b32e3b63fb7d1} 
+bool account\+::check\+CVV (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{input\+CVV}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check input CVV. 
+
+\Hypertarget{classaccount_ade39eb37093e7c156a7297cd812eca1d}\index{account@{account}!checkPIN@{checkPIN}}
+\index{checkPIN@{checkPIN}!account@{account}}
+\doxysubsubsection{\texorpdfstring{checkPIN()}{checkPIN()}}
+{\footnotesize\ttfamily \label{classaccount_ade39eb37093e7c156a7297cd812eca1d} 
+bool account\+::check\+PIN (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{input\+PIN}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check input PIN. 
+
+\Hypertarget{classaccount_a231e3e63c1a791d4686b1622d524e784}\index{account@{account}!getAccountType@{getAccountType}}
+\index{getAccountType@{getAccountType}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getAccountType()}{getAccountType()}}
+{\footnotesize\ttfamily \label{classaccount_a231e3e63c1a791d4686b1622d524e784} 
+short account\+::get\+Account\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns account plan type. 
+
+\Hypertarget{classaccount_a67341f6f3f06a7c8431619ba8c04ed43}\index{account@{account}!getBalance@{getBalance}}
+\index{getBalance@{getBalance}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getBalance()}{getBalance()}}
+{\footnotesize\ttfamily \label{classaccount_a67341f6f3f06a7c8431619ba8c04ed43} 
+double account\+::get\+Balance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns balance. 
+
+\Hypertarget{classaccount_a7769a4cd9c60254a4e15f0081796b5ff}\index{account@{account}!getBalanceType@{getBalanceType}}
+\index{getBalanceType@{getBalanceType}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getBalanceType()}{getBalanceType()}}
+{\footnotesize\ttfamily \label{classaccount_a7769a4cd9c60254a4e15f0081796b5ff} 
+\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} account\+::get\+Balance\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns currency type. 
+
+\Hypertarget{classaccount_adf0b6c2f7e5190f87e5da1937b902d4c}\index{account@{account}!getCardStatus@{getCardStatus}}
+\index{getCardStatus@{getCardStatus}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getCardStatus()}{getCardStatus()}}
+{\footnotesize\ttfamily \label{classaccount_adf0b6c2f7e5190f87e5da1937b902d4c} 
+\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}} account\+::get\+Card\+Status (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns card status. 
+
+\Hypertarget{classaccount_ac51392c03e97b6658654edfa9fce3b89}\index{account@{account}!getCardType@{getCardType}}
+\index{getCardType@{getCardType}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getCardType()}{getCardType()}}
+{\footnotesize\ttfamily \label{classaccount_ac51392c03e97b6658654edfa9fce3b89} 
+\mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}} account\+::get\+Card\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns card type. 
+
+\Hypertarget{classaccount_a3a83d589e92677d90f3a8b6800e524f1}\index{account@{account}!getCVV@{getCVV}}
+\index{getCVV@{getCVV}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getCVV()}{getCVV()}}
+{\footnotesize\ttfamily \label{classaccount_a3a83d589e92677d90f3a8b6800e524f1} 
+char \texorpdfstring{$\ast$}{*} account\+::get\+CVV (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns CVV. 
+
+\Hypertarget{classaccount_a3cf825f7c521fcd1d32f9a15f298814e}\index{account@{account}!getExpirationDate@{getExpirationDate}}
+\index{getExpirationDate@{getExpirationDate}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getExpirationDate()}{getExpirationDate()}}
+{\footnotesize\ttfamily \label{classaccount_a3cf825f7c521fcd1d32f9a15f298814e} 
+char \texorpdfstring{$\ast$}{*} account\+::get\+Expiration\+Date (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns expiration date. 
+
+\Hypertarget{classaccount_a1f064086bad18f46093c7715ce1cf81c}\index{account@{account}!getIBAN@{getIBAN}}
+\index{getIBAN@{getIBAN}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getIBAN()}{getIBAN()}}
+{\footnotesize\ttfamily \label{classaccount_a1f064086bad18f46093c7715ce1cf81c} 
+char \texorpdfstring{$\ast$}{*} account\+::get\+IBAN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns IBAN. 
+
+\Hypertarget{classaccount_ac4962b1e5c3121f98e1afdef66a28650}\index{account@{account}!getId@{getId}}
+\index{getId@{getId}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily \label{classaccount_ac4962b1e5c3121f98e1afdef66a28650} 
+int account\+::get\+Id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns account ID. 
+
+\Hypertarget{classaccount_a640cac1e9310f500a882206f0b8f37b8}\index{account@{account}!getPAN@{getPAN}}
+\index{getPAN@{getPAN}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getPAN()}{getPAN()}}
+{\footnotesize\ttfamily \label{classaccount_a640cac1e9310f500a882206f0b8f37b8} 
+char \texorpdfstring{$\ast$}{*} account\+::get\+PAN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns card number. 
+
+\Hypertarget{classaccount_aa72eaba454fba91a65f11508e4f1f993}\index{account@{account}!getPIN@{getPIN}}
+\index{getPIN@{getPIN}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getPIN()}{getPIN()}}
+{\footnotesize\ttfamily \label{classaccount_aa72eaba454fba91a65f11508e4f1f993} 
+char \texorpdfstring{$\ast$}{*} account\+::get\+PIN (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns PIN. 
+
+\Hypertarget{classaccount_a7cd7f200a2e4f17d4fea007743f76b29}\index{account@{account}!getUser@{getUser}}
+\index{getUser@{getUser}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getUser()}{getUser()}}
+{\footnotesize\ttfamily \label{classaccount_a7cd7f200a2e4f17d4fea007743f76b29} 
+\mbox{\hyperlink{class_user}{User}} account\+::get\+User (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns user object. 
+
+\Hypertarget{classaccount_a67e5b3feea84193b3943364bd323cd3b}\index{account@{account}!getUserID@{getUserID}}
+\index{getUserID@{getUserID}!account@{account}}
+\doxysubsubsection{\texorpdfstring{getUserID()}{getUserID()}}
+{\footnotesize\ttfamily \label{classaccount_a67e5b3feea84193b3943364bd323cd3b} 
+int account\+::get\+User\+ID (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns owner ID. 
+
+\Hypertarget{classaccount_a4421fff24410f5a7ededfa68d6ae358d}\index{account@{account}!load@{load}}
+\index{load@{load}!account@{account}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classaccount_a4421fff24410f5a7ededfa68d6ae358d} 
+void account\+::load (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{ifs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Read account from file. 
+
+\Hypertarget{classaccount_a66274de8deba7562d78041b9509d0021}\index{account@{account}!save@{save}}
+\index{save@{save}!account@{account}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{classaccount_a66274de8deba7562d78041b9509d0021} 
+void account\+::save (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{ofs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Write account to file. 
+
+\Hypertarget{classaccount_a21d59306e081cd6b11e904d741d34fba}\index{account@{account}!setBalance@{setBalance}}
+\index{setBalance@{setBalance}!account@{account}}
+\doxysubsubsection{\texorpdfstring{setBalance()}{setBalance()}}
+{\footnotesize\ttfamily \label{classaccount_a21d59306e081cd6b11e904d741d34fba} 
+void account\+::set\+Balance (\begin{DoxyParamCaption}\item[{double}]{amount}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add or remove funds. 
+
+\Hypertarget{classaccount_aaa32f28c70881043705f02805c88326b}\index{account@{account}!setCVV@{setCVV}}
+\index{setCVV@{setCVV}!account@{account}}
+\doxysubsubsection{\texorpdfstring{setCVV()}{setCVV()}}
+{\footnotesize\ttfamily \label{classaccount_aaa32f28c70881043705f02805c88326b} 
+void account\+::set\+CVV (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{new\+CVV}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set new CVV. 
+
+\Hypertarget{classaccount_a0562d41ba7864fac0a5e472c36a263e2}\index{account@{account}!setPIN@{setPIN}}
+\index{setPIN@{setPIN}!account@{account}}
+\doxysubsubsection{\texorpdfstring{setPIN()}{setPIN()}}
+{\footnotesize\ttfamily \label{classaccount_a0562d41ba7864fac0a5e472c36a263e2} 
+void account\+::set\+PIN (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{new\+PIN}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set new PIN. 
+
+\Hypertarget{classaccount_aef9d2c94e890f0b5912b731363dcc686}\index{account@{account}!unban@{unban}}
+\index{unban@{unban}!account@{account}}
+\doxysubsubsection{\texorpdfstring{unban()}{unban()}}
+{\footnotesize\ttfamily \label{classaccount_aef9d2c94e890f0b5912b731363dcc686} 
+void account\+::unban (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set status to AVAILABLE. 
+
+\Hypertarget{classaccount_a20bfc751a668d2ee17c286285c19ef83}\index{account@{account}!updateInFile@{updateInFile}}
+\index{updateInFile@{updateInFile}!account@{account}}
+\doxysubsubsection{\texorpdfstring{updateInFile()}{updateInFile()}}
+{\footnotesize\ttfamily \label{classaccount_a20bfc751a668d2ee17c286285c19ef83} 
+void account\+::update\+In\+File (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Update account record in file. 
+
+\Hypertarget{classaccount_a9b4a2b2f4a4389da06374e70285e9a04}\index{account@{account}!verify@{verify}}
+\index{verify@{verify}!account@{account}}
+\doxysubsubsection{\texorpdfstring{verify()}{verify()}}
+{\footnotesize\ttfamily \label{classaccount_a9b4a2b2f4a4389da06374e70285e9a04} 
+void account\+::verify (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set status from NONVERIFED to AVAILABLE. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classaccount_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classaccount_a35b2bfb0d119f6196123555e3279a4e7}\index{account@{account}!AccountType@{AccountType}}
+\index{AccountType@{AccountType}!account@{account}}
+\doxysubsubsection{\texorpdfstring{AccountType}{AccountType}}
+{\footnotesize\ttfamily \label{classaccount_a35b2bfb0d119f6196123555e3279a4e7} 
+short account\+::\+Account\+Type = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_ad12a7da018413a8c5100ef243b06de56}\index{account@{account}!balance@{balance}}
+\index{balance@{balance}!account@{account}}
+\doxysubsubsection{\texorpdfstring{balance}{balance}}
+{\footnotesize\ttfamily \label{classaccount_ad12a7da018413a8c5100ef243b06de56} 
+double account\+::balance = 0.\+0\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_abb2560cecad76a7bd666e57e573c4b13}\index{account@{account}!balance\_type@{balance\_type}}
+\index{balance\_type@{balance\_type}!account@{account}}
+\doxysubsubsection{\texorpdfstring{balance\_type}{balance\_type}}
+{\footnotesize\ttfamily \label{classaccount_abb2560cecad76a7bd666e57e573c4b13} 
+\mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balance\+Type}} account\+::balance\+\_\+type = \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7a898bd6356f35338f824e63dbcac4ad14}{UAH}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_aac56419af92874992abf1d1221ee1a24}\index{account@{account}!cardNumber@{cardNumber}}
+\index{cardNumber@{cardNumber}!account@{account}}
+\doxysubsubsection{\texorpdfstring{cardNumber}{cardNumber}}
+{\footnotesize\ttfamily \label{classaccount_aac56419af92874992abf1d1221ee1a24} 
+char account\+::card\+Number\mbox{[}17\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_ae0ab14472e266d7afa6dba1c2f442710}\index{account@{account}!CVV@{CVV}}
+\index{CVV@{CVV}!account@{account}}
+\doxysubsubsection{\texorpdfstring{CVV}{CVV}}
+{\footnotesize\ttfamily \label{classaccount_ae0ab14472e266d7afa6dba1c2f442710} 
+char account\+::\+CVV\mbox{[}3\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_a86843d0a908a5631c548e6fb4b1525ac}\index{account@{account}!expirationDate@{expirationDate}}
+\index{expirationDate@{expirationDate}!account@{account}}
+\doxysubsubsection{\texorpdfstring{expirationDate}{expirationDate}}
+{\footnotesize\ttfamily \label{classaccount_a86843d0a908a5631c548e6fb4b1525ac} 
+char account\+::expiration\+Date\mbox{[}8\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_aac00968c80c98556fffe4db34f131490}\index{account@{account}!IBAN@{IBAN}}
+\index{IBAN@{IBAN}!account@{account}}
+\doxysubsubsection{\texorpdfstring{IBAN}{IBAN}}
+{\footnotesize\ttfamily \label{classaccount_aac00968c80c98556fffe4db34f131490} 
+char account\+::\+IBAN\mbox{[}37\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_af85403b25ba58a36d691b38b213c73ce}\index{account@{account}!id@{id}}
+\index{id@{id}!account@{account}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classaccount_af85403b25ba58a36d691b38b213c73ce} 
+int account\+::id\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_a4ed7654ebd18612e3e9e54c70451c259}\index{account@{account}!PIN@{PIN}}
+\index{PIN@{PIN}!account@{account}}
+\doxysubsubsection{\texorpdfstring{PIN}{PIN}}
+{\footnotesize\ttfamily \label{classaccount_a4ed7654ebd18612e3e9e54c70451c259} 
+char account\+::\+PIN\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_a9ed826293b787570f30fafd2aa8e8d51}\index{account@{account}!status@{status}}
+\index{status@{status}!account@{account}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classaccount_a9ed826293b787570f30fafd2aa8e8d51} 
+\mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1ae}{card\+Status}} account\+::status = \mbox{\hyperlink{_account_8h_aba520d1dcd32e7c343ab84b92212e1aea642d7cc407f359e5e4c41a0db1e661c6}{NONVERIFED}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_a3b1a849e03c173503931c076d4e06b61}\index{account@{account}!type@{type}}
+\index{type@{type}!account@{account}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{classaccount_a3b1a849e03c173503931c076d4e06b61} 
+\mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18}{card\+Type}} account\+::type = \mbox{\hyperlink{_account_8h_adc82e1818cbb951286495171fd55db18a88ec7d5086d2469ba843c7fcceade8a6}{DEFAULT}}\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classaccount_a88753af536313c494b223d092c241af3}\index{account@{account}!userID@{userID}}
+\index{userID@{userID}!account@{account}}
+\doxysubsubsection{\texorpdfstring{userID}{userID}}
+{\footnotesize\ttfamily \label{classaccount_a88753af536313c494b223d092c241af3} 
+int account\+::user\+ID\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{_account_8h}{Account.\+h}}\item 
+Bank\+\_\+\+System/\mbox{\hyperlink{_account_8cpp}{Account.\+cpp}}\end{DoxyCompactItemize}

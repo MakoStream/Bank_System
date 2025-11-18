@@ -1,0 +1,28 @@
+\doxysection{Me\+Response.\+h}
+\hypertarget{_me_response_8h_source}{}\label{_me_response_8h_source}\index{Bank\_System\_User/responses/MeResponse.h@{Bank\_System\_User/responses/MeResponse.h}}
+\mbox{\hyperlink{_me_response_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_response_8h}{../Response.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_response_manager_8h}{../ResponseManager.h}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_me_response}{MeResponse}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_response}{Response}}\ \{}
+\DoxyCodeLine{00007\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_me_response_a65e7ef0d92a6cfcb5f2b04529051b790}{need\_execute}}()\textcolor{keyword}{\ const\ override\ }\{\ }
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}debug"{}}\ <<\ endl;}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_me_response_a1df07f74e2a85cc0dc9f4cc91c7338e8}{get\_response}}(\mbox{\hyperlink{structhandle_info}{handleInfo}}\&\ handle)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ cmdText\ =\ \textcolor{stringliteral}{"{}user\_info\ "{}}\ +\ to\_string(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a17eae4deff08c0be7a6db9e198474f67}{userId}});}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ cout\ <<\ cmdText\ <<\ endl;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ strncpy(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}},\ cmdText.c\_str(),\ \textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}})\ -\/\ 1);}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}}[\textcolor{keyword}{sizeof}(handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ cout\ <<\ handle.\mbox{\hyperlink{structhandle_info_a734a2cba37e9eb86e28e18c0b6ec11ae}{sessionData}}.\mbox{\hyperlink{structsession_construct_a4865d0ae94dc307463d7200540799650}{cmd}}\ <<\ endl;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_bank___system___user_8cpp_afdb8dffdd79bdb9ea28861f65e37d5ff}{response\_manager}}.get\_response(handle);}
+\DoxyCodeLine{00018\ \ \ \ \ \};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_me_response_aeb070c9dcdf98fba105bfbc7966ff0e3}{name}}()\textcolor{keyword}{\ const\ override\ }\{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}me"{}};}
+\DoxyCodeLine{00021\ \ \ \ \ \};}
+\DoxyCodeLine{00022\ \};}
+
+\end{DoxyCode}

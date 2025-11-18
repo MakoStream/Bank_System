@@ -1,0 +1,85 @@
+\doxysection{Print\+User\+List\+Command Class Reference}
+\hypertarget{class_print_user_list_command}{}\label{class_print_user_list_command}\index{PrintUserListCommand@{PrintUserListCommand}}
+
+
+Prints a paginated list of all users.  
+
+
+
+
+{\ttfamily \#include $<$Print\+User\+List\+Command.\+h$>$}
+
+Inheritance diagram for Print\+User\+List\+Command\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_print_user_list_command}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_print_user_list_command_ae1de79d01008af198fda380a3c700de8}{execute}} (\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&handle) override
+\item 
+std\+::string \mbox{\hyperlink{class_print_user_list_command_a91e8abb495975eb442cb570104171441}{name}} () const override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_command}{Command}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_command_aa545a53d35818f9efb936daf3fa16c61}{\texorpdfstring{$\sim$}{\string~}\+Command}} ()=default
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_logger}{Logger}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_print_user_list_command_acedacdc8f92dee549946d594f4fff79e}{logger}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Prints a paginated list of all users. 
+
+Validates page number, prints users page by page, logs all actions via log\+Eye. \begin{DoxyNote}{Note}
+Requires\+: \doxylink{structhandle_info}{handle\+Info}, log\+Eye 
+
+Syntax\+: user\+\_\+list $<$page$>$ 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{class_print_user_list_command_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_print_user_list_command_ae1de79d01008af198fda380a3c700de8}\index{PrintUserListCommand@{PrintUserListCommand}!execute@{execute}}
+\index{execute@{execute}!PrintUserListCommand@{PrintUserListCommand}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{class_print_user_list_command_ae1de79d01008af198fda380a3c700de8} 
+void Print\+User\+List\+Command\+::execute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhandle_info}{handle\+Info}} \&}]{handle}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command}}.
+
+\Hypertarget{class_print_user_list_command_a91e8abb495975eb442cb570104171441}\index{PrintUserListCommand@{PrintUserListCommand}!name@{name}}
+\index{name@{name}!PrintUserListCommand@{PrintUserListCommand}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \label{class_print_user_list_command_a91e8abb495975eb442cb570104171441} 
+std\+::string Print\+User\+List\+Command\+::name (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_command_a87b16bdc7005f072d4b352666d3c1489}{Command}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_print_user_list_command_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_print_user_list_command_acedacdc8f92dee549946d594f4fff79e}\index{PrintUserListCommand@{PrintUserListCommand}!logger@{logger}}
+\index{logger@{logger}!PrintUserListCommand@{PrintUserListCommand}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{class_print_user_list_command_acedacdc8f92dee549946d594f4fff79e} 
+\mbox{\hyperlink{class_logger}{Logger}}\texorpdfstring{$\ast$}{*} Print\+User\+List\+Command\+::logger\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Bank\+\_\+\+System/commands/\mbox{\hyperlink{_print_user_list_command_8h}{Print\+User\+List\+Command.\+h}}\end{DoxyCompactItemize}

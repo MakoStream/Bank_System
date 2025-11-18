@@ -1,0 +1,198 @@
+\doxysection{Bank\+\_\+\+System/basic\+\_\+functions.h File Reference}
+\hypertarget{_bank___system_2basic__functions_8h}{}\label{_bank___system_2basic__functions_8h}\index{Bank\_System/basic\_functions.h@{Bank\_System/basic\_functions.h}}
+
+
+Helper functions for string, number, and configuration handling.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_bank___system_2basic__functions_8h_ac7fca25fdc73fab164035766f788b9d0}{is\+String\+Digit}} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Checks whether the given string represents a valid numeric value (integer or decimal). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_bank___system_2basic__functions_8h_a9a01b0ef5a55bb2332b04ff54789f27d}{is\+Phone}} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Validates if a string is a 10-\/digit phone number. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{_bank___system_2basic__functions_8h_a22d8a86d9030d2cfef90844536909574}{split}} (const std\+::string \&input)
+\begin{DoxyCompactList}\small\item\em Splits a string into words separated by whitespace and returns them as a vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_bank___system_2basic__functions_8h_ac81e8ace8f8b6d4c09572038c5d48cf4}{trim}} (std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Removes leading and trailing whitespace from a string. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{_bank___system_2basic__functions_8h_a248127881de11156f58e4dd2fd879f6a}{read\+Config}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Reads configuration key-\/value pairs from a \texorpdfstring{$\ast$}{*}.ini file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_bank___system_2basic__functions_8h_a006014cced648ca7880d24c53223bdd4}{write\+Config}} (const std\+::string \&filename, const std\+::map$<$ std\+::string, std\+::string $>$ \&config)
+\begin{DoxyCompactList}\small\item\em Writes configuration key-\/value pairs to a \texorpdfstring{$\ast$}{*}.ini file. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{_bank___system_2basic__functions_8h_a267ef521bc704496e86a915730403e7b}{get\+Timestamp}} ()
+\begin{DoxyCompactList}\small\item\em Returns the current timestamp formatted as YYYY-\/\+MM-\/\+DD\+\_\+\+HH-\/\+MM-\/\+SS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helper functions for string, number, and configuration handling. 
+
+This header defines utility functions used throughout the bank system, including string validation, string splitting and trimming, configuration file reading and writing, and timestamp generation. \begin{DoxyNote}{Note}
+Required for classes and functions like \doxylink{class_new_account_command}{New\+Account\+Command}, User\+List\+Command, Account\+List\+Command, \doxylink{class_user_info_command}{User\+Info\+Command}, \doxylink{class_register_user_command}{Register\+User\+Command}, \doxylink{classmain_process}{main\+Process}, and \doxylink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command\+::execute()}. 
+\end{DoxyNote}
+
+
+\label{doc-func-members}
+\Hypertarget{_bank___system_2basic__functions_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_bank___system_2basic__functions_8h_a267ef521bc704496e86a915730403e7b}\index{basic\_functions.h@{basic\_functions.h}!getTimestamp@{getTimestamp}}
+\index{getTimestamp@{getTimestamp}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{getTimestamp()}{getTimestamp()}}
+{\footnotesize\ttfamily \label{_bank___system_2basic__functions_8h_a267ef521bc704496e86a915730403e7b} 
+std\+::string get\+Timestamp (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the current timestamp formatted as YYYY-\/\+MM-\/\+DD\+\_\+\+HH-\/\+MM-\/\+SS. 
+
+Generates a string representing the current system time for logging or file naming purposes. \begin{DoxyReturn}{Returns}
+A string containing the formatted timestamp. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$chrono$>$, $<$iomanip$>$, $<$sstream$>$, $<$ctime$>$. 
+\end{DoxyNote}
+\Hypertarget{_bank___system_2basic__functions_8h_a9a01b0ef5a55bb2332b04ff54789f27d}\index{basic\_functions.h@{basic\_functions.h}!isPhone@{isPhone}}
+\index{isPhone@{isPhone}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{isPhone()}{isPhone()}}
+{\footnotesize\ttfamily \label{_bank___system_2basic__functions_8h_a9a01b0ef5a55bb2332b04ff54789f27d} 
+bool is\+Phone (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Validates if a string is a 10-\/digit phone number. 
+
+Checks that the string contains exactly 10 digits and no other characters. 
+\begin{DoxyParams}{Parameters}
+{\em s} & The input string representing the phone number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is a valid 10-\/digit phone number, false otherwise. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$string$>$, $<$cctype$>$. 
+
+Used by commands\+::execute("{}reg\+\_\+user"{}). 
+\end{DoxyNote}
+\Hypertarget{_bank___system_2basic__functions_8h_ac7fca25fdc73fab164035766f788b9d0}\index{basic\_functions.h@{basic\_functions.h}!isStringDigit@{isStringDigit}}
+\index{isStringDigit@{isStringDigit}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{isStringDigit()}{isStringDigit()}}
+{\footnotesize\ttfamily \label{_bank___system_2basic__functions_8h_ac7fca25fdc73fab164035766f788b9d0} 
+bool is\+String\+Digit (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether the given string represents a valid numeric value (integer or decimal). 
+
+Validates a string to determine if it contains only digits, optionally with one decimal point. 
+\begin{DoxyParams}{Parameters}
+{\em s} & The input string to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is a valid number, false otherwise. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$string$>$, $<$cctype$>$. 
+
+Used by \doxylink{class_new_account_command}{New\+Account\+Command}, User\+List\+Command, Account\+List\+Command, \doxylink{class_user_info_command}{User\+Info\+Command}, \doxylink{class_register_user_command}{Register\+User\+Command}. 
+\end{DoxyNote}
+\Hypertarget{_bank___system_2basic__functions_8h_a248127881de11156f58e4dd2fd879f6a}\index{basic\_functions.h@{basic\_functions.h}!readConfig@{readConfig}}
+\index{readConfig@{readConfig}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{readConfig()}{readConfig()}}
+{\footnotesize\ttfamily \label{_bank___system_2basic__functions_8h_a248127881de11156f58e4dd2fd879f6a} 
+std\+::map$<$ std\+::string, std\+::string $>$ read\+Config (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+Reads configuration key-\/value pairs from a \texorpdfstring{$\ast$}{*}.ini file. 
+
+Opens a specified configuration file, reads each line in the form key=value, trims whitespace, ignores empty lines and comments (lines starting with \#), and returns a map of keys and values. 
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the configuration file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A map containing all configuration key-\/value pairs found in the file. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$iostream$>$, $<$fstream$>$, $<$string$>$, $<$map$>$. 
+
+Uses helper function \doxylink{_bank___system_2basic__functions_8h_ac81e8ace8f8b6d4c09572038c5d48cf4}{trim(std\+::string\&)}. 
+
+Used in \doxylink{classmain_process}{main\+Process()}. 
+\end{DoxyNote}
+\Hypertarget{_bank___system_2basic__functions_8h_a22d8a86d9030d2cfef90844536909574}\index{basic\_functions.h@{basic\_functions.h}!split@{split}}
+\index{split@{split}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}}
+{\footnotesize\ttfamily \label{_bank___system_2basic__functions_8h_a22d8a86d9030d2cfef90844536909574} 
+std\+::vector$<$ std\+::string $>$ split (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{input}{}\end{DoxyParamCaption})}
+
+
+
+Splits a string into words separated by whitespace and returns them as a vector. 
+
+Parses the input string using whitespace as the delimiter and stores each word in a vector. 
+\begin{DoxyParams}{Parameters}
+{\em input} & The string to split. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector containing all words from the input string. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$string$>$, $<$sstream$>$, $<$vector$>$. 
+
+Used in \doxylink{_bank___system_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main()} and \doxylink{class_command_a9eebac6cf348e424f531c5fbe0871558}{Command\+::execute()}. 
+\end{DoxyNote}
+\Hypertarget{_bank___system_2basic__functions_8h_ac81e8ace8f8b6d4c09572038c5d48cf4}\index{basic\_functions.h@{basic\_functions.h}!trim@{trim}}
+\index{trim@{trim}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{trim()}{trim()}}
+{\footnotesize\ttfamily \label{_bank___system_2basic__functions_8h_ac81e8ace8f8b6d4c09572038c5d48cf4} 
+void trim (\begin{DoxyParamCaption}\item[{std\+::string \&}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Removes leading and trailing whitespace from a string. 
+
+Trims spaces, tabs, and other whitespace characters from both ends of the input string. 
+\begin{DoxyParams}{Parameters}
+{\em s} & The string to trim (passed by reference). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$string$>$, $<$sstream$>$. 
+
+Used in \doxylink{_bank___system_2basic__functions_8h_a248127881de11156f58e4dd2fd879f6a}{read\+Config()}. 
+\end{DoxyNote}
+\Hypertarget{_bank___system_2basic__functions_8h_a006014cced648ca7880d24c53223bdd4}\index{basic\_functions.h@{basic\_functions.h}!writeConfig@{writeConfig}}
+\index{writeConfig@{writeConfig}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{writeConfig()}{writeConfig()}}
+{\footnotesize\ttfamily \label{_bank___system_2basic__functions_8h_a006014cced648ca7880d24c53223bdd4} 
+void write\+Config (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename}{, }\item[{const std\+::map$<$ std\+::string, std\+::string $>$ \&}]{config}{}\end{DoxyParamCaption})}
+
+
+
+Writes configuration key-\/value pairs to a \texorpdfstring{$\ast$}{*}.ini file. 
+
+Overwrites the specified configuration file with the provided key-\/value pairs. 
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the configuration file. \\
+\hline
+{\em config} & A map containing configuration keys and values to write. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$iostream$>$, $<$fstream$>$, $<$string$>$, $<$map$>$. 
+
+Used in \doxylink{classmain_process}{main\+Process()}. 
+\end{DoxyNote}

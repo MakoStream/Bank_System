@@ -1,0 +1,426 @@
+\doxysection{Audit.\+h}
+\hypertarget{_audit_8h_source}{}\label{_audit_8h_source}\index{Bank\_System/Audit/Audit.h@{Bank\_System/Audit/Audit.h}}
+\mbox{\hyperlink{_audit_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_account_8h}{../Account.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_bank___system_2basic__functions_8h}{../basic\_functions.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\#include\ "{}../mainProcess.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a9181d442ac6b43f331b50f1700649579}{COMMISION}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ комісія\ за\ операції}}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89accc8b15ae3b0dbbabfdb2771e085e8fc}{CREDIT\_EXPANSION}},\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ відсотки\ за\ кредит}}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89aa23ddc57871bd570c6cfb850b88d826a}{DEPOSIT\_PAYDAY}},\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ відсотки\ за\ депозит}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a2238345c21cd115d2eaee8097508d9d7}{TRANSACTION}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Транзакція}}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a521d5ad8a239a7bf1ac2e16a9c1fb5b7}{SELF\_TRANSACTION}},\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Транзакція\ між\ власними\ картками}}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a30e59148af45aa6e6ab6bf5250a83f95}{TAX}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Податок}}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a35e4c4ca1c1b950729ff7bce399b64d8}{PAYDAY}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Заробітна\ плата}}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a2b82a3b8c24e8fac5762e8cd4698ee6c}{IBAN\_TRANSACTION}},\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Транзакція\ по\ IBAN\ //USELESS}}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a4cbb6eb1cc376e49a1c120dffacdba06}{ROLLBACK}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Повернення\ коштів}}
+\DoxyCodeLine{00018\ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\_status}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a1230137cb1670af41522e68d576326d9}{SUCCES}},}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67af0956b6c32fca5ccc9fc6f5451c3d632}{ALLOWED}},}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a08f1ea1cb5cac34a4f4237e5259fcabb}{DENIED}},}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67abaf6b8e08edf0e9d2eb38551fed1fb39}{REQUEST}},}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67af23292b13488911b134b00e00fd9576e}{ROLLBACK\_REQUEST}},}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a4dd2c8a822c6c13fa31fe22ee42c200b}{ROLLBACK\_DONE}},}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a936c4a5547a9360243178f726f6b2715}{FAIL}},}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a31ab9549f988dc25f0f4c2d8ccb4ff84}{FAIL\_NO\_MONEY}},}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a01127902004977c63ad8a275cb3d0f36}{FAIL\_WRONG\_ACCOUNT}},\ \textcolor{comment}{//\ useless}}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67aa039d1ff36f2f1d4a3a92c93e8a67c0f}{FAIL\_CARD\_BLOCKED}},}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a7d9d493ec5f58c1bfa4b031de58af83c}{FAIL\_YOUR\_CARD\_BLOCKED}},}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67abc7d9a626434bdf983b115d564d5ed78}{FAIL\_WRONG\_CVV}},}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a06a1428213a8fa5eaf5e9c490a527f2f}{FAIL\_WRONG\_PIN}},}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a298158b200f64c973e11c385e40f9a50}{SUSPECT\_REQUEST}}}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::map<operations,\ std::string>\ \mbox{\hyperlink{_audit_8cpp_aa94bf9d9e321dd12d36827acdaf3c227}{operationToString}};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::map<transaction\_status,\ std::string>\ \mbox{\hyperlink{_audit_8cpp_a329ff71b5729c8e60c763687719ba32f}{transactionStatusToString}};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::map<std::string,\ operations>\ \mbox{\hyperlink{_audit_8cpp_a1a61622124c3338bb26e19d9bb8bbd3e}{stringToOperation}};}
+\DoxyCodeLine{00042\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ std::map<std::string,\ transaction\_status>\ \mbox{\hyperlink{_audit_8cpp_a6de7433141566ac6234e2b4e88414faa}{stringToTransactionStatus}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_transaction_log_aa8f14d6ef064f7a75bf10a3db1871f9e}{TransactionLog}}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transaction_log_ae6eb448528322e84f6de45a8d14295b3}{id}};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transaction_log_a645047001e1d8562d22489e323c7c441}{transaction\_id}};}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}\ \mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\_type}};}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\_status}}\ \mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}}[25];}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_transaction_log_ad531dabd4412f6034b6a27a823112196}{other\_currency}};\ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}};\ \ \ \textcolor{comment}{//\ use\ for\ requests}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ account\ from}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}}[36];}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}}[17];}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_transaction_log_a09b728fdd8ca116e03bc703f075b38a7}{from\_currency\_before}};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_transaction_log_ab7d7e4b18f1f3e5619161fcb1a1ee2d7}{from\_currency\_after}};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ account\ to}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}}[36];}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}}[17];}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_transaction_log_aa7038afc271c7ce7c28daca58d8139fd}{to\_currency\_before}};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_transaction_log_a2170e5db22ae641d0c8e8cdc48124e46}{to\_currency\_after}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ !!\ Інформація\ про\ стан\ рахунку\ додається\ вже\ під\ час\ затвердження}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ requested\ by}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}{other\_bank\_user}};}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}{user\_id}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ currency\ info}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}};}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balanceType}}\ \mbox{\hyperlink{class_transaction_log_ac5f18fd858346f294013a527beaebdca}{currency\_type}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}};\ \ \textcolor{comment}{//\ user\ id}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}}[255];}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aa8f14d6ef064f7a75bf10a3db1871f9e}{TransactionLog}}()\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ -\/1;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a645047001e1d8562d22489e323c7c441}{transaction\_id}}\ =\ -\/1;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\_type}}\ =\ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89a2238345c21cd115d2eaee8097508d9d7}{TRANSACTION}};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}\ =\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67abaf6b8e08edf0e9d2eb38551fed1fb39}{REQUEST}};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}}),\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_aac4a14ac12cdb5f5a320c468b6ed4c54}{getTimestamp}}().c\_str());}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_ad531dabd4412f6034b6a27a823112196}{other\_currency}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}}),\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}}),\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}}),\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}}),\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}{other\_bank\_user}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}{user\_id}}\ =\ -\/1;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}}\ =\ 0.0;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}}\ =\ -\/1;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}}),\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Конструктор\ з\ параметрами\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a4dbe060c682bb6ded6dfd2830a069445}{TransactionLog}}(}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \_id,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \_transaction\_id,}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}\ op,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\_status}}\ st,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ otherCur,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ blocked,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fromIban,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fromCard,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ toIban,\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ toCard,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ otherBank,\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ uid,\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ curr,}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \_allowed\_by,\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ comm}
+\DoxyCodeLine{00118\ \ \ \ \ )\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ \_id;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a645047001e1d8562d22489e323c7c441}{transaction\_id}}\ =\ \_transaction\_id;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\_type}}\ =\ op;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}\ =\ st;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}}),\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_aac4a14ac12cdb5f5a320c468b6ed4c54}{getTimestamp}}().c\_str());}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_ad531dabd4412f6034b6a27a823112196}{other\_currency}}\ =\ otherCur;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}}\ =\ blocked;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}}),\ fromIban);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}}),\ fromCard);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}}),\ toIban);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}}),\ toCard);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}{other\_bank\_user}}\ =\ otherBank;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}{user\_id}}\ =\ uid;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}}\ =\ curr;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}}\ =\ \_allowed\_by;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}}),\ comm);}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transaction_log_a01f9fb3360de1b0b0e8abd8fa298f989}{change\_id}}(\textcolor{keywordtype}{int}\ \_id)\ \{\ \textcolor{comment}{//\ ДУЖЕ\ НЕБЕЗБЕЧНА\ ФУНКЦІЯ!}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ \_id;\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Функції\ отримання\ змінних\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transaction_log_a60da775eb6a4e74e26f12822cf9c14e1}{getID}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_ae6eb448528322e84f6de45a8d14295b3}{id}};\ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transaction_log_a38cc54c93efd8e6c126761622b171c31}{getTransactionID}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_a645047001e1d8562d22489e323c7c441}{transaction\_id}};\ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}\ \mbox{\hyperlink{class_transaction_log_a95a9cd398564bb23e5ea8040a6b9f098}{getOperationType}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\_type}};\ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\_status}}\ \mbox{\hyperlink{class_transaction_log_a30028a64de5840fb77f858fa652974ee}{getStatus}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}};\ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_transaction_log_a0800ad9492ecd76ad1a160a374baff17}{getTime}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}};\ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_transaction_log_aab419762c2df215c85e30cac50cc26c3}{isOtherCurrency}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_ad531dabd4412f6034b6a27a823112196}{other\_currency}};\ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_transaction_log_a043c3ae90786d3bf7ee3e99c4172ec7e}{isBlockedMoney}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}};\ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_transaction_log_a2bc4e0da3a6f6a8e5b163fee40bc1fa5}{getFromIBAN}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}};\ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_transaction_log_aeecd112ee00a9d16415217cd9fd92e18}{getFromCardNumber}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}};\ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_transaction_log_a4a2b2fc3279d52225b0301ff05a8df49}{getToIBAN}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}};\ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_transaction_log_a890a24866e32b69cd6331776ce415975}{getToCardNumber}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}};\ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_transaction_log_aab121730979c10770ac535c0b46dfcfe}{isOtherBankUser}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}{other\_bank\_user}};\ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transaction_log_ab63457ed54c19278f06c2c40fb3c461e}{getUserID}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}{user\_id}};\ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_transaction_log_a66fdef7e5f5635cc638374fae1cbbcdb}{getCurrency}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}};\ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{_account_8h_a4c646ca6fdcc48981203ab0b4d0dd3c7}{balanceType}}\ \mbox{\hyperlink{class_transaction_log_a5a675d1d6eb78566ce716b6e17fbbb5f}{getCurrencyType}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_ac5f18fd858346f294013a527beaebdca}{currency\_type}};\ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_transaction_log_af9bc39d5222cd8dec6c32b0b53e072c7}{getAllowedBy}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}};\ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_transaction_log_a118927c867bdcda54eb8c3c647b735ea}{getComment}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}};\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Методи\ керування\ статусом\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_transaction_log_abfdcffae9dd610b2012a21fb64cc4887}{allow}}(\textcolor{keywordtype}{int}\ allowed\_by\_user\_id)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}\ =\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67af0956b6c32fca5ccc9fc6f5451c3d632}{ALLOWED}};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}}\ =\ allowed\_by\_user\_id;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Змінити\ рахунки\ тут\ пізніше}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ =====================================================}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transaction_log_aace3040202add776273fa2f6546a8cd1}{setComment}}(\textcolor{keywordtype}{string}\ new\_comment)\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ strncpy(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}},\ new\_comment.c\_str(),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}}));}
+\DoxyCodeLine{00177\ \ \ \ \ \};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_transaction_log_aadd652d67d61bc8553dc030733809318}{deny}}()\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}\ =\ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67a08f1ea1cb5cac34a4f4237e5259fcabb}{DENIED}};}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Якщо\ було\ заблоковано\ гроші,\ розблокувати\ їх\ і\ повернути\ на\ рахунок}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00185\ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transaction_log_af13c41e4c283564cc3aa18f76c278a35}{fail}}(\mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\_status}}\ fail\_status)\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}\ =\ fail\_status;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Якщо\ було\ заблоковано\ гроші,\ розблокувати\ їх\ і\ повернути\ на\ рахунок}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Запис\ у\ файл\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transaction_log_ab36e36692e867a5ba65ec77a1d012ed2}{saveToFile}}(std::ostream\&\ out)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\textcolor{keywordtype}{id}),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_a645047001e1d8562d22489e323c7c441}{transaction\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a645047001e1d8562d22489e323c7c441}{transaction\_id}}));}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\_type}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\_type}}));}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}));}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ out.write(\mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}}));}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_ad531dabd4412f6034b6a27a823112196}{other\_currency}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ad531dabd4412f6034b6a27a823112196}{other\_currency}}));}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}}));}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ out.write(\mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}}));}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ out.write(\mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}}));}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ out.write(\mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}}));}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ out.write(\mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}}));}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}{other\_bank\_user}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}{other\_bank\_user}}));}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}{user\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}{user\_id}}));}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}}));}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}}));}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ out.write(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}}));}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Завантаження\ з\ файлу\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transaction_log_a0cebe2fe72fdd5ca5001c7b28f6aba38}{loadFromFile}}(std::istream\&\ in)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\textcolor{keywordtype}{id}),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_a645047001e1d8562d22489e323c7c441}{transaction\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a645047001e1d8562d22489e323c7c441}{transaction\_id}}));}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\_type}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\_type}}));}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}));}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ in.read(\mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}}));}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_ad531dabd4412f6034b6a27a823112196}{other\_currency}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ad531dabd4412f6034b6a27a823112196}{other\_currency}}));}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a9889cd41885846a08be64417125258eb}{blocked\_money}}));}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ in.read(\mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a95c84ee02b649406772192e466cb5ea7}{from\_IBAN}}));}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ in.read(\mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}}));}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ in.read(\mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ac59d39d563178ee1b7bf73bfd147ac1d}{to\_IBAN}}));}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ in.read(\mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}}));}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}{other\_bank\_user}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a1ec07d5a6ea6a57f4d83a6b48cfae49b}{other\_bank\_user}}));}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}{user\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_af7d7f3e309e838d1f68146a735b4f93f}{user\_id}}));}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}}));}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}}));}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ in.read(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}}));}
+\DoxyCodeLine{00232\ \ \ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Вивід\ у\ консоль\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_transaction_log_a1b941dbc3465bdf69365f0451ecd873b}{print}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}ID:\ "{}}\ <<\ \textcolor{keywordtype}{id}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Operation:\ "{}}\ <<\ \mbox{\hyperlink{class_transaction_log_aaaaf430e2889ef85fc43343e29029ea2}{operation\_type}}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Status:\ "{}}\ <<\ \mbox{\hyperlink{class_transaction_log_aa4d6d1599e84d2a4c8284b4ae2f25729}{status}}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Time:\ "{}}\ <<\ \mbox{\hyperlink{class_transaction_log_a0e2ca0b67a29006622e3f584fb3968e6}{time}}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ From:\ "{}}\ <<\ \mbox{\hyperlink{class_transaction_log_a7a3f87decc861060b02350a6d37cdd42}{from\_cardNumber}}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ To:\ "{}}\ <<\ \mbox{\hyperlink{class_transaction_log_ac660e17da6ee372581dca9ee601f7743}{to\_cardNumber}}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Amount:\ "{}}\ <<\ \mbox{\hyperlink{class_transaction_log_aa474fecbc0fdd6376624679896d353de}{currency}}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Allowed\ by:\ "{}}\ <<\ \mbox{\hyperlink{class_transaction_log_afd6d290a936eab114c9aaa0d8f5773bb}{allowed\_by}}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Comment:\ "{}}\ <<\ \mbox{\hyperlink{class_transaction_log_a196408851fc84fe34eb66bda5303b3f0}{comment}}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{00246\ \ \ \ \ \};}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_transaction_log_a5dc5b521daebf61cf7f02a0d5ddcd659}{updateInFile}}();}
+\DoxyCodeLine{00248\ \};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{comment}{//====================================================================}}
+\DoxyCodeLine{00251\ \textcolor{comment}{//====================================================================}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}}\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4aeaac48fea9fae5069dee22a7bb1e6bc0}{COMMAND\_BAN\_ACC}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7859f1b2a09699482b63dabf23b90794}{COMMAND\_UNBAN\_ACC}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a087f8e51253c73554bff21db94044f50}{COMMAND\_VERIFY\_ACC}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a95f09e84adcd5146d62640bb08f90f5e}{COMMAND\_CHANGE\_PIN}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a1e70d028af3c0122e88e5f96512bb64b}{COMMAND\_CHANGE\_CVV}},}
+\DoxyCodeLine{00255\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a62d5d0ef0cf15256929faa72a27f22e4}{COMMAND\_BAN\_USER}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7c56cde5d19cd10833ed4ae96e65f89d}{COMMAND\_UNBAN\_USER}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4ae0d81dd1a61bd7577727e061bdaddb8a}{COMMAND\_CHANGE\_PASSWORD}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4aa57e6dc1fd4926f5563bba9248c98730}{COMMAND\_CHANGE\_PASSPORT}},}
+\DoxyCodeLine{00256\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a32466cc1ea72d9663a7d033b8bde7562}{TRANSACTION\_REQUEST}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4aa1ff7759a2bdad371957b3f95906d8ad}{TRANSACTION\_STATUS\_CHANGE}},\ }
+\DoxyCodeLine{00257\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7a691a2430ec26878897b5fbc9c22a4c}{CONNECTED}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a1a71b90966c56b39163d3c59a1760816}{DISCONECTED}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4af0f60dda1cf94d385045c17824dffd7c}{LOGINNED}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a597f9e211f05480bb062340d2034ca65}{LOGIN\_FAIL}},}
+\DoxyCodeLine{00258\ \};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Enum\ -\/>\ String\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00261\ \textcolor{keyword}{const}\ std::map<action,\ std::string>\ \mbox{\hyperlink{_audit_8h_a220d372f52ef1578a09f202a255bf3d1}{actionToString}}\ =\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4aeaac48fea9fae5069dee22a7bb1e6bc0}{COMMAND\_BAN\_ACC}},\ \textcolor{stringliteral}{"{}COMMAND\_BAN\_ACC"{}}\ \},}
+\DoxyCodeLine{00263\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7859f1b2a09699482b63dabf23b90794}{COMMAND\_UNBAN\_ACC}},\ \textcolor{stringliteral}{"{}COMMAND\_UNBAN\_ACC"{}}\ \},}
+\DoxyCodeLine{00264\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a087f8e51253c73554bff21db94044f50}{COMMAND\_VERIFY\_ACC}},\ \textcolor{stringliteral}{"{}COMMAND\_VERIFY\_ACC"{}}\ \},}
+\DoxyCodeLine{00265\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a95f09e84adcd5146d62640bb08f90f5e}{COMMAND\_CHANGE\_PIN}},\ \textcolor{stringliteral}{"{}COMMAND\_CHANGE\_PIN"{}}\ \},}
+\DoxyCodeLine{00266\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a1e70d028af3c0122e88e5f96512bb64b}{COMMAND\_CHANGE\_CVV}},\ \textcolor{stringliteral}{"{}COMMAND\_CHANGE\_CVV"{}}\ \},}
+\DoxyCodeLine{00267\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a62d5d0ef0cf15256929faa72a27f22e4}{COMMAND\_BAN\_USER}},\ \textcolor{stringliteral}{"{}COMMAND\_BAN\_USER"{}}\ \},}
+\DoxyCodeLine{00268\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7c56cde5d19cd10833ed4ae96e65f89d}{COMMAND\_UNBAN\_USER}},\ \textcolor{stringliteral}{"{}COMMAND\_UNBAN\_USER"{}}\ \},}
+\DoxyCodeLine{00269\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4ae0d81dd1a61bd7577727e061bdaddb8a}{COMMAND\_CHANGE\_PASSWORD}},\ \textcolor{stringliteral}{"{}COMMAND\_CHANGE\_PASSWORD"{}}\ \},}
+\DoxyCodeLine{00270\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4aa57e6dc1fd4926f5563bba9248c98730}{COMMAND\_CHANGE\_PASSPORT}},\ \textcolor{stringliteral}{"{}COMMAND\_CHANGE\_PASSPORT"{}}\ \},}
+\DoxyCodeLine{00271\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a32466cc1ea72d9663a7d033b8bde7562}{TRANSACTION\_REQUEST}},\ \textcolor{stringliteral}{"{}TRANSACTION\_REQUEST"{}}\ \},}
+\DoxyCodeLine{00272\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4aa1ff7759a2bdad371957b3f95906d8ad}{TRANSACTION\_STATUS\_CHANGE}},\ \textcolor{stringliteral}{"{}TRANSACTION\_STATUS\_CHANGE"{}}\ \},}
+\DoxyCodeLine{00273\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7a691a2430ec26878897b5fbc9c22a4c}{CONNECTED}},\ \textcolor{stringliteral}{"{}CONNECTED"{}}\ \},}
+\DoxyCodeLine{00274\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a1a71b90966c56b39163d3c59a1760816}{DISCONECTED}},\ \textcolor{stringliteral}{"{}DISCONECTED"{}}\ \},}
+\DoxyCodeLine{00275\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4af0f60dda1cf94d385045c17824dffd7c}{LOGINNED}},\ \textcolor{stringliteral}{"{}LOGINNED"{}}\ \},}
+\DoxyCodeLine{00276\ \ \ \ \ \{\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a597f9e211f05480bb062340d2034ca65}{LOGIN\_FAIL}},\ \textcolor{stringliteral}{"{}LOGIN\_FAIL"{}}\ \}}
+\DoxyCodeLine{00277\ \};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ String\ -\/>\ Enum\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00280\ \textcolor{keyword}{const}\ std::map<std::string,\ action>\ \mbox{\hyperlink{_audit_8h_ac9e376b263a229b0603d68fbcf9f57fe}{stringToAction}}\ =\ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMAND\_BAN\_ACC"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4aeaac48fea9fae5069dee22a7bb1e6bc0}{COMMAND\_BAN\_ACC}}\ \},}
+\DoxyCodeLine{00282\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMAND\_UNBAN\_ACC"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7859f1b2a09699482b63dabf23b90794}{COMMAND\_UNBAN\_ACC}}\ \},}
+\DoxyCodeLine{00283\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMAND\_VERIFY\_ACC"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a087f8e51253c73554bff21db94044f50}{COMMAND\_VERIFY\_ACC}}\ \},}
+\DoxyCodeLine{00284\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMAND\_CHANGE\_PIN"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a95f09e84adcd5146d62640bb08f90f5e}{COMMAND\_CHANGE\_PIN}}\ \},}
+\DoxyCodeLine{00285\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMAND\_CHANGE\_CVV"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a1e70d028af3c0122e88e5f96512bb64b}{COMMAND\_CHANGE\_CVV}}\ \},}
+\DoxyCodeLine{00286\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMAND\_BAN\_USER"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a62d5d0ef0cf15256929faa72a27f22e4}{COMMAND\_BAN\_USER}}\ \},}
+\DoxyCodeLine{00287\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMAND\_UNBAN\_USER"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7c56cde5d19cd10833ed4ae96e65f89d}{COMMAND\_UNBAN\_USER}}\ \},}
+\DoxyCodeLine{00288\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMAND\_CHANGE\_PASSWORD"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4ae0d81dd1a61bd7577727e061bdaddb8a}{COMMAND\_CHANGE\_PASSWORD}}\ \},}
+\DoxyCodeLine{00289\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}COMMAND\_CHANGE\_PASSPORT"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4aa57e6dc1fd4926f5563bba9248c98730}{COMMAND\_CHANGE\_PASSPORT}}\ \},}
+\DoxyCodeLine{00290\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}TRANSACTION\_REQUEST"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a32466cc1ea72d9663a7d033b8bde7562}{TRANSACTION\_REQUEST}}\ \},}
+\DoxyCodeLine{00291\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}TRANSACTION\_STATUS\_CHANGE"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4aa1ff7759a2bdad371957b3f95906d8ad}{TRANSACTION\_STATUS\_CHANGE}}\ \},}
+\DoxyCodeLine{00292\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}CONNECTED"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7a691a2430ec26878897b5fbc9c22a4c}{CONNECTED}}\ \},}
+\DoxyCodeLine{00293\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}DISCONECTED"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a1a71b90966c56b39163d3c59a1760816}{DISCONECTED}}\ \},}
+\DoxyCodeLine{00294\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LOGINNED"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4af0f60dda1cf94d385045c17824dffd7c}{LOGINNED}}\ \},}
+\DoxyCodeLine{00295\ \ \ \ \ \{\ \textcolor{stringliteral}{"{}LOGIN\_FAIL"{}},\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a597f9e211f05480bb062340d2034ca65}{LOGIN\_FAIL}}\ \}}
+\DoxyCodeLine{00296\ \};}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_audit_log_a71e477c9e64d742f24e0d50f6bc25897}{AuditLog}}\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_audit_log_a7914f00f8fd9974347c971cc6f45c5d1}{id}};\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{comment}{//\ init\ by\ user\ at\ time}}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\_id}};\ \ \ \textcolor{comment}{//user\ PM}}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\_id}};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}}[25];}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ Log\ info}}
+\DoxyCodeLine{00307\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}}\ \mbox{\hyperlink{class_audit_log_a98494c2f65497eab99396a0807598793}{Action}};}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}}[124];}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_audit_log_a5c800990f8175feb52748f05319690bf}{transaction\_PM\_id}};}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_audit_log_a3eac3629706f116d05947cf62a7176de}{success}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Було\ виконано\ успішно\ чи\ ні}}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}}[128];\ \ \ \ \textcolor{comment}{//\ Якщо\ дія\ завершилась\ з\ помилкою}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00316\ \ \ \ \ \mbox{\hyperlink{class_audit_log_a71e477c9e64d742f24e0d50f6bc25897}{AuditLog}}()\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ -\/1;}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\_id}}\ =\ -\/1;}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\_id}}\ =\ -\/1;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}}),\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_aac4a14ac12cdb5f5a320c468b6ed4c54}{getTimestamp}}().c\_str());}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_a98494c2f65497eab99396a0807598793}{Action}}\ =\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4a7a691a2430ec26878897b5fbc9c22a4c}{CONNECTED}};}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}}),\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_a5c800990f8175feb52748f05319690bf}{transaction\_PM\_id}}\ =\ -\/1;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_a3eac3629706f116d05947cf62a7176de}{success}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ strcpy\_s(\mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}}),\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00326\ \ \ \ \ \}}
+\DoxyCodeLine{00327\ \ \ \ \ \mbox{\hyperlink{class_audit_log_af61317d1532f0c64e723e46108d06966}{AuditLog}}(\textcolor{keywordtype}{int}\ \_id,\ \textcolor{keywordtype}{int}\ \_userID,\ \textcolor{keywordtype}{int}\ \_sessionID,\ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}}\ \_act,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_info,\ \textcolor{keywordtype}{int}\ \_transaction\_PM\_id,\ \textcolor{keywordtype}{bool}\ \_success\ =\ \textcolor{keyword}{true},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \_errorMessage\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00328\ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ \_id;}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\_id}}\ =\ \_userID;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\_id}}\ =\ \_sessionID;}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_a98494c2f65497eab99396a0807598793}{Action}}\ =\ \_act;}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ strncpy\_s(\mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}}),\ \_info,\ \_TRUNCATE);}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_a5c800990f8175feb52748f05319690bf}{transaction\_PM\_id}}\ =\ \_transaction\_PM\_id;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_audit_log_a3eac3629706f116d05947cf62a7176de}{success}}\ =\ \_success;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ strncpy\_s(\mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}}),\ \_errorMessage,\ \_TRUNCATE);}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ strncpy\_s(\mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}}),\ \mbox{\hyperlink{_bank___system_2basic__functions_8cpp_aac4a14ac12cdb5f5a320c468b6ed4c54}{getTimestamp}}().c\_str(),\ \_TRUNCATE);}
+\DoxyCodeLine{00338\ \ \ \ \ \}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Функції\ отримання\ змінних\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_audit_log_a6bd0f55d2a5a41346e96f8070c131c16}{getID}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_audit_log_a7914f00f8fd9974347c971cc6f45c5d1}{id}};\ \}}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_audit_log_a70200f493ccdfd4b83493b113697a114}{getUserID}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\_id}};\ \}}
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_audit_log_a18c30f4151e14416af9f765ae9a2b4b1}{getSessionID}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\_id}};\ \}}
+\DoxyCodeLine{00344\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a2f4ab7bf743142dae2e459aa18f9f1d4}{action}}\ \mbox{\hyperlink{class_audit_log_af739e7521a606a22ea7b9b7d7680a6b3}{getAction}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_audit_log_a98494c2f65497eab99396a0807598793}{Action}};\ \}}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_audit_log_a6c4196046db7fb5cafe9c48497307364}{getTime}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}};\ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_audit_log_a9b91e54cf163f76ae009fae5cf0eff43}{getInfo}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}};\ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_audit_log_a6f5b701746b2035d0ca0c93bc0c816b5}{getTransactionPMID}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_audit_log_a5c800990f8175feb52748f05319690bf}{transaction\_PM\_id}};\ \}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Запис\ у\ файл\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_audit_log_aa2752c5853e91af1cdce0ac079e3195e}{saveToFile}}(std::ostream\&\ out)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\textcolor{keywordtype}{id}),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\_id}}));}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\_id}}));}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ out.write(\mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}}));}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_a98494c2f65497eab99396a0807598793}{Action}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a98494c2f65497eab99396a0807598793}{Action}}));}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ out.write(\mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}}));}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_a5c800990f8175feb52748f05319690bf}{transaction\_PM\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a5c800990f8175feb52748f05319690bf}{transaction\_PM\_id}}));}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ out.write(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_a3eac3629706f116d05947cf62a7176de}{success}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a3eac3629706f116d05947cf62a7176de}{success}}));}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ out.write(\mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}}));}
+\DoxyCodeLine{00361\ \ \ \ \ \};}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Завантаження\ з\ файлу\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_audit_log_ae223842a48b1ec3c7066b2b4b8fc8255}{loadFromFile}}(std::istream\&\ in)\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\textcolor{keywordtype}{id}),\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{id}));}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\_id}}));}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\_id}}));}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ in.read(\mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}}));}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_a98494c2f65497eab99396a0807598793}{Action}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a98494c2f65497eab99396a0807598793}{Action}}));}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ in.read(\mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}}));}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_a5c800990f8175feb52748f05319690bf}{transaction\_PM\_id}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a5c800990f8175feb52748f05319690bf}{transaction\_PM\_id}}));}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ in.read(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(\&\mbox{\hyperlink{class_audit_log_a3eac3629706f116d05947cf62a7176de}{success}}),\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a3eac3629706f116d05947cf62a7176de}{success}}));}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ in.read(\mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}}));}
+\DoxyCodeLine{00373\ \ \ \ \ \};}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Вивід\ у\ консоль\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_audit_log_a8df829b4a885a94ec57bdd0728dfeb00}{print}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}ID:\ "{}}\ <<\ \textcolor{keywordtype}{id}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ User\ ID:\ "{}}\ <<\ \mbox{\hyperlink{class_audit_log_aac8512a96224d37beb7e9d49a880e537}{user\_id}}}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Session\ ID:\ "{}}\ <<\ \mbox{\hyperlink{class_audit_log_a51db19fefa860e1f35679664931e41b4}{session\_id}}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Time:\ "{}}\ <<\ \mbox{\hyperlink{class_audit_log_a8703559722e1144a5766787093c39b7d}{time}}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//<<\ "{}\ |\ Action:\ "{}\ <<\ actionToString.at(Action)}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Info:\ "{}}\ <<\ \mbox{\hyperlink{class_audit_log_abc2b0a8b22c8381557d76fb342b36095}{info}}}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Success:\ "{}}\ <<\ (\mbox{\hyperlink{class_audit_log_a3eac3629706f116d05947cf62a7176de}{success}}\ ?\ \textcolor{stringliteral}{"{}Yes"{}}\ :\ \textcolor{stringliteral}{"{}No"{}})}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ |\ Error\ Message:\ "{}}\ <<\ \mbox{\hyperlink{class_audit_log_a27c62df6a4adfa43cbc794f26d9be8a3}{error\_message}}}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{00385\ \ \ \ \ \};}
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_audit_log_ac79f6c20be93c88e8c5ff170c4b9eedb}{updateInFile}}();}
+\DoxyCodeLine{00387\ \};}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_audit_8h_ad2e2619ef4bd6776e6c204b5ebd75614}{create\_db\_transaction\_log}}();}
+\DoxyCodeLine{00391\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_audit_8h_aeb29b6c474cd090f1e9f162505d3e11a}{create\_db\_audit\_log}}();}
+\DoxyCodeLine{00392\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_audit_8h_a9118736bad08a4388e7ad133a5c830d0}{TRAN\_addTransaction}}(}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id},}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keywordtype}{int}\ transaction\_id,}
+\DoxyCodeLine{00395\ \ \ \ \ \mbox{\hyperlink{_audit_8h_ada69efafc8c2657f91fff12b73dc8a89}{operations}}\ op,}
+\DoxyCodeLine{00396\ \ \ \ \ \mbox{\hyperlink{_audit_8h_a9171bd05c51badf89eca6589a3bf9f67}{transaction\_status}}\ st,}
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keywordtype}{bool}\ otherCur,}
+\DoxyCodeLine{00398\ \ \ \ \ \textcolor{keywordtype}{bool}\ blocked,}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fromIban,}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fromCard,}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ toIban,}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ toCard,}
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{keywordtype}{bool}\ otherBank,}
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keywordtype}{int}\ userID,}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordtype}{double}\ amount,}
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ allowedBy,}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ comment}
+\DoxyCodeLine{00408\ );}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_audit_8h_a9b8dad3817af47637f9856bbd4198eed}{save\_audit\_log}}(\mbox{\hyperlink{class_audit_log}{AuditLog}}\&\ log);}
+\DoxyCodeLine{00411\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_audit_8h_a67c4e7e0664ca098a2851963e11e8b84}{save\_transaction\_log}}(\mbox{\hyperlink{class_transaction_log}{TransactionLog}}\&\ log);}
+\DoxyCodeLine{00412\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_audit_8h_adac0cd14c94dc9a9f29bcc3da0b5a3a7}{getLastTransactionID}}();}
+\DoxyCodeLine{00413\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{_audit_8h_a39328a4d0e3b7a5f14f4d89476c052a1}{getLastAuditID}}();}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ vector<TransactionLog>\ \mbox{\hyperlink{_audit_8h_ae7df60c13516619be66d6d6afd5cff41}{getTransactionsLogs}}(\textcolor{keywordtype}{int}\ transaction\_id);}
+\DoxyCodeLine{00416\ vector<AuditLog>\ \mbox{\hyperlink{_audit_8h_ad1fb1097a3ba64f6278865c340d1ad1f}{getAuditLogs}}(\textcolor{keywordtype}{int}\ transaction\_PM\_id);}
+\DoxyCodeLine{00417\ vector\ <AuditLog>\ \mbox{\hyperlink{_audit_8h_a4b33ddfbb31375a9cdc103c8d5f1751d}{getUserAuditLogs}}(\textcolor{keywordtype}{int}\ user\_id);}
+\DoxyCodeLine{00418\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_audit_8h_a2dce53494632e348e830931b2c5071c8}{printTransactions}}(\textcolor{keywordtype}{char}\ msg[5][1024],\ \textcolor{keywordtype}{int}\ page);}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ vector<TransactionLog>\ \mbox{\hyperlink{_audit_8h_a08be5b64aa2c2e2ab1ba0631d82eafa5}{getTransactionLogs}}(\textcolor{keywordtype}{int}\ transaction\_id);}
+
+\end{DoxyCode}

@@ -5,6 +5,14 @@
 #include "../mainProcess.h"
 #include "../LogEye.h"
 
+/**
+ * @class UserInfoCommand
+ * @brief Retrieves detailed information about a user.
+ * @details Accepts user ID or login, returns user details,
+ * logs all actions via logEye.
+ * @note Requires: handleInfo, logEye, User, <vector>, <string>, mainProcess.h, User.h
+ * @note Syntax: user_info <id/login>
+ */
 class UserInfoCommand : public Command {
 public:
 	void execute(handleInfo& handle) override { // user_info <id/login>

@@ -1,0 +1,95 @@
+\doxysection{Bank\+\_\+\+System\+\_\+\+User/basic\+\_\+functions.h File Reference}
+\hypertarget{_bank___system___user_2basic__functions_8h}{}\label{_bank___system___user_2basic__functions_8h}\index{Bank\_System\_User/basic\_functions.h@{Bank\_System\_User/basic\_functions.h}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$cctype$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_bank___system___user_2basic__functions_8h_ac7fca25fdc73fab164035766f788b9d0}{is\+String\+Digit}} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Checks whether the given string represents a valid numeric value (integer or decimal). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_bank___system___user_2basic__functions_8h_a9a01b0ef5a55bb2332b04ff54789f27d}{is\+Phone}} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Validates if a string is a 10-\/digit phone number. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{_bank___system___user_2basic__functions_8h_acb3b421c46ad175157857d818818bdab}{split}} (const string \&input)
+\item 
+string \mbox{\hyperlink{_bank___system___user_2basic__functions_8h_aac4a14ac12cdb5f5a320c468b6ed4c54}{get\+Timestamp}} ()
+\begin{DoxyCompactList}\small\item\em Returns the current timestamp formatted as YYYY-\/\+MM-\/\+DD\+\_\+\+HH-\/\+MM-\/\+SS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_bank___system___user_2basic__functions_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_bank___system___user_2basic__functions_8h_aac4a14ac12cdb5f5a320c468b6ed4c54}\index{basic\_functions.h@{basic\_functions.h}!getTimestamp@{getTimestamp}}
+\index{getTimestamp@{getTimestamp}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{getTimestamp()}{getTimestamp()}}
+{\footnotesize\ttfamily \label{_bank___system___user_2basic__functions_8h_aac4a14ac12cdb5f5a320c468b6ed4c54} 
+string get\+Timestamp (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the current timestamp formatted as YYYY-\/\+MM-\/\+DD\+\_\+\+HH-\/\+MM-\/\+SS. 
+
+Generates a string representing the current system time for logging or file naming purposes. \begin{DoxyReturn}{Returns}
+A string containing the formatted timestamp. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$chrono$>$, $<$iomanip$>$, $<$sstream$>$, $<$ctime$>$. 
+\end{DoxyNote}
+\Hypertarget{_bank___system___user_2basic__functions_8h_a9a01b0ef5a55bb2332b04ff54789f27d}\index{basic\_functions.h@{basic\_functions.h}!isPhone@{isPhone}}
+\index{isPhone@{isPhone}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{isPhone()}{isPhone()}}
+{\footnotesize\ttfamily \label{_bank___system___user_2basic__functions_8h_a9a01b0ef5a55bb2332b04ff54789f27d} 
+bool is\+Phone (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Validates if a string is a 10-\/digit phone number. 
+
+Checks that the string contains exactly 10 digits and no other characters. 
+\begin{DoxyParams}{Parameters}
+{\em s} & The input string representing the phone number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is a valid 10-\/digit phone number, false otherwise. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$string$>$, $<$cctype$>$. 
+
+Used by commands\+::execute("{}reg\+\_\+user"{}). 
+\end{DoxyNote}
+\Hypertarget{_bank___system___user_2basic__functions_8h_ac7fca25fdc73fab164035766f788b9d0}\index{basic\_functions.h@{basic\_functions.h}!isStringDigit@{isStringDigit}}
+\index{isStringDigit@{isStringDigit}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{isStringDigit()}{isStringDigit()}}
+{\footnotesize\ttfamily \label{_bank___system___user_2basic__functions_8h_ac7fca25fdc73fab164035766f788b9d0} 
+bool is\+String\+Digit (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Checks whether the given string represents a valid numeric value (integer or decimal). 
+
+Validates a string to determine if it contains only digits, optionally with one decimal point. 
+\begin{DoxyParams}{Parameters}
+{\em s} & The input string to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is a valid number, false otherwise. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Required headers\+: $<$string$>$, $<$cctype$>$. 
+
+Used by \doxylink{class_new_account_command}{New\+Account\+Command}, User\+List\+Command, Account\+List\+Command, \doxylink{class_user_info_command}{User\+Info\+Command}, \doxylink{class_register_user_command}{Register\+User\+Command}. 
+\end{DoxyNote}
+\Hypertarget{_bank___system___user_2basic__functions_8h_acb3b421c46ad175157857d818818bdab}\index{basic\_functions.h@{basic\_functions.h}!split@{split}}
+\index{split@{split}!basic\_functions.h@{basic\_functions.h}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}}
+{\footnotesize\ttfamily \label{_bank___system___user_2basic__functions_8h_acb3b421c46ad175157857d818818bdab} 
+vector$<$ string $>$ split (\begin{DoxyParamCaption}\item[{const string \&}]{input}{}\end{DoxyParamCaption})}
+

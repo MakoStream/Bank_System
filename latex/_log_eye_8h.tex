@@ -1,0 +1,149 @@
+\doxysection{Bank\+\_\+\+System/\+Log\+Eye.h File Reference}
+\hypertarget{_log_eye_8h}{}\label{_log_eye_8h}\index{Bank\_System/LogEye.h@{Bank\_System/LogEye.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_log_entry}{Log\+Entry}}
+\item 
+class \mbox{\hyperlink{class_log}{Log}}
+\item 
+class \mbox{\hyperlink{class_log_eye}{Log\+Eye}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9}{Log\+Level}} \{ \newline
+\mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a7fa27e82c6c4f69434225ed81e5d151e}{TRACE}}
+, \mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}}
+, \mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a984de77c680eaff141ec910e25568a81}{WARNING}}
+, \mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a924569200b8a5b7301edfdcd2fd0e5c9}{LE\+\_\+\+ERROR}}
+, \newline
+\mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f}{DEBUG}}
+ \}
+\item 
+enum \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06daf}{end\+Status}} \{ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafa4045b35f2e29400ef5423b1c6163ef6b}{NOT\+\_\+\+FINISHED}}
+, \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}}
+, \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+map$<$ \mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9}{Log\+Level}}, string $>$ \mbox{\hyperlink{_log_eye_8h_a24ba3b92afc9fa3799bee4159fa5a4b3}{log\+Level\+To\+String}}
+\item 
+map$<$ \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06daf}{end\+Status}}, string $>$ \mbox{\hyperlink{_log_eye_8h_a997600d7cd5fd4ca9f95512492747ffd}{end\+Status\+To\+String}}
+\item 
+\mbox{\hyperlink{class_log_eye}{Log\+Eye}} \mbox{\hyperlink{_log_eye_8h_a09465ee9560b09e5ee88c6d8e4515d70}{log\+Eye}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{_log_eye_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{_log_eye_8h_ae04aa475d16b6918e1998baec8e06daf}\index{LogEye.h@{LogEye.h}!endStatus@{endStatus}}
+\index{endStatus@{endStatus}!LogEye.h@{LogEye.h}}
+\doxysubsubsection{\texorpdfstring{endStatus}{endStatus}}
+{\footnotesize\ttfamily \label{_log_eye_8h_ae04aa475d16b6918e1998baec8e06daf} 
+enum \mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06daf}{end\+Status}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOT\_FINISHED@{NOT\_FINISHED}!LogEye.h@{LogEye.h}}\index{LogEye.h@{LogEye.h}!NOT\_FINISHED@{NOT\_FINISHED}}}\Hypertarget{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafa4045b35f2e29400ef5423b1c6163ef6b}\label{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafa4045b35f2e29400ef5423b1c6163ef6b} 
+NOT\+\_\+\+FINISHED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUCCESS@{SUCCESS}!LogEye.h@{LogEye.h}}\index{LogEye.h@{LogEye.h}!SUCCESS@{SUCCESS}}}\Hypertarget{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8}\label{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8} 
+SUCCESS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FAILURE@{FAILURE}!LogEye.h@{LogEye.h}}\index{LogEye.h@{LogEye.h}!FAILURE@{FAILURE}}}\Hypertarget{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}\label{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6} 
+FAILURE&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9}\index{LogEye.h@{LogEye.h}!LogLevel@{LogLevel}}
+\index{LogLevel@{LogLevel}!LogEye.h@{LogEye.h}}
+\doxysubsubsection{\texorpdfstring{LogLevel}{LogLevel}}
+{\footnotesize\ttfamily \label{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9} 
+enum \mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9}{Log\+Level}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRACE@{TRACE}!LogEye.h@{LogEye.h}}\index{LogEye.h@{LogEye.h}!TRACE@{TRACE}}}\Hypertarget{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a7fa27e82c6c4f69434225ed81e5d151e}\label{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a7fa27e82c6c4f69434225ed81e5d151e} 
+TRACE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INFO@{INFO}!LogEye.h@{LogEye.h}}\index{LogEye.h@{LogEye.h}!INFO@{INFO}}}\Hypertarget{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}\label{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806} 
+INFO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WARNING@{WARNING}!LogEye.h@{LogEye.h}}\index{LogEye.h@{LogEye.h}!WARNING@{WARNING}}}\Hypertarget{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a984de77c680eaff141ec910e25568a81}\label{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a984de77c680eaff141ec910e25568a81} 
+WARNING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LE\_ERROR@{LE\_ERROR}!LogEye.h@{LogEye.h}}\index{LogEye.h@{LogEye.h}!LE\_ERROR@{LE\_ERROR}}}\Hypertarget{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a924569200b8a5b7301edfdcd2fd0e5c9}\label{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a924569200b8a5b7301edfdcd2fd0e5c9} 
+LE\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEBUG@{DEBUG}!LogEye.h@{LogEye.h}}\index{LogEye.h@{LogEye.h}!DEBUG@{DEBUG}}}\Hypertarget{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f}\label{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f} 
+DEBUG&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-var-members}
+\Hypertarget{_log_eye_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{_log_eye_8h_a997600d7cd5fd4ca9f95512492747ffd}\index{LogEye.h@{LogEye.h}!endStatusToString@{endStatusToString}}
+\index{endStatusToString@{endStatusToString}!LogEye.h@{LogEye.h}}
+\doxysubsubsection{\texorpdfstring{endStatusToString}{endStatusToString}}
+{\footnotesize\ttfamily \label{_log_eye_8h_a997600d7cd5fd4ca9f95512492747ffd} 
+map$<$\mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06daf}{end\+Status}}, string$>$ end\+Status\+To\+String\hspace{0.3cm}{\ttfamily [inline]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafa4045b35f2e29400ef5423b1c6163ef6b}{NOT\_FINISHED}},\ \textcolor{stringliteral}{"{}NOT\_FINISHED"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}},\ \textcolor{stringliteral}{"{}SUCCESS"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_log_eye_8h_ae04aa475d16b6918e1998baec8e06dafaa5571864412c8275a2e18a931fddcaa6}{FAILURE}},\ \textcolor{stringliteral}{"{}FAILURE"{}}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{_log_eye_8h_a09465ee9560b09e5ee88c6d8e4515d70}\index{LogEye.h@{LogEye.h}!logEye@{logEye}}
+\index{logEye@{logEye}!LogEye.h@{LogEye.h}}
+\doxysubsubsection{\texorpdfstring{logEye}{logEye}}
+{\footnotesize\ttfamily \label{_log_eye_8h_a09465ee9560b09e5ee88c6d8e4515d70} 
+\mbox{\hyperlink{class_log_eye}{Log\+Eye}} log\+Eye\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_log_eye_8h_a24ba3b92afc9fa3799bee4159fa5a4b3}\index{LogEye.h@{LogEye.h}!logLevelToString@{logLevelToString}}
+\index{logLevelToString@{logLevelToString}!LogEye.h@{LogEye.h}}
+\doxysubsubsection{\texorpdfstring{logLevelToString}{logLevelToString}}
+{\footnotesize\ttfamily \label{_log_eye_8h_a24ba3b92afc9fa3799bee4159fa5a4b3} 
+map$<$\mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9}{Log\+Level}}, string$>$ log\+Level\+To\+String\hspace{0.3cm}{\ttfamily [inline]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a7fa27e82c6c4f69434225ed81e5d151e}{TRACE}},\ \textcolor{stringliteral}{"{}TRACE"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a748005382152808a72b1a9177d9dc806}{INFO}},\ \textcolor{stringliteral}{"{}INFO"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a984de77c680eaff141ec910e25568a81}{WARNING}},\ \textcolor{stringliteral}{"{}WARNING"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a924569200b8a5b7301edfdcd2fd0e5c9}{LE\_ERROR}},\ \textcolor{stringliteral}{"{}ERROR"{}}\},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{_log_eye_8h_aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f}{DEBUG}},\ \textcolor{stringliteral}{"{}DEBUG"{}}\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
