@@ -2,6 +2,17 @@
 #include "../mainProcess.h"
 #include <filesystem>
 
+
+
+/**
+ * @class UnitTestCommand
+ * @brief Executes unit tests for user or server clients.
+ * @details Checks debug mode, deletes old databases if needed,
+ * runs tests, logs all actions via logEye.
+ * @note Requires: handleInfo, logEye, <filesystem>
+ * @note Syntax: unit_test <client_type>
+ */
+
 class UnitTestCommand : public Command {
 public:
 	void execute(handleInfo& handle) override {  // unit_test <client_type>

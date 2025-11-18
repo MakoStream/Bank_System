@@ -6,6 +6,13 @@
 #include "../mainProcess.h"
 #include "../LogEye.h"
 
+/**
+ * @class getSessionIdCommand
+ * @brief Generates a new session ID for the client.
+ * @details Logs session creation and provides session ID.
+ * @note Requires: handleInfo, logEye
+ * @note Syntax: getSID
+ */
 class getSessionIdCommand : public Command {
 
 public:

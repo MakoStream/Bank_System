@@ -7,6 +7,15 @@
 
 using namespace std;
 
+
+/**
+ * @class TransactionRequestPANCommand
+ * @brief Processes a transaction request between two accounts.
+ * @details Validates PANs, CVV, PIN, and amount,
+ * executes transaction, logs all actions via logEye.
+ * @note Requires: handleInfo, logEye, Account, <vector>, <string>
+ * @note Syntax: request_PAN <PAN_from> <PAN_to> <amount> <CVV> <PIN> <comment>
+ */
 class TransactionRequestPANCommand : public Command {
 public:
 	void execute(handleInfo& handle) override { // transaction_request <PAN_from> <PAN_to> <ammount> <CVV> <PIN> <comment>
@@ -80,6 +89,15 @@ public:
 	}
 };
 
+
+/**
+ * @class TransactionRequestListCommand
+ * @brief Prints a paginated list of transaction requests.
+ * @details Validates page number, prints requests page by page,
+ * logs all actions via logEye.
+ * @note Requires: handleInfo, logEye, <vector>, <string>
+ * @note Syntax: request_list <page>
+ */
 class TransactionRequestListCommand : public Command {
 public:
 	void execute(handleInfo& handle) override { // transaction_request_list <page>

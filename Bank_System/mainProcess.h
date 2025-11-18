@@ -101,8 +101,12 @@ class mainProcess {
 
 public:
     /**
-     * @brief Constructs mainProcess object and reads configuration.
-     */
+    * @brief Initializes mainProcess by reading configuration values from configName.
+    * @details Reads the configuration file specified by configName and loads
+    * last session ID, card counters, database paths, and other persistent variables.
+    * @note Uses readConfig() and <map>, <string>, <iostream>.
+    * @see readConfig()
+    */
     mainProcess();
 
     // Session management

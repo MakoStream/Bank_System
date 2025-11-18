@@ -5,7 +5,17 @@
 #include "../mainProcess.h"
 #include "../LogEye.h"
 
-
+/** @class userLoginCommand
+ *  @brief Command class for user login.
+ *  @details Handles:
+ *   - Prompting for user credentials (username/password)
+ *   - Verifying credentials against User database
+ *   - Creating a session upon successful login
+ *  @note Requires: <string>, <iostream>, User, Session, Logger
+ *  @note Syntax: login <login> <password>
+ *  @used For:
+ *   - Initiating user sessions
+ */
 class userLoginCommand : public Command {
 
 public:

@@ -6,6 +6,16 @@
 #include "../LogEye.h"
 
 
+
+/**
+ * @class NewAccountCommand
+ * @brief Creates a new bank account for a user.
+ * @details Validates user ID, currency, card type, and account type,
+ * adds account to storage, logs all actions via logEye.
+ * @note Requires: handleInfo, logEye, Account
+ * @note Syntax: new_account <user_id> <currency> <card_type> <account_type>
+ */
+
 class NewAccountCommand : public Command {
 
 public:

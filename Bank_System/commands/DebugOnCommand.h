@@ -2,6 +2,14 @@
 #include "../mainProcess.h"
 #include "../LogEye.h"
 
+/**
+ * @class DebugOnCommand
+ * @brief Activates debug mode for the system.
+ * @details Turns on debug mode, prints configuration,
+ * logs all actions via logEye.
+ * @note Requires: handleInfo, logEye
+ * @note Syntax: debug
+ */
 class DebugOnCommand : public Command {
 
 public:

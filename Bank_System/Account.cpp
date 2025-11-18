@@ -1,12 +1,3 @@
-/**
- * @file Account.cpp
- * @brief Implementation of account-related functions and global mappings.
- *
- * Provides functions for account creation, retrieval, validation, printing, and file management.
- * Includes global maps for converting between enums and string representations for balance types,
- * card types, and card statuses.
- */
-
 #include "Account.h"
 #include "mainProcess.h"
 #include "LogEye.h"
@@ -92,11 +83,7 @@ char* generate_CVC() {
     return CVC_str;
 }
 
-/**
- * @brief Retrieves the last account stored in the database
- * @return Account object of the last record; empty account if file not found or corrupted
- * @see ACC_addAccount()
- */
+
 account getLastAccount() {
     ifstream fin(process.getAccountDBPath(), ios::binary | ios::in);
     account empty{};
@@ -114,11 +101,6 @@ account getLastAccount() {
     return last;
 }
 
-/**
- * @brief Finds an account by ID
- * @param id Account ID
- * @return Account object if found; emptyAccount if not found
- */
 account getAccountById(int id) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
     account acc;
@@ -132,11 +114,6 @@ account getAccountById(int id) {
     return emptyAccount;
 }
 
-/**
- * @brief Checks if an account exists by ID
- * @param id Account ID
- * @return true if account exists; false otherwise
- */
 bool isAccountExisytById(int id) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
     account acc;
@@ -150,14 +127,7 @@ bool isAccountExisytById(int id) {
     return false;
 }
 
-/**
- * @brief Adds a new account and saves it to the database
- * @param userID Owner user ID
- * @param balance_type Currency type
- * @param type Card type
- * @param accountType Account plan type
- * @see DB_create_accounts()
- */
+
 void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType) {
     std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::app);
     if (!fout) { std::cerr << "Не вдалося відкрити файл для запису." << std::endl; return; }
@@ -195,12 +165,6 @@ void ACC_addAccount(int userID, balanceType balance_type, cardType type, short a
     delete[] cardNumber;
 }
 
-/**
- * @brief Reads accounts from the database and formats them into pages of messages
- * @param msg Array of 5 strings (each 1024 chars) to hold page messages
- * @param page Page number (1-based)
- * @see AccountListCommand
- */
 void printAllAccounts(char msg[5][1024], int page) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
     if (!fin) { cerr << "Не вдалося відкрити файл для читання." << endl; for (int i = 0; i < 5; i++) msg[i][0] = '\0'; return; }
@@ -243,10 +207,6 @@ void printAllAccounts(char msg[5][1024], int page) {
     fin.close();
 }
 
-/**
- * @brief Creates the initial accounts database with default accounts
- * @see ACC_addAccount()
- */
 void DB_create_accounts() {
     std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::trunc);
     if (!fout) { std::cerr << "Не вдалося створити файл." << std::endl; return; }
@@ -270,13 +230,6 @@ void DB_create_accounts() {
     ACC_addAccount(0, EUR, DEFAULT, 8013);
 }
 
-
-/**
- * @brief Checks if an account exists by card number
- * @param cardNumber Card number string
- * @return true if exists, false otherwise
- * @see AccountInfoCommand
- */
 bool isAccountExist_byCardNumber(const char* cardNumber) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return false; }
@@ -290,12 +243,7 @@ bool isAccountExist_byCardNumber(const char* cardNumber) {
     return false;
 }
 
-/**
- * @brief Checks if an account exists by IBAN
- * @param IBAN IBAN string
- * @return true if exists, false otherwise
- * @see AccountBanCommand, AccountVerifyCommand, AccountInfoCommand
- */
+
 bool isAccountExist_byIBAN(const char* IBAN) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return false; }
@@ -309,12 +257,6 @@ bool isAccountExist_byIBAN(const char* IBAN) {
     return false;
 }
 
-/**
- * @brief Retrieves an account object by card number
- * @param cardNumber Card number string
- * @return Account object if found, otherwise emptyAccount
- * @see AccountInfoCommand
- */
 account getAccount_byCardNumber(const char* cardNumber) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return emptyAccount; }
@@ -328,12 +270,6 @@ account getAccount_byCardNumber(const char* cardNumber) {
     return emptyAccount;
 }
 
-/**
- * @brief Retrieves an account object by IBAN
- * @param IBAN IBAN string
- * @return Account object if found, otherwise emptyAccount
- * @see account::transfer(), AccountBanCommand, AccountInfoCommand, AccountVerifyCommand
- */
 account getAccount_byIBAN(const char* IBAN) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return emptyAccount; }
@@ -347,10 +283,6 @@ account getAccount_byIBAN(const char* IBAN) {
     return emptyAccount;
 }
 
-/**
- * @brief Updates the current account object in the accounts database file
- * @see account class
- */
 void account::updateInFile() {
     std::ifstream inFile(process.getAccountDBPath(), std::ios::binary);
     if (!inFile) { std::cerr << "Помилка: не вдалося відкрити файл accounts.dat для читання." << std::endl; return; }
@@ -383,12 +315,6 @@ void account::updateInFile() {
     outFile.close();
 }
 
-
-/**
- * @brief Sets account balance and updates the file (debug only)
- * @param acc Reference to account object
- * @param newBalance New balance value
- */
 void setAccountBalance(account& acc, double newBalance) {
     if (!process.debugStatus()) return;
 	acc.setBalance(newBalance - acc.getBalance());
@@ -396,11 +322,6 @@ void setAccountBalance(account& acc, double newBalance) {
 }
 
 
-/**
- * @brief Retrieves all accounts for a specific user
- * @param user_id User ID
- * @return Vector of account objects
- */
 vector<account> getUserAccounts(int user_id) {
     int log_id = logEye.logTrace("GetUserAccounts");
 	logEye.msgTrace(log_id, "user_id", to_string(user_id), true);
