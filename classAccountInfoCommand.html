@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classAccountInfoCommand.html',''); ini
 </div><!--header-->
 <div class="contents">
 
+<p>Retrieves detailed information about an account by card number.  
+ <a href="classAccountInfoCommand.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="AccountInfoCommand_8h_source.html">AccountInfoCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AccountInfoCommand:</div>
@@ -118,7 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Retrieves detailed information about an account by card number. </p>
+<p>Validates card number, checks if account exists, retrieves IBAN, balance, currency, and owner information, logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: &lt;string&gt;, Account, <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye </dd>
+<dd>
+Syntax: account_info &lt;card_number&gt; </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="abac99da6a55771033cbbc1d44504e509" name="abac99da6a55771033cbbc1d44504e509"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abac99da6a55771033cbbc1d44504e509">&#9670;&#160;</a></span>execute()</h2>
 

@@ -1,20 +1,5 @@
 var searchData=
 [
-  ['last_5faccount_5fid_0',['last_account_id',['../classmainProcess.html#a18b800db4b70f42465c0ba860f9c3b24',1,'mainProcess']]],
-  ['last_5faudit_5fid_1',['last_audit_id',['../classmainProcess.html#abbe43bbe1c723e0ea4a537d04020e483',1,'mainProcess']]],
-  ['last_5fcard_5fiban_2',['last_card_IBAN',['../classmainProcess.html#a3c921c59c69b2310b4954efd767252b8',1,'mainProcess']]],
-  ['last_5fcard_5fpan_3',['last_card_PAN',['../classmainProcess.html#aeb64d1e1eae13b15525b479f1b8aba7f',1,'mainProcess']]],
-  ['last_5fsession_5fid_4',['last_session_id',['../classmainProcess.html#ac600b67cf989a2341e6a376a9da6017f',1,'mainProcess']]],
-  ['last_5ftransaction_5fid_5',['last_transaction_id',['../classmainProcess.html#a6b1b22d18ccf29c5ea303f03b8bf7b0b',1,'mainProcess']]],
-  ['last_5ftransaction_5frequest_5fid_6',['last_transaction_request_id',['../classmainProcess.html#aa2b48ce1772513d4fc5c16e1b981ee96',1,'mainProcess']]],
-  ['level_7',['level',['../classLog.html#ade3ee34f6644de65c47e0d979893b352',1,'Log']]],
-  ['logeye_8',['logeye',['../LogEye_8h.html#a09465ee9560b09e5ee88c6d8e4515d70',1,'logEye:&#160;Bank_System.cpp'],['../Bank__System_8cpp.html#a09465ee9560b09e5ee88c6d8e4515d70',1,'logEye:&#160;Bank_System.cpp']]],
-  ['logfile_9',['logFile',['../classLogEye.html#a88f1a7cf713774524e2781d55ca6f17e',1,'LogEye']]],
-  ['logfilename_10',['logFileName',['../classLogger.html#a3dc198309aa6b96f0c9f535eb5f24738',1,'Logger']]],
-  ['logger_11',['logger',['../classPrintUserListCommand.html#acedacdc8f92dee549946d594f4fff79e',1,'PrintUserListCommand::logger'],['../Logger_8h.html#a5b27630dbcf231bfda3a7d79e1eefce5',1,'logger:&#160;Bank_System.cpp'],['../Bank__System_8cpp.html#a5b27630dbcf231bfda3a7d79e1eefce5',1,'logger:&#160;Bank_System.cpp'],['../classPrintAccountListCommand.html#a31212a87b2525d47708bc3d12b848fad',1,'PrintAccountListCommand::logger']]],
-  ['loggined_5fusers_12',['loggined_users',['../classmainProcess.html#a09143f6f39261e1d949049a6619dbe91',1,'mainProcess']]],
-  ['login_13',['login',['../structfronted__User.html#acac99dea5c49585421589b672c565a0f',1,'fronted_User::login'],['../classUser.html#a2a956759ec25a043c36008267cbb185c',1,'User::login']]],
-  ['logleveltostring_14',['logLevelToString',['../LogEye_8h.html#a24ba3b92afc9fa3799bee4159fa5a4b3',1,'LogEye.h']]],
-  ['logqueue_15',['logQueue',['../classLogEye.html#a9dd1fe1ea8c4b384779fe84b1023a82b',1,'LogEye']]],
-  ['logs_16',['logs',['../classLogEye.html#a55cff7f2734a50ed194b605bddb0c46a',1,'LogEye']]]
+  ['name_0',['name',['../structfronted__User.html#a627fc676763e95275737d0d269c11814',1,'fronted_User']]],
+  ['number_1',['number',['../structpassportData.html#ad09216f173a812cd5496009121d9f9f3',1,'passportData']]]
 ];

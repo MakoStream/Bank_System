@@ -54,8 +54,8 @@ var NAVTREEINDEX =
 [
 "AccountBanCommand_8h.html",
 "NewAccountCommand_8h.html",
-"classPrintUserListCommand.html#ae1de79d01008af198fda380a3c700de8",
-"functions_func_w.html"
+"classTransactionLog.html#aa8f14d6ef064f7a75bf10a3db1871f9e",
+"structhandleInfo.html#aef7d89c7bd9314fac0ba2ac643aab7f1"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classTransactionRequestListCommand.htm
 </div><!--header-->
 <div class="contents">
 
+<p>Prints a paginated list of transaction requests.  
+ <a href="classTransactionRequestListCommand.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="TransactionRequestCommand_8h_source.html">TransactionRequestCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TransactionRequestListCommand:</div>
@@ -118,7 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Prints a paginated list of transaction requests. </p>
+<p>Validates page number, prints requests page by page, logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye, &lt;vector&gt;, &lt;string&gt; </dd>
+<dd>
+Syntax: request_list &lt;page&gt; </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="aff6c89307e02a05afe83ad2496081bca" name="aff6c89307e02a05afe83ad2496081bca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aff6c89307e02a05afe83ad2496081bca">&#9670;&#160;</a></span>execute()</h2>
 

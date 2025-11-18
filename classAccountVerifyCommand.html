@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classAccountVerifyCommand.html',''); i
 </div><!--header-->
 <div class="contents">
 
+<p>Verifies a bank account.  
+ <a href="classAccountVerifyCommand.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="AccountVerifyCommand_8h_source.html">AccountVerifyCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AccountVerifyCommand:</div>
@@ -118,7 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Verifies a bank account. </p>
+<p>Validates IBAN, checks if account exists, performs verification, updates storage, logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: &lt;string&gt;, Account, <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye </dd>
+<dd>
+Syntax: account_verify &lt;IBAN&gt; </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="afd611b656232ae6cf1e587b9fe5db2c4" name="afd611b656232ae6cf1e587b9fe5db2c4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afd611b656232ae6cf1e587b9fe5db2c4">&#9670;&#160;</a></span>execute()</h2>
 

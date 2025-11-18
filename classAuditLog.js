@@ -12,14 +12,5 @@ var classAuditLog =
     [ "loadFromFile", "classAuditLog.html#ae223842a48b1ec3c7066b2b4b8fc8255", null ],
     [ "print", "classAuditLog.html#a8df829b4a885a94ec57bdd0728dfeb00", null ],
     [ "saveToFile", "classAuditLog.html#aa2752c5853e91af1cdce0ac079e3195e", null ],
-    [ "updateInFile", "classAuditLog.html#ac79f6c20be93c88e8c5ff170c4b9eedb", null ],
-    [ "Action", "classAuditLog.html#a98494c2f65497eab99396a0807598793", null ],
-    [ "error_message", "classAuditLog.html#a27c62df6a4adfa43cbc794f26d9be8a3", null ],
-    [ "id", "classAuditLog.html#a7914f00f8fd9974347c971cc6f45c5d1", null ],
-    [ "info", "classAuditLog.html#abc2b0a8b22c8381557d76fb342b36095", null ],
-    [ "session_id", "classAuditLog.html#a51db19fefa860e1f35679664931e41b4", null ],
-    [ "success", "classAuditLog.html#a3eac3629706f116d05947cf62a7176de", null ],
-    [ "time", "classAuditLog.html#a8703559722e1144a5766787093c39b7d", null ],
-    [ "transaction_PM_id", "classAuditLog.html#a5c800990f8175feb52748f05319690bf", null ],
-    [ "user_id", "classAuditLog.html#aac8512a96224d37beb7e9d49a880e537", null ]
+    [ "updateInFile", "classAuditLog.html#ac79f6c20be93c88e8c5ff170c4b9eedb", null ]
 ];

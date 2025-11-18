@@ -93,6 +93,9 @@ $(function(){initNavTree('class_user_info_command.html','','class_user_info_comm
 </div><!--header-->
 <div class="contents">
 
+<p>Retrieves detailed information about a user.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_user_info_command_8h_source.html">UserInfoCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for UserInfoCommand:</div>
@@ -111,7 +114,12 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_class_command"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_command')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_command.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Retrieves detailed information about a user. </p>
+<p>Accepts user ID or login, returns user details, logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="structhandle_info.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye, <a class="el" href="class_user.html" title="Represents a bank system user.">User</a>, &lt;vector&gt;, &lt;string&gt;, <a class="el" href="main_process_8h.html" title="Declares mainProcess class for session, user, transaction, and configuration management.">mainProcess.h</a>, <a class="el" href="_user_8h.html" title="Classes and structures for managing users in the banking system.">User.h</a> </dd>
+<dd>
+Syntax: user_info &lt;id/login&gt; </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="ae2a16656b5e7378429b40e7e0e4881b7" name="ae2a16656b5e7378429b40e7e0e4881b7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae2a16656b5e7378429b40e7e0e4881b7">&#9670;&#160;</a></span>execute()</h2>
 

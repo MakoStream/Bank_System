@@ -19,6 +19,7 @@ var hierarchy =
       [ "UnitTestCommand", "classUnitTestCommand.html", null ],
       [ "UserInfoCommand", "classUserInfoCommand.html", null ],
       [ "getSessionIdCommand", "classgetSessionIdCommand.html", null ],
+      [ "getUserAccountsCommand", "classgetUserAccountsCommand.html", null ],
       [ "userLoginCommand", "classuserLoginCommand.html", null ],
       [ "userLogoutCommand", "classuserLogoutCommand.html", null ]
     ] ],
@@ -50,7 +51,8 @@ var hierarchy =
       [ "TransactionRequestPANResponse", "classTransactionRequestPANResponse.html", null ],
       [ "UnitTestResponse", "classUnitTestResponse.html", null ],
       [ "UserInfoResponse", "classUserInfoResponse.html", null ],
-      [ "UserListResponse", "classUserListResponse.html", null ]
+      [ "UserListResponse", "classUserListResponse.html", null ],
+      [ "getUserAccountsResponse", "structgetUserAccountsResponse.html", null ]
     ] ],
     [ "ResponseManager", "classResponseManager.html", null ],
     [ "Session", "structSession.html", null ],

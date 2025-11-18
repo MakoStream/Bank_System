@@ -93,6 +93,9 @@ $(function(){initNavTree('class_create_d_b_command.html','','class_create_d_b_co
 </div><!--header-->
 <div class="contents">
 
+<p>Creates specified database tables.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_create_d_b_command_8h_source.html">CreateDBCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CreateDBCommand:</div>
@@ -111,7 +114,12 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_class_command"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_command')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_command.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 </table>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Creates specified database tables. </p>
+<p>Supports creation of users, accounts, transactions, and audit databases. Logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: &lt;string&gt;, <a class="el" href="structhandle_info.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye </dd>
+<dd>
+Syntax: create_db &lt;users|accounts|transactions|audit&gt; </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="ad6a8245d266d301ca163bc91a00837a8" name="ad6a8245d266d301ca163bc91a00837a8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad6a8245d266d301ca163bc91a00837a8">&#9670;&#160;</a></span>execute()</h2>
 

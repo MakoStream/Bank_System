@@ -7,6 +7,7 @@ var dir_fefb280e9216ab0c80d210618bcfd484 =
     [ "CreateDBresponse.h", "CreateDBresponse_8h.html", "CreateDBresponse_8h" ],
     [ "DebugOnResponse.h", "DebugOnResponse_8h.html", "DebugOnResponse_8h" ],
     [ "GetSessionIdResponse.h", "GetSessionIdResponse_8h.html", "GetSessionIdResponse_8h" ],
+    [ "getUserAccountsResponse.h", "getUserAccountsResponse_8h.html", "getUserAccountsResponse_8h" ],
     [ "LoginResponse.h", "LoginResponse_8h.html", "LoginResponse_8h" ],
     [ "LogoutResponse.h", "LogoutResponse_8h.html", "LogoutResponse_8h" ],
     [ "MeResponse.h", "MeResponse_8h.html", "MeResponse_8h" ],

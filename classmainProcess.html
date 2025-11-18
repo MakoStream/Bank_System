@@ -92,8 +92,6 @@ $(document).ready(function(){initNavTree('classmainProcess.html',''); initResiza
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classmainProcess-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">mainProcess Class Reference</div></div>
 </div><!--header-->
@@ -107,7 +105,7 @@ $(document).ready(function(){initNavTree('classmainProcess.html',''); initResiza
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aae457b30b1820aa1b15fa77ab4b687c2" id="r_aae457b30b1820aa1b15fa77ab4b687c2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#aae457b30b1820aa1b15fa77ab4b687c2">mainProcess</a> ()</td></tr>
-<tr class="memdesc:aae457b30b1820aa1b15fa77ab4b687c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs <a class="el" href="classmainProcess.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> object and reads configuration.  <br /></td></tr>
+<tr class="memdesc:aae457b30b1820aa1b15fa77ab4b687c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes <a class="el" href="classmainProcess.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> by reading configuration values from configName.  <br /></td></tr>
 <tr class="separator:aae457b30b1820aa1b15fa77ab4b687c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd985b507420bd2aa4e86142ff5c3ed5" id="r_acd985b507420bd2aa4e86142ff5c3ed5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#acd985b507420bd2aa4e86142ff5c3ed5">new_session</a> ()</td></tr>
 <tr class="memdesc:acd985b507420bd2aa4e86142ff5c3ed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new session, increments last_session_id and adds session to logged users.  <br /></td></tr>
@@ -189,53 +187,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a793ccaad393b3b0c9f7dac9a2cd9efb2" id="r_a793ccaad393b3b0c9f7dac9a2cd9efb2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#a793ccaad393b3b0c9f7dac9a2cd9efb2">allow_transaction</a> (int transaction_id, <a class="el" href="structhandleInfo.html">handleInfo</a> &amp;user_handle, std::string comment)</td></tr>
 <tr class="memdesc:a793ccaad393b3b0c9f7dac9a2cd9efb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows a pending transaction by updating its status to ALLOW.  <br /></td></tr>
 <tr class="separator:a793ccaad393b3b0c9f7dac9a2cd9efb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:af38220d892f7653220f144d864d17a80" id="r_af38220d892f7653220f144d864d17a80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#af38220d892f7653220f144d864d17a80">savecfg</a> ()</td></tr>
-<tr class="memdesc:af38220d892f7653220f144d864d17a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves current session and card counters to configuration file.  <br /></td></tr>
-<tr class="separator:af38220d892f7653220f144d864d17a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:ac600b67cf989a2341e6a376a9da6017f" id="r_ac600b67cf989a2341e6a376a9da6017f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#ac600b67cf989a2341e6a376a9da6017f">last_session_id</a></td></tr>
-<tr class="separator:ac600b67cf989a2341e6a376a9da6017f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb64d1e1eae13b15525b479f1b8aba7f" id="r_aeb64d1e1eae13b15525b479f1b8aba7f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#aeb64d1e1eae13b15525b479f1b8aba7f">last_card_PAN</a></td></tr>
-<tr class="separator:aeb64d1e1eae13b15525b479f1b8aba7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c921c59c69b2310b4954efd767252b8" id="r_a3c921c59c69b2310b4954efd767252b8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#a3c921c59c69b2310b4954efd767252b8">last_card_IBAN</a></td></tr>
-<tr class="separator:a3c921c59c69b2310b4954efd767252b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbe43bbe1c723e0ea4a537d04020e483" id="r_abbe43bbe1c723e0ea4a537d04020e483"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#abbe43bbe1c723e0ea4a537d04020e483">last_audit_id</a></td></tr>
-<tr class="separator:abbe43bbe1c723e0ea4a537d04020e483"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18b800db4b70f42465c0ba860f9c3b24" id="r_a18b800db4b70f42465c0ba860f9c3b24"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#a18b800db4b70f42465c0ba860f9c3b24">last_account_id</a></td></tr>
-<tr class="separator:a18b800db4b70f42465c0ba860f9c3b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b1b22d18ccf29c5ea303f03b8bf7b0b" id="r_a6b1b22d18ccf29c5ea303f03b8bf7b0b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#a6b1b22d18ccf29c5ea303f03b8bf7b0b">last_transaction_id</a></td></tr>
-<tr class="separator:a6b1b22d18ccf29c5ea303f03b8bf7b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2b48ce1772513d4fc5c16e1b981ee96" id="r_aa2b48ce1772513d4fc5c16e1b981ee96"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#aa2b48ce1772513d4fc5c16e1b981ee96">last_transaction_request_id</a></td></tr>
-<tr class="separator:aa2b48ce1772513d4fc5c16e1b981ee96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95ec7291cc04d61c7c46662e7ae40263" id="r_a95ec7291cc04d61c7c46662e7ae40263"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#a95ec7291cc04d61c7c46662e7ae40263">account_db_path</a></td></tr>
-<tr class="separator:a95ec7291cc04d61c7c46662e7ae40263"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a377a12ba9c903f938fe428ddd1b37c44" id="r_a377a12ba9c903f938fe428ddd1b37c44"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#a377a12ba9c903f938fe428ddd1b37c44">user_db_path</a></td></tr>
-<tr class="separator:a377a12ba9c903f938fe428ddd1b37c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0972867a7a7809a00fb0a477f92f848d" id="r_a0972867a7a7809a00fb0a477f92f848d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#a0972867a7a7809a00fb0a477f92f848d">transaction_log_db_path</a></td></tr>
-<tr class="separator:a0972867a7a7809a00fb0a477f92f848d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af07dce7e0330530e0dd3c9f4374e22cc" id="r_af07dce7e0330530e0dd3c9f4374e22cc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#af07dce7e0330530e0dd3c9f4374e22cc">audit_log_db_path</a></td></tr>
-<tr class="separator:af07dce7e0330530e0dd3c9f4374e22cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adad34cb02191047478e64a461d8b2ab0" id="r_adad34cb02191047478e64a461d8b2ab0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#adad34cb02191047478e64a461d8b2ab0">debug</a></td></tr>
-<tr class="separator:adad34cb02191047478e64a461d8b2ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09143f6f39261e1d949049a6619dbe91" id="r_a09143f6f39261e1d949049a6619dbe91"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structSession.html">Session</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmainProcess.html#a09143f6f39261e1d949049a6619dbe91">loggined_users</a></td></tr>
-<tr class="separator:a09143f6f39261e1d949049a6619dbe91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main class for session, user, transaction, and configuration management. </p>
 <p>The <a class="el" href="classmainProcess.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> class handles:</p><ul>
-<li><a class="el" href="classUser.html">User</a> session management (create, login, logout, generate authentication keys)</li>
+<li><a class="el" href="classUser.html" title="Represents a bank system user.">User</a> session management (create, login, logout, generate authentication keys)</li>
 <li>Database operations (file paths, incrementing PAN, IBAN, transaction IDs)</li>
 <li>Transaction handling and logging via Audit</li>
 <li>Debug mode management</li>
-<li>Reading and writing configuration files <dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="Bank__System_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a>, <a class="el" href="Bank__System_2basic__functions_8cpp.html#a006014cced648ca7880d24c53223bdd4" title="Writes configuration key-value pairs to a *.ini file.">writeConfig()</a>, &lt;vector&gt;, &lt;string&gt;, &lt;map&gt;, <a class="el" href="classLogger.html">Logger</a>, <a class="el" href="structsessionConstruct.html" title="Structure for client session data used in pipes.">sessionConstruct</a>, <a class="el" href="structSession.html" title="Represents a user session.">Session</a>, <a class="el" href="classUser.html">User</a>, account @required For all core program operations (<a class="el" href="classCommandsManager.html">CommandsManager</a>, HandleClient, <a class="el" href="classuserLoginCommand.html">userLoginCommand</a>, transaction_request, etc.) @used For:</dd></dl>
+<li>Reading and writing configuration files <dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="Bank__System_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a>, <a class="el" href="Bank__System_2basic__functions_8cpp.html#a006014cced648ca7880d24c53223bdd4" title="Writes configuration key-value pairs to a *.ini file.">writeConfig()</a>, &lt;vector&gt;, &lt;string&gt;, &lt;map&gt;, <a class="el" href="classLogger.html">Logger</a>, <a class="el" href="structsessionConstruct.html" title="Structure for client session data used in pipes.">sessionConstruct</a>, <a class="el" href="structSession.html" title="Represents a user session.">Session</a>, <a class="el" href="classUser.html" title="Represents a bank system user.">User</a>, account @required For all core program operations (<a class="el" href="classCommandsManager.html">CommandsManager</a>, HandleClient, <a class="el" href="classuserLoginCommand.html" title="Command class for user login.">userLoginCommand</a>, transaction_request, etc.) @used For:</dd></dl>
 </li>
 <li>Processing client sessions</li>
-<li><a class="el" href="classUser.html">User</a> login/logout</li>
+<li><a class="el" href="classUser.html" title="Represents a bank system user.">User</a> login/logout</li>
 <li>Creating and approving transactions</li>
 <li>Configuration file management </li>
 </ul>
@@ -255,10 +218,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs <a class="el" href="classmainProcess.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> object and reads configuration. </p>
-<p>Initializes <a class="el" href="classmainProcess.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> by reading configuration values from configName.</p>
-<p>Reads the configuration file specified by configName and loads last session ID, card counters, database paths, and other persistent variables.</p>
-<dl class="section note"><dt>Note</dt><dd>Uses <a class="el" href="Bank__System_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a> and &lt;map&gt;, &lt;string&gt;, &lt;iostream&gt;. </dd></dl>
+<p>Initializes <a class="el" href="classmainProcess.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> by reading configuration values from configName. </p>
+<p>Reads the configuration file specified by configName and loads last session ID, card counters, database paths, and other persistent variables. </p><dl class="section note"><dt>Note</dt><dd>Uses <a class="el" href="Bank__System_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a> and &lt;map&gt;, &lt;string&gt;, &lt;iostream&gt;. </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="Bank__System_2basic__functions_8cpp.html#a248127881de11156f58e4dd2fd879f6a" title="Reads configuration key-value pairs from a *.ini file.">readConfig()</a> </dd></dl>
 
 </div>
@@ -796,12 +757,12 @@ false Otherwise. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">session_id</td><td><a class="el" href="structSession.html" title="Represents a user session.">Session</a> identifier. </td></tr>
-    <tr><td class="paramname">login</td><td><a class="el" href="classUser.html">User</a> login string. </td></tr>
-    <tr><td class="paramname">password</td><td><a class="el" href="classUser.html">User</a> password string. </td></tr>
+    <tr><td class="paramname">login</td><td><a class="el" href="classUser.html" title="Represents a bank system user.">User</a> login string. </td></tr>
+    <tr><td class="paramname">password</td><td><a class="el" href="classUser.html" title="Represents a bank system user.">User</a> password string. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="User_8cpp.html#acf075e84c512170ca555c32e2960298f">getUser_byLogin()</a>, vector&lt;Session&gt; </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="User_8cpp.html#acf075e84c512170ca555c32e2960298f" title="Retrieves a User object by login.">getUser_byLogin()</a>, vector&lt;Session&gt; </dd></dl>
 
 </div>
 </div>
@@ -851,7 +812,7 @@ false Otherwise. </dd></dl>
 <p>Creates a new session, increments last_session_id and adds session to logged users. </p>
 <p>Creates a new session, adds to logged users, returns session ID</p>
 <dl class="section return"><dt>Returns</dt><dd>int Returns the ID of the newly created session. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="classmainProcess.html#af38220d892f7653220f144d864d17a80" title="Saves current session and card counters to configuration file.">savecfg()</a>, vector&lt;Session&gt; </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requirements: savecfg(), vector&lt;Session&gt; </dd></dl>
 
 </div>
 </div>
@@ -894,37 +855,6 @@ false Otherwise. </dd></dl>
 <p>Prints all logged sessions to console. </p>
 <p>Prints all active sessions</p>
 <dl class="section note"><dt>Note</dt><dd>Requirements: vector&lt;Session&gt;, &lt;iostream&gt; </dd></dl>
-
-</div>
-</div>
-<a id="af38220d892f7653220f144d864d17a80" name="af38220d892f7653220f144d864d17a80"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af38220d892f7653220f144d864d17a80">&#9670;&#160;</a></span>savecfg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mainProcess::savecfg </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Saves current session and card counters to configuration file. </p>
-<p>Saves current counters to configuration file</p>
-<p>Persists the current state of <a class="el" href="classmainProcess.html" title="Main class for session, user, transaction, and configuration management.">mainProcess</a> including last session ID, card counters, account, user, transaction log, and audit log paths.</p>
-<dl class="section note"><dt>Note</dt><dd>Uses <a class="el" href="Bank__System_2basic__functions_8cpp.html#a006014cced648ca7880d24c53223bdd4" title="Writes configuration key-value pairs to a *.ini file.">writeConfig()</a>, &lt;map&gt;, &lt;string&gt;. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="Bank__System_2basic__functions_8cpp.html#a006014cced648ca7880d24c53223bdd4" title="Writes configuration key-value pairs to a *.ini file.">writeConfig()</a> </dd></dl>
 
 </div>
 </div>
@@ -1060,306 +990,6 @@ false Otherwise. </dd></dl>
       </table>
 </div><div class="memdoc">
 <p>Performs internal transfer </p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a95ec7291cc04d61c7c46662e7ae40263" name="a95ec7291cc04d61c7c46662e7ae40263"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95ec7291cc04d61c7c46662e7ae40263">&#9670;&#160;</a></span>account_db_path</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string mainProcess::account_db_path</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Account database file path </p>
-
-</div>
-</div>
-<a id="af07dce7e0330530e0dd3c9f4374e22cc" name="af07dce7e0330530e0dd3c9f4374e22cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af07dce7e0330530e0dd3c9f4374e22cc">&#9670;&#160;</a></span>audit_log_db_path</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string mainProcess::audit_log_db_path</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Audit log file path </p>
-
-</div>
-</div>
-<a id="adad34cb02191047478e64a461d8b2ab0" name="adad34cb02191047478e64a461d8b2ab0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adad34cb02191047478e64a461d8b2ab0">&#9670;&#160;</a></span>debug</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool mainProcess::debug</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Debug mode flag </p>
-
-</div>
-</div>
-<a id="a18b800db4b70f42465c0ba860f9c3b24" name="a18b800db4b70f42465c0ba860f9c3b24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18b800db4b70f42465c0ba860f9c3b24">&#9670;&#160;</a></span>last_account_id</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int mainProcess::last_account_id</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Last account ID </p>
-
-</div>
-</div>
-<a id="abbe43bbe1c723e0ea4a537d04020e483" name="abbe43bbe1c723e0ea4a537d04020e483"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbe43bbe1c723e0ea4a537d04020e483">&#9670;&#160;</a></span>last_audit_id</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int mainProcess::last_audit_id</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Last audit record ID </p>
-
-</div>
-</div>
-<a id="a3c921c59c69b2310b4954efd767252b8" name="a3c921c59c69b2310b4954efd767252b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c921c59c69b2310b4954efd767252b8">&#9670;&#160;</a></span>last_card_IBAN</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int mainProcess::last_card_IBAN</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Last card IBAN </p>
-
-</div>
-</div>
-<a id="aeb64d1e1eae13b15525b479f1b8aba7f" name="aeb64d1e1eae13b15525b479f1b8aba7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb64d1e1eae13b15525b479f1b8aba7f">&#9670;&#160;</a></span>last_card_PAN</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int mainProcess::last_card_PAN</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Last card PAN </p>
-
-</div>
-</div>
-<a id="ac600b67cf989a2341e6a376a9da6017f" name="ac600b67cf989a2341e6a376a9da6017f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac600b67cf989a2341e6a376a9da6017f">&#9670;&#160;</a></span>last_session_id</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int mainProcess::last_session_id</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Last session identifier </p>
-
-</div>
-</div>
-<a id="a6b1b22d18ccf29c5ea303f03b8bf7b0b" name="a6b1b22d18ccf29c5ea303f03b8bf7b0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b1b22d18ccf29c5ea303f03b8bf7b0b">&#9670;&#160;</a></span>last_transaction_id</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int mainProcess::last_transaction_id</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Last transaction ID </p>
-
-</div>
-</div>
-<a id="aa2b48ce1772513d4fc5c16e1b981ee96" name="aa2b48ce1772513d4fc5c16e1b981ee96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2b48ce1772513d4fc5c16e1b981ee96">&#9670;&#160;</a></span>last_transaction_request_id</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int mainProcess::last_transaction_request_id</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Last transaction request ID </p>
-
-</div>
-</div>
-<a id="a09143f6f39261e1d949049a6619dbe91" name="a09143f6f39261e1d949049a6619dbe91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09143f6f39261e1d949049a6619dbe91">&#9670;&#160;</a></span>loggined_users</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="structSession.html">Session</a>&gt; mainProcess::loggined_users</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Vector of active sessions </p>
-
-</div>
-</div>
-<a id="a0972867a7a7809a00fb0a477f92f848d" name="a0972867a7a7809a00fb0a477f92f848d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0972867a7a7809a00fb0a477f92f848d">&#9670;&#160;</a></span>transaction_log_db_path</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string mainProcess::transaction_log_db_path</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Transaction log file path </p>
-
-</div>
-</div>
-<a id="a377a12ba9c903f938fe428ddd1b37c44" name="a377a12ba9c903f938fe428ddd1b37c44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a377a12ba9c903f938fe428ddd1b37c44">&#9670;&#160;</a></span>user_db_path</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string mainProcess::user_db_path</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p><a class="el" href="classUser.html">User</a> database file path </p>
 
 </div>
 </div>

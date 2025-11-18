@@ -26,21 +26,7 @@ var classmain_process =
     [ "new_session", "classmain_process.html#acd985b507420bd2aa4e86142ff5c3ed5", null ],
     [ "printConfig", "classmain_process.html#af3fb877bea6082d8f432bcd51816f924", null ],
     [ "printSessions", "classmain_process.html#a7aa73f43d68883b49bc20b9e757c143d", null ],
-    [ "savecfg", "classmain_process.html#af38220d892f7653220f144d864d17a80", null ],
     [ "setDebugMode", "classmain_process.html#a2292b748e6991cc73433259a9cd078cf", null ],
     [ "transaction_request", "classmain_process.html#ad6499979445d77ca57044c6d62be083d", null ],
-    [ "transferBridge", "classmain_process.html#a710cf408d62c85190d34e6755f648a4a", null ],
-    [ "account_db_path", "classmain_process.html#a95ec7291cc04d61c7c46662e7ae40263", null ],
-    [ "audit_log_db_path", "classmain_process.html#af07dce7e0330530e0dd3c9f4374e22cc", null ],
-    [ "debug", "classmain_process.html#adad34cb02191047478e64a461d8b2ab0", null ],
-    [ "last_account_id", "classmain_process.html#a18b800db4b70f42465c0ba860f9c3b24", null ],
-    [ "last_audit_id", "classmain_process.html#abbe43bbe1c723e0ea4a537d04020e483", null ],
-    [ "last_card_IBAN", "classmain_process.html#a3c921c59c69b2310b4954efd767252b8", null ],
-    [ "last_card_PAN", "classmain_process.html#aeb64d1e1eae13b15525b479f1b8aba7f", null ],
-    [ "last_session_id", "classmain_process.html#ac600b67cf989a2341e6a376a9da6017f", null ],
-    [ "last_transaction_id", "classmain_process.html#a6b1b22d18ccf29c5ea303f03b8bf7b0b", null ],
-    [ "last_transaction_request_id", "classmain_process.html#aa2b48ce1772513d4fc5c16e1b981ee96", null ],
-    [ "loggined_users", "classmain_process.html#a09143f6f39261e1d949049a6619dbe91", null ],
-    [ "transaction_log_db_path", "classmain_process.html#a0972867a7a7809a00fb0a477f92f848d", null ],
-    [ "user_db_path", "classmain_process.html#a377a12ba9c903f938fe428ddd1b37c44", null ]
+    [ "transferBridge", "classmain_process.html#a710cf408d62c85190d34e6755f648a4a", null ]
 ];

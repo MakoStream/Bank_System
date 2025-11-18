@@ -149,10 +149,8 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ad29696bd8aaa1b96c5e68b1754d675c7" id="r_ad29696bd8aaa1b96c5e68b1754d675c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaccount.html">account</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Account_8h.html#ad29696bd8aaa1b96c5e68b1754d675c7">getAccount_byIBAN</a> (const char *IBAN)</td></tr>
-<tr class="memdesc:ad29696bd8aaa1b96c5e68b1754d675c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an account object by IBAN.  <br /></td></tr>
 <tr class="separator:ad29696bd8aaa1b96c5e68b1754d675c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56710721192c273c14e555742b245a9a" id="r_a56710721192c273c14e555742b245a9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classaccount.html">account</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Account_8h.html#a56710721192c273c14e555742b245a9a">getAccount_byCardNumber</a> (const char *cardNumber)</td></tr>
-<tr class="memdesc:a56710721192c273c14e555742b245a9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves an account object by card number.  <br /></td></tr>
 <tr class="separator:a56710721192c273c14e555742b245a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a959faddce33d8900ff61684ebe0c73f0" id="r_a959faddce33d8900ff61684ebe0c73f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Account_8h.html#a959faddce33d8900ff61684ebe0c73f0">ACC_createDB</a> ()</td></tr>
 <tr class="separator:a959faddce33d8900ff61684ebe0c73f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,12 +166,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a26abb33f42a609ed05c31b718b103e64" id="r_a26abb33f42a609ed05c31b718b103e64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Account_8h.html#a26abb33f42a609ed05c31b718b103e64">transferFunds</a> (<a class="el" href="classaccount.html">account</a> &amp;fromAcc, <a class="el" href="classaccount.html">account</a> &amp;toAcc, double amount)</td></tr>
 <tr class="memdesc:a26abb33f42a609ed05c31b718b103e64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer funds between accounts.  <br /></td></tr>
 <tr class="separator:a26abb33f42a609ed05c31b718b103e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedb047c6012f66b76cefda946dca426b" id="r_aedb047c6012f66b76cefda946dca426b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Account_8h.html#aedb047c6012f66b76cefda946dca426b">generateIBAN</a> ()</td></tr>
-<tr class="memdesc:aedb047c6012f66b76cefda946dca426b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate unique IBAN.  <br /></td></tr>
-<tr class="separator:aedb047c6012f66b76cefda946dca426b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac43de5302351810f8ac4fe65fd819fdb" id="r_ac43de5302351810f8ac4fe65fd819fdb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Account_8h.html#ac43de5302351810f8ac4fe65fd819fdb">generateCardNumber</a> ()</td></tr>
-<tr class="memdesc:ac43de5302351810f8ac4fe65fd819fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate unique card number.  <br /></td></tr>
-<tr class="separator:ac43de5302351810f8ac4fe65fd819fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4a1fa018c246de48e57b71e3e18f268" id="r_ae4a1fa018c246de48e57b71e3e18f268"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Account_8h.html#ae4a1fa018c246de48e57b71e3e18f268">printAllAccounts</a> (char msg[5][1024], int page)</td></tr>
 <tr class="memdesc:ae4a1fa018c246de48e57b71e3e18f268"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print accounts into paged messages.  <br /></td></tr>
 <tr class="separator:ae4a1fa018c246de48e57b71e3e18f268"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -342,7 +334,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="Account_8cpp.html#a2855b434b928b7074ca97ed8f2821c02" title="Creates the initial accounts database with default accounts.">DB_create_accounts()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="Account_8h.html#a2855b434b928b7074ca97ed8f2821c02" title="Create empty accounts file.">DB_create_accounts()</a> </dd></dl>
 
 </div>
 </div>
@@ -435,49 +427,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create empty accounts file. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires <a class="el" href="Account_8h.html#aaa5fd9cf9e5fad16e78cde9c6d69d413" title="Adds a new account and saves it to the database.">ACC_addAccount()</a></dd></dl>
-<p>Create empty accounts file.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="Account_8h.html#aaa5fd9cf9e5fad16e78cde9c6d69d413" title="Adds a new account and saves it to the database.">ACC_addAccount()</a> </dd></dl>
-
-</div>
-</div>
-<a id="ac43de5302351810f8ac4fe65fd819fdb" name="ac43de5302351810f8ac4fe65fd819fdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac43de5302351810f8ac4fe65fd819fdb">&#9670;&#160;</a></span>generateCardNumber()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int generateCardNumber </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Generate unique card number. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires process.incrementCardPAN() </dd></dl>
-
-</div>
-</div>
-<a id="aedb047c6012f66b76cefda946dca426b" name="aedb047c6012f66b76cefda946dca426b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aedb047c6012f66b76cefda946dca426b">&#9670;&#160;</a></span>generateIBAN()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int generateIBAN </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Generate unique IBAN. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires process.incrementCardIBAN() </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requires <a class="el" href="Account_8h.html#aaa5fd9cf9e5fad16e78cde9c6d69d413" title="Adds a new account and saves it to the database.">ACC_addAccount()</a> </dd></dl>
 
 </div>
 </div>
@@ -497,16 +447,6 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieves an account object by card number. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cardNumber</td><td>Card number string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Account object if found, otherwise emptyAccount </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classAccountInfoCommand.html">AccountInfoCommand</a> </dd></dl>
-
 </div>
 </div>
 <a id="ad29696bd8aaa1b96c5e68b1754d675c7" name="ad29696bd8aaa1b96c5e68b1754d675c7"></a>
@@ -524,16 +464,6 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Retrieves an account object by IBAN. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">IBAN</td><td>IBAN string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Account object if found, otherwise emptyAccount </dd></dl>
-<dl class="section see"><dt>See also</dt><dd>account::transfer(), <a class="el" href="classAccountBanCommand.html">AccountBanCommand</a>, <a class="el" href="classAccountInfoCommand.html">AccountInfoCommand</a>, <a class="el" href="classAccountVerifyCommand.html">AccountVerifyCommand</a> </dd></dl>
 
 </div>
 </div>
@@ -554,15 +484,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get account by ID. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt;</dd></dl>
-<p>Get account by ID.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>Account ID </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Account object if found; emptyAccount if not found </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt; </dd></dl>
 
 </div>
 </div>
@@ -582,9 +504,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get last account in database. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt;</dd></dl>
-<p>Get last account in database.</p>
-<dl class="section return"><dt>Returns</dt><dd>Account object of the last record; empty account if file not found or corrupted </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt; </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="Account_8h.html#aaa5fd9cf9e5fad16e78cde9c6d69d413" title="Adds a new account and saves it to the database.">ACC_addAccount()</a> </dd></dl>
 
 </div>
@@ -606,15 +526,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get all accounts of a user. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt;</dd></dl>
-<p>Get all accounts of a user.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">user_id</td><td><a class="el" href="classUser.html">User</a> ID </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Vector of account objects </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt; </dd></dl>
 
 </div>
 </div>
@@ -635,16 +547,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Check if account exists by card number. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt;</dd></dl>
-<p>Check if account exists by card number.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cardNumber</td><td>Card number string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if exists, false otherwise </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classAccountInfoCommand.html">AccountInfoCommand</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt; </dd></dl>
 
 </div>
 </div>
@@ -665,16 +568,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Check if account exists by IBAN. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt;</dd></dl>
-<p>Check if account exists by IBAN.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">IBAN</td><td>IBAN string </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if exists, false otherwise </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classAccountBanCommand.html">AccountBanCommand</a>, <a class="el" href="classAccountVerifyCommand.html">AccountVerifyCommand</a>, <a class="el" href="classAccountInfoCommand.html">AccountInfoCommand</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt; </dd></dl>
 
 </div>
 </div>
@@ -726,16 +620,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Print accounts into paged messages. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt;, &lt;sstream&gt;</dd></dl>
-<p>Print accounts into paged messages.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">msg</td><td>Array of 5 strings (each 1024 chars) to hold page messages </td></tr>
-    <tr><td class="paramname">page</td><td>Page number (1-based) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd>AccountListCommand </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Requires account class, &lt;fstream&gt;, &lt;sstream&gt; </dd></dl>
 
 </div>
 </div>
@@ -766,15 +651,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Debug: set account balance. </p>
-<dl class="section note"><dt>Note</dt><dd>Requires account class</dd></dl>
-<p>Debug: set account balance.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">acc</td><td>Reference to account object </td></tr>
-    <tr><td class="paramname">newBalance</td><td>New balance value </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section note"><dt>Note</dt><dd>Requires account class </dd></dl>
 
 </div>
 </div>

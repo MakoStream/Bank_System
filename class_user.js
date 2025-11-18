@@ -16,15 +16,5 @@ var class_user =
     [ "load", "class_user.html#a6b5366e49e886c8b8ae141c6b06b3fb3", null ],
     [ "save", "class_user.html#aec0e526fe82e8632425b21f7e1e228ab", null ],
     [ "unban", "class_user.html#a84e9236b3bba7f5cbfab52ddde2e3f71", null ],
-    [ "updateInFile", "class_user.html#a93fb9dc8da5fb26320e90745d96e1959", null ],
-    [ "id", "class_user.html#aa7e6e39b43020bbe9c3a196b3689b0f7", null ],
-    [ "login", "class_user.html#a2a956759ec25a043c36008267cbb185c", null ],
-    [ "name", "class_user.html#a56e69f2a550699c1ed13fa4cd36c39f5", null ],
-    [ "passport", "class_user.html#ab1e0e9f654257936e709c719f27ffd76", null ],
-    [ "password", "class_user.html#aacccaa34b41b3669d0ab177a59d347dc", null ],
-    [ "phone", "class_user.html#a25c69b42eac0c172a221aaae07b5dce2", null ],
-    [ "role", "class_user.html#af24508f611d47ed44cc0f78622c706bc", null ],
-    [ "status", "class_user.html#a63b0d2b6ef616525748bbf915df27730", null ],
-    [ "surname", "class_user.html#a68e0ee16888f824d6b00ac2a3d400313", null ],
-    [ "TIN", "class_user.html#a978c4dd2bd9653e3863ed9b82c88c01c", null ]
+    [ "updateInFile", "class_user.html#a93fb9dc8da5fb26320e90745d96e1959", null ]
 ];

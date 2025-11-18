@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classNewAccountCommand.html',''); init
 </div><!--header-->
 <div class="contents">
 
+<p>Creates a new bank account for a user.  
+ <a href="classNewAccountCommand.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="NewAccountCommand_8h_source.html">NewAccountCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for NewAccountCommand:</div>
@@ -118,7 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Creates a new bank account for a user. </p>
+<p>Validates user ID, currency, card type, and account type, adds account to storage, logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye, Account </dd>
+<dd>
+Syntax: new_account &lt;user_id&gt; &lt;currency&gt; &lt;card_type&gt; &lt;account_type&gt; </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2c287133987f6f10548d5537550dba69" name="a2c287133987f6f10548d5537550dba69"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2c287133987f6f10548d5537550dba69">&#9670;&#160;</a></span>execute()</h2>
 

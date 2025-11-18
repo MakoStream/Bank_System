@@ -13,8 +13,5 @@ var searchData=
   ['computeluhncheckdigit_10',['computeLuhnCheckDigit',['../Account_8cpp.html#a0898ecc158dd4b074e18aee467b08865',1,'Account.cpp']]],
   ['create_5fdb_5faudit_5flog_11',['create_db_audit_log',['../Audit_8cpp.html#aeb29b6c474cd090f1e9f162505d3e11a',1,'create_db_audit_log():&#160;Audit.cpp'],['../Audit_8h.html#aeb29b6c474cd090f1e9f162505d3e11a',1,'create_db_audit_log():&#160;Audit.cpp']]],
   ['create_5fdb_5ftransaction_5flog_12',['create_db_transaction_log',['../Audit_8cpp.html#ad2e2619ef4bd6776e6c204b5ebd75614',1,'create_db_transaction_log():&#160;Audit.cpp'],['../Audit_8h.html#ad2e2619ef4bd6776e6c204b5ebd75614',1,'create_db_transaction_log():&#160;Audit.cpp']]],
-  ['createddb_13',['createdDB',['../classLogger.html#a2d78f9f6b0952852e5c4ed2fbf1e80b2',1,'Logger']]],
-  ['createlogfile_14',['createLogFile',['../classLogEye.html#aebec5f12ee9570cfc8a997e40f7acd4a',1,'LogEye']]],
-  ['currentdate_15',['currentDate',['../classLogger.html#a139da25b5779da772d9f7a67580056a3',1,'Logger']]],
-  ['currenttime_16',['currentTime',['../classLogger.html#a3bc26d255e653b2acaae16554530ba71',1,'Logger']]]
+  ['createddb_13',['createdDB',['../classLogger.html#a2d78f9f6b0952852e5c4ed2fbf1e80b2',1,'Logger']]]
 ];

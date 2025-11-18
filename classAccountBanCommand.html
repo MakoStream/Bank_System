@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classAccountBanCommand.html',''); init
 </div><!--header-->
 <div class="contents">
 
+<p>Handles banning of a bank account.  
+ <a href="classAccountBanCommand.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="AccountBanCommand_8h_source.html">AccountBanCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for AccountBanCommand:</div>
@@ -118,7 +121,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles banning of a bank account. </p>
+<p>The <a class="el" href="classAccountBanCommand.html" title="Handles banning of a bank account.">AccountBanCommand</a> class performs:</p><ul>
+<li>Validates IBAN and optional reason</li>
+<li>Checks if the account exists</li>
+<li>Bans the account and updates storage</li>
+<li>Sets hash[0] = 1 on success</li>
+<li>Logs all actions via logEye <dl class="section note"><dt>Note</dt><dd>Requires: &lt;string&gt;, Account, <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye </dd>
+<dd>
+Syntax: account_ban &lt;IBAN&gt; [reason] </dd></dl>
+</li>
+</ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="accca16fb3cef8f6bdf62b2833f294df5" name="accca16fb3cef8f6bdf62b2833f294df5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#accca16fb3cef8f6bdf62b2833f294df5">&#9670;&#160;</a></span>execute()</h2>
 

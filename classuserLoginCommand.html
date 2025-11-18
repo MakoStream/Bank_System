@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classuserLoginCommand.html',''); initR
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> class for user login.  
+ <a href="classuserLoginCommand.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="userLoginCommand_8h_source.html">userLoginCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for userLoginCommand:</div>
@@ -118,7 +121,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classCommand.html" title="Abstract base class for all commands.">Command</a> class for user login. </p>
+<p>Handles:</p><ul>
+<li>Prompting for user credentials (username/password)</li>
+<li>Verifying credentials against <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> database</li>
+<li>Creating a session upon successful login <dl class="section note"><dt>Note</dt><dd>Requires: &lt;string&gt;, &lt;iostream&gt;, <a class="el" href="classUser.html" title="Represents a bank system user.">User</a>, <a class="el" href="structSession.html" title="Represents a user session.">Session</a>, <a class="el" href="classLogger.html">Logger</a> </dd>
+<dd>
+Syntax: login &lt;login&gt; &lt;password&gt; @used For:</dd></dl>
+</li>
+<li>Initiating user sessions </li>
+</ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a3ef50514785261225bc1ebc27ed0d730" name="a3ef50514785261225bc1ebc27ed0d730"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3ef50514785261225bc1ebc27ed0d730">&#9670;&#160;</a></span>execute()</h2>
 

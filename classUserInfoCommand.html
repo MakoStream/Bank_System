@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classUserInfoCommand.html',''); initRe
 </div><!--header-->
 <div class="contents">
 
+<p>Retrieves detailed information about a user.  
+ <a href="classUserInfoCommand.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="UserInfoCommand_8h_source.html">UserInfoCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for UserInfoCommand:</div>
@@ -118,7 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Retrieves detailed information about a user. </p>
+<p>Accepts user ID or login, returns user details, logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye, <a class="el" href="classUser.html" title="Represents a bank system user.">User</a>, &lt;vector&gt;, &lt;string&gt;, <a class="el" href="mainProcess_8h.html" title="Declares mainProcess class for session, user, transaction, and configuration management.">mainProcess.h</a>, <a class="el" href="User_8h.html" title="Classes and structures for managing users in the banking system.">User.h</a> </dd>
+<dd>
+Syntax: user_info &lt;id/login&gt; </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae2a16656b5e7378429b40e7e0e4881b7" name="ae2a16656b5e7378429b40e7e0e4881b7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae2a16656b5e7378429b40e7e0e4881b7">&#9670;&#160;</a></span>execute()</h2>
 

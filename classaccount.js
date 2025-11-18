@@ -26,17 +26,5 @@ var classaccount =
     [ "setPIN", "classaccount.html#a0562d41ba7864fac0a5e472c36a263e2", null ],
     [ "unban", "classaccount.html#aef9d2c94e890f0b5912b731363dcc686", null ],
     [ "updateInFile", "classaccount.html#a20bfc751a668d2ee17c286285c19ef83", null ],
-    [ "verify", "classaccount.html#a9b4a2b2f4a4389da06374e70285e9a04", null ],
-    [ "AccountType", "classaccount.html#a35b2bfb0d119f6196123555e3279a4e7", null ],
-    [ "balance", "classaccount.html#ad12a7da018413a8c5100ef243b06de56", null ],
-    [ "balance_type", "classaccount.html#abb2560cecad76a7bd666e57e573c4b13", null ],
-    [ "cardNumber", "classaccount.html#aac56419af92874992abf1d1221ee1a24", null ],
-    [ "CVV", "classaccount.html#ae0ab14472e266d7afa6dba1c2f442710", null ],
-    [ "expirationDate", "classaccount.html#a86843d0a908a5631c548e6fb4b1525ac", null ],
-    [ "IBAN", "classaccount.html#aac00968c80c98556fffe4db34f131490", null ],
-    [ "id", "classaccount.html#af85403b25ba58a36d691b38b213c73ce", null ],
-    [ "PIN", "classaccount.html#a4ed7654ebd18612e3e9e54c70451c259", null ],
-    [ "status", "classaccount.html#a9ed826293b787570f30fafd2aa8e8d51", null ],
-    [ "type", "classaccount.html#a3b1a849e03c173503931c076d4e06b61", null ],
-    [ "userID", "classaccount.html#a88753af536313c494b223d092c241af3", null ]
+    [ "verify", "classaccount.html#a9b4a2b2f4a4389da06374e70285e9a04", null ]
 ];

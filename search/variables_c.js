@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['operation_5ftype_0',['operation_type',['../classTransactionLog.html#aaaaf430e2889ef85fc43343e29029ea2',1,'TransactionLog']]],
-  ['operationtostring_1',['operationtostring',['../Audit_8cpp.html#aa94bf9d9e321dd12d36827acdaf3c227',1,'operationToString:&#160;Audit.cpp'],['../Audit_8h.html#aa94bf9d9e321dd12d36827acdaf3c227',1,'operationToString:&#160;Audit.cpp']]],
-  ['other_5fbank_5fuser_2',['other_bank_user',['../classTransactionLog.html#a1ec07d5a6ea6a57f4d83a6b48cfae49b',1,'TransactionLog']]],
-  ['other_5fcurrency_3',['other_currency',['../classTransactionLog.html#ad531dabd4412f6034b6a27a823112196',1,'TransactionLog']]]
+  ['response_5fmanager_0',['response_manager',['../Bank__System__User_8cpp.html#afdb8dffdd79bdb9ea28861f65e37d5ff',1,'response_manager:&#160;Bank_System_User.cpp'],['../ResponseManager_8h.html#afdb8dffdd79bdb9ea28861f65e37d5ff',1,'response_manager:&#160;Bank_System_User.cpp']]]
 ];

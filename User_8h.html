@@ -99,6 +99,9 @@ $(document).ready(function(){initNavTree('User_8h.html',''); initResizable(); })
   <div class="headertitle"><div class="title">User.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Classes and structures for managing users in the banking system.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;windows.h&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
@@ -114,8 +117,10 @@ $(document).ready(function(){initNavTree('User_8h.html',''); initResizable(); })
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpassportData.html">passportData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passport information used for user verification.  <a href="structpassportData.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUser.html">User</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a bank system user.  <a href="classUser.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -138,20 +143,28 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a3c2b3238cf0dd22543db5603c171dec6" id="r_a3c2b3238cf0dd22543db5603c171dec6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="User_8h.html#a3c2b3238cf0dd22543db5603c171dec6">DB_list</a> (char msg[5][1024], int page)</td></tr>
+<tr class="memdesc:a3c2b3238cf0dd22543db5603c171dec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads and prints a page of users from "users.dat".  <br /></td></tr>
 <tr class="separator:a3c2b3238cf0dd22543db5603c171dec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb536b221473f7c0575c9eee5921970b" id="r_abb536b221473f7c0575c9eee5921970b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="User_8h.html#abb536b221473f7c0575c9eee5921970b">DB_create</a> ()</td></tr>
+<tr class="memdesc:abb536b221473f7c0575c9eee5921970b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an empty binary file "users.dat".  <br /></td></tr>
 <tr class="separator:abb536b221473f7c0575c9eee5921970b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d004748aec1ac5e31bead3264418421" id="r_a3d004748aec1ac5e31bead3264418421"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="User_8h.html#a3d004748aec1ac5e31bead3264418421">DB_newUser</a> (<a class="el" href="classUser.html">User</a> user)</td></tr>
+<tr class="memdesc:a3d004748aec1ac5e31bead3264418421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends a <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object to "users.dat".  <br /></td></tr>
 <tr class="separator:a3d004748aec1ac5e31bead3264418421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ab483de47cccd849b1da00dc4e6597b" id="r_a9ab483de47cccd849b1da00dc4e6597b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUser.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="User_8h.html#a9ab483de47cccd849b1da00dc4e6597b">loadLastUser</a> ()</td></tr>
+<tr class="memdesc:a9ab483de47cccd849b1da00dc4e6597b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the last user from "users.dat".  <br /></td></tr>
 <tr class="separator:a9ab483de47cccd849b1da00dc4e6597b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4684f54ede335a61198dd93867f0aa42" id="r_a4684f54ede335a61198dd93867f0aa42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="User_8h.html#a4684f54ede335a61198dd93867f0aa42">isUserExist_byLogin</a> (const char *login)</td></tr>
+<tr class="memdesc:a4684f54ede335a61198dd93867f0aa42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a login already exists in "users.dat".  <br /></td></tr>
 <tr class="separator:a4684f54ede335a61198dd93867f0aa42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf075e84c512170ca555c32e2960298f" id="r_acf075e84c512170ca555c32e2960298f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUser.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="User_8h.html#acf075e84c512170ca555c32e2960298f">getUser_byLogin</a> (const char *login)</td></tr>
+<tr class="memdesc:acf075e84c512170ca555c32e2960298f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object by login.  <br /></td></tr>
 <tr class="separator:acf075e84c512170ca555c32e2960298f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63e80be97ecb6528c6c48c24fc9c8b23" id="r_a63e80be97ecb6528c6c48c24fc9c8b23"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="User_8h.html#a63e80be97ecb6528c6c48c24fc9c8b23">isUserExist_byId</a> (int id)</td></tr>
+<tr class="memdesc:a63e80be97ecb6528c6c48c24fc9c8b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a user with a given ID exists in "users.dat".  <br /></td></tr>
 <tr class="separator:a63e80be97ecb6528c6c48c24fc9c8b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3706eb8ba7ca7e8392708b640102b82d" id="r_a3706eb8ba7ca7e8392708b640102b82d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUser.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="User_8h.html#a3706eb8ba7ca7e8392708b640102b82d">getUser_byId</a> (int id)</td></tr>
+<tr class="memdesc:a3706eb8ba7ca7e8392708b640102b82d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object by ID.  <br /></td></tr>
 <tr class="separator:a3706eb8ba7ca7e8392708b640102b82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -161,7 +174,10 @@ Variables</h2></td></tr>
 <tr class="memitem:a9e812ee8d863570148fa1724298c1b57" id="r_a9e812ee8d863570148fa1724298c1b57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUser.html">User</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="User_8h.html#a9e812ee8d863570148fa1724298c1b57">emptyUser</a></td></tr>
 <tr class="separator:a9e812ee8d863570148fa1724298c1b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Classes and structures for managing users in the banking system. </p>
+<p>Contains <a class="el" href="structpassportData.html" title="Passport information used for user verification.">passportData</a> structure, <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> class, and database-related functions for user management. </p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="af08ec37a8c99d747fb60fa15bc28678b" name="af08ec37a8c99d747fb60fa15bc28678b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af08ec37a8c99d747fb60fa15bc28678b">&#9670;&#160;</a></span>_CRT_SECURE_NO_WARNINGS</h2>
 
@@ -230,6 +246,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Creates an empty binary file "users.dat". </p>
+<p>This function creates a new binary file to store user data. If the file already exists, it will be overwritten. </p><dl class="section note"><dt>Note</dt><dd>Requirements: &lt;fstream&gt;, &lt;iostream&gt; </dd>
+<dd>
+Required for: commands::createDB() </dd></dl>
+
 </div>
 </div>
 <a id="a3c2b3238cf0dd22543db5603c171dec6" name="a3c2b3238cf0dd22543db5603c171dec6"></a>
@@ -258,6 +279,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Reads and prints a page of users from "users.dat". </p>
+<p>Loads users from the binary file and formats their information into a 5-element string array for display. Supports pagination. </p><dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> class, &lt;fstream&gt;, &lt;iostream&gt; </dd>
+<dd>
+Required for: commands::execute("user_list") </dd></dl>
+
 </div>
 </div>
 <a id="a3d004748aec1ac5e31bead3264418421" name="a3d004748aec1ac5e31bead3264418421"></a>
@@ -275,6 +301,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Appends a <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object to "users.dat". </p>
+<p>This function writes a <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object to the end of the binary file for persistent storage. </p><dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="classUser.html#aec0e526fe82e8632425b21f7e1e228ab">User::save()</a>, &lt;fstream&gt; </dd>
+<dd>
+Required for: commands::regUser() </dd></dl>
 
 </div>
 </div>
@@ -294,6 +325,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Retrieves a <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object by ID. </p>
+<p>Searches the binary file for a user matching the specified ID and returns the <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object. </p><dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> class, &lt;fstream&gt; </dd>
+<dd>
+Required for: any function needing <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> data by ID </dd></dl>
+
 </div>
 </div>
 <a id="acf075e84c512170ca555c32e2960298f" name="acf075e84c512170ca555c32e2960298f"></a>
@@ -311,6 +347,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Retrieves a <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object by login. </p>
+<p>Searches the binary file for a user matching the specified login and returns the <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object. </p><dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> class, &lt;fstream&gt;, &lt;cstring&gt; </dd>
+<dd>
+Required for: any function needing <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> data by login </dd></dl>
 
 </div>
 </div>
@@ -330,6 +371,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if a user with a given ID exists in "users.dat". </p>
+<p>Iterates through the binary user file and compares IDs. </p><dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> class, &lt;fstream&gt; </dd>
+<dd>
+Required for: any function needing user validation </dd></dl>
+
 </div>
 </div>
 <a id="a4684f54ede335a61198dd93867f0aa42" name="a4684f54ede335a61198dd93867f0aa42"></a>
@@ -348,6 +394,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if a login already exists in "users.dat". </p>
+<p>Iterates through the binary user file and compares logins to prevent duplicates. </p><dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> class, &lt;fstream&gt;, &lt;cstring&gt; </dd>
+<dd>
+Required for: commands::execute("reg_user") </dd></dl>
+
 </div>
 </div>
 <a id="a9ab483de47cccd849b1da00dc4e6597b" name="a9ab483de47cccd849b1da00dc4e6597b"></a>
@@ -364,6 +415,11 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Loads the last user from "users.dat". </p>
+<p>Seeks to the end of the binary file and reads the last <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> object for further processing. </p><dl class="section note"><dt>Note</dt><dd>Requirements: <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> class, &lt;fstream&gt;, &lt;iostream&gt; </dd>
+<dd>
+Required for: commands::regUser() </dd></dl>
 
 </div>
 </div>

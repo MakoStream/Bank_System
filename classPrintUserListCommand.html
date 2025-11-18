@@ -92,11 +92,13 @@ $(document).ready(function(){initNavTree('classPrintUserListCommand.html',''); i
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classPrintUserListCommand-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">PrintUserListCommand Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Prints a paginated list of all users.  
+ <a href="classPrintUserListCommand.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="PrintUserListCommand_8h_source.html">PrintUserListCommand.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -118,13 +120,13 @@ Public Member Functions</h2></td></tr>
 <tr class="inherit_header pub_methods_classCommand"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCommand')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCommand.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:acedacdc8f92dee549946d594f4fff79e" id="r_acedacdc8f92dee549946d594f4fff79e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLogger.html">Logger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPrintUserListCommand.html#acedacdc8f92dee549946d594f4fff79e">logger</a></td></tr>
-<tr class="separator:acedacdc8f92dee549946d594f4fff79e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Prints a paginated list of all users. </p>
+<p>Validates page number, prints users page by page, logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye </dd>
+<dd>
+Syntax: user_list &lt;page&gt; </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ae1de79d01008af198fda380a3c700de8" name="ae1de79d01008af198fda380a3c700de8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1de79d01008af198fda380a3c700de8">&#9670;&#160;</a></span>execute()</h2>
 
@@ -177,29 +179,6 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classCommand.html#a87b16bdc7005f072d4b352666d3c1489">Command</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="acedacdc8f92dee549946d594f4fff79e" name="acedacdc8f92dee549946d594f4fff79e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acedacdc8f92dee549946d594f4fff79e">&#9670;&#160;</a></span>logger</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classLogger.html">Logger</a>* PrintUserListCommand::logger</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

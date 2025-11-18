@@ -101,10 +101,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a620ebdd3b164ef16266454a719490013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages and executes all available commands.  <br /></td></tr>
 <tr class="memitem:af5d22a45a038bae0956f07556e8e6ccb" id="r_af5d22a45a038bae0956f07556e8e6ccb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5d22a45a038bae0956f07556e8e6ccb">execute</a> (<a class="el" href="structhandle_info.html">handleInfo</a> &amp;handle)</td></tr>
 <tr class="memdesc:af5d22a45a038bae0956f07556e8e6ccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that registers all available commands.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a4c8de02dca75b2025b458559912077bf" id="r_a4c8de02dca75b2025b458559912077bf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="class_command.html">Command</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c8de02dca75b2025b458559912077bf">commands</a></td></tr>
 </table>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a620ebdd3b164ef16266454a719490013" name="a620ebdd3b164ef16266454a719490013"></a>
@@ -157,29 +153,6 @@ Private Attributes</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Calls <a class="el" href="_bank___system_2basic__functions_8cpp.html#acb3b421c46ad175157857d818818bdab">split()</a> from basic_functions.h to parse the command string. </dd>
 <dd>
 Calls <a class="el" href="_command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a> to notify client of unknown commands. </dd></dl>
-
-</div>
-</div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a4c8de02dca75b2025b458559912077bf" name="a4c8de02dca75b2025b458559912077bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c8de02dca75b2025b458559912077bf">&#9670;&#160;</a></span>commands</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="class_command.html">Command</a>&gt; &gt; CommandsManager::commands</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>

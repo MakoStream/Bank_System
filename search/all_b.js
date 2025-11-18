@@ -10,6 +10,5 @@ var searchData=
   ['msg_7',['msg',['../structsessionConstruct.html#a45ce82eddccd1fdde37941384e2e335e',1,'sessionConstruct']]],
   ['msg0_8',['msg0',['../structLogEntry.html#a7b0a010982b8ae6d4403e8899382311d',1,'LogEntry']]],
   ['msg1_9',['msg1',['../structLogEntry.html#a9bcd47523483a12b752203ed596022a7',1,'LogEntry']]],
-  ['msgtrace_10',['msgTrace',['../classLogEye.html#a74e09229fa50e0025f428181b1ebd22e',1,'LogEye']]],
-  ['mtx_11',['mtx',['../classLogEye.html#aa224d7189290650695edd32ef6f9c202',1,'LogEye']]]
+  ['msgtrace_10',['msgTrace',['../classLogEye.html#a74e09229fa50e0025f428181b1ebd22e',1,'LogEye']]]
 ];

@@ -4,7 +4,7 @@ var searchData=
   ['db_5fcreate_5faccounts_1',['db_create_accounts',['../Account_8cpp.html#a2855b434b928b7074ca97ed8f2821c02',1,'DB_create_accounts():&#160;Account.cpp'],['../Account_8h.html#a2855b434b928b7074ca97ed8f2821c02',1,'DB_create_accounts():&#160;Account.cpp']]],
   ['db_5flist_2',['db_list',['../User_8cpp.html#a3c2b3238cf0dd22543db5603c171dec6',1,'DB_list(char msg[5][1024], int page):&#160;User.cpp'],['../User_8h.html#a3c2b3238cf0dd22543db5603c171dec6',1,'DB_list(char msg[5][1024], int page):&#160;User.cpp']]],
   ['db_5fnewuser_3',['db_newuser',['../User_8h.html#a3d004748aec1ac5e31bead3264418421',1,'DB_newUser(User user):&#160;User.cpp'],['../User_8cpp.html#a3d004748aec1ac5e31bead3264418421',1,'DB_newUser(User user):&#160;User.cpp']]],
-  ['debug_4',['debug',['../LogEye_8h.html#aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f',1,'DEBUG:&#160;LogEye.h'],['../classmainProcess.html#adad34cb02191047478e64a461d8b2ab0',1,'mainProcess::debug'],['../classLogEye.html#ac3e2bfa95737c47cec9c53a5ef8a5cc6',1,'LogEye::debug()']]],
+  ['debug_4',['debug',['../LogEye_8h.html#aca1fd1d8935433e6ba2e3918214e07f9a0593585da9181e972974c1274d8f2b4f',1,'DEBUG:&#160;LogEye.h'],['../classLogEye.html#ac3e2bfa95737c47cec9c53a5ef8a5cc6',1,'LogEye::debug()']]],
   ['debugon_5',['debugOn',['../classmainProcess.html#ac9198fced49198dcf983f1930dbd2d58',1,'mainProcess']]],
   ['debugoncommand_6',['DebugOnCommand',['../classDebugOnCommand.html',1,'']]],
   ['debugoncommand_2eh_7',['DebugOnCommand.h',['../DebugOnCommand_8h.html',1,'']]],

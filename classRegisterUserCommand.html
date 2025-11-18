@@ -97,6 +97,9 @@ $(document).ready(function(){initNavTree('classRegisterUserCommand.html',''); in
 </div><!--header-->
 <div class="contents">
 
+<p>Registers a new user in the system.  
+ <a href="classRegisterUserCommand.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="RegisterUserCommand_8h_source.html">RegisterUserCommand.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for RegisterUserCommand:</div>
@@ -118,7 +121,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Registers a new user in the system. </p>
+<p>Validates input parameters, creates user, stores in DB, logs all actions via logEye. </p><dl class="section note"><dt>Note</dt><dd>Requires: <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a>, logEye, <a class="el" href="classUser.html" title="Represents a bank system user.">User</a> </dd>
+<dd>
+Syntax: reg_user &lt;login&gt; &lt;password&gt; &lt;name&gt; &lt;surname&gt; &lt;phone&gt; </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a7899f196aa7b49a0c50df9ad5224e13f" name="a7899f196aa7b49a0c50df9ad5224e13f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7899f196aa7b49a0c50df9ad5224e13f">&#9670;&#160;</a></span>execute()</h2>
 

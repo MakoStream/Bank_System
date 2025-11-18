@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['manager_0',['manager',['../Bank__System_8cpp.html#a21bdbd6c96714ce53522635f047145ae',1,'Bank_System.cpp']]],
-  ['msg_1',['msg',['../structsessionConstruct.html#a45ce82eddccd1fdde37941384e2e335e',1,'sessionConstruct']]],
-  ['msg0_2',['msg0',['../structLogEntry.html#a7b0a010982b8ae6d4403e8899382311d',1,'LogEntry']]],
-  ['msg1_3',['msg1',['../structLogEntry.html#a9bcd47523483a12b752203ed596022a7',1,'LogEntry']]],
-  ['mtx_4',['mtx',['../classLogEye.html#aa224d7189290650695edd32ef6f9c202',1,'LogEye']]]
+  ['operationtostring_0',['operationtostring',['../Audit_8cpp.html#aa94bf9d9e321dd12d36827acdaf3c227',1,'operationToString:&#160;Audit.cpp'],['../Audit_8h.html#aa94bf9d9e321dd12d36827acdaf3c227',1,'operationToString:&#160;Audit.cpp']]]
 ];

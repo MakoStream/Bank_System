@@ -6,6 +6,7 @@ var dir_6c4d3dced4b74d420070c331c25cc69e =
     [ "CreateDBCommand.h", "CreateDBCommand_8h.html", "CreateDBCommand_8h" ],
     [ "DebugOnCommand.h", "DebugOnCommand_8h.html", "DebugOnCommand_8h" ],
     [ "getSessionIdCommand.h", "getSessionIdCommand_8h.html", "getSessionIdCommand_8h" ],
+    [ "GetUserAccountsCommand.h", "GetUserAccountsCommand_8h.html", "GetUserAccountsCommand_8h" ],
     [ "NewAccountCommand.h", "NewAccountCommand_8h.html", "NewAccountCommand_8h" ],
     [ "PrintAccountListCommand.h", "PrintAccountListCommand_8h.html", "PrintAccountListCommand_8h" ],
     [ "PrintUserListCommand.h", "PrintUserListCommand_8h.html", "PrintUserListCommand_8h" ],

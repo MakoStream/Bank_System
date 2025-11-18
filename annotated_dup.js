@@ -20,6 +20,8 @@ var annotated_dup =
     [ "fronted_User", "structfronted__User.html", "structfronted__User" ],
     [ "getSessionIdCommand", "classgetSessionIdCommand.html", "classgetSessionIdCommand" ],
     [ "GetSessionIdResponse", "classGetSessionIdResponse.html", "classGetSessionIdResponse" ],
+    [ "getUserAccountsCommand", "classgetUserAccountsCommand.html", "classgetUserAccountsCommand" ],
+    [ "getUserAccountsResponse", "structgetUserAccountsResponse.html", "structgetUserAccountsResponse" ],
     [ "handleInfo", "structhandleInfo.html", "structhandleInfo" ],
     [ "Log", "classLog.html", "classLog" ],
     [ "LogEntry", "structLogEntry.html", "structLogEntry" ],
