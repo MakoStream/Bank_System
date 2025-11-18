@@ -21,7 +21,8 @@ jobs:
       run: doxygen Doxyfile
 
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v6
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./html
+        publish_dir: ./html    # шлях, куди Doxygen зберігає документацію
+        publish_branch: gh-pages
