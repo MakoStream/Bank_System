@@ -3,7 +3,7 @@ name: Generate Doxygen Docs
 on:
   push:
     branches:
-      - docs-ci   # відстежуємо тільки docs-ci
+      - docs-ci 
   pull_request:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        ref: docs-ci   # чекаутимо саме docs-ci
+        ref: docs-ci
 
     - name: Set up Doxygen and Graphviz
       run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
@@ -26,5 +26,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GH_PAT }}
-        publish_branch: gh-pages   # пушимо в gh-pages
-        publish_dir: ./html        # директорія з HTML від Doxygen
+        publish_branch: gh-pages 
+        publish_dir: ./html       
