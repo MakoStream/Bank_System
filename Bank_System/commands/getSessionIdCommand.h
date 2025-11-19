@@ -16,6 +16,31 @@
 class getSessionIdCommand : public Command {
 
 public:
+    /**
+ * @brief Executes the session ID generation command.
+ *
+ * @details
+ * Creates a new session for the client.
+ * The method:
+ * - Logs the start of the command
+ * - Records the raw input command
+ * - Generates a new session ID via process.new_session()
+ * - Stores the session ID in handle.sessionData.sessionId
+ * - Sends the session ID back to the client
+ * - Finishes logging with SUCCESS status
+ *
+ * @param handle Reference to handleInfo containing session data
+ *               and the buffer for command execution results.
+ *
+ * @note
+ * Side effects:
+ * - Modifies handle.sessionData.sessionId
+ * - Produces log entries via logEye
+ * - Sends a session/network response through throw_response()
+ *
+ * @retval void This method does not return a direct value.
+ *         The result (new session ID) is delivered through throw_response().
+ */
     void execute(handleInfo& handle) override {
         int log_id = logEye.logTrace("getSID command");
         logEye.msgTrace(log_id, "input data", string(handle.sessionData.cmd), true);

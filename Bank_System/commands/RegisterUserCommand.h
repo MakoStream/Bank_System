@@ -15,6 +15,44 @@
  */
 class RegisterUserCommand : public Command {
 public:
+    /**
+ * @brief Executes the command to register a new user in the system.
+ *
+ * @details
+ * Validates input parameters and creates a new user. The method:
+ * - Logs the start of execution, session ID, user ID, and input command
+ * - Parses the input arguments: login, password, name, surname, phone
+ * - Checks that all required arguments are provided
+ * - Validates the length of login, password, and name
+ * - Validates the phone number format
+ * - Checks if a user with the same login already exists
+ * - Determines a new unique user ID
+ * - Creates a new User object and stores it in the database
+ * - Sets handle.sessionData.hash[0] to 1 on success (0 on failure)
+ * - Sends a response to the client
+ * - Completes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, and hash/message arrays.
+ *
+ * @throws Throws a response using throw_response() in case of:
+ *         - Missing arguments
+ *         - Input arguments exceeding maximum length
+ *         - Invalid phone number
+ *         - User login already exists
+ *
+ * @note
+ * Side effects:
+ * - Modifies handle.sessionData.hash[0]
+ * - Creates a new user in the database via DB_newUser()
+ * - Produces trace logs via logEye
+ * - Sends session/network response using throw_response()
+ *
+ * @retval void This method does not return a direct value.
+ *         Execution result is communicated through handle.sessionData.hash[0]
+ *         and the response message.
+ */
+
     void execute(handleInfo& handle) override { // reg_user <login> <password> <name> <surname> <phone> //example: reg_user user1 pass1 John Doe 1234567890
 		int log_id = logEye.logTrace("reg_user Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

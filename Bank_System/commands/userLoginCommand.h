@@ -19,6 +19,36 @@
 class userLoginCommand : public Command {
 
 public:
+    /**
+ * @class userLoginCommand
+ * @brief Handles user login into the system.
+ *
+ * @details
+ * The userLoginCommand performs the following steps:
+ * - Logs session ID and input data via logEye.
+ * - Parses input command to extract login and password.
+ * - Checks if the provided user exists in the system using getUser_byLogin().
+ * - Verifies the password using User::checkPassword().
+ * - If successful:
+ *   - Creates a session using process.login().
+ *   - Generates an authentication key for the session.
+ *   - Returns user information (login, name, surname) via handle.sessionData.msg.
+ *   - Updates handle.sessionData.hash[0] to 1 indicating success.
+ * - If login fails:
+ *   - Sends appropriate error messages via throw_response().
+ *   - Logs the failure using logEye.
+ *
+ * @param handle Reference to handleInfo containing:
+ *   - sessionData (session ID, input command, hash/message arrays)
+ *   - Pipe information for communication
+ * @note Syntax: login <login> <password>
+ * @note Side Effects:
+ *   - Logs all actions using logEye
+ *   - Updates session state and generates authentication keys
+ *   - Writes response to sessionData over the pipe
+ * @retval void Execution result indicated by handle.sessionData.hash[0]
+ *         (1 for success, 0 for failure)
+ */
     void execute(handleInfo& handle) override { // login <login> <password>
 		int log_id = logEye.logTrace("login Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

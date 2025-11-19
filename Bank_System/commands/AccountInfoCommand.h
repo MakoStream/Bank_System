@@ -16,6 +16,46 @@
  */
 class AccountInfoCommand : public Command {
 public:
+	/**
+ * @brief Executes the account information retrieval command.
+ *
+ * @details
+ * Retrieves detailed account information based on a provided card number (PAN).
+ * The method:
+ * - Logs operation start and session details
+ * - Parses the input command into arguments
+ * - Validates the number of arguments
+ * - Validates the card number length (must be 16 digits)
+ * - Checks whether an account with the given card number exists
+ * - Fetches the account and retrieves:
+ *     - PAN
+ *     - IBAN
+ *     - Balance
+ *     - Currency type
+ *     - Account owner user ID
+ * - Returns the formatted account information to the client
+ * - Sets handle.sessionData.hash[0] to 1 on success (0 on failure)
+ * - Finalizes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               raw command string, and the hash array for execution status.
+ *
+ * @throws Throws a response via throw_response() in case of:
+ *         - Missing arguments
+ *         - Invalid card number length
+ *         - Account with the provided PAN not found
+ *
+ * @note
+ * Side effects:
+ * - Produces trace logs via logEye
+ * - Modifies handle.sessionData.hash[0]
+ * - Sends a session/network response through throw_response()
+ *
+ * @retval void This method does not return a direct value.
+ *         Execution result is communicated via handle.sessionData.hash[0]:
+ *         - 0 on failure
+ *         - 1 on successful data retrieval
+ */
 	void execute(handleInfo& handle) override {  // accountInfo <account_PAN>
 		int log_id = logEye.logTrace("account_info Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

@@ -15,6 +15,44 @@
 
 class AccountVerifyCommand : public Command {
 public:
+	/**
+ * @brief Executes the account verification command.
+ *
+ * @details
+ * Verifies a bank account using the provided IBAN.
+ * The method:
+ * - Logs the start of the operation and session details
+ * - Parses the input command into arguments
+ * - Validates the presence of required arguments
+ * - Validates the IBAN format (must be 29 characters long)
+ * - Checks whether an account with the specified IBAN exists
+ * - Retrieves the account data
+ * - Performs account verification (acc.verify())
+ * - Updates the account information in storage (acc.updateInFile())
+ * - Sets handle.sessionData.hash[0] to 1 on success
+ * - Sends a response back to the client
+ * - Completes the trace log with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               the command string, and the hash array for reporting status.
+ *
+ * @throws Throws a response using throw_response() when:
+ *         - Required arguments are missing
+ *         - IBAN format is invalid
+ *         - No account exists with the provided IBAN
+ *
+ * @note
+ * Side effects:
+ * - Produces trace logs through logEye
+ * - Modifies handle.sessionData.hash[0]
+ * - Updates the account record on disk
+ * - Sends a network/session response via throw_response()
+ *
+ * @retval void Does not return a value directly.
+ *         Execution success or failure is communicated through handle.sessionData.hash[0]:
+ *         - 0 on failure
+ *         - 1 on successful verification
+ */
 	void execute(handleInfo& handle) override { // account_verify <account_number>
 		int log_id = logEye.logTrace("account_verify Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

@@ -16,6 +16,38 @@
 
 class SetAccountCommand : public Command {
 public:
+	/**
+ * @brief Executes the command to update account PIN or CVV.
+ *
+ * @details
+ * Validates the card PAN and input parameters, then updates the account information. The method:
+ * - Logs the start of execution, session ID, user ID, and input command
+ * - Parses the input arguments: PAN, type (PIN/CVV), and value
+ * - Validates the PAN length (16 digits) and ensures it is numeric
+ * - Retrieves the account using getAccount_byCardNumber()
+ * - Updates the PIN if type is "PIN" and value length is 4
+ * - Updates the CVV if type is "CVV" and value length is 3
+ * - Sends a success or failure response to the client
+ * - Completes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, and hash/message arrays.
+ *
+ * @throws Throws a response using throw_response() in case of:
+ *         - Missing arguments
+ *         - Invalid PAN
+ *         - Invalid type or value length for PIN/CVV
+ *
+ * @note
+ * Side effects:
+ * - Modifies the account data (PIN or CVV)
+ * - Produces trace logs via logEye
+ * - Sends session/network response using throw_response()
+ *
+ * @retval void This method does not return a direct value.
+ *         Execution result is communicated through the response message.
+ */
+
 	void execute(handleInfo& handle) override { // set_account <PAN> <PIN/CVV> <password>
 		int log_id = logEye.logTrace("set_account Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);
