@@ -110,9 +110,12 @@ Inheritance diagram for NewAccountCommand:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2c287133987f6f10548d5537550dba69" id="r_a2c287133987f6f10548d5537550dba69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c287133987f6f10548d5537550dba69">execute</a> (<a class="el" href="structhandle_info.html">handleInfo</a> &amp;handle) override</td></tr>
+<tr class="memdesc:a2c287133987f6f10548d5537550dba69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the command to create a new bank account for a user.  <br /></td></tr>
 <tr class="memitem:a45c41650452646c227c7efb9ebd7e48a" id="r_a45c41650452646c227c7efb9ebd7e48a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45c41650452646c227c7efb9ebd7e48a">name</a> () const override</td></tr>
+<tr class="memdesc:a45c41650452646c227c7efb9ebd7e48a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the command.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_command"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_command')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_command.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
+<tr class="memdesc:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Creates a new bank account for a user. </p>
@@ -143,6 +146,51 @@ Syntax: new_account &lt;user_id&gt; &lt;currency&gt; &lt;card_type&gt; &lt;accou
 </table>
 </div><div class="memdoc">
 
+<p>Executes the command to create a new bank account for a user. </p>
+<p>Validates input arguments and creates a new account. The method:</p><ul>
+<li>Logs the start of execution, session ID, user ID, and raw input</li>
+<li>Parses the command arguments</li>
+<li>Validates user ID, currency type, card type, and account type</li>
+<li>Checks if the specified user exists</li>
+<li>Creates the account using <a class="el" href="_account_8cpp.html#aaa5fd9cf9e5fad16e78cde9c6d69d413" title="Adds a new account and saves it to the database.">ACC_addAccount()</a> if all validations pass</li>
+<li>Sets handle.sessionData.hash[0] to 1 on success (0 on failure)</li>
+<li>Sends a response to the client</li>
+<li>Completes logging with SUCCESS or FAILURE status</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>Reference to <a class="el" href="structhandle_info.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a> containing session data, command string, and the hash/message arrays.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Throws</td><td>a response using <a class="el" href="_command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a> in case of:<ul>
+<li>Missing arguments</li>
+<li>Invalid user ID</li>
+<li>Invalid currency type</li>
+<li>Invalid card type</li>
+<li>Invalid account type</li>
+<li>Nonexistent user</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Side effects:<ul>
+<li>Modifies handle.sessionData.hash[0]</li>
+<li>Adds a new account record to storage via <a class="el" href="_account_8cpp.html#aaa5fd9cf9e5fad16e78cde9c6d69d413" title="Adds a new account and saves it to the database.">ACC_addAccount()</a></li>
+<li>Produces trace logs via logEye</li>
+<li>Sends session/network response through <a class="el" href="_command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a></li>
+</ul>
+</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td>This method does not return a value directly. Execution result is communicated through handle.sessionData.hash[0] and the response message. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="class_command.html#a9eebac6cf348e424f531c5fbe0871558">Command</a>.</p>
 
 </div>
@@ -169,6 +217,10 @@ Syntax: new_account &lt;user_id&gt; &lt;currency&gt; &lt;card_type&gt; &lt;accou
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the name of the command. </p>
+<p>This pure virtual method must be implemented by each derived command class. It provides a unique identifier for the command, typically the text used to invoke it in the command-line or network interface.</p>
+<dl class="section return"><dt>Returns</dt><dd>std::string The command name as a string. </dd></dl>
 
 <p>Implements <a class="el" href="class_command.html#a87b16bdc7005f072d4b352666d3c1489">Command</a>.</p>
 

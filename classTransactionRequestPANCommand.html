@@ -114,11 +114,14 @@ Inheritance diagram for TransactionRequestPANCommand:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3c267ccee917eff2e6ece7b326f10f30" id="r_a3c267ccee917eff2e6ece7b326f10f30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransactionRequestPANCommand.html#a3c267ccee917eff2e6ece7b326f10f30">execute</a> (<a class="el" href="structhandleInfo.html">handleInfo</a> &amp;handle) override</td></tr>
+<tr class="memdesc:a3c267ccee917eff2e6ece7b326f10f30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes a transaction request between two accounts using PANs.  <br /></td></tr>
 <tr class="separator:a3c267ccee917eff2e6ece7b326f10f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac83d1c062d4fffb2e6dbda27f0c278da" id="r_ac83d1c062d4fffb2e6dbda27f0c278da"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTransactionRequestPANCommand.html#ac83d1c062d4fffb2e6dbda27f0c278da">name</a> () const override</td></tr>
+<tr class="memdesc:ac83d1c062d4fffb2e6dbda27f0c278da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the command.  <br /></td></tr>
 <tr class="separator:ac83d1c062d4fffb2e6dbda27f0c278da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCommand"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCommand')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCommand.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
+<tr class="memdesc:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -151,6 +154,47 @@ Syntax: request_PAN &lt;PAN_from&gt; &lt;PAN_to&gt; &lt;amount&gt; &lt;CVV&gt; &
 </table>
 </div><div class="memdoc">
 
+<p>Executes a transaction request between two accounts using PANs. </p>
+<p>Validates input parameters and executes a transaction request. The method:</p><ul>
+<li>Logs the start of execution, session ID, user ID, and input command</li>
+<li>Parses input arguments: PAN_from, PAN_to, amount, CVV, PIN, and optional comment</li>
+<li>Validates PAN lengths (16 digits), CVV (3 digits), PIN (4 digits), and amount format</li>
+<li>Checks that both source and destination accounts exist</li>
+<li>Calls process.transaction_request() to execute the transaction</li>
+<li>Sets handle.sessionData.hash[0] to 1 on success</li>
+<li>Sends a response to the client</li>
+<li>Completes logging with SUCCESS or FAILURE status</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>Reference to <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a> containing session data, command string, and hash/message arrays.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Throws</td><td>a response via <a class="el" href="Command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a> in case of:<ul>
+<li>Missing arguments</li>
+<li>Invalid PAN, CVV, PIN, or amount</li>
+<li>Non-existent accounts</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Side effects:<ul>
+<li>Initiates a transaction request via process.transaction_request()</li>
+<li>Produces trace logs via logEye</li>
+<li>Sends session/network response using <a class="el" href="Command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a></li>
+</ul>
+</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td>Execution result is communicated through handle.sessionData.hash[0] and the response message. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="classCommand.html#a9eebac6cf348e424f531c5fbe0871558">Command</a>.</p>
 
 </div>
@@ -177,6 +221,10 @@ Syntax: request_PAN &lt;PAN_from&gt; &lt;PAN_to&gt; &lt;amount&gt; &lt;CVV&gt; &
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the name of the command. </p>
+<p>This pure virtual method must be implemented by each derived command class. It provides a unique identifier for the command, typically the text used to invoke it in the command-line or network interface.</p>
+<dl class="section return"><dt>Returns</dt><dd>std::string The command name as a string. </dd></dl>
 
 <p>Implements <a class="el" href="classCommand.html#a87b16bdc7005f072d4b352666d3c1489">Command</a>.</p>
 

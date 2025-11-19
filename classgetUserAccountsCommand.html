@@ -114,11 +114,14 @@ Inheritance diagram for getUserAccountsCommand:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a16742215729dd87b63ddf8ca1c7973f9" id="r_a16742215729dd87b63ddf8ca1c7973f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgetUserAccountsCommand.html#a16742215729dd87b63ddf8ca1c7973f9">execute</a> (<a class="el" href="structhandleInfo.html">handleInfo</a> &amp;handle) override</td></tr>
+<tr class="memdesc:a16742215729dd87b63ddf8ca1c7973f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the command to retrieve all accounts for a user.  <br /></td></tr>
 <tr class="separator:a16742215729dd87b63ddf8ca1c7973f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7a26734e0cdb2075ca6c05e53d34868" id="r_af7a26734e0cdb2075ca6c05e53d34868"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgetUserAccountsCommand.html#af7a26734e0cdb2075ca6c05e53d34868">name</a> () const override</td></tr>
+<tr class="memdesc:af7a26734e0cdb2075ca6c05e53d34868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the command.  <br /></td></tr>
 <tr class="separator:af7a26734e0cdb2075ca6c05e53d34868"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCommand"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCommand')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCommand.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommand.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
+<tr class="memdesc:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
 <tr class="separator:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_classCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -151,6 +154,36 @@ Syntax: getUserAccounts </dd></dl>
 </table>
 </div><div class="memdoc">
 
+<p>Executes the command to retrieve all accounts for a user. </p>
+<p>Fetches all accounts associated with the current user's session. The method:</p><ul>
+<li>Logs the start of execution, session ID, user ID, and input command</li>
+<li>Retrieves user ID from the session</li>
+<li>Calls <a class="el" href="Account_8cpp.html#a8ea4f4a39bdea1809db1ff7bb3ab3f61" title="Get all accounts of a user.">getUserAccounts()</a> to fetch all accounts for the user</li>
+<li>Prepares a response string containing all account IDs</li>
+<li>Sets handle.sessionData.hash[0] to 1 on success (0 on failure)</li>
+<li>Sends a success response to the client</li>
+<li>Completes logging with SUCCESS status</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>Reference to <a class="el" href="structhandleInfo.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a> containing session data, including user session, command input, and hash/message arrays.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Side effects:<ul>
+<li>Modifies handle.sessionData.hash[0]</li>
+<li>Copies account IDs into handle.sessionData.msg[1]</li>
+<li>Produces trace logs via logEye</li>
+<li>Sends a session/network response using <a class="el" href="Command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a></li>
+</ul>
+</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td>This method does not return a value directly. Execution result is communicated through handle.sessionData.hash[0] and the response message. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="classCommand.html#a9eebac6cf348e424f531c5fbe0871558">Command</a>.</p>
 
 </div>
@@ -177,6 +210,10 @@ Syntax: getUserAccounts </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the name of the command. </p>
+<p>This pure virtual method must be implemented by each derived command class. It provides a unique identifier for the command, typically the text used to invoke it in the command-line or network interface.</p>
+<dl class="section return"><dt>Returns</dt><dd>std::string The command name as a string. </dd></dl>
 
 <p>Implements <a class="el" href="classCommand.html#a87b16bdc7005f072d4b352666d3c1489">Command</a>.</p>
 
