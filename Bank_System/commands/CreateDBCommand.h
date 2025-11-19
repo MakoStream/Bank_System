@@ -17,6 +17,45 @@
  */
 class CreateDBCommand : public Command {
 public:
+    /**
+ * @brief Executes the database creation command.
+ *
+ * @details
+ * Creates one of the supported database structures based on the argument
+ * provided by the user. The command can create the following databases:
+ * - users
+ * - accounts
+ * - transactions
+ * - audit
+ *
+ * The method:
+ * - Logs the operation start and session details
+ * - Parses the command into arguments
+ * - Checks the requested database type
+ * - Invokes the corresponding database creation function
+ * - Sends an appropriate response back to the client
+ * - Sets handle.sessionData.hash[0] to 1 on success (0 on failure)
+ * - Finalizes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               the raw command string, and the hash array used to report
+ *               command execution status.
+ *
+ * @throws Throws a response via throw_response() when:
+ *         - The provided database type is unknown
+ *
+ * @note
+ * Side effects:
+ * - Logs traces via logEye
+ * - Modifies handle.sessionData.hash[0]
+ * - Creates physical database files/tables depending on the option
+ * - Sends session/network output through throw_response()
+ *
+ * @retval void Does not return a value directly.
+ *         Command result is communicated through handle.sessionData.hash[0]:
+ *         - 0 on failure
+ *         - 1 on successful database creation
+ */
     void execute(handleInfo& handle) override {
 		int log_id = logEye.logTrace("create_db Command");
         logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

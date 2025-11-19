@@ -15,6 +15,37 @@
 
 class UnitTestCommand : public Command {
 public:
+	/**
+ * @class UnitTestCommand
+ * @brief Executes unit tests for user or server clients.
+ *
+ * @details
+ * The UnitTestCommand performs the following steps:
+ * - Logs session ID, user ID, and input command via logEye
+ * - Removes existing user and account databases to prepare for fresh tests
+ * - Parses input arguments to determine client type ("user" or "server")
+ * - Checks if debug mode is enabled using process.debugStatus()
+ * - Allows execution of unit tests only in debug mode
+ * - Sets handle.sessionData.hash[0] to 1 if allowed
+ * - Sends response to client indicating whether tests can be run
+ * - Logs success or failure using logEye
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, hash/message arrays, and pipe info.
+ *
+ * @throws Throws a response via throw_response() if:
+ *         - Debug mode is off
+ *         - Invalid client type input is provided
+ *
+ * @note
+ * Side effects:
+ * - Deletes existing user and account databases
+ * - Produces trace logs via logEye
+ * - Sends session/network response using throw_response()
+ *
+ * @retval void Execution result is indicated via handle.sessionData.hash[0]
+ *         and the response message.
+ */
 	void execute(handleInfo& handle) override {  // unit_test <client_type>
 		int log_id = logEye.logTrace("unit_test Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

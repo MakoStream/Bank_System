@@ -18,6 +18,37 @@ using namespace std;
  */
 class TransactionRequestPANCommand : public Command {
 public:
+	/**
+ * @brief Executes a transaction request between two accounts using PANs.
+ *
+ * @details
+ * Validates input parameters and executes a transaction request. The method:
+ * - Logs the start of execution, session ID, user ID, and input command
+ * - Parses input arguments: PAN_from, PAN_to, amount, CVV, PIN, and optional comment
+ * - Validates PAN lengths (16 digits), CVV (3 digits), PIN (4 digits), and amount format
+ * - Checks that both source and destination accounts exist
+ * - Calls process.transaction_request() to execute the transaction
+ * - Sets handle.sessionData.hash[0] to 1 on success
+ * - Sends a response to the client
+ * - Completes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, and hash/message arrays.
+ *
+ * @throws Throws a response via throw_response() in case of:
+ *         - Missing arguments
+ *         - Invalid PAN, CVV, PIN, or amount
+ *         - Non-existent accounts
+ *
+ * @note
+ * Side effects:
+ * - Initiates a transaction request via process.transaction_request()
+ * - Produces trace logs via logEye
+ * - Sends session/network response using throw_response()
+ *
+ * @retval void Execution result is communicated through handle.sessionData.hash[0]
+ *         and the response message.
+ */
 	void execute(handleInfo& handle) override { // transaction_request <PAN_from> <PAN_to> <ammount> <CVV> <PIN> <comment>
 		int log_id = logEye.logTrace("transaction_request_PAN Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);
@@ -100,6 +131,32 @@ public:
  */
 class TransactionRequestListCommand : public Command {
 public:
+	/**
+ * @brief Executes the command to print a paginated list of transaction requests.
+ *
+ * @details
+ * Fetches and prints transaction requests page by page. The method:
+ * - Logs the start of execution, session ID, user ID, and input command
+ * - Parses the input command and validates the page number
+ * - Defaults to page 1 if no page number is provided
+ * - Calls printTransactions() to fetch and format transaction requests for the requested page
+ * - Writes the formatted transaction list to the client via WriteFile()
+ * - Completes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, message buffers, and pipe information.
+ *
+ * @throws Throws a response via throw_response() if the page number is invalid (non-numeric).
+ *
+ * @note
+ * Side effects:
+ * - Produces trace logs via logEye
+ * - Sends transaction request list data to the client through WriteFile()
+ * - May modify handle.sessionData.msg to hold the transaction list
+ *
+ * @retval void This method does not return a direct value.
+ *         Output is delivered via handle.sessionData.msg and the pipe.
+ */
 	void execute(handleInfo& handle) override { // transaction_request_list <page>
 		int log_id = logEye.logTrace("transaction_request_list Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

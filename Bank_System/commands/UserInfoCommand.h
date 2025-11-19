@@ -15,6 +15,38 @@
  */
 class UserInfoCommand : public Command {
 public:
+	/**
+ * @class UserInfoCommand
+ * @brief Retrieves detailed information about a user.
+ *
+ * @details
+ * The UserInfoCommand performs the following steps:
+ * - Logs session ID, user ID, and input command via logEye
+ * - Parses input arguments to determine the user (by ID or login)
+ * - Fetches the user record using getUser_byId() or getUser_byLogin()
+ * - Returns user information including:
+ *   - ID
+ *   - Phone
+ *   - TIN
+ *   - Login, Name, Surname
+ * - Updates handle.sessionData.hash and msg arrays to communicate results
+ * - Logs success or failure using logEye
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, hash/message arrays, and pipe info.
+ *
+ * @throws Throws a response via throw_response() if:
+ *         - Arguments are missing
+ *         - User cannot be found
+ *
+ * @note
+ * Side effects:
+ * - Produces trace logs via logEye
+ * - Sends session/network response using throw_response()
+ *
+ * @retval void Execution result is indicated via handle.sessionData.hash[0]
+ *         and the response message.
+ */
 	void execute(handleInfo& handle) override { // user_info <id/login>
 		int log_id = logEye.logTrace("user_info Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

@@ -17,6 +17,43 @@
  */
 class AccountBanCommand : public Command {
 public:
+	/**
+ * @brief Executes the account ban command.
+ *
+ * @details
+ * Performs the ban operation for a bank account based on the provided IBAN.
+ * The method:
+ * - Logs the operation start and session details
+ * - Parses the input command into arguments
+ * - Validates the number of arguments
+ * - Validates the IBAN (must be 29 characters long)
+ * - Checks whether the account exists
+ * - Extracts an optional ban reason
+ * - Bans the account and writes the updated data to file
+ * - Sets handle.sessionData.hash[0] to 1 on success (0 on failure)
+ * - Sends a response back to the client
+ * - Finalizes log records with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, and the hash array for execution status.
+ *
+ * @throws Throws a response using throw_response() in the following cases:
+ *         - Invalid number of arguments
+ *         - IBAN format is incorrect (length not equal to 29)
+ *         - Account with the provided IBAN does not exist
+ *
+ * @note
+ * Side effects:
+ * - Writes log entries via logEye
+ * - Updates account data file through acc.updateInFile()
+ * - Modifies handle.sessionData.hash[0]
+ * - Sends network/session response via throw_response()
+ *
+ * @retval void This method does not return a value.
+ *         Execution status is communicated through handle.sessionData.hash[0]:
+ *         - 0 on failure
+ *         - 1 on successful account ban
+ */
 	void execute(handleInfo& handle) override { // account_ban <account_number> <reason>
 		int log_id = logEye.logTrace("account_ban Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);
@@ -79,6 +116,42 @@ public:
  */
 class AccountUnbanCommand : public Command {
 public:
+	/**
+ * @brief Executes the account unban command.
+ *
+ * @details
+ * Performs the unban operation for a bank account based on the provided IBAN.
+ * The method:
+ * - Logs the operation start and session details
+ * - Parses the input command into arguments
+ * - Validates the number of arguments
+ * - Validates the IBAN (must be 29 characters long)
+ * - Checks whether the account exists
+ * - Unbans the account and writes updated data to file
+ * - Sets handle.sessionData.hash[0] to 1 on success (0 on failure)
+ * - Sends a response back to the client
+ * - Finalizes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, and the hash array for execution status.
+ *
+ * @throws Throws a response via throw_response() in the following cases:
+ *         - Invalid number of arguments
+ *         - IBAN format is incorrect (length not equal to 29)
+ *         - Account with the provided IBAN does not exist
+ *
+ * @note
+ * Side effects:
+ * - Produces log entries via logEye
+ * - Updates the account file via acc.updateInFile()
+ * - Modifies handle.sessionData.hash[0]
+ * - Sends network/session response via throw_response()
+ *
+ * @retval void Does not return a value directly.
+ *         Execution status is indicated through handle.sessionData.hash[0]:
+ *         - 0 on failure
+ *         - 1 on successful account unban
+ */
 	void execute(handleInfo& handle) override { // account_unban <account_number>
 		int log_id = logEye.logTrace("account_unban Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

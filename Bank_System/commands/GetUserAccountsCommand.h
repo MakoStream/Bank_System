@@ -21,6 +21,34 @@ using namespace std;
 class getUserAccountsCommand : public Command {
 
 public:
+	/**
+ * @brief Executes the command to retrieve all accounts for a user.
+ *
+ * @details
+ * Fetches all accounts associated with the current user's session.
+ * The method:
+ * - Logs the start of execution, session ID, user ID, and input command
+ * - Retrieves user ID from the session
+ * - Calls getUserAccounts() to fetch all accounts for the user
+ * - Prepares a response string containing all account IDs
+ * - Sets handle.sessionData.hash[0] to 1 on success (0 on failure)
+ * - Sends a success response to the client
+ * - Completes logging with SUCCESS status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               including user session, command input, and hash/message arrays.
+ *
+ * @note
+ * Side effects:
+ * - Modifies handle.sessionData.hash[0]
+ * - Copies account IDs into handle.sessionData.msg[1]
+ * - Produces trace logs via logEye
+ * - Sends a session/network response using throw_response()
+ *
+ * @retval void This method does not return a value directly.
+ *         Execution result is communicated through handle.sessionData.hash[0]
+ *         and the response message.
+ */
     void execute(handleInfo& handle) override {
 		int log_id = logEye.logTrace("getUserAccounts command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);

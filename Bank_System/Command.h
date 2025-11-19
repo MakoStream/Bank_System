@@ -28,8 +28,34 @@ Each derived command class must provide an execute method and a method to return
 */
 class Command {
 public:
+    /**
+     * @brief Virtual destructor.
+     * @details Ensures that derived command classes can be properly
+     *          destroyed through a base class pointer.
+     */
     virtual ~Command() = default;
+
+    /**
+     * @brief Executes the command.
+     * @details
+     * This pure virtual method must be implemented by every derived command class.
+     * It contains the logic for processing the command, including validation,
+     * state modification, and interaction with the handleInfo object.
+     *
+     * @param handle Reference to handleInfo, which contains session data,
+     *               input commands, and other necessary context for execution.
+     */
     virtual void execute(handleInfo& handle) = 0; // only virtual method
+
+    /**
+     * @brief Returns the name of the command.
+     * @details
+     * This pure virtual method must be implemented by each derived command class.
+     * It provides a unique identifier for the command, typically the text
+     * used to invoke it in the command-line or network interface.
+     *
+     * @return std::string The command name as a string.
+     */
     virtual std::string name() const = 0; // command name
 };
 

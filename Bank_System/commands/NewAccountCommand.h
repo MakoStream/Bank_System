@@ -19,6 +19,42 @@
 class NewAccountCommand : public Command {
 
 public:
+	/**
+ * @brief Executes the command to create a new bank account for a user.
+ *
+ * @details
+ * Validates input arguments and creates a new account. The method:
+ * - Logs the start of execution, session ID, user ID, and raw input
+ * - Parses the command arguments
+ * - Validates user ID, currency type, card type, and account type
+ * - Checks if the specified user exists
+ * - Creates the account using ACC_addAccount() if all validations pass
+ * - Sets handle.sessionData.hash[0] to 1 on success (0 on failure)
+ * - Sends a response to the client
+ * - Completes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, and the hash/message arrays.
+ *
+ * @throws Throws a response using throw_response() in case of:
+ *         - Missing arguments
+ *         - Invalid user ID
+ *         - Invalid currency type
+ *         - Invalid card type
+ *         - Invalid account type
+ *         - Nonexistent user
+ *
+ * @note
+ * Side effects:
+ * - Modifies handle.sessionData.hash[0]
+ * - Adds a new account record to storage via ACC_addAccount()
+ * - Produces trace logs via logEye
+ * - Sends session/network response through throw_response()
+ *
+ * @retval void This method does not return a value directly.
+ *         Execution result is communicated through handle.sessionData.hash[0]
+ *         and the response message.
+ */
 	void execute(handleInfo& handle) override { // new_account owner curence_type cardtype account_type //example: new_account 0 USD DEPOSITE 316
 		int log_id = logEye.logTrace("new_account Command");
 		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);
