@@ -110,9 +110,12 @@ Inheritance diagram for TransactionRequestListCommand:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aff6c89307e02a05afe83ad2496081bca" id="r_aff6c89307e02a05afe83ad2496081bca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff6c89307e02a05afe83ad2496081bca">execute</a> (<a class="el" href="structhandle_info.html">handleInfo</a> &amp;handle) override</td></tr>
+<tr class="memdesc:aff6c89307e02a05afe83ad2496081bca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the command to print a paginated list of transaction requests.  <br /></td></tr>
 <tr class="memitem:ab9e46cee511ee1b14ab8e670bfcd6a2c" id="r_ab9e46cee511ee1b14ab8e670bfcd6a2c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9e46cee511ee1b14ab8e670bfcd6a2c">name</a> () const override</td></tr>
+<tr class="memdesc:ab9e46cee511ee1b14ab8e670bfcd6a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the command.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_command"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_command')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_command.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
+<tr class="memdesc:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Prints a paginated list of transaction requests. </p>
@@ -143,6 +146,40 @@ Syntax: request_list &lt;page&gt; </dd></dl>
 </table>
 </div><div class="memdoc">
 
+<p>Executes the command to print a paginated list of transaction requests. </p>
+<p>Fetches and prints transaction requests page by page. The method:</p><ul>
+<li>Logs the start of execution, session ID, user ID, and input command</li>
+<li>Parses the input command and validates the page number</li>
+<li>Defaults to page 1 if no page number is provided</li>
+<li>Calls <a class="el" href="_audit_8cpp.html#a2dce53494632e348e830931b2c5071c8">printTransactions()</a> to fetch and format transaction requests for the requested page</li>
+<li>Writes the formatted transaction list to the client via WriteFile()</li>
+<li>Completes logging with SUCCESS or FAILURE status</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>Reference to <a class="el" href="structhandle_info.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a> containing session data, command string, message buffers, and pipe information.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Throws</td><td>a response via <a class="el" href="_command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a> if the page number is invalid (non-numeric).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Side effects:<ul>
+<li>Produces trace logs via logEye</li>
+<li>Sends transaction request list data to the client through WriteFile()</li>
+<li>May modify handle.sessionData.msg to hold the transaction list</li>
+</ul>
+</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td>This method does not return a direct value. Output is delivered via handle.sessionData.msg and the pipe. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="class_command.html#a9eebac6cf348e424f531c5fbe0871558">Command</a>.</p>
 
 </div>
@@ -169,6 +206,10 @@ Syntax: request_list &lt;page&gt; </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the name of the command. </p>
+<p>This pure virtual method must be implemented by each derived command class. It provides a unique identifier for the command, typically the text used to invoke it in the command-line or network interface.</p>
+<dl class="section return"><dt>Returns</dt><dd>std::string The command name as a string. </dd></dl>
 
 <p>Implements <a class="el" href="class_command.html#a87b16bdc7005f072d4b352666d3c1489">Command</a>.</p>
 

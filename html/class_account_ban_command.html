@@ -110,9 +110,12 @@ Inheritance diagram for AccountBanCommand:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:accca16fb3cef8f6bdf62b2833f294df5" id="r_accca16fb3cef8f6bdf62b2833f294df5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#accca16fb3cef8f6bdf62b2833f294df5">execute</a> (<a class="el" href="structhandle_info.html">handleInfo</a> &amp;handle) override</td></tr>
+<tr class="memdesc:accca16fb3cef8f6bdf62b2833f294df5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the account ban command.  <br /></td></tr>
 <tr class="memitem:a36181e8ca9a89ef76c7350f55ad7fd26" id="r_a36181e8ca9a89ef76c7350f55ad7fd26"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36181e8ca9a89ef76c7350f55ad7fd26">name</a> () const override</td></tr>
+<tr class="memdesc:a36181e8ca9a89ef76c7350f55ad7fd26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the command.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_command"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_command')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_command.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
+<tr class="memdesc:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles banning of a bank account. </p>
@@ -150,6 +153,54 @@ Syntax: account_ban &lt;IBAN&gt; [reason] </dd></dl>
 </table>
 </div><div class="memdoc">
 
+<p>Executes the account ban command. </p>
+<p>Performs the ban operation for a bank account based on the provided IBAN. The method:</p><ul>
+<li>Logs the operation start and session details</li>
+<li>Parses the input command into arguments</li>
+<li>Validates the number of arguments</li>
+<li>Validates the IBAN (must be 29 characters long)</li>
+<li>Checks whether the account exists</li>
+<li>Extracts an optional ban reason</li>
+<li>Bans the account and writes the updated data to file</li>
+<li>Sets handle.sessionData.hash[0] to 1 on success (0 on failure)</li>
+<li>Sends a response back to the client</li>
+<li>Finalizes log records with SUCCESS or FAILURE status</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>Reference to <a class="el" href="structhandle_info.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a> containing session data, command string, and the hash array for execution status.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Throws</td><td>a response using <a class="el" href="_command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a> in the following cases:<ul>
+<li>Invalid number of arguments</li>
+<li>IBAN format is incorrect (length not equal to 29)</li>
+<li>Account with the provided IBAN does not exist</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Side effects:<ul>
+<li>Writes log entries via logEye</li>
+<li>Updates account data file through acc.updateInFile()</li>
+<li>Modifies handle.sessionData.hash[0]</li>
+<li>Sends network/session response via <a class="el" href="_command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a></li>
+</ul>
+</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td>This method does not return a value. Execution status is communicated through handle.sessionData.hash[0]:<ul>
+<li>0 on failure</li>
+<li>1 on successful account ban </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="class_command.html#a9eebac6cf348e424f531c5fbe0871558">Command</a>.</p>
 
 </div>
@@ -176,6 +227,10 @@ Syntax: account_ban &lt;IBAN&gt; [reason] </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the name of the command. </p>
+<p>This pure virtual method must be implemented by each derived command class. It provides a unique identifier for the command, typically the text used to invoke it in the command-line or network interface.</p>
+<dl class="section return"><dt>Returns</dt><dd>std::string The command name as a string. </dd></dl>
 
 <p>Implements <a class="el" href="class_command.html#a87b16bdc7005f072d4b352666d3c1489">Command</a>.</p>
 

@@ -110,9 +110,12 @@ Inheritance diagram for CreateDBCommand:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad6a8245d266d301ca163bc91a00837a8" id="r_ad6a8245d266d301ca163bc91a00837a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6a8245d266d301ca163bc91a00837a8">execute</a> (<a class="el" href="structhandle_info.html">handleInfo</a> &amp;handle) override</td></tr>
+<tr class="memdesc:ad6a8245d266d301ca163bc91a00837a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the database creation command.  <br /></td></tr>
 <tr class="memitem:ac4a8e0ddd33fae6ddfe045c921034cc5" id="r_ac4a8e0ddd33fae6ddfe045c921034cc5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4a8e0ddd33fae6ddfe045c921034cc5">name</a> () const override</td></tr>
+<tr class="memdesc:ac4a8e0ddd33fae6ddfe045c921034cc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the command.  <br /></td></tr>
 <tr class="inherit_header pub_methods_class_command"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_class_command')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="class_command.html">Command</a></td></tr>
 <tr class="memitem:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command" id="r_aa545a53d35818f9efb936daf3fa16c61"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command.html#aa545a53d35818f9efb936daf3fa16c61">~Command</a> ()=default</td></tr>
+<tr class="memdesc:aa545a53d35818f9efb936daf3fa16c61 inherit pub_methods_class_command"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Creates specified database tables. </p>
@@ -143,6 +146,55 @@ Syntax: create_db &lt;users|accounts|transactions|audit&gt; </dd></dl>
 </table>
 </div><div class="memdoc">
 
+<p>Executes the database creation command. </p>
+<p>Creates one of the supported database structures based on the argument provided by the user. The command can create the following databases:</p><ul>
+<li>users</li>
+<li>accounts</li>
+<li>transactions</li>
+<li>audit</li>
+</ul>
+<p>The method:</p><ul>
+<li>Logs the operation start and session details</li>
+<li>Parses the command into arguments</li>
+<li>Checks the requested database type</li>
+<li>Invokes the corresponding database creation function</li>
+<li>Sends an appropriate response back to the client</li>
+<li>Sets handle.sessionData.hash[0] to 1 on success (0 on failure)</li>
+<li>Finalizes logging with SUCCESS or FAILURE status</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handle</td><td>Reference to <a class="el" href="structhandle_info.html" title="Helper structure to pass pipe handles and session data.">handleInfo</a> containing session data, the raw command string, and the hash array used to report command execution status.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Throws</td><td>a response via <a class="el" href="_command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a> when:<ul>
+<li>The provided database type is unknown</li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Side effects:<ul>
+<li>Logs traces via logEye</li>
+<li>Modifies handle.sessionData.hash[0]</li>
+<li>Creates physical database files/tables depending on the option</li>
+<li>Sends session/network output through <a class="el" href="_command_8cpp.html#a718cac29a2de76923315d12032ef77ab" title="Sends a response message to the client.">throw_response()</a></li>
+</ul>
+</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td>Does not return a value directly. <a class="el" href="class_command.html" title="Abstract base class for all commands.">Command</a> result is communicated through handle.sessionData.hash[0]:<ul>
+<li>0 on failure</li>
+<li>1 on successful database creation </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implements <a class="el" href="class_command.html#a9eebac6cf348e424f531c5fbe0871558">Command</a>.</p>
 
 </div>
@@ -169,6 +221,10 @@ Syntax: create_db &lt;users|accounts|transactions|audit&gt; </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the name of the command. </p>
+<p>This pure virtual method must be implemented by each derived command class. It provides a unique identifier for the command, typically the text used to invoke it in the command-line or network interface.</p>
+<dl class="section return"><dt>Returns</dt><dd>std::string The command name as a string. </dd></dl>
 
 <p>Implements <a class="el" href="class_command.html#a87b16bdc7005f072d4b352666d3c1489">Command</a>.</p>
 
