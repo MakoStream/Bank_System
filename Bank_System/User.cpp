@@ -21,7 +21,7 @@ using namespace std;
 // Description: Creates an empty binary file "users.dat"
 // Requirements: <fstream>, <iostream>
 // Required for: commands::createDB()
-void DB_create() {
+void User::DB_create() {
     ofstream file(process.getUserDBPath(), ios::binary); // створюємо новий файл
     if (!file) {
         cerr << "Помилка створення файлу!" << endl;
@@ -35,7 +35,7 @@ void DB_create() {
 // Description: Appends a User object to "users.dat"
 // Requirements: User::save(), <fstream>
 // Required for: commands::regUser()
-void DB_newUser(User user) {
+void User::DB_newUser(User user) {
     ofstream fout(process.getUserDBPath(), ios::binary | ios::app);
     user.save(fout);
     fout.close();
@@ -54,7 +54,7 @@ using namespace std;
 // Потрібно, щоб існували:
 // class User { ...; void load(ifstream&); int getId(); string getLogin(); string getName(); string getSurname(); string getPhone(); }
 
-void DB_list(char msg[5][1024], int page) {
+void User::DB_list(char msg[5][1024], int page) {
     ifstream fin(process.getUserDBPath(), ios::binary);
     if (!fin) {
         cerr << "Не вдалося відкрити файл users.dat!" << endl;
@@ -111,7 +111,7 @@ void DB_list(char msg[5][1024], int page) {
 // Description: Loads the last user from "users.dat"
 // Requirements: User class, <fstream>, <iostream>
 // Required for: commands::regUser()
-User loadLastUser() {
+User User::loadLastUser() {
     ifstream fin(process.getUserDBPath(), ios::binary | ios::in);
     User empty{};
 
@@ -147,7 +147,7 @@ User loadLastUser() {
 // Description: Checks if a login already exists in "users.dat"
 // Requirements: User class, <fstream>, <cstring>
 // Required for: commands::execute("reg_user")
-bool isUserExist_byLogin(const char* login) {
+bool User::isUserExist_byLogin(const char* login) {
     ifstream fin(process.getUserDBPath(), ios::binary);
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
@@ -161,7 +161,7 @@ bool isUserExist_byLogin(const char* login) {
 }
 
 
-bool isUserExist_byId(int id) {
+bool User::isUserExist_byId(int id) {
     ifstream fin(process.getUserDBPath(), ios::binary);
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
@@ -175,7 +175,7 @@ bool isUserExist_byId(int id) {
 }
 
 
-User getUser_byLogin(const char* login) {
+User User::getUser_byLogin(const char* login) {
     ifstream fin(process.getUserDBPath(), ios::binary);
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {
@@ -188,7 +188,7 @@ User getUser_byLogin(const char* login) {
     return emptyUser;
 }
 
-User getUser_byId(int id) {
+User User::getUser_byId(int id) {
     ifstream fin(process.getUserDBPath(), ios::binary);
     User u;
     while (fin.read(reinterpret_cast<char*>(&u), sizeof(User))) {

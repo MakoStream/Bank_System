@@ -142,72 +142,77 @@ public:
 
     void updateInFile();                                      ///< Updates this user object in the binary file
     ///@}
+
+
+    // ============ STATIC FUNCTIONS ==================
+    /**
+    @brief Reads and prints a page of users from "users.dat".
+    @details Loads users from the binary file and formats their information into a 5-element string array for display. Supports pagination.
+    @note Requirements: User class, <fstream>, <iostream>
+    @note Required for: commands::execute("user_list")
+    */
+    static void DB_list(char msg[5][1024], int page);
+
+    /**
+    @brief Creates an empty binary file "users.dat".
+    @details This function creates a new binary file to store user data. If the file already exists, it will be overwritten.
+    @note Requirements: <fstream>, <iostream>
+    @note Required for: commands::createDB()
+    */
+    static void DB_create();
+
+    /**
+    @brief Appends a User object to "users.dat".
+    @details This function writes a User object to the end of the binary file for persistent storage.
+    @note Requirements: User::save(), <fstream>
+    @note Required for: commands::regUser()
+    */
+    static void DB_newUser(User user);
+
+    /**
+    @brief Loads the last user from "users.dat".
+    @details Seeks to the end of the binary file and reads the last User object for further processing.
+    @note Requirements: User class, <fstream>, <iostream>
+    @note Required for: commands::regUser()
+    */
+    static User loadLastUser();
+
+
+    /**
+    @brief Checks if a login already exists in "users.dat".
+    @details Iterates through the binary user file and compares logins to prevent duplicates.
+    @note Requirements: User class, <fstream>, <cstring>
+    @note Required for: commands::execute("reg_user")
+    */
+    static bool isUserExist_byLogin(const char* login);
+
+    /**
+    @brief Retrieves a User object by login.
+    @details Searches the binary file for a user matching the specified login and returns the User object.
+    @note Requirements: User class, <fstream>, <cstring>
+    @note Required for: any function needing User data by login
+    */
+    static User getUser_byLogin(const char* login);
+
+    /**
+    @brief Checks if a user with a given ID exists in "users.dat".
+    @details Iterates through the binary user file and compares IDs.
+    @note Requirements: User class, <fstream>
+    @note Required for: any function needing user validation
+    */
+    static bool isUserExist_byId(int id);
+
+    /**
+    @brief Retrieves a User object by ID.
+    @details Searches the binary file for a user matching the specified ID and returns the User object.
+    @note Requirements: User class, <fstream>
+    @note Required for: any function needing User data by ID
+    */
+    static User getUser_byId(int id);
+
 };
 
 extern User emptyUser;
 
 
-/**
-@brief Reads and prints a page of users from "users.dat".
-@details Loads users from the binary file and formats their information into a 5-element string array for display. Supports pagination.
-@note Requirements: User class, <fstream>, <iostream>
-@note Required for: commands::execute("user_list")
-*/
-void DB_list(char msg[5][1024], int page);
 
-/**
-@brief Creates an empty binary file "users.dat".
-@details This function creates a new binary file to store user data. If the file already exists, it will be overwritten.
-@note Requirements: <fstream>, <iostream>
-@note Required for: commands::createDB()
-*/
-void DB_create();
-
-/**
-@brief Appends a User object to "users.dat".
-@details This function writes a User object to the end of the binary file for persistent storage.
-@note Requirements: User::save(), <fstream>
-@note Required for: commands::regUser()
-*/
-void DB_newUser(User user);
-
-/**
-@brief Loads the last user from "users.dat".
-@details Seeks to the end of the binary file and reads the last User object for further processing.
-@note Requirements: User class, <fstream>, <iostream>
-@note Required for: commands::regUser()
-*/
-User loadLastUser();
-
-
-/**
-@brief Checks if a login already exists in "users.dat".
-@details Iterates through the binary user file and compares logins to prevent duplicates.
-@note Requirements: User class, <fstream>, <cstring>
-@note Required for: commands::execute("reg_user")
-*/
-bool isUserExist_byLogin(const char* login);
-
-/**
-@brief Retrieves a User object by login.
-@details Searches the binary file for a user matching the specified login and returns the User object.
-@note Requirements: User class, <fstream>, <cstring>
-@note Required for: any function needing User data by login
-*/
-User getUser_byLogin(const char* login);
-
-/**
-@brief Checks if a user with a given ID exists in "users.dat".
-@details Iterates through the binary user file and compares IDs.
-@note Requirements: User class, <fstream>
-@note Required for: any function needing user validation
-*/
-bool isUserExist_byId(int id);
-
-/**
-@brief Retrieves a User object by ID.
-@details Searches the binary file for a user matching the specified ID and returns the User object.
-@note Requirements: User class, <fstream>
-@note Required for: any function needing User data by ID
-*/
-User getUser_byId(int id);
