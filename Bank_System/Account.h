@@ -160,102 +160,90 @@ public:
 
     void updateInFile(); ///< Update account record in file
     ///@}
+
+	///@}
+
+	// ======================================================================
+	// === Всі глобальні функції тепер стали static методами класу ==========
+	// ======================================================================
+
+	/**
+	 * @brief Create empty accounts file
+	 * @note Requires ACC_addAccount()
+	 */
+	static void DB_create_accounts();
+
+	/**
+	 * @brief Adds a new account and saves it to the database
+	 * @param userID Owner user ID
+	 * @param balance_type Currency type
+	 * @param type Card type
+	 * @param accountType Account plan type
+	 * @see DB_create_accounts()
+	 */
+	static void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType);
+
+	/**
+	 * @brief Find account by card number.
+	 * @param cardNumber Card number (PAN)
+	 * @return account object or empty account
+	 */
+	static account getAccount_byCardNumber(const char* cardNumber);
+
+	/**
+	 * @brief Find account by IBAN.
+	 * @param IBAN IBAN
+	 * @return account object or empty account
+	 */
+	static account getAccount_byIBAN(const char* IBAN);
+
+	/**
+	 * @brief Check if account exists by IBAN
+	 */
+	static bool isAccountExist_byIBAN(const char* IBAN);
+
+	/**
+	 * @brief Check if account exists by card number
+	 */
+	static bool isAccountExist_byCardNumber(const char* cardNumber);
+
+	/**
+	 * @brief Check if account exists by ID
+	 */
+	static bool isAccountExisytById(int id);
+
+	/**
+	 * @brief Get account by ID
+	 */
+	static account getAccountById(int id);
+
+	/**
+	 * @brief Get last account in database
+	 */
+	static account getLastAccount();
+
+	/**
+	 * @brief Get all accounts of a user
+	 */
+	static vector<account> getUserAccounts(int user_id);
+
+	/**
+	 * @brief Print accounts into paged messages
+	 */
+	static void printAllAccounts(char msg[5][1024], int page);
+
+	/**
+	 * @brief Transfer funds between accounts
+	 */
+	static void transferFunds(account& fromAcc, account& toAcc, double amount);
+
+	/**
+	 * @brief Debug: set account balance
+	 */
+	static void setAccountBalance(account& acc, double newBalance);
 };
 
 extern account emptyAccount;
-
-// Функції для роботи з банківськими рахунками
-void ACC_createDB(); // Створення пустого бінарного файлу accounts.dat
-
-/**
- * @brief Adds a new account and saves it to the database
- * @param userID Owner user ID
- * @param balance_type Currency type
- * @param type Card type
- * @param accountType Account plan type
- * @see DB_create_accounts()
- */
-void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType); // Додавання нового рахунку
-
-/**
- * @brief Find account by card number.
- * @param cardNumber Card number (PAN)
- * @return account object, or emptyAccount if not found
- * @note Requires account class and <fstream>
- */
-account ACC_getAccountByCardNumber(const char* cardNumber); // Пошук рахунку за номером картки
-
-
-/**
- * @brief Find account by IBAN.
- * @param IBAN IBAN of the account
- * @return account object, or emptyAccount if not found
- * @note Requires account class and <fstream>
- */
-account ACC_getAccountByIBAN(const char* IBAN); // Пошук рахунку за IBAN
-
-/**
- * @brief Transfer funds between accounts
- * @note Requires account class
- */
-void transferFunds(account& fromAcc, account& toAcc, double amount); // Переказ коштів між рахунками
-
-
-
-/**
- * @brief Print accounts into paged messages
- * @note Requires account class, <fstream>, <sstream>
- */
-void printAllAccounts(char msg[5][1024], int page);
-
-/**
- * @brief Create empty accounts file
- * @note Requires ACC_addAccount()
- */
-void DB_create_accounts();
-
-/**
- * @brief Check if account exists by IBAN
- * @note Requires account class, <fstream>
- */
-bool isAccountExist_byIBAN(const char* IBAN);
-
-/**
- * @brief Check if account exists by card number
- * @note Requires account class, <fstream>
- */
-bool isAccountExist_byCardNumber(const char* cardNumber);
-
-/**
- * @brief Get account by ID
- * @note Requires account class, <fstream>
- */
-account getAccountById(int id);
-
-/**
- * @brief Check if account exists by ID
- * @note Requires account class, <fstream>
- */
-bool isAccountExistById(int id);
-
-/**
- * @brief Get last account in database
- * @note Requires account class, <fstream>
- * @see ACC_addAccount()
- */
-account getLastAccount();
-
-/**
- * @brief Get all accounts of a user
- * @note Requires account class, <fstream>
- */
-vector<account> getUserAccounts(int user_id);
-
-/**
- * @brief Debug: set account balance
- * @note Requires account class
- */
-void setAccountBalance(account& acc, double newBalance);
 
 
 //account getAccount_byIBAN(const char* IBAN); // Пошук рахунку за IBAN

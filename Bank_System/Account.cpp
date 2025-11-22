@@ -84,7 +84,7 @@ char* generate_CVC() {
 }
 
 
-account getLastAccount() {
+account account::getLastAccount() {
     ifstream fin(process.getAccountDBPath(), ios::binary | ios::in);
     account empty{};
     if (!fin.is_open()) { cerr << "Не вдалося відкрити файл!" << endl; return empty; }
@@ -101,7 +101,7 @@ account getLastAccount() {
     return last;
 }
 
-account getAccountById(int id) {
+account account::getAccountById(int id) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
     account acc;
     while (fin.read(reinterpret_cast<char*>(&acc), sizeof(account))) {
@@ -114,7 +114,7 @@ account getAccountById(int id) {
     return emptyAccount;
 }
 
-bool isAccountExisytById(int id) {
+bool account::isAccountExisytById(int id) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
     account acc;
     while (fin.read(reinterpret_cast<char*>(&acc), sizeof(account))) {
@@ -128,7 +128,7 @@ bool isAccountExisytById(int id) {
 }
 
 
-void ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType) {
+void account::ACC_addAccount(int userID, balanceType balance_type, cardType type, short accountType) {
     std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::app);
     if (!fout) { std::cerr << "Не вдалося відкрити файл для запису." << std::endl; return; }
 
@@ -165,7 +165,7 @@ void ACC_addAccount(int userID, balanceType balance_type, cardType type, short a
     delete[] cardNumber;
 }
 
-void printAllAccounts(char msg[5][1024], int page) {
+void account::printAllAccounts(char msg[5][1024], int page) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
     if (!fin) { cerr << "Не вдалося відкрити файл для читання." << endl; for (int i = 0; i < 5; i++) msg[i][0] = '\0'; return; }
 
@@ -207,30 +207,30 @@ void printAllAccounts(char msg[5][1024], int page) {
     fin.close();
 }
 
-void DB_create_accounts() {
+void account::DB_create_accounts() {
     std::ofstream fout(process.getAccountDBPath(), ios::binary | ios::trunc);
     if (!fout) { std::cerr << "Не вдалося створити файл." << std::endl; return; }
     std::cout << "Бінарний файл accounts.dat створено успішно." << std::endl;
     fout.close();
 
-    ACC_addAccount(0, UAH, DEFAULT, 2011);
-    ACC_addAccount(0, DLR, DEFAULT, 2012);
-    ACC_addAccount(0, EUR, DEFAULT, 2013);
-    ACC_addAccount(0, UAH, DEFAULT, 3011);
-    ACC_addAccount(0, DLR, DEFAULT, 3012);
-    ACC_addAccount(0, EUR, DEFAULT, 3013);
-    ACC_addAccount(0, UAH, DEFAULT, 7011);
-    ACC_addAccount(0, DLR, DEFAULT, 7012);
-    ACC_addAccount(0, EUR, DEFAULT, 7013);
-    ACC_addAccount(0, UAH, DEFAULT, 7041);
-    ACC_addAccount(0, DLR, DEFAULT, 7042);
-    ACC_addAccount(0, EUR, DEFAULT, 7043);
-    ACC_addAccount(0, UAH, DEFAULT, 8011);
-    ACC_addAccount(0, DLR, DEFAULT, 8012);
-    ACC_addAccount(0, EUR, DEFAULT, 8013);
+    account::ACC_addAccount(0, UAH, DEFAULT, 2011);
+    account::ACC_addAccount(0, DLR, DEFAULT, 2012);
+    account::ACC_addAccount(0, EUR, DEFAULT, 2013);
+    account::ACC_addAccount(0, UAH, DEFAULT, 3011);
+    account::ACC_addAccount(0, DLR, DEFAULT, 3012);
+    account::ACC_addAccount(0, EUR, DEFAULT, 3013);
+    account::ACC_addAccount(0, UAH, DEFAULT, 7011);
+    account::ACC_addAccount(0, DLR, DEFAULT, 7012);
+    account::ACC_addAccount(0, EUR, DEFAULT, 7013);
+    account::ACC_addAccount(0, UAH, DEFAULT, 7041);
+    account::ACC_addAccount(0, DLR, DEFAULT, 7042);
+    account::ACC_addAccount(0, EUR, DEFAULT, 7043);
+    account::ACC_addAccount(0, UAH, DEFAULT, 8011);
+    account::ACC_addAccount(0, DLR, DEFAULT, 8012);
+    account::ACC_addAccount(0, EUR, DEFAULT, 8013);
 }
 
-bool isAccountExist_byCardNumber(const char* cardNumber) {
+bool account::isAccountExist_byCardNumber(const char* cardNumber) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return false; }
     account acc;
@@ -244,7 +244,7 @@ bool isAccountExist_byCardNumber(const char* cardNumber) {
 }
 
 
-bool isAccountExist_byIBAN(const char* IBAN) {
+bool account::isAccountExist_byIBAN(const char* IBAN) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return false; }
     account acc;
@@ -257,7 +257,7 @@ bool isAccountExist_byIBAN(const char* IBAN) {
     return false;
 }
 
-account getAccount_byCardNumber(const char* cardNumber) {
+account account::getAccount_byCardNumber(const char* cardNumber) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return emptyAccount; }
     account acc;
@@ -270,7 +270,7 @@ account getAccount_byCardNumber(const char* cardNumber) {
     return emptyAccount;
 }
 
-account getAccount_byIBAN(const char* IBAN) {
+account account::getAccount_byIBAN(const char* IBAN) {
     std::ifstream fin(process.getAccountDBPath(), std::ios::binary);
     if (!fin) { std::cerr << "Не вдалося відкрити файл для читання." << std::endl; return emptyAccount; }
     account acc;
@@ -315,14 +315,14 @@ void account::updateInFile() {
     outFile.close();
 }
 
-void setAccountBalance(account& acc, double newBalance) {
+void account::setAccountBalance(account& acc, double newBalance) {
     if (!process.debugStatus()) return;
 	acc.setBalance(newBalance - acc.getBalance());
 	acc.updateInFile();
 }
 
 
-vector<account> getUserAccounts(int user_id) {
+vector<account> account::getUserAccounts(int user_id) {
     int log_id = logEye.logTrace("GetUserAccounts");
 	logEye.msgTrace(log_id, "user_id", to_string(user_id), true);
 	vector<account> userAccounts;
