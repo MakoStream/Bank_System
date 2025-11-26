@@ -53,9 +53,9 @@ std::map<std::string, std::string> readConfig(const std::string& filename) {
     std::map<std::string, std::string> config;
 
     if (!file.is_open()) {
-        cout << "Помилка: не вдалося відкрити " << filename << std::endl;
+        //cout << "Помилка: не вдалося відкрити " << filename << endl;
         return config;
-    }
+    };
 
     std::string line;
     while (std::getline(file, line)) {

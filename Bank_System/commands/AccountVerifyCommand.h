@@ -75,14 +75,14 @@ public:
 		}
 		char IBAN[36];
 		strcpy(IBAN, args[1].c_str());
-		if (!isAccountExist_byIBAN(IBAN)) {
+		if (!account::isAccountExist_byIBAN(IBAN)) {
 			throw_response(handle, "Account with this IBAN does not exist");
 			logEye.endTrace(log_id, FAILURE, "Account with this IBAN does not exist");
 			return;
 		};
 
 		logEye.commentTrace(log_id, "Verifying account with IBAN: " + string(IBAN));
-		account acc = getAccount_byIBAN(IBAN);
+		account acc = account::getAccount_byIBAN(IBAN);
 		acc.verify();
 		acc.updateInFile();
 		handle.sessionData.hash[0] = 1; // success

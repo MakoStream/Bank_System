@@ -78,7 +78,7 @@ public:
 		}
 		char IBAN[36];
 		strcpy(IBAN, args[1].c_str());
-		if (!isAccountExist_byIBAN(IBAN)) {
+		if (!account::isAccountExist_byIBAN(IBAN)) {
 			throw_response(handle, "This account is not exist");
 			logEye.endTrace(log_id, FAILURE, "Account does not exist");
 			return;
@@ -88,7 +88,7 @@ public:
 		if (args.size() >= 3) {
 			reason = args[2];
 		}
-		account acc = getAccount_byIBAN(IBAN);
+		account acc = account::getAccount_byIBAN(IBAN);
 		acc.ban(reason);
 		acc.updateInFile();
 		handle.sessionData.hash[0] = 1; // success
@@ -175,13 +175,13 @@ public:
 		}
 		char IBAN[36];
 		strcpy(IBAN, args[1].c_str());
-		if (!isAccountExist_byIBAN(IBAN)) {
+		if (!account::isAccountExist_byIBAN(IBAN)) {
 			throw_response(handle, "This account is not exist");
 			logEye.endTrace(log_id, FAILURE, "Account does not exist");
 			return;
 		};
 
-		account acc = getAccount_byIBAN(IBAN);
+		account acc = account::getAccount_byIBAN(IBAN);
 		acc.unban();
 		acc.updateInFile();
 		handle.sessionData.hash[0] = 1; // success

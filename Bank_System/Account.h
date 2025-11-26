@@ -91,7 +91,7 @@ public:
     /** @name Getters */
     ///@{
     int getId() { return id; }                               ///< Returns account ID
-    User getUser() { return getUser_byId(userID); }          ///< Returns user object
+    User getUser() { return User::getUser_byId(userID); }          ///< Returns user object
     int getUserID() { return userID; }                       ///< Returns owner ID
     char* getIBAN() { return IBAN; }                         ///< Returns IBAN
     char* getPAN() { return cardNumber; }                    ///< Returns card number

@@ -139,7 +139,7 @@ void account::ACC_addAccount(int userID, balanceType balance_type, cardType type
     char CVV[4] = "---";
     char expirationDate[8];
 
-    if (!isUserExist_byId(userID)) {
+    if (!User::isUserExist_byId(userID)) {
         std::cerr << "Користувач з ID " << userID << " не існує." << std::endl;
         fout.close();
         return;

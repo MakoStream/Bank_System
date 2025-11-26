@@ -9,6 +9,9 @@
 #include "ResponseManager.h"
 #include <vector>
 
+#include <QApplication>
+#include "login.h"
+
 ResponseManager response_manager;
 
 fronted_User emptyUser = { "", "", "" };
@@ -48,6 +51,13 @@ int main() {
 
     const char* pipeName = R"(\\.\pipe\bankPipe123456789)";
     HANDLE hPipe = INVALID_HANDLE_VALUE;
+
+    int argc = 0;
+    char* argv[1] = { nullptr }; // або {"app"} Ч це просто заглушка
+    QApplication a(argc, argv);
+    LoginWindow w;
+    w.show();
+    a.exec();
 
     cout << "ќч≥куванн€ з'Їднанн€ ≥з сервером...\n";
 

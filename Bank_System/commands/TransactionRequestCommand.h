@@ -94,15 +94,15 @@ public:
 
 		logEye.commentTrace(log_id, "Check if accounts exist and process transaction request");
 		double ammount = stod(args[3]);
-		account acc_from = getAccount_byCardNumber(args[1].c_str());
-		account acc_to = getAccount_byCardNumber(args[2].c_str());
+		account acc_from = account::getAccount_byCardNumber(args[1].c_str());
+		account acc_to = account::getAccount_byCardNumber(args[2].c_str());
 
-		if (!isAccountExist_byCardNumber(args[2].c_str())) {
+		if (!account::isAccountExist_byCardNumber(args[2].c_str())) {
 			throw_response(handle, "Account_to not exist");
 			logEye.endTrace(log_id, FAILURE, "Account_to not exist");
 			return;
 		}
-		if (!isAccountExist_byCardNumber(args[1].c_str())) {
+		if (!account::isAccountExist_byCardNumber(args[1].c_str())) {
 			throw_response(handle, "Account_from not exist");
 			logEye.endTrace(log_id, FAILURE, "Account_from not exist");
 			return;

@@ -66,10 +66,10 @@ public:
 			return;
 		};
 		if (isStringDigit(args[1])) {
-			user = getUser_byId(stoi(args[1]));
+			user = User::getUser_byId(stoi(args[1]));
 		};
 		if (user.getId()==-1) {
-			user = getUser_byLogin(args[1].c_str());
+			user = User::getUser_byLogin(args[1].c_str());
 		};
 		if (user.getId() == -1) {
 			throw_response(handle, "Can't find user");

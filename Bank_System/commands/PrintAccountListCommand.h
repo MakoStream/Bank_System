@@ -66,7 +66,7 @@ public:
         };
         
 		logEye.commentTrace(log_id, "Printing account list, page: " + to_string(page));
-        printAllAccounts(handle.sessionData.msg, page);
+        account::printAllAccounts(handle.sessionData.msg, page);
         //strncpy(handle.sessionData.cmd, "Account list is printed!", sizeof(handle.sessionData.cmd) - 1);
         //handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
 

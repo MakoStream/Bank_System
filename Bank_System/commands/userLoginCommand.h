@@ -68,7 +68,7 @@ public:
         char login[32]; char password[32];
         strcpy(login, args[1].c_str());
         strcpy(password, args[2].c_str());
-        User user = getUser_byLogin(login);
+        User user = User::getUser_byLogin(login);
         if (user.getId() == emptyUser.getId()) { 
 			throw_response(handle, "User with this login does not exist!");
 			logEye.endTrace(log_id, FAILURE, "User with this login does not exist!");

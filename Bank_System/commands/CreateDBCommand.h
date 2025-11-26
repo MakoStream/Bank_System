@@ -68,14 +68,14 @@ public:
 
 		logEye.commentTrace(log_id, "Check input requirement");
         if (args[1] == "users") {
-            DB_create();
+            User::DB_create();
             //std::cout << "База даних створена!\n" 
             throw_response(handle, "User database created!");
 			logEye.endTrace(log_id, SUCCESS, "User database created successfully");
             return;
         }
         else if (args[1] == "accounts") {
-            DB_create_accounts();
+            account::DB_create_accounts();
             //std::cout << "База даних створена!\n" 
             throw_response(handle, "Accounts database created!");
 			logEye.endTrace(log_id, SUCCESS, "Accounts database created successfully");

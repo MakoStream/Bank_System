@@ -97,7 +97,7 @@ public:
 			logEye.endTrace(log_id, FAILURE, "account_type is incorect");
 			return;
 		};
-		if (!isUserExist_byId(userId)) {
+		if (!User::isUserExist_byId(userId)) {
 			throw_response(handle, "Користувача з таким ID не існує");
 			logEye.endTrace(log_id, FAILURE, "Користувача з таким ID не існує");
 			return;
@@ -111,7 +111,7 @@ public:
 		short account_type = static_cast<short>(std::stoi(args[4]));
 		
 		logEye.commentTrace(log_id, "Adding account for user ID: " + to_string(userId));
-		ACC_addAccount(userId, cur, cType, account_type);
+		account::ACC_addAccount(userId, cur, cType, account_type);
 
 		handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
 		handle.sessionData.hash[0] = 1;

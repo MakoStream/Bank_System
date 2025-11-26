@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>StreamBank</class>
- <widget class="QDialog" name="StreamBank">
+ <class>LoginWindow</class>
+ <widget class="QDialog" name="LoginWindow">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -31,7 +31,7 @@
    </font>
   </property>
   <property name="contextMenuPolicy">
-   <enum>Qt::PreventContextMenu</enum>
+   <enum>Qt::ContextMenuPolicy::NoContextMenu</enum>
   </property>
   <property name="acceptDrops">
    <bool>false</bool>
@@ -136,7 +136,6 @@
     <font>
      <family>MS Reference Sans Serif</family>
      <pointsize>12</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
      <strikeout>false</strikeout>
      <stylestrategy>PreferDefault</stylestrategy>
@@ -144,22 +143,19 @@
     </font>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
+    <enum>Qt::FocusPolicy::NoFocus</enum>
    </property>
    <property name="acceptDrops">
     <bool>false</bool>
    </property>
    <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
    </property>
    <property name="text">
-    <string>MakoStream's Bank</string>
+    <string>Some project</string>
    </property>
    <property name="scaledContents">
     <bool>false</bool>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
    </property>
    <property name="wordWrap">
     <bool>false</bool>
@@ -181,7 +177,6 @@
     <font>
      <family>MS Reference Sans Serif</family>
      <pointsize>10</pointsize>
-     <weight>75</weight>
      <bold>true</bold>
      <strikeout>false</strikeout>
      <stylestrategy>PreferDefault</stylestrategy>
@@ -189,22 +184,19 @@
     </font>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
+    <enum>Qt::FocusPolicy::NoFocus</enum>
    </property>
    <property name="acceptDrops">
     <bool>false</bool>
    </property>
    <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
    </property>
    <property name="text">
     <string>login</string>
    </property>
    <property name="scaledContents">
     <bool>false</bool>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
    </property>
    <property name="wordWrap">
     <bool>false</bool>
@@ -295,7 +287,7 @@
     </font>
    </property>
    <property name="layoutDirection">
-    <enum>Qt::LeftToRight</enum>
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
    </property>
    <property name="text">
     <string>forgot password?</string>
@@ -319,6 +311,7 @@
    <property name="font">
     <font>
      <family>Segoe UI</family>
+     <pointsize>8</pointsize>
     </font>
    </property>
    <property name="text">
@@ -326,9 +319,6 @@
    </property>
    <property name="scaledContents">
     <bool>false</bool>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
    <property name="wordWrap">
     <bool>true</bool>
@@ -351,6 +341,34 @@
    </property>
    <property name="text">
     <string>Login</string>
+   </property>
+  </widget>
+  <widget class="QCommandLinkButton" name="RegisterButton">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>220</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <property name="text">
+    <string>registration</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
    </property>
   </widget>
  </widget>

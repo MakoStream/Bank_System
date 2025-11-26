@@ -90,7 +90,7 @@ public:
 
 
         const char* newUserLogin = args[1].c_str();
-        if (isUserExist_byLogin(newUserLogin)) {
+        if (User::isUserExist_byLogin(newUserLogin)) {
 			throw_response(handle, "user with this login already exists");
 			logEye.endTrace(log_id, FAILURE, "user with this login already exists");
             return;
@@ -98,7 +98,7 @@ public:
         int newUserId = 0;
 
 
-        User lastUser = loadLastUser();
+        User lastUser = User::loadLastUser();
         if (lastUser.getId() >= 0) {
             newUserId = lastUser.getId() + 1;
         };
@@ -116,7 +116,7 @@ public:
 			USER_NONVERIFED,
             USER
         );
-        DB_newUser(newUser);
+        User::DB_newUser(newUser);
 		logEye.commentTrace(log_id, "New user created successfully: " + string(newUserLogin));
 		//cout << "User " << newUserLogin << " registered!" << endl;
 

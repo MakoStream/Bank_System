@@ -71,7 +71,7 @@ public:
 		}
 
 		//logEye.commentTrace(log_id, "Check if account exists");
-		account acc = getAccount_byCardNumber(args[1].c_str());
+		account acc = account::getAccount_byCardNumber(args[1].c_str());
 
 		if (args[2] == "PIN" && args[3].size()==4) {
 			acc.setPIN(args[3].c_str());

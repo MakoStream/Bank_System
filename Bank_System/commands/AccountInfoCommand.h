@@ -79,7 +79,7 @@ public:
 		}
 		char cardNumber[17];
 		strcpy(cardNumber, args[1].c_str());
-		if (!isAccountExist_byCardNumber(cardNumber)) {
+		if (!account::isAccountExist_byCardNumber(cardNumber)) {
 			throw_response(handle, "Account with this card number does not exist");
 			logEye.endTrace(log_id, FAILURE, "Account with this card number does not exist");
 			return;
@@ -87,7 +87,7 @@ public:
 
 
 		logEye.commentTrace(log_id, "Fetching account information for card number: " + string(cardNumber));
-		account acc = getAccount_byCardNumber(cardNumber);
+		account acc = account::getAccount_byCardNumber(cardNumber);
 		string response = "Account Information:\n";
 		response += "PAN: " + string(acc.getPAN()) + "\n";
 		response += "IBAN: " + string(acc.getIBAN()) + "\n";

@@ -150,7 +150,7 @@ int mainProcess::new_session() {
  * @note Requirements: getUser_byLogin(), vector<Session>
  */
 void mainProcess::login(int session_id, char login[32], char password[32]){
-    User this_user = getUser_byLogin(login);
+    User this_user = User::getUser_byLogin(login);
     Session user = { session_id, this_user.getId()};
 
     for (Session& a : loggined_users) {
@@ -419,7 +419,7 @@ bool mainProcess::debugStatus() { return debug; };
 void mainProcess::transaction_request(handleInfo handle, account& from, account& to, double ammount, const char* PIN, const char* CVV, operations op_type, string comment) {  // need args: from_account, to_account, amount
 	// Create a new transaction request
 	Session session = process.getSessionByID(handle.sessionData.sessionId);
-	User user = getUser_byId(session.user_id);
+	User user = User::getUser_byId(session.user_id);
 	bool from_own_account = (from.getUserID() == user.getId());
 	bool to_own_account = (to.getUserID() == user.getId());
 

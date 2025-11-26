@@ -59,7 +59,7 @@ public:
 
 
 		logEye.commentTrace(log_id, "Fetching user accounts");
-		vector<account> accounts = getUserAccounts(process.getUserSession(handle.sessionData.sessionId).user_id);
+		vector<account> accounts = account::getUserAccounts(process.getUserSession(handle.sessionData.sessionId).user_id);
 		string text_response;
 		for (auto a : accounts) {
 			text_response += to_string(a.getId()) + " ";

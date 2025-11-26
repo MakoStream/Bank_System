@@ -64,7 +64,7 @@ public:
             page = stoi(args[1]);
         };
 		logEye.commentTrace(log_id, "Printing user list, page: " + to_string(page));
-        DB_list(handle.sessionData.msg, page);
+        User::DB_list(handle.sessionData.msg, page);
         //strncpy(handle.sessionData.cmd, "User list is printed!", sizeof(handle.sessionData.cmd) - 1);
         //handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
         WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
