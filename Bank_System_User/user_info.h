@@ -39,3 +39,5 @@ extern struct handleInfo {
 
 extern fronted_User currentUser;
 extern fronted_User emptyUser;
+
+extern handleInfo* handleP;

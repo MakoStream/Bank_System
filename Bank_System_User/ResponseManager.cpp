@@ -59,7 +59,7 @@ ResponseManager::ResponseManager() {
 }
 
 void ResponseManager::get_response(handleInfo& handle) {
-	//cout << handle.sessionData.cmd << endl;
+	cout << handle.sessionData.cmd << endl;
     string cmdStr(handle.sessionData.cmd);
     std::vector<std::string> args = split(cmdStr);
     string cmdName = args[0];
@@ -80,3 +80,5 @@ void ResponseManager::get_response(handleInfo& handle) {
     std::cout << "Невідома команда: " << cmdName << "\n";
 	//ReadFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesRead, NULL);
 };
+
+extern ResponseManager response_manager;

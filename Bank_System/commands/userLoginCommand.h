@@ -87,6 +87,7 @@ public:
 			strncpy(handle.sessionData.msg[2], user.getSurname(), sizeof(handle.sessionData.cmd) - 1);
 
 			handle.sessionData.hash[0] = 1; // success login
+			handle.sessionData.hash[1] = user.getId();
             handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
             handle.sessionData.userId = user.getId();
             WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);

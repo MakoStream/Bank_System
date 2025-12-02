@@ -1,6 +1,6 @@
 #pragma once
 #include "../Response.h"
-#include "../UnitTest/UserClientTest.h"
+//#include "../UnitTest/UserClientTest.h"
 
 
 class UnitTestResponse : public Response {
@@ -22,7 +22,7 @@ public:
 		else if (handle.sessionData.hash[0] == 1 && client_type == "user") {
 			//run UnitTest(user) here
 			cout << "debug 1" << endl;
-			runUnitTest(handle);
+			//runUnitTest(handle);
 			return;
 		};
 		cout << "debug 2" << endl;

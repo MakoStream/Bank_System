@@ -1,5 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define BOOST_TEST_DYN_LINK
+#define BOOST_BIND_GLOBAL_PLACEHOLDERS
+
 #include <boost/test/unit_test.hpp>
 #include <boost/test/unit_test_monitor.hpp>
 #include "UserClientTest.h";

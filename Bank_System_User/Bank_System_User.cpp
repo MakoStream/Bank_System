@@ -12,6 +12,23 @@
 #include <QApplication>
 #include "login.h"
 
+
+QThread* workerThread = nullptr;
+Worker* worker = nullptr;
+
+//#define byte unsigned char
+
+handleInfo* handleP = nullptr;
+
+//========================
+int argc = 0;
+char* argv[1] = { nullptr };
+QApplication a(argc, argv);
+
+LoginWindow w;
+
+//============================
+
 ResponseManager response_manager;
 
 fronted_User emptyUser = { "", "", "" };
@@ -30,63 +47,36 @@ void handleOp(sessionConstruct& sessionData, sessionConstruct& response, HANDLE&
     //WriteFile(hPipe, &sessionData, sizeof(sessionData), &bytesWritten, NULL);
     //ReadFile(hPipe, &response, sizeof(response), &bytesRead, NULL);
 
-	handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
-	cout << sessionData.sessionId << endl;
-    response_manager.get_response(handle);
-
-    // Оновлення сесії після відповіді сервера
-    //sessionData = response;
-
-    /*if (args[0] == "account_list" || args[0] == "user_list") {
-        for (int i = 0; i < 5; i++) {
-			cout << response.msg[i] << endl;
-        };
-    };*/
     
+    cout << sessionData.sessionId << endl;
+    response_manager.get_response(*handleP);
+
 };
 
 int main() {
+
+    workerThread = new QThread();
+    worker = new Worker();
+    worker->moveToThread(workerThread);
+    workerThread->start();
+
+
     setlocale(LC_ALL, "ukr");
     cout << "Міні-банківська система (CLI)\n";
-
-    const char* pipeName = R"(\\.\pipe\bankPipe123456789)";
     HANDLE hPipe = INVALID_HANDLE_VALUE;
 
-    int argc = 0;
-    char* argv[1] = { nullptr }; // або {"app"} — це просто заглушка
-    QApplication a(argc, argv);
-    LoginWindow w;
-    w.show();
-    a.exec();
+    const char* pipeName = R"(\\.\pipe\bankPipe123456789)";
+    //HANDLE hPipe = INVALID_HANDLE_VALUE;
 
-    cout << "Очікування з'єднання із сервером...\n";
-
-    // Цикл повторних спроб підключення
     while (true) {
-        hPipe = CreateFileA(
-            pipeName,
-            GENERIC_READ | GENERIC_WRITE,
-            0,
-            NULL,
-            OPEN_EXISTING,
-            0,
-            NULL
-        );
-
+        hPipe = CreateFileA(pipeName, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
         if (hPipe != INVALID_HANDLE_VALUE) {
             cout << "Підключено до сервера!\n";
             break;
         }
-
         DWORD err = GetLastError();
-        if (err == ERROR_PIPE_BUSY) {
-            cout << "Сервер зайнятий, очікування черги...\n";
-            WaitNamedPipeA(pipeName, 2000);
-        }
-        else {
-            cout << "Немає з'єднання. Повтор через 2 секунди...\n";
-            this_thread::sleep_for(chrono::seconds(2));
-        }
+        if (err == ERROR_PIPE_BUSY) WaitNamedPipeA(pipeName, 2000);
+        else this_thread::sleep_for(chrono::seconds(2));
     }
 
     sessionConstruct sessionData{};
@@ -94,22 +84,32 @@ int main() {
     DWORD bytesWritten = 0;
     DWORD bytesRead = 0;
 
-    // Початковий запит SID
-    strncpy(sessionData.cmd, "getSID", sizeof(sessionData.cmd) - 1);
-    sessionData.cmd[sizeof(sessionData.cmd) - 1] = '\0';
+    handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
+    handleP = &handle;
+    
+    w.show();
 
-    handleOp(sessionData, response, hPipe, sessionData.cmd, bytesWritten, bytesRead);
+    // Потік для CLI
+    std::thread cliThread([&]() {
 
-    string input;
-    while (true) {
-        cout << "> ";
-        getline(cin, input);
+        strncpy(sessionData.cmd, "getSID", sizeof(sessionData.cmd) - 1);
+        sessionData.cmd[sizeof(sessionData.cmd) - 1] = '\0';
 
-        if (input.empty()) continue;
-        handleOp(sessionData, response, hPipe, input, bytesWritten, bytesRead);
-        Sleep(1000);
-    }
+        handleOp(sessionData, response, hPipe, sessionData.cmd, bytesWritten, bytesRead);
 
-    CloseHandle(hPipe);
-    return 0;
+        string input;
+        while (true) {
+            cout << "> ";
+            getline(cin, input);
+            if (input.empty()) continue;
+            handleOp(sessionData, response, hPipe, input, bytesWritten, bytesRead);
+            this_thread::sleep_for(chrono::seconds(1));
+        }
+
+        CloseHandle(hPipe);
+        });
+
+    cliThread.detach();
+
+    return a.exec(); // GUI працює в головному потоці
 }

@@ -1,4 +1,5 @@
 #include "../Response.h"
+#include "login.h"
 
 
 class GetSessionIdResponse : public Response {
@@ -7,7 +8,7 @@ public:
 		// Process the get_session_id response
 		ReadFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesRead, NULL);
 		std::cout << "Session ID: " << handle.sessionData.sessionId << "\n"; // SIG correct, but
-
+		w.setSessionId(handle.sessionData.sessionId);
 		return;
 	}
 

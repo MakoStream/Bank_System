@@ -79,6 +79,7 @@ void CommandsManager::execute(handleInfo& handle) {
 	string cmdName = args[0];
     for (auto& cmd : commands) {
         if (cmd->name() == cmdName) {
+			cout << "Виконання команди: " << cmdName << "\n";
             cmd->execute(handle);
             strncpy(handle.sessionData.cmd, "", sizeof(handle.sessionData.cmd) - 1);
             handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';

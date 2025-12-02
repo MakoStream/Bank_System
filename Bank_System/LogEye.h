@@ -122,7 +122,7 @@ class LogEye {
     mutex mtx;
     condition_variable cv;
     unique_ptr<ofstream> logFile;
-    bool consoleSink = false;
+    bool consoleSink = true;
     bool fileSink = true;
     int nextId = 0;
     thread worker;

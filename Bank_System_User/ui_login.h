@@ -40,7 +40,7 @@ public:
     QLabel *label_unput_password;
     QCommandLinkButton *ForgedPasswodButton;
     QLabel *msg_box;
-    QPushButton *pushButton;
+    QPushButton *loginButton;
     QCommandLinkButton *RegisterButton;
 
     void setupUi(QDialog *LoginWindow)
@@ -149,9 +149,9 @@ public:
         msg_box->setWordWrap(true);
         msg_box->setMargin(0);
         msg_box->setIndent(1);
-        pushButton = new QPushButton(LoginWindow);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(440, 270, 93, 28));
+        loginButton = new QPushButton(LoginWindow);
+        loginButton->setObjectName("pushButton");
+        loginButton->setGeometry(QRect(440, 270, 93, 28));
         RegisterButton = new QCommandLinkButton(LoginWindow);
         RegisterButton->setObjectName("RegisterButton");
         RegisterButton->setGeometry(QRect(440, 220, 111, 31));
@@ -180,7 +180,7 @@ public:
         label_unput_password->setText(QCoreApplication::translate("LoginWindow", "password", nullptr));
         ForgedPasswodButton->setText(QCoreApplication::translate("LoginWindow", "forgot password?", nullptr));
         msg_box->setText(QCoreApplication::translate("LoginWindow", "Message_Text", nullptr));
-        pushButton->setText(QCoreApplication::translate("LoginWindow", "Login", nullptr));
+        loginButton->setText(QCoreApplication::translate("LoginWindow", "Login", nullptr));
         RegisterButton->setText(QCoreApplication::translate("LoginWindow", "registration", nullptr));
     } // retranslateUi
 
