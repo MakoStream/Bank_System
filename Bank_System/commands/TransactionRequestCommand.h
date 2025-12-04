@@ -125,6 +125,116 @@ public:
 
 
 /**
+ * @class TransactionRequestPANCommand
+ * @brief Processes a transaction request between two accounts.
+ * @details Validates PANs, CVV, PIN, and amount,
+ * executes transaction, logs all actions via logEye.
+ * @note Requires: handleInfo, logEye, Account, <vector>, <string>
+ * @note Syntax: request_PAN <PAN_from> <PAN_to> <amount> <CVV> <PIN> <comment>
+ */
+class TransactionRequestIBANCommand : public Command {
+public:
+	/**
+ * @brief Executes a transaction request between two accounts using PANs.
+ *
+ * @details
+ * Validates input parameters and executes a transaction request. The method:
+ * - Logs the start of execution, session ID, user ID, and input command
+ * - Parses input arguments: PAN_from, IBAN_to, amount, CVV, PIN, and optional comment
+ * - Validates PAN lengths (16 digits), IBAN lengths (36 symbols), PIN (4 digits), and amount format
+ * - Checks that both source and destination accounts exist
+ * - Calls process.transaction_request() to execute the transaction
+ * - Sets handle.sessionData.hash[0] to 1 on success
+ * - Sends a response to the client
+ * - Completes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               command string, and hash/message arrays.
+ *
+ * @throws Throws a response via throw_response() in case of:
+ *         - Missing arguments
+ *         - Invalid PAN, CVV, PIN, or amount
+ *         - Non-existent accounts
+ *
+ * @note
+ * Side effects:
+ * - Initiates a transaction request via process.transaction_request()
+ * - Produces trace logs via logEye
+ * - Sends session/network response using throw_response()
+ *
+ * @retval void Execution result is communicated through handle.sessionData.hash[0]
+ *         and the response message.
+ */
+	void execute(handleInfo& handle) override { // transaction_request <PAN_from> <IBAN_to> <ammount> <PIN> <comment>
+		int log_id = logEye.logTrace("transaction_request_PAN Command");
+		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);
+		logEye.msgTrace(log_id, "User Id", to_string(process.getUserSession(handle.sessionData.sessionId).user_id), true);
+		logEye.msgTrace(log_id, "input data", string(handle.sessionData.cmd), true);
+
+		string input(handle.sessionData.cmd);
+		vector<string> args = split(input);
+
+		handle.sessionData.hash[0] = 0; // fail by default
+
+		logEye.commentTrace(log_id, "Check input requirement");
+		if (args.size() < 5) {
+			throw_response(handle, "Args issue");
+			logEye.endTrace(log_id, FAILURE, "Args issue");
+			return;
+		}
+		if (args[1].size() != 16 || !isStringDigit(args[1])) { // PAN length check
+			throw_response(handle, "wrong PAN_from");
+			logEye.endTrace(log_id, FAILURE, "wrong PAN_from");
+			return;
+		}
+		if (args[2].size() != 36) { // IBAN length check
+			throw_response(handle, "wrong IBAN_to");
+			logEye.endTrace(log_id, FAILURE, "wrong IBAN_to");
+			return;
+		}
+		if (args[4].size() != 4 or !isStringDigit(args[5])) {
+			throw_response(handle, "wrong PIN");
+			logEye.endTrace(log_id, FAILURE, "wrong PIN");
+			return;
+		};
+		if (!isStringDigit(args[3])) {
+			throw_response(handle, "wrong ammount");
+			logEye.endTrace(log_id, FAILURE, "wrong ammount");
+			return;
+		}
+
+		logEye.commentTrace(log_id, "Check if accounts exist and process transaction request");
+		double ammount = stod(args[3]);
+		account acc_from = account::getAccount_byCardNumber(args[1].c_str());
+		account acc_to = account::getAccount_byIBAN(args[2].c_str());
+
+		if (!account::isAccountExist_byCardNumber(args[2].c_str())) {
+			throw_response(handle, "Account_to not exist");
+			logEye.endTrace(log_id, FAILURE, "Account_to not exist");
+			return;
+		}
+		if (!account::isAccountExist_byIBAN(args[1].c_str())) {
+			throw_response(handle, "Account_from not exist");
+			logEye.endTrace(log_id, FAILURE, "Account_from not exist");
+			return;
+		}
+
+		handle.sessionData.hash[0] = 1; // success
+
+
+		Transaction::transactionRequest(acc_from, acc_to, User::getUser_byId(process.getUserSession(handle.sessionData.sessionId).user_id), ammount, args[4].c_str(), " ");
+		//process.transaction_request(handle, acc_from, acc_to, ammount, args[4].c_str(), args[5].c_str(), TRANSACTION, args.size() >= 7 ? args[6] : ""); // change after realization
+
+		throw_response(handle, "Transaction request processed");
+		logEye.endTrace(log_id, SUCCESS, "Transaction request processed from PAN: " + string(args[1]) + " to IBAN: " + string(args[2]));
+		return;
+	}
+	std::string name() const override {
+		return "request_IBAN";
+	}
+};
+
+/**
  * @class TransactionRequestListCommand
  * @brief Prints a paginated list of transaction requests.
  * @details Validates page number, prints requests page by page,

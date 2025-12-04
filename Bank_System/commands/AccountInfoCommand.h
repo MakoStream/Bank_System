@@ -105,3 +105,94 @@ public:
 		return "account_info";
 	};
 };
+
+/**
+ * @class AccountInfoCommand
+ * @brief Retrieves detailed information about an account by card number.
+ * @details Validates card number, checks if account exists,
+ * retrieves IBAN, balance, currency, and owner information,
+ * logs all actions via logEye.
+ * @note Requires: <string>, Account, handleInfo, logEye
+ * @note Syntax: account_info <card_number>
+ */
+class AccountInfoIdCommand : public Command {
+public:
+	/**
+ * @brief Executes the account information retrieval command.
+ *
+ * @details
+ * Retrieves detailed account information based on a provided card number (PAN).
+ * The method:
+ * - Logs operation start and session details
+ * - Parses the input command into arguments
+ * - Checks whether an account with the given id exists
+ * - Fetches the account and retrieves in line format: id PAN IBAN currency currency_type status
+ * - Returns the formatted account information to the client
+ * - Sets handle.sessionData.hash[0] to 1 on success (0 on failure)
+ * - Finalizes logging with SUCCESS or FAILURE status
+ *
+ * @param handle Reference to handleInfo containing session data,
+ *               raw command string, and the hash array for execution status.
+ *
+ * @throws Throws a response via throw_response() in case of:
+ *         - Missing arguments
+ *         - Invalid card number length
+ *         - Account with the provided PAN not found
+ *
+ * @note
+ * Side effects:
+ * - Produces trace logs via logEye
+ * - Modifies handle.sessionData.hash[0]
+ * - Sends a session/network response through throw_response()
+ *
+ * @retval void This method does not return a direct value.
+ *         Execution result is communicated via handle.sessionData.hash[0]:
+ *         - 0 on failure
+ *         - 1 on successful data retrieval
+ */
+	void execute(handleInfo& handle) override {  // accountInfo <account_id>
+		int log_id = logEye.logTrace("account_info Command");
+		logEye.msgTrace(log_id, "Session Id", to_string(handle.sessionData.sessionId), true);
+		logEye.msgTrace(log_id, "User Id", to_string(process.getUserSession(handle.sessionData.sessionId).user_id), true);
+		logEye.msgTrace(log_id, "input data", string(handle.sessionData.cmd), true);
+
+		string input(handle.sessionData.cmd);
+		vector<string> args = split(input);
+
+		handle.sessionData.hash[0] = 0;
+		logEye.commentTrace(log_id, "Check input requirement");
+		if (args.size() < 2) {
+			throw_response(handle, "Not enough arguments");
+			logEye.endTrace(log_id, FAILURE, "Not enough arguments");
+			return;
+		}
+		if (!isStringDigit(args[1])) {
+			throw_response(handle, "invalid id");
+			logEye.endTrace(log_id, FAILURE, "invalid id");
+			return;
+		};
+
+
+		logEye.commentTrace(log_id, "Fetching account information for card number: " + args[1]);
+		account acc = account::getAccountById(stoi(args[1]));
+		string response = 
+			to_string(acc.getId()) 
+			+ " " + acc.getPAN() 
+			+ " " + acc.getIBAN() 
+			+ " " + to_string(acc.getBalance())
+			+ " " + balanceMapToString2[acc.getBalanceType()] 
+			+ " " + statusMapReverse[acc.getCardStatus()] 
+			+ " " + cardMapReverse[acc.getCardType()] 
+			+ " " + acc.getCVV() 
+			+ " " + acc.getPIN();   // id PAN IBAN currency currency_type status type
+
+		handle.sessionData.hash[0] = 1;
+		throw_response(handle, response);
+
+		logEye.endTrace(log_id, SUCCESS, "Account information retrieved successfully for card number: " + args[1]);
+		return;
+	};
+	string name() const override {
+		return "account_info_id";
+	};
+};

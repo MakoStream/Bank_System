@@ -16,6 +16,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -61,9 +62,11 @@ public:
     QPushButton *BackToLoginButton;
     QWidget *MainMenuWidget;
     QWidget *mainMenuWidget;
-    QPushButton *pushButton_7;
-    QPushButton *pushButton_8;
-    QPushButton *pushButton_9;
+    QPushButton *TransactionIBAN;
+    QPushButton *TransactionPAN;
+    QPushButton *TransactionOther;
+    QPushButton *LogoutButton;
+    QPushButton *pushButton;
     QWidget *supportInfoWidget;
     QLabel *user_id_value_3;
     QLabel *user_id_label_3;
@@ -105,13 +108,25 @@ public:
     QWidget *Card_Dep1_2;
     QWidget *OtherTab_2;
     QLabel *msg_box;
+    QWidget *TransactionWidget;
+    QFrame *MainTransactionFrame;
+    QComboBox *UserCardsBox;
+    QLabel *TransactionFrameName;
+    QLabel *Transaction_From;
+    QLabel *Transaction_To;
+    QLineEdit *PAN_to;
+    QDoubleSpinBox *AmountSpin;
+    QLabel *AmountLabel;
+    QPushButton *TransactionRequestButton;
+    QLineEdit *PIN_Edit;
+    QPushButton *BackFromTransactionWindow;
 
     void setupUi(QDialog *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->setEnabled(true);
-        MainWindow->resize(1250, 671);
+        MainWindow->resize(1250, 722);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Ignored);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -299,15 +314,23 @@ public:
         mainMenuWidget = new QWidget(MainMenuWidget);
         mainMenuWidget->setObjectName("mainMenuWidget");
         mainMenuWidget->setGeometry(QRect(0, 270, 611, 41));
-        pushButton_7 = new QPushButton(mainMenuWidget);
-        pushButton_7->setObjectName("pushButton_7");
-        pushButton_7->setGeometry(QRect(10, 10, 141, 28));
-        pushButton_8 = new QPushButton(mainMenuWidget);
-        pushButton_8->setObjectName("pushButton_8");
-        pushButton_8->setGeometry(QRect(160, 10, 141, 28));
-        pushButton_9 = new QPushButton(mainMenuWidget);
-        pushButton_9->setObjectName("pushButton_9");
-        pushButton_9->setGeometry(QRect(310, 10, 141, 28));
+        TransactionIBAN = new QPushButton(mainMenuWidget);
+        TransactionIBAN->setObjectName("TransactionIBAN");
+        TransactionIBAN->setGeometry(QRect(10, 10, 111, 28));
+        TransactionPAN = new QPushButton(mainMenuWidget);
+        TransactionPAN->setObjectName("TransactionPAN");
+        TransactionPAN->setGeometry(QRect(130, 10, 121, 28));
+        TransactionOther = new QPushButton(mainMenuWidget);
+        TransactionOther->setObjectName("TransactionOther");
+        TransactionOther->setEnabled(false);
+        TransactionOther->setGeometry(QRect(260, 10, 141, 28));
+        LogoutButton = new QPushButton(mainMenuWidget);
+        LogoutButton->setObjectName("LogoutButton");
+        LogoutButton->setGeometry(QRect(510, 10, 93, 28));
+        pushButton = new QPushButton(mainMenuWidget);
+        pushButton->setObjectName("pushButton");
+        pushButton->setEnabled(false);
+        pushButton->setGeometry(QRect(440, 10, 61, 28));
         supportInfoWidget = new QWidget(MainMenuWidget);
         supportInfoWidget->setObjectName("supportInfoWidget");
         supportInfoWidget->setGeometry(QRect(430, 0, 181, 21));
@@ -475,12 +498,55 @@ public:
         main->addTab(OtherTab_2, QString());
         msg_box = new QLabel(MainWindow);
         msg_box->setObjectName("msg_box");
-        msg_box->setGeometry(QRect(630, 560, 231, 61));
+        msg_box->setGeometry(QRect(480, 640, 231, 61));
         msg_box->setFont(font1);
         msg_box->setScaledContents(false);
         msg_box->setWordWrap(true);
         msg_box->setMargin(0);
         msg_box->setIndent(1);
+        TransactionWidget = new QWidget(MainWindow);
+        TransactionWidget->setObjectName("TransactionWidget");
+        TransactionWidget->setGeometry(QRect(620, 320, 611, 311));
+        MainTransactionFrame = new QFrame(TransactionWidget);
+        MainTransactionFrame->setObjectName("MainTransactionFrame");
+        MainTransactionFrame->setGeometry(QRect(170, 40, 381, 221));
+        MainTransactionFrame->setAutoFillBackground(false);
+        MainTransactionFrame->setFrameShape(QFrame::StyledPanel);
+        MainTransactionFrame->setFrameShadow(QFrame::Raised);
+        UserCardsBox = new QComboBox(MainTransactionFrame);
+        UserCardsBox->setObjectName("UserCardsBox");
+        UserCardsBox->setGeometry(QRect(20, 70, 131, 21));
+        TransactionFrameName = new QLabel(MainTransactionFrame);
+        TransactionFrameName->setObjectName("TransactionFrameName");
+        TransactionFrameName->setGeometry(QRect(120, 10, 161, 31));
+        QFont font6;
+        font6.setPointSize(11);
+        TransactionFrameName->setFont(font6);
+        Transaction_From = new QLabel(MainTransactionFrame);
+        Transaction_From->setObjectName("Transaction_From");
+        Transaction_From->setGeometry(QRect(30, 50, 55, 16));
+        Transaction_To = new QLabel(MainTransactionFrame);
+        Transaction_To->setObjectName("Transaction_To");
+        Transaction_To->setGeometry(QRect(190, 50, 55, 16));
+        PAN_to = new QLineEdit(MainTransactionFrame);
+        PAN_to->setObjectName("PAN_to");
+        PAN_to->setGeometry(QRect(190, 70, 161, 22));
+        AmountSpin = new QDoubleSpinBox(MainTransactionFrame);
+        AmountSpin->setObjectName("AmountSpin");
+        AmountSpin->setGeometry(QRect(110, 130, 151, 22));
+        AmountSpin->setMaximum(250000.000000000000000);
+        AmountLabel = new QLabel(MainTransactionFrame);
+        AmountLabel->setObjectName("AmountLabel");
+        AmountLabel->setGeometry(QRect(110, 110, 55, 16));
+        TransactionRequestButton = new QPushButton(MainTransactionFrame);
+        TransactionRequestButton->setObjectName("TransactionRequestButton");
+        TransactionRequestButton->setGeometry(QRect(190, 180, 93, 28));
+        PIN_Edit = new QLineEdit(MainTransactionFrame);
+        PIN_Edit->setObjectName("PIN_Edit");
+        PIN_Edit->setGeometry(QRect(130, 180, 51, 22));
+        BackFromTransactionWindow = new QPushButton(TransactionWidget);
+        BackFromTransactionWindow->setObjectName("BackFromTransactionWindow");
+        BackFromTransactionWindow->setGeometry(QRect(20, 10, 93, 28));
 
         retranslateUi(MainWindow);
 
@@ -516,9 +582,11 @@ public:
         LoginLabel->setText(QCoreApplication::translate("MainWindow", "Login*", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Password*", nullptr));
         BackToLoginButton->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
-        pushButton_7->setText(QCoreApplication::translate("MainWindow", "IBAN transaction", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("MainWindow", "PAN transaction", nullptr));
-        pushButton_9->setText(QCoreApplication::translate("MainWindow", "Other transaction", nullptr));
+        TransactionIBAN->setText(QCoreApplication::translate("MainWindow", "IBAN transaction", nullptr));
+        TransactionPAN->setText(QCoreApplication::translate("MainWindow", "PAN transaction", nullptr));
+        TransactionOther->setText(QCoreApplication::translate("MainWindow", "Other transaction", nullptr));
+        LogoutButton->setText(QCoreApplication::translate("MainWindow", "Logout", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "Update", nullptr));
         user_id_value_3->setText(QCoreApplication::translate("MainWindow", "000000", nullptr));
         user_id_label_3->setText(QCoreApplication::translate("MainWindow", "u-id:", nullptr));
         session_id_value_3->setText(QCoreApplication::translate("MainWindow", "000000", nullptr));
@@ -550,6 +618,12 @@ public:
         main->setTabText(main->indexOf(DepositeTab_2), QCoreApplication::translate("MainWindow", "Deposite", nullptr));
         main->setTabText(main->indexOf(OtherTab_2), QCoreApplication::translate("MainWindow", "Other", nullptr));
         msg_box->setText(QCoreApplication::translate("MainWindow", "msg text", nullptr));
+        TransactionFrameName->setText(QCoreApplication::translate("MainWindow", "PAN Transaction", nullptr));
+        Transaction_From->setText(QCoreApplication::translate("MainWindow", "From", nullptr));
+        Transaction_To->setText(QCoreApplication::translate("MainWindow", "To*", nullptr));
+        AmountLabel->setText(QCoreApplication::translate("MainWindow", "Amount", nullptr));
+        TransactionRequestButton->setText(QCoreApplication::translate("MainWindow", "Request", nullptr));
+        BackFromTransactionWindow->setText(QCoreApplication::translate("MainWindow", "Back", nullptr));
     } // retranslateUi
 
 };

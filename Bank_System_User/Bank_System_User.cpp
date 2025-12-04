@@ -90,6 +90,7 @@ int main() {
 
 	w.hideRegWindow();
 	w.hideMainMenuWindow();
+    w.hideTransactionWindow();
     w.show();
 
     // Потік для CLI

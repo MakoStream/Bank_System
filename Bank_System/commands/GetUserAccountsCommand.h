@@ -57,11 +57,14 @@ public:
 
 		handle.sessionData.hash[0] = 0; // fail by default
 
+		cout << "=====" << endl;
+
 
 		logEye.commentTrace(log_id, "Fetching user accounts");
 		vector<account> accounts = account::getUserAccounts(process.getUserSession(handle.sessionData.sessionId).user_id);
 		string text_response;
 		for (auto a : accounts) {
+			cout << a.getPAN() << endl;
 			text_response += to_string(a.getId()) + " ";
 		};
 		logEye.msgTrace(log_id, "Accounts found", to_string(accounts.size()), true);

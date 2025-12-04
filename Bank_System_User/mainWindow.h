@@ -24,10 +24,15 @@ private slots:
 	void onRegisterButtonClicked();
 	void onBackToLoginButtonClicked();
 	void onRegisterButtonCompletedClicked();
+	void onLogoutButtonClicked();
+	void onTransactionRequestButtonClicked();
 
 public:
     explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
+
+    void addUserCardsBoxItem(string cardPan, int acc_id);
+    void clearUserCardsBox();
 
 public slots:
     void setSessionId(int sid);
@@ -41,6 +46,9 @@ public slots:
 
 	void hideMainMenuWindow();
 	void showMainMenuWindow();
+
+    void hideTransactionWindow();
+    void showTransactionWindow();
 
     void setMessage(const std::string& message);
 

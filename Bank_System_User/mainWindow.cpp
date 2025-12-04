@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "mainWindow.h"
-#include "ui_login.h"
 #include <iostream>
 //#include <string>
 
@@ -20,7 +19,14 @@ MainWindow::MainWindow(QWidget* parent) :
 	connect(ui->RegisterButton, &QPushButton::clicked, this, &MainWindow::onRegisterButtonClicked);
 	connect(ui->BackToLoginButton, &QPushButton::clicked, this, &MainWindow::onBackToLoginButtonClicked);
     connect(ui->RegisterButtonCompl, & QPushButton::clicked, this, &MainWindow::onRegisterButtonCompletedClicked);
+	connect(ui->LogoutButton, &QPushButton::clicked, this, &MainWindow::onLogoutButtonClicked);
+
+    connect(ui->TransactionPAN, &QPushButton::clicked, this, &MainWindow::showTransactionWindow);
+    connect(ui->BackFromTransactionWindow, &QPushButton::clicked, this, &MainWindow::hideTransactionWindow);
+
+	connect(ui->TransactionRequestButton, &QPushButton::clicked, this, &MainWindow::onTransactionRequestButtonClicked);
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -48,6 +54,14 @@ void MainWindow::showLoginWindow() {
 	ui->loginWidget->show();
 }
 
+void MainWindow::showTransactionWindow() {
+    ui->TransactionWidget->show();
+};
+
+void MainWindow::hideTransactionWindow() {
+    ui->TransactionWidget->hide();
+};
+
 
 
 void MainWindow::onLoginButtonClicked()
@@ -72,6 +86,18 @@ void MainWindow::onLoginButtonClicked()
         }, Qt::QueuedConnection);
 
     return;
+};
+
+void MainWindow::onLogoutButtonClicked() {
+    string cmdText = "logout";
+    strncpy(handleP->sessionData.cmd, cmdText.c_str(), sizeof(handleP->sessionData.cmd) - 1);
+    handleP->sessionData.cmd[sizeof(handleP->sessionData.cmd) - 1] = '\0';
+
+	// викликати команду у фоні
+	QMetaObject::invokeMethod(worker, [=]() {
+		worker->runCommand();
+		}, Qt::QueuedConnection);
+	return;
 };
 
 void MainWindow::onRegisterButtonCompletedClicked() {
@@ -110,11 +136,13 @@ void MainWindow::onBackToLoginButtonClicked() {
 };
 
 void MainWindow::setSessionId(int sid) {
-    ui->session_id_value->setText(QString::number(sid)); // або QLabel, залежно від твого UI
+    ui->session_id_value->setText(QString::number(sid)); 
+    ui->session_id_value_3->setText(QString::number(sid));
 }
 
 void MainWindow::setUserId(int uid) {
-    ui->user_id_value->setText(QString::number(uid)); // або QLabel, залежно від твого UI
+    ui->user_id_value->setText(QString::number(uid));
+    ui->user_id_value_3->setText(QString::number(uid));
 }
 
 void MainWindow::setMessage(const std::string& message) {
@@ -123,3 +151,38 @@ void MainWindow::setMessage(const std::string& message) {
     QString qmsg = QString::fromUtf8(message.c_str(), static_cast<int>(message.size()));
     ui->msg_box->setText(qmsg);
 }
+
+
+void MainWindow::clearUserCardsBox() {
+    ui->UserCardsBox->clear();
+};
+
+void MainWindow::addUserCardsBoxItem(string cardPan, int acc_id) {
+    cout << cardPan << endl;
+    QString itemText = QString::fromUtf8(cardPan.c_str(), static_cast<int>(cardPan.size()));
+    ui->UserCardsBox->addItem(itemText, acc_id);
+};
+
+void MainWindow::onTransactionRequestButtonClicked() {
+    QString from = ui->UserCardsBox->currentText();
+	string from_card_pan = from.toUtf8().constData();
+
+	QString to = ui->PAN_to->text();
+	string to_card_pan = to.toUtf8().constData();
+
+    QString qPIN = ui->PIN_Edit->text();
+	string PIN = qPIN.toUtf8().constData();
+
+    int accId = ui->UserCardsBox->currentData().toInt();
+
+	float amount = ui->AmountSpin->value();
+
+	string cmdText = "request_PAN " + from_card_pan + " " + to_card_pan + " " + to_string(amount) + " 000 " + PIN;
+	strncpy(handleP->sessionData.cmd, cmdText.c_str(), sizeof(handleP->sessionData.cmd) - 1);
+	handleP->sessionData.cmd[sizeof(handleP->sessionData.cmd) - 1] = '\0';
+
+	// викликати команду у фоні
+	QMetaObject::invokeMethod(worker, [=]() {
+		worker->runCommand();
+		}, Qt::QueuedConnection);
+};

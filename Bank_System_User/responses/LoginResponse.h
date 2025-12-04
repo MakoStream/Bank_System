@@ -19,6 +19,26 @@ public:
 			currentUser.surname[sizeof(currentUser.surname) - 1] = '\0';
 			cout << "Hello, " << currentUser.name << " " << currentUser.surname << "!\n" << endl;
 
+
+			string cmdText = "getUserAccounts";
+			strncpy(handleP->sessionData.cmd, cmdText.c_str(), sizeof(handleP->sessionData.cmd) - 1);
+			handleP->sessionData.cmd[sizeof(handleP->sessionData.cmd) - 1] = '\0';
+
+			response_manager.get_response(handle);
+			for (int a : currentUser.accounts_id) {
+				string cmdText = "account_info_id " + to_string(a);
+				strncpy(handleP->sessionData.cmd, cmdText.c_str(), sizeof(handleP->sessionData.cmd) - 1);
+				handleP->sessionData.cmd[sizeof(handleP->sessionData.cmd) - 1] = '\0';
+
+				response_manager.get_response(handle);
+
+				vector<string> args = split(handle.sessionData.msg[0]);
+				w.addUserCardsBoxItem(args[1], a);
+			};
+
+			w.hideLoginWindow();
+			w.showMainMenuWindow();
+
 			w.setUserId(handle.sessionData.userId);
 			w.setMessage("Login successful!");
 			return;

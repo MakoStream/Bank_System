@@ -12,6 +12,13 @@ unordered_map<string, cardType> cardMap = { {"DEFAULT", DEFAULT}, {"DEPOSITE", D
 unordered_map<string, cardStatus> statusMap = { {"AVAILABLE", AVAILABLE}, {"BLOCKED", BLOCKED}, {"NONVERIFED", NONVERIFED} };
 unordered_map<cardStatus, string> statusMapReverse = { {AVAILABLE, "AVAILABLE"}, {BLOCKED, "BLOCKED"}, {NONVERIFED, "NONVERIFED"} };
 
+map<balanceType, string> balanceMapToString2 = {
+    {UAH, "UAH"},
+    {DLR, "DLR"},
+    {EUR, "EUR"}
+};
+map <cardType, string> cardMapReverse = { {DEFAULT, "DEFAULT"}, {DEPOSITE, "DEPOSITE"}, {CREDIT, "CREDIT"}};
+
 // Empty account object
 // Requirements: account class
 // Required for: returning default account if not found

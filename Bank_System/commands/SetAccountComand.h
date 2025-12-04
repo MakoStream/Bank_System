@@ -75,12 +75,14 @@ public:
 
 		if (args[2] == "PIN" && args[3].size()==4) {
 			acc.setPIN(args[3].c_str());
+			acc.updateInFile();
 			throw_response(handle, "PIN updated successfully");
 			logEye.endTrace(log_id, SUCCESS, "PIN updated successfully for PAN: " + string(args[1]));
 			return;
 		}
 		else if (args[2] == "CVV" && args[3].size() == 3) {
 			acc.setCVV(args[3].c_str());
+			acc.updateInFile();
 			throw_response(handle, "CVV updated successfully");
 			logEye.endTrace(log_id, SUCCESS, "CVV updated successfully for PAN: " + string(args[1]));
 			return;

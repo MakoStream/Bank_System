@@ -10,12 +10,10 @@ public:
 			return;
 		}
 		else if (handle.sessionData.hash[0] == 1) {
-			cout << "debug 1" << endl;
 			cout << handle.sessionData.msg[1] << endl;
 			for (string a : split(string(handle.sessionData.msg[1]))) {
 				currentUser.accounts_id.push_back(stoi(a));
 			};
-			cout << "debug 2" << endl;
 			return;
 		}
 	};

@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1250</width>
-    <height>671</height>
+    <height>722</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -631,12 +631,12 @@
       <height>41</height>
      </rect>
     </property>
-    <widget class="QPushButton" name="pushButton_7">
+    <widget class="QPushButton" name="TransactionIBAN">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>141</width>
+       <width>111</width>
        <height>28</height>
       </rect>
      </property>
@@ -644,12 +644,12 @@
       <string>IBAN transaction</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_8">
+    <widget class="QPushButton" name="TransactionPAN">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>130</x>
        <y>10</y>
-       <width>141</width>
+       <width>121</width>
        <height>28</height>
       </rect>
      </property>
@@ -657,10 +657,13 @@
       <string>PAN transaction</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_9">
+    <widget class="QPushButton" name="TransactionOther">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>260</x>
        <y>10</y>
        <width>141</width>
        <height>28</height>
@@ -668,6 +671,35 @@
      </property>
      <property name="text">
       <string>Other transaction</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="LogoutButton">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>10</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Logout</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>10</y>
+       <width>61</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Update</string>
      </property>
     </widget>
    </widget>
@@ -1248,8 +1280,8 @@
   <widget class="QLabel" name="msg_box">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>560</y>
+     <x>480</x>
+     <y>640</y>
      <width>231</width>
      <height>61</height>
     </rect>
@@ -1275,6 +1307,161 @@
    <property name="indent">
     <number>1</number>
    </property>
+  </widget>
+  <widget class="QWidget" name="TransactionWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>320</y>
+     <width>611</width>
+     <height>311</height>
+    </rect>
+   </property>
+   <widget class="QFrame" name="MainTransactionFrame">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>40</y>
+      <width>381</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QComboBox" name="UserCardsBox">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>70</y>
+       <width>131</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="TransactionFrameName">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>10</y>
+       <width>161</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>PAN Transaction</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Transaction_From">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>55</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>From</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Transaction_To">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>50</y>
+       <width>55</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>To*</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="PAN_to">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>70</y>
+       <width>161</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QDoubleSpinBox" name="AmountSpin">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>130</y>
+       <width>151</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <double>250000.000000000000000</double>
+     </property>
+    </widget>
+    <widget class="QLabel" name="AmountLabel">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>110</y>
+       <width>55</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Amount</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="TransactionRequestButton">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>180</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Request</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="PIN_Edit">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>180</y>
+       <width>51</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="BackFromTransactionWindow">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

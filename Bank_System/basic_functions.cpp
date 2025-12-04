@@ -12,7 +12,7 @@ bool isStringDigit(const std::string& s) {
     if (s.empty()) return false;
     int dotCount = 0;
     for (char c : s) {
-        if (c == '.') {
+        if (c == '.' or c==',') {
             dotCount++;
             if (dotCount > 1) return false;
         }

@@ -18,6 +18,7 @@
 #include <stdexcept>
 #include <cstdio>
 #include "User.h"
+#include <map>
 
 
 using namespace std;
@@ -31,6 +32,8 @@ extern std::unordered_map <balanceType, string> balanceMapToString;
 extern std::unordered_map<std::string, balanceType> balanceMap;
 extern std::unordered_map<std::string, cardStatus> statusMap;
 extern std::unordered_map<cardStatus, std::string> statusMapReverse;
+extern std::map<balanceType, string> balanceMapToString2;
+extern std::map<cardType, string> cardMapReverse;
 
 class account; // forward declaration
 account getAccount_byIBAN(const char* IBAN); // Пошук рахунку за IBAN

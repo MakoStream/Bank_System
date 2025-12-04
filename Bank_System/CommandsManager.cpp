@@ -59,6 +59,7 @@ CommandsManager::CommandsManager() {
     commands.push_back(std::make_unique<TransactionRequestPANCommand>());
     commands.push_back(std::make_unique<TransactionRequestListCommand>());
     commands.push_back(std::make_unique<getUserAccountsCommand>());
+    commands.push_back(std::make_unique<AccountInfoIdCommand>());
 
     // Debug commands
     commands.push_back(std::make_unique<DEBUG_setAccountCurrencyCommand>());

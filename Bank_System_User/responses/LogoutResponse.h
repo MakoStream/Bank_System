@@ -1,11 +1,17 @@
 #include "../Response.h"
+#include "../mainWindow.h"
 
 class LogoutResponse : public Response {
 public:
 	void get_response(handleInfo& handle) override {
 		ReadFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesRead, NULL);
-		if (handle.sessionData.sessionId == -1) {
+		if (handle.sessionData.userId == -1) {
 			cout << "Successful logout" << endl;
+			w.setMessage("Successful logout");
+			w.setUserId(-1);
+			w.clearUserCardsBox();
+			w.hideMainMenuWindow();
+			w.showLoginWindow();
 		}
 		else {
 			cout << "Logout failed: No active session" << endl;
