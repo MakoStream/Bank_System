@@ -99,7 +99,9 @@ public:
     char* getCVV() { return CVV; }                           ///< Returns CVV
     char* getExpirationDate() { return expirationDate; }     ///< Returns expiration date
     balanceType getBalanceType() { return balance_type; }    ///< Returns currency type
-    double getBalance() { return balance; }                  ///< Returns balance
+    float getBalance() { 
+		cout << balance << endl;
+		return balance; }                  ///< Returns balance
     cardType getCardType() { return type; }                  ///< Returns card type
     short getAccountType() { return AccountType; }          ///< Returns account plan type
     cardStatus getCardStatus() { return status; }           ///< Returns card status

@@ -113,6 +113,7 @@ void mainProcess::savecfg() {
     cfg["last_card_IBAN"] = std::to_string(last_card_IBAN);
 	cfg["last_audit_id"] = std::to_string(last_audit_id);
 	cfg["last_account_id"] = std::to_string(last_account_id);
+	cfg["last_user_id"] = std::to_string(last_user_id);
 	cfg["last_transaction_id"] = std::to_string(last_transaction_id);
 	cfg["last_transaction_request_id"] = std::to_string(last_transaction_request_id);
     cfg["account_db_path"] = account_db_path;
@@ -375,6 +376,9 @@ bool mainProcess::debugOn() {
         if (key == "last_card_PAN") {
             last_card_PAN = std::stoi(value);
         }
+        if (key == "last_user_id") {
+			last_user_id = std::stoi(value);
+        };
         if (key == "last_card_IBAN") {
             last_card_IBAN = std::stoi(value);
         }

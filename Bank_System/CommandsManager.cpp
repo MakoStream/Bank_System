@@ -29,6 +29,7 @@ to process incoming commands from clients.Includes both regular and debug / test
 
 #include "commands/DEBUG/DEBUG_setAccountCurrencyCommand.h"
 #include "commands/DEBUG/DEBUG_removeDBCommand.h"
+#include "commands/DEBUG/DEBUG_printSessionsCommand.h"
 
 #include <iostream>
 
@@ -62,6 +63,7 @@ CommandsManager::CommandsManager() {
     // Debug commands
     commands.push_back(std::make_unique<DEBUG_setAccountCurrencyCommand>());
     commands.push_back(std::make_unique<DEBUG_removeDBCommand>());
+	commands.push_back(std::make_unique<DEBUG_printSessionCommand>());
 };
 
 /**

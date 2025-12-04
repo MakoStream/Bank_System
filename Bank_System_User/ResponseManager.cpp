@@ -26,6 +26,7 @@
 
 #include "responses/DEBUG/DEBUG_setAccountCurrencyResponse.h"
 #include "responses/DEBUG/DEBUG_removeDBResponse.h"
+#include "responses/DEBUG/DEBUG_printSessionResponse.h"
 
 // ======================================================
 
@@ -56,6 +57,7 @@ ResponseManager::ResponseManager() {
 	// DEBUG responses
 	responses.push_back(std::make_unique<DEBUG_setAccountCurrencyResponse>());
 	responses.push_back(std::make_unique<DEBUG_removeDBResponse>());
+	responses.push_back(std::make_unique<DEBUG_printSessionsResponse>());
 }
 
 void ResponseManager::get_response(handleInfo& handle) {
@@ -68,7 +70,6 @@ void ResponseManager::get_response(handleInfo& handle) {
         if (cmd->name() == cmdName) {
 			//cout << cmd->need_execute() << endl;
 			if (cmd->need_execute()) {
-				
 				WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
 			};
             cmd->get_response(handle);

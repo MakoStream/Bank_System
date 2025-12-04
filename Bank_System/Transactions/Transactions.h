@@ -9,6 +9,9 @@
 #include "../LogEye.h"
 #include "../Account.h"
 #include "../User.h"
+#include <mutex>
+
+extern std::mutex transactionFileMutex;
 
 enum status_enum {
 	ALLOWED, DECLINED, WAITING, CANCELLED, PROCESSED
@@ -113,6 +116,7 @@ public:
 	};
 
 	void processTransaction(status_enum _status, int _status_reason, User _allowed_by_user) {
+		cout << "Prosecced" << endl;
 		status = _status;
 		status_reason = _status_reason;
 		allowed_by_user_id = _allowed_by_user.getId();
@@ -130,10 +134,12 @@ public:
 		if (status == ALLOWED) {
 			from_account.setBalance(-amount);
 			to_account.setBalance(amount);
+
+			from_account.updateInFile();
+			to_account.updateInFile();
 		};
 
 		//===================================================
-
 		return;
 	};
 

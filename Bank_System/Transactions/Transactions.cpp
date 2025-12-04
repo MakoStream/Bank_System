@@ -4,10 +4,12 @@
 #include <thread>
 #include <atomic>
 
+std::mutex transactionFileMutex;
+
 using namespace std;
 
 std::thread workerThread;
-std::atomic<bool> stopFlag{ false };
+bool stopFlag = false;
 
 void Transaction::transactionRequest(account _from_account, account _to_account, User _initieted_by_user, float _amount, const char* _PIN_CVV, string comment) {
 	Transaction new_transaction(process.incrementTransactionID(), _from_account, _to_account, _initieted_by_user, _amount, _PIN_CVV, 0); // comment db will be created later
@@ -19,6 +21,7 @@ void Transaction::transactionRequest(account _from_account, account _to_account,
 };
 
 void Transaction::updateInFile() {
+
     std::string path = process.getTransactionLogDBPath();
     std::string tmpPath = path + ".tmp";
 
@@ -127,14 +130,15 @@ void Transaction::printAllTransactions(char msg[5][1024], int page) {
 
 void transactionWorker() {
 	string filename = process.getTransactionLogDBPath();
-    while (!stopFlag.load()) {
+    //cout << stopFlag << endl;
+    while (!stopFlag) {
         std::ifstream fin(filename, std::ios::binary);
         if (!fin) {
             std::cerr << "Не вдалося відкрити файл transactions.dat" << std::endl;
             return;
         }
-
         Transaction trx;
+        std::lock_guard<std::mutex> lock(transactionFileMutex);
         while (!fin.eof()) {
             trx.read(fin);
             if (fin.eof()) break;
@@ -143,27 +147,32 @@ void transactionWorker() {
             // Тут обробляємо транзакцію
 			account from_acc = account::getAccountById(trx.getFromAccountId());
 			account to_acc = account::getAccountById(trx.getToAccountId());
-			User init_user = User::getUser_byId(trx.getInitietedByUserId());
-			if (from_acc.getBalance() >= trx.getAmount()) {
-                cout << "===" << endl;
 
+			User init_user = User::getUser_byId(trx.getInitietedByUserId());
+
+			if (from_acc.getBalance() >= trx.getAmount()) {
 
 				// Можна виконати. Перевіряємо, чи є власником карти ініціатор
-				if (from_acc.getUserID() == init_user.getId() && from_acc.checkPIN(trx.getPIN())) {
-					// Власник карти - ініціатор
-					trx.processTransaction(ALLOWED, 0, emptyUser); // 0 - дефолт поки
-                    trx.updateInFile();
-                    continue;
-				}
+				cout << from_acc.getUserID() << " " << init_user.getId() << endl;
                 if (from_acc.getUserID() == init_user.getId() && to_acc.getUserID() == init_user.getId()) {
+                    cout << "====" << endl;
                     // Операція між власними картками ініціатора
                     trx.processTransaction(ALLOWED, 0, emptyUser); // 0 - дефолт поки
+                    fin.close();
                     trx.updateInFile();
                     continue;
                 }
+				if (from_acc.getUserID() == init_user.getId() && from_acc.checkPIN(trx.getPIN())) {
+					// Власник карти - ініціатор
+					trx.processTransaction(ALLOWED, 0, emptyUser); // 0 - дефолт поки
+                    fin.close();
+                    trx.updateInFile();
+                    continue;
+				}
                 if (from_acc.getUserID() != init_user.getId() && from_acc.checkCVV(trx.getCVV())) {
 					// Не власник карти, але CVV вірний (магазин і т.д ) ||| White list in future
 					trx.processTransaction(ALLOWED, 0, emptyUser); // 0 - дефолт поки
+                    fin.close();
                     trx.updateInFile();
                     continue;
                 }
@@ -171,6 +180,9 @@ void transactionWorker() {
 			else {
 				// Відхиляємо транзакцію
 				trx.declineTransaction(1, emptyUser); // 1 - недостатньо коштів
+				fin.close();
+				trx.updateInFile();
+				continue;
 			}
 
 

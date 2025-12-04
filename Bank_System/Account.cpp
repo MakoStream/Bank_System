@@ -103,13 +103,20 @@ account account::getLastAccount() {
 
 account account::getAccountById(int id) {
     ifstream fin(process.getAccountDBPath(), ios::binary);
+    if (!fin) return emptyAccount;
+
     account acc;
-    while (fin.read(reinterpret_cast<char*>(&acc), sizeof(account))) {
+    while (true) {
+        acc = account();
+        acc.load(fin);
+        if (!fin) break;
+
         if (acc.getId() == id) {
             fin.close();
             return acc;
         }
     }
+
     fin.close();
     return emptyAccount;
 }

@@ -98,10 +98,7 @@ public:
         int newUserId = 0;
 
 
-        User lastUser = User::loadLastUser();
-        if (lastUser.getId() >= 0) {
-            newUserId = lastUser.getId() + 1;
-        };
+		newUserId = process.incrementUserID();
 
 		logEye.commentTrace(log_id, "Creating new user with ID: " + to_string(newUserId));
         User newUser(
