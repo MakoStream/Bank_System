@@ -116,7 +116,6 @@ public:
 	};
 
 	void processTransaction(status_enum _status, int _status_reason, User _allowed_by_user) {
-		cout << "Prosecced" << endl;
 		status = _status;
 		status_reason = _status_reason;
 		allowed_by_user_id = _allowed_by_user.getId();

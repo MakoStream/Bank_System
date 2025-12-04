@@ -1,5 +1,5 @@
 #include "../Response.h"
-#include "../login.h"
+#include "../mainWindow.h"
 
 class LoginResponse : public Response {
 public:
@@ -20,10 +20,12 @@ public:
 			cout << "Hello, " << currentUser.name << " " << currentUser.surname << "!\n" << endl;
 
 			w.setUserId(handle.sessionData.userId);
+			w.setMessage("Login successful!");
 			return;
 		}
 		else {
 			cout << "Login failed: " << handle.sessionData.msg[0] << "\n" << endl;
+			w.setMessage(handle.sessionData.msg[0]);
 			return;
 		};
 	}

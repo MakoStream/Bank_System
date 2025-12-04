@@ -2,34 +2,50 @@
 #include <QDebug>
 #include <QtWidgets>
 #include <QDialog>
+#include <QString>
 #include <QtConcurrent>
 
-#include "user_info.h"
+#include "ui_window.h"
+//#include "user_info.h"
 #include "ResponseManager.h"
 
 
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class LoginWindow; }
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class LoginWindow : public QDialog
+class MainWindow : public QDialog
 {
     Q_OBJECT
 
 private slots:
     void onLoginButtonClicked();
+	void onRegisterButtonClicked();
+	void onBackToLoginButtonClicked();
+	void onRegisterButtonCompletedClicked();
 
 public:
-    explicit LoginWindow(QWidget* parent = nullptr);
-    ~LoginWindow();
+    explicit MainWindow(QWidget* parent = nullptr);
+    ~MainWindow();
 
 public slots:
     void setSessionId(int sid);
     void setUserId(int uid);
 
+	void hideLoginWindow();
+	void showLoginWindow();
+
+    void hideRegWindow();
+	void showRegWindow();
+
+	void hideMainMenuWindow();
+	void showMainMenuWindow();
+
+    void setMessage(const std::string& message);
+
 private:
-    Ui::LoginWindow* ui;
+    Ui::MainWindow* ui;
 };
 
 
@@ -43,5 +59,5 @@ public:
 };
 
 // оголошуємо зовнішній об’єкт
-extern LoginWindow w;
+extern MainWindow w;
 extern Worker* worker;

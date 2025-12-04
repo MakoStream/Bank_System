@@ -1,4 +1,5 @@
 #include "../Response.h"
+#include "../mainWindow.h"
 
 class NewUserResponse : public Response {
 public:
@@ -7,6 +8,7 @@ public:
 		ReadFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesRead, NULL);
 
 		cout << handle.sessionData.msg[0] << endl;
+		w.setMessage(handle.sessionData.msg[0]);
 		return;
 	};
 	std::string name() const override {

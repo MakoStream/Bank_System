@@ -1,5 +1,5 @@
 #include "../Response.h"
-#include "login.h"
+#include "mainWindow.h"
 
 
 class GetSessionIdResponse : public Response {

@@ -10,7 +10,7 @@
 #include <vector>
 
 #include <QApplication>
-#include "login.h"
+#include "mainWindow.h"
 
 
 QThread* workerThread = nullptr;
@@ -25,7 +25,7 @@ int argc = 0;
 char* argv[1] = { nullptr };
 QApplication a(argc, argv);
 
-LoginWindow w;
+MainWindow w;
 
 //============================
 
@@ -87,6 +87,9 @@ int main() {
     handleInfo handle = { hPipe, sessionData, bytesRead, bytesWritten };
     handleP = &handle;
     
+
+	w.hideRegWindow();
+	w.hideMainMenuWindow();
     w.show();
 
     // Потік для CLI

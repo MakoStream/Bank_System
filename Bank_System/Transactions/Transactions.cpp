@@ -130,7 +130,6 @@ void Transaction::printAllTransactions(char msg[5][1024], int page) {
 
 void transactionWorker() {
 	string filename = process.getTransactionLogDBPath();
-    //cout << stopFlag << endl;
     while (!stopFlag) {
         std::ifstream fin(filename, std::ios::binary);
         if (!fin) {
@@ -153,9 +152,7 @@ void transactionWorker() {
 			if (from_acc.getBalance() >= trx.getAmount()) {
 
 				// Можна виконати. Перевіряємо, чи є власником карти ініціатор
-				cout << from_acc.getUserID() << " " << init_user.getId() << endl;
                 if (from_acc.getUserID() == init_user.getId() && to_acc.getUserID() == init_user.getId()) {
-                    cout << "====" << endl;
                     // Операція між власними картками ініціатора
                     trx.processTransaction(ALLOWED, 0, emptyUser); // 0 - дефолт поки
                     fin.close();
@@ -198,7 +195,6 @@ void transactionWorker() {
 
 // Функція запуску потоку
 void Transaction::startTransactionThread() {
-    cout << "ffafsfasf" << endl;
     stopFlag = false;
     if (workerThread.joinable())
         workerThread.join(); // зачекаємо, якщо попередній ще працює
