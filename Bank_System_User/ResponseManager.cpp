@@ -49,6 +49,7 @@ ResponseManager::ResponseManager() {
 	responses.push_back(std::make_unique<DebugOnResponse>());
 	responses.push_back(std::make_unique<UnitTestResponse>());
 	responses.push_back(std::make_unique<AccountInfoResponse>());
+	responses.push_back(std::make_unique<AccountInfoIdResponse>());
 	responses.push_back(std::make_unique<SetAccountResponse>());
 	responses.push_back(std::make_unique<TransactionRequestPANResponse>());
 	responses.push_back(std::make_unique<TransactionRequestListResponse>());
