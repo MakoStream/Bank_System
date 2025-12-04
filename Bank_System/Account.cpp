@@ -284,35 +284,50 @@ account account::getAccount_byIBAN(const char* IBAN) {
 }
 
 void account::updateInFile() {
-    std::ifstream inFile(process.getAccountDBPath(), std::ios::binary);
-    if (!inFile) { std::cerr << "Помилка: не вдалося відкрити файл accounts.dat для читання." << std::endl; return; }
+    std::string path = process.getAccountDBPath();
+    std::string tmpPath = path + ".tmp";
 
-    std::vector<account> all;
+    std::ifstream in(path, std::ios::binary);
+    if (!in) {
+        std::cerr << "Помилка: не вдалося відкрити файл accounts.dat для читання." << std::endl;
+        return;
+    }
+
+    std::ofstream out(tmpPath, std::ios::binary | std::ios::trunc);
+    if (!out) {
+        std::cerr << "Помилка: не вдалося створити тимчасовий файл accounts.tmp." << std::endl;
+        return;
+    }
+
+    bool found = false;
     account temp;
 
     while (true) {
         temp = account();
-        temp.load(inFile);
-        if (!inFile) break;
-        all.push_back(temp);
-    }
-    inFile.close();
+        temp.load(in);     // твоя функція зчитування
+        if (!in) break;
 
-    bool found = false;
-    for (auto& acc : all) {
-        if (strcmp(acc.getIBAN(), this->getIBAN()) == 0) {
-            acc = *this;
+        if (strcmp(temp.getIBAN(), this->getIBAN()) == 0) {
+            this->save(out);   // записуємо оновлений об’єкт
             found = true;
-            break;
+        }
+        else {
+            temp.save(out);    // копіюємо як є
         }
     }
 
-    if (!found) { std::cerr << "Попередження: рахунок із таким IBAN не знайдено." << std::endl; return; }
+    in.close();
+    out.close();
 
-    std::ofstream outFile(process.getAccountDBPath(), std::ios::binary | std::ios::trunc);
-    if (!outFile) { std::cerr << "Помилка: не вдалося відкрити файл accounts.dat для запису." << std::endl; return; }
-    for (auto& acc : all) acc.save(outFile);
-    outFile.close();
+    if (!found) {
+        std::cerr << "Попередження: рахунок із таким IBAN не знайдено." << std::endl;
+        std::remove(tmpPath.c_str());
+        return;
+    }
+
+    // замінюємо старий файл новим
+    std::remove(path.c_str());
+    std::rename(tmpPath.c_str(), path.c_str());
 }
 
 void account::setAccountBalance(account& acc, double newBalance) {

@@ -4,7 +4,7 @@
 #include "../User.h"
 #include "../Command.h"
 #include <iostream>
-#include "../Audit/Audit.h"
+#include "../Transactions/Transactions.h"
 #include "../LogEye.h"
 
 /**
@@ -82,13 +82,15 @@ public:
             return;
         }
         else if (args[1] == "transactions") {
-            create_db_transaction_log();
+            Transaction::createDB();
+
             throw_response(handle, "Transactions database created!");
 			logEye.endTrace(log_id, SUCCESS, "Transactions database created successfully");
             return;
 		}
 		else if (args[1] == "audit") {
-			create_db_audit_log();
+			//create_db_audit_log(); // change to actual function when implemented
+
 			throw_response(handle, "Audit database created!");
 			logEye.endTrace(log_id, SUCCESS, "Audit database created successfully");
 			return;

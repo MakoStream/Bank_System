@@ -22,7 +22,8 @@ handle transactions, debug mode, and persistence of counters in configuration fi
 #include "Account.h"
 #include "basic_functions.h"
 //#include "Command.h"
-#include "Audit/Audit.h"
+//#include "Audit/Audit.h"
+#include "Transactions/Transactions.h"
 
 
 extern string configName;
@@ -82,6 +83,7 @@ extern Session emptySession;
  */
 class mainProcess {
     int last_session_id; /**< Last session identifier */
+	int last_user_id; /**< Last user ID */
     int last_card_PAN; /**< Last card PAN */
     int last_card_IBAN; /**< Last card IBAN */
     int last_audit_id; /**< Last audit record ID */
@@ -126,6 +128,7 @@ public:
     // Audit management
     int incrementCardPAN(); /**< Increments PAN counter and saves config */
     int incrementCardIBAN(); /**< Increments IBAN counter and saves config */
+	int incrementUserID(); /**< Increments user ID and saves config */
     int incrementAccountID(); /**< Increments account ID and saves config */
     int incrementAuditID(); /**< Increments audit ID and saves config */
     int incrementTransactionID(); /**< Increments transaction ID and saves config */
@@ -141,11 +144,6 @@ public:
     // Debug mode
     bool debugOn(); /**< Enables debug mode and reloads configuration */
     bool debugStatus(); /**< Returns debug mode status */
-
-    // Transactions
-    void transaction_request(handleInfo handle, account& from, account& to, double ammount, const char* PIN, const char* CVV, operations op_type, std::string comment = "#"); /**< Creates a transaction request */
-    void check_requests(); /**< Checks all pending transaction requests */
-    void allow_transaction(int transaction_id, handleInfo& user_handle, std::string comment); /**< Approves a transaction request */
 };
 
 extern mainProcess process;

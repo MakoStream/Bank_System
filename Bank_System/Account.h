@@ -46,11 +46,11 @@ class account {  // Дані банківської картки
 	int userID;                      // ID власника картки
 	char IBAN[37];
 	char cardNumber[17];
-	char PIN[4];
-	char CVV[3];
+	char PIN[5];
+	char CVV[4];
 	char expirationDate[8];          // MM/YY
 	balanceType balance_type = UAH;
-	double balance = 0.0;
+	float balance = 0.0;
 	cardType type = DEFAULT;
 	short AccountType = 0;             // План рахунків https://www.buhoblik.org.ua/uchet/organizacziya-buxgalterskogo-ucheta/388-plan-raxunkiv.html
 	cardStatus status = NONVERIFED;

@@ -10,9 +10,9 @@
 #include <csignal>
 #include "User.h"
 #include <optional>
-#include "Audit/Audit.h"
 //#include "basic_functions.h"
 #include "LogEye.h"
+#include "Transactions/Transactions.h"
 
 
 /// @brief Represents a user session in the system
@@ -22,42 +22,47 @@ Session emptySession = { -1, -1, ""};
 mainProcess::mainProcess(){
 	cout << configName << endl;
     std::map<std::string, std::string> cfg = readConfig(configName);
-	for (const auto& [key, value] : cfg) {
+    for (const auto& [key, value] : cfg) {
         if (key == "last_session_id") {
-			last_session_id = std::stoi(value);
+            last_session_id = std::stoi(value);
         };
-		if (key == "last_card_PAN") {
-			last_card_PAN = std::stoi(value);
-		}
-		if (key == "last_card_IBAN") {
-			last_card_IBAN = std::stoi(value);
-		}
-		if (key == "last_audit_id") {
-			last_audit_id = std::stoi(value);
-		}
-		if (key == "last_account_id") {
-			last_account_id = std::stoi(value);
-		};
-		if (key == "last_transaction_id") {
-			last_transaction_id = std::stoi(value);
-		}
-		if (key == "last_transaction_request_id") {
-			last_transaction_request_id = std::stoi(value);
-		}
-		if (key == "account_db_path") {
-			account_db_path = value;
-		}
-		if (key == "transaction_log_db_path") {
-			transaction_log_db_path = value;
-		}
-		if (key == "audit_log_db_path") {
-			audit_log_db_path = value;
-		}
-		else if (key == "user_db_path") {
-			user_db_path = value;
-		}
+        if (key == "last_card_PAN") {
+            last_card_PAN = std::stoi(value);
+        }
+        if (key == "last_card_IBAN") {
+            last_card_IBAN = std::stoi(value);
+        }
+        if (key == "last_user_id") {
+			last_user_id = std::stoi(value);
+        };
+        if (key == "last_audit_id") {
+            last_audit_id = std::stoi(value);
+        }
+        if (key == "last_account_id") {
+            last_account_id = std::stoi(value);
+        };
+        if (key == "last_transaction_id") {
+            last_transaction_id = std::stoi(value);
+        }
+        if (key == "last_transaction_request_id") {
+            last_transaction_request_id = std::stoi(value);
+        }
+        if (key == "account_db_path") {
+            account_db_path = value;
+        }
+        if (key == "transaction_log_db_path") {
+            transaction_log_db_path = value;
+        }
+        if (key == "audit_log_db_path") {
+            audit_log_db_path = value;
+        }
+        else if (key == "user_db_path") {
+            user_db_path = value;
+        }
         debug = false;
-	}
+    };
+
+    
 }
 
 
@@ -277,6 +282,12 @@ int mainProcess::incrementCardIBAN() {
     return last_card_IBAN;
 }
 
+int mainProcess::incrementUserID() {
+	last_user_id++;
+	savecfg();
+	return last_user_id;
+}
+
 /**
  * @brief Increments and returns the last account ID.
  * @return int Updated account ID.
@@ -394,6 +405,9 @@ bool mainProcess::debugOn() {
     }
 	loggined_users.clear();
 
+    Transaction::stopTransactionThread();
+	Transaction::startTransactionThread();
+
     return true;
 }
 /**
@@ -403,93 +417,4 @@ bool mainProcess::debugOn() {
  */
 bool mainProcess::debugStatus() { return debug; };
 
-
-/**
- * @brief Handles a transaction request from one account to another.
- * @param handle Client handle info.
- * @param from Sender account.
- * @param to Receiver account.
- * @param ammount Transaction amount.
- * @param PIN PIN for authentication.
- * @param CVV CVV for authentication.
- * @param op_type Operation type.
- * @param comment Optional comment for transaction.
- * @note Requirements: Session, account, TransactionLog
- */
-void mainProcess::transaction_request(handleInfo handle, account& from, account& to, double ammount, const char* PIN, const char* CVV, operations op_type, string comment) {  // need args: from_account, to_account, amount
-	// Create a new transaction request
-	Session session = process.getSessionByID(handle.sessionData.sessionId);
-	User user = User::getUser_byId(session.user_id);
-	bool from_own_account = (from.getUserID() == user.getId());
-	bool to_own_account = (to.getUserID() == user.getId());
-
-
-    TransactionLog log(
-        process.incrementTransactionID(),
-		process.incrementTransactionRequestID(),
-		op_type,
-		REQUEST,
-		//getTimestamp(),
-        (to.getBalanceType() != from.getBalanceType()),
-		false,
-		from.getIBAN(),
-		from.getPAN(),
-		to.getIBAN(),
-		to.getPAN(),
-		false,
-		-1,
-		ammount,
-		-2, // While not allowed
-		comment.c_str()
-	);
-
-	if (from.getBalance() < ammount + 10) { // за умови, що на картці відправача недостатньо коштів
-		log.fail(FAIL_NO_MONEY);
-    }
-    else if (from.getCardStatus() != AVAILABLE) { // за умови, що карта відправача недоступна
-        //cout << "Ups" << endl;
-        log.fail(FAIL_YOUR_CARD_BLOCKED);
-    }
-    else if (to.getCardStatus() != AVAILABLE) { // За умови, що карта отримувача недоступна
-        log.fail(FAIL_CARD_BLOCKED);
-    }
-    else if (!from_own_account and !from.checkCVV(CVV)) { // За умови, якщо картка чужа і CVV не правильне
-        log.fail(FAIL_WRONG_CVV);
-    }
-	else if (from_own_account and !from.checkPIN(PIN)) { // За умови, якщо картка своя і PIN не правильний
-		log.fail(FAIL_WRONG_PIN);
-	};
-
-    save_transaction_log(log);
-}
-
-
-/**
- * @brief Allows a pending transaction by updating its status to ALLOW.
- * @param transaction_id Transaction identifier.
- * @param user_handle Client handle info.
- * @param comment Optional comment for transaction.
- * @note Requirements: Session, TransactionLog
- */
-void mainProcess::allow_transaction(int transaction_id, handleInfo& user_handle, string comment) {
-    int log_id = logEye.logTrace("allow transaction");
-	logEye.msgTrace(log_id, "transaction id", to_string(transaction_id), 1);
-	logEye.msgTrace(log_id, "user session id", to_string(user_handle.sessionData.sessionId), 1);
-
-	logEye.commentTrace(log_id, "Fetching transaction logs");
-    vector<TransactionLog> Transactions = getTransactionLogs(transaction_id);
-    TransactionLog newTransactionStatus = Transactions[Transactions.size() - 1];
-
-	logEye.commentTrace(log_id, "Updating transaction status to ALLOW");
-	newTransactionStatus.change_id(process.incrementTransactionID());
-    newTransactionStatus.allow(process.getUserSession(user_handle.sessionData.sessionId).user_id);
-    newTransactionStatus.setComment(comment);
-
-    logEye.commentTrace(log_id, "Saving transaction log...");
-	save_transaction_log(newTransactionStatus);
-
-
-	logEye.endTrace(log_id, SUCCESS, "Transaction allowed");
-	return;
-};
 

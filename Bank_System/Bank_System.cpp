@@ -22,6 +22,7 @@ runtime behavior of the bank system.
 #include "mainProcess.h"
 #include "basic_functions.h"
 #include "LogEye.h"
+#include "Transactions/Transactions.h"
 
 #include "CommandsManager.h"
 
@@ -137,6 +138,8 @@ void onExit() {
 int main()
 {
 
+
+
     
     signal(SIGINT, signalHandler);   // Ctrl+C
     signal(SIGABRT, signalHandler);  // аварійне завершення
@@ -145,6 +148,7 @@ int main()
     setlocale(LC_ALL, "ukr");
 
 	process.printConfig();
+    Transaction::startTransactionThread();
     
 
 	logEye.info("Bank system started.");

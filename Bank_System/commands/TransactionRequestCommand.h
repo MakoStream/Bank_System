@@ -1,8 +1,8 @@
 #pragma once
 #include "../Command.h"
 #include "../Account.h"
-#include "../Audit/Audit.h"
 #include "../mainProcess.h"
+#include "../Transactions/Transactions.h"
 #include "../LogEye.h"
 
 using namespace std;
@@ -109,8 +109,11 @@ public:
 		}
 
 		handle.sessionData.hash[0] = 1; // success
-		
-		process.transaction_request(handle, acc_from, acc_to, ammount, args[4].c_str(), args[5].c_str(), TRANSACTION, args.size() >= 7 ? args[6] : ""); // issue here
+
+
+		Transaction::transactionRequest(acc_from, acc_to, User::getUser_byId(process.getUserSession(handle.sessionData.sessionId).user_id), ammount, args[4].c_str(), " ");
+		//process.transaction_request(handle, acc_from, acc_to, ammount, args[4].c_str(), args[5].c_str(), TRANSACTION, args.size() >= 7 ? args[6] : ""); // change after realization
+
 		throw_response(handle, "Transaction request processed");
 		logEye.endTrace(log_id, SUCCESS, "Transaction request processed from PAN: " + string(args[1]) + " to PAN: " + string(args[2]));
 		return;
@@ -177,10 +180,9 @@ public:
 			page = stoi(args[1]);
 		};
 
-		printTransactions(handle.sessionData.msg, page);
+		Transaction::printAllTransactions(handle.sessionData.msg, page);
+
 		logEye.commentTrace(log_id, "Printing transaction request list, page: " + to_string(page));
-		//strncpy(handle.sessionData.cmd, "Account list is printed!", sizeof(handle.sessionData.cmd) - 1);
-		//handle.sessionData.cmd[sizeof(handle.sessionData.cmd) - 1] = '\0';
 		WriteFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesWritten, NULL);
 		logEye.endTrace(log_id, SUCCESS, "Transaction request list printed successfully");
 		return;
