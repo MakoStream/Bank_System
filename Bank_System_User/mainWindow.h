@@ -27,14 +27,28 @@ private slots:
 	void onLogoutButtonClicked();
 	void onTransactionRequestButtonClicked();
 
+    void showPAN_Transaction();
+    void showIBAN_Transaction();
+
 public:
     explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
+    QWidget* cloneWidget(const QWidget* original);
+
     void addUserCardsBoxItem(string cardPan, int acc_id);
     void clearUserCardsBox();
 
+    void AddTransactionBoxItem(const std::string& pan_to, const string& pan_from, int amount, const std::string& currency_type);
+    void AddAccountBoxItem(const std::string& accountPan, const std::string& currency_type, float balance);
+
+	void fillTransactionBox();
+	void fillAccountBox();
+    
+
 public slots:
+    
+
     void setSessionId(int sid);
     void setUserId(int uid);
 
@@ -50,9 +64,13 @@ public slots:
     void hideTransactionWindow();
     void showTransactionWindow();
 
+    void ClientUserDataUpdate();
+
     void setMessage(const std::string& message);
 
 private:
+    QVBoxLayout* layout = nullptr;
+	QHBoxLayout* hLayout = nullptr;
     Ui::MainWindow* ui;
 };
 

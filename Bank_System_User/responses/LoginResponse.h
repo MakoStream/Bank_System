@@ -4,7 +4,6 @@
 class LoginResponse : public Response {
 public:
 	void get_response(handleInfo& handle) override {
-		// Process the login response
 		cout << "debug 1" << endl;
 		ReadFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesRead, NULL);
 
@@ -33,6 +32,7 @@ public:
 				response_manager.get_response(handle);
 
 				vector<string> args = split(handle.sessionData.msg[0]);
+				//w.AddAccountBoxItem(args[1], "UAH", stoi(args[3]));
 				w.addUserCardsBoxItem(args[1], a);
 			};
 
@@ -40,6 +40,7 @@ public:
 			w.showMainMenuWindow();
 
 			w.setUserId(handle.sessionData.userId);
+			//w.ClientUserDataUpdate();
 			w.setMessage("Login successful!");
 			return;
 		}

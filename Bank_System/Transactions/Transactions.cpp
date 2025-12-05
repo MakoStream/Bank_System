@@ -14,8 +14,13 @@ bool stopFlag = false;
 void Transaction::transactionRequest(account _from_account, account _to_account, User _initieted_by_user, float _amount, const char* _PIN_CVV, string comment) {
 	Transaction new_transaction(process.incrementTransactionID(), _from_account, _to_account, _initieted_by_user, _amount, _PIN_CVV, 0); // comment db will be created later
 
-	std::ofstream ifs(process.getTransactionLogDBPath(), std::ios::binary | std::ios::ate);
-	new_transaction.save(ifs);
+    std::ofstream ofs(process.getTransactionLogDBPath(), std::ios::binary | std::ios::app); // <-- app для додавання
+    if (!ofs) {
+        std::cerr << "Помилка відкриття файлу для запису транзакції" << std::endl;
+        return;
+    }
+
+    new_transaction.save(ofs); // записуємо у кінець файлу
 
 	return;
 };
@@ -262,3 +267,21 @@ vector<Transaction> Transaction::getTransactionWithAccount(account acc) {
     fin.close();
     return transactions;
 };
+
+vector<int> Transaction::getUserTransactions(int user_id) {
+	vector<int> transaction_ids;
+	ifstream fin(process.getTransactionLogDBPath(), ios::binary);
+	Transaction tr;
+	while (true) {
+		tr = Transaction();
+		tr.read(fin);
+		if (!fin)break;
+		account from_acc = account::getAccountById(tr.getFromAccountId());
+		account to_acc = account::getAccountById(tr.getToAccountId());
+		if (from_acc.getUserID() == user_id || to_acc.getUserID() == user_id) {
+			transaction_ids.push_back(tr.getId());
+		};
+	}
+	fin.close();
+	return transaction_ids;
+}; 

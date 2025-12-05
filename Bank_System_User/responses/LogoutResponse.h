@@ -7,6 +7,7 @@ public:
 		ReadFile(handle.hPipe, &handle.sessionData, sizeof(handle.sessionData), &handle.bytesRead, NULL);
 		if (handle.sessionData.userId == -1) {
 			cout << "Successful logout" << endl;
+			currentUser.accounts_id.clear();
 			w.setMessage("Successful logout");
 			w.setUserId(-1);
 			w.clearUserCardsBox();

@@ -88,9 +88,7 @@ int main() {
     handleP = &handle;
     
 
-	w.hideRegWindow();
-	w.hideMainMenuWindow();
-    w.hideTransactionWindow();
+	
     w.show();
 
     // Потік для CLI

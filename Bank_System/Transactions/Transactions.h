@@ -86,6 +86,8 @@ public:
 	int getToAccountId() const { return to_account_id; };
 	int getInitietedByUserId() const { return initieted_by_user_id; }
 	int getAllowedByUserId() const { return allowed_by_user_id; }
+	char* getRequestTimestamp() { return request_timestamp; };
+	char* getProcessTimestamp() { return process_timestamp; };
 
 	char* getPIN() { return PIN; };
 	char* getCVV() { return CVV; };
@@ -161,6 +163,9 @@ public:
 	static Transaction getTransactionById(int transaction_id);
 	static vector<Transaction> getTransactionsInitBy(User user);
 	static vector<Transaction> getTransactionWithAccount(account acc);
+
+	static vector<int> getUserTransactions(int user_id);  // get IDs of transactions with account of user
+
 	static void startTransactionThread();
 	static void stopTransactionThread();
 

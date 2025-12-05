@@ -25,6 +25,7 @@ to process incoming commands from clients.Includes both regular and debug / test
 #include "commands/SetAccountComand.h"
 #include "commands/TransactionRequestCommand.h"
 #include "commands/getUserAccountsCommand.h"
+#include "commands/GetUserTransactionsCommand.h"
 
 
 #include "commands/DEBUG/DEBUG_setAccountCurrencyCommand.h"
@@ -57,9 +58,13 @@ CommandsManager::CommandsManager() {
     commands.push_back(std::make_unique<AccountInfoCommand>());
     commands.push_back(std::make_unique<SetAccountCommand>());
     commands.push_back(std::make_unique<TransactionRequestPANCommand>());
+    commands.push_back(std::make_unique<TransactionRequestIBANCommand>());
     commands.push_back(std::make_unique<TransactionRequestListCommand>());
+    commands.push_back(std::make_unique<TransactionInfoCommand>());
     commands.push_back(std::make_unique<getUserAccountsCommand>());
     commands.push_back(std::make_unique<AccountInfoIdCommand>());
+    commands.push_back(std::make_unique<GetUserTransactionsCommand>());
+
 
     // Debug commands
     commands.push_back(std::make_unique<DEBUG_setAccountCurrencyCommand>());

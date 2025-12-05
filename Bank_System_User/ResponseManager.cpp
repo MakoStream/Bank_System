@@ -20,6 +20,7 @@
 #include "responses/SetAccountResponse.h"
 #include "responses/TransactionRequestResponse.h"
 #include "responses/getUserAccountsResponse.h"
+#include "responses/getUserTransactionsResponse.h"
 
 
 // DEBUG responses
@@ -52,8 +53,11 @@ ResponseManager::ResponseManager() {
 	responses.push_back(std::make_unique<AccountInfoIdResponse>());
 	responses.push_back(std::make_unique<SetAccountResponse>());
 	responses.push_back(std::make_unique<TransactionRequestPANResponse>());
+	responses.push_back(std::make_unique<TransactionRequestIBANResponse>());
 	responses.push_back(std::make_unique<TransactionRequestListResponse>());
+	responses.push_back(std::make_unique<TransactionInfoResponse>());
 	responses.push_back(std::make_unique<getUserAccountsResponse>());
+	responses.push_back(std::make_unique<GetUserTransactionsResponse>());
 
 	// DEBUG responses
 	responses.push_back(std::make_unique<DEBUG_setAccountCurrencyResponse>());

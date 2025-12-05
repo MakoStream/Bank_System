@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1250</width>
-    <height>722</height>
+    <height>713</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -686,9 +686,9 @@
       <string>Logout</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="updateButton">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="geometry">
       <rect>
@@ -795,18 +795,21 @@
     <property name="tabsClosable">
      <bool>false</bool>
     </property>
-    <widget class="QWidget" name="AccountsTab_2">
+    <widget class="QWidget" name="AccountsTab">
      <attribute name="title">
       <string>Accounts</string>
      </attribute>
-     <widget class="QScrollArea" name="CardsScroll_3">
+     <widget class="QScrollArea" name="CardsScroll">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>10</y>
         <width>361</width>
-        <height>201</height>
+        <height>211</height>
        </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Sunken</enum>
@@ -818,24 +821,24 @@
        <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="sizeAdjustPolicy">
-       <enum>QAbstractScrollArea::AdjustIgnored</enum>
+       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_4">
+      <widget class="QWidget" name="CardsScrollAreaWidgetContent">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>359</width>
-         <height>199</height>
+         <width>361</width>
+         <height>211</height>
         </rect>
        </property>
-       <widget class="QWidget" name="Card_Template_2" native="true">
+       <widget class="QWidget" name="Card_Template" native="true">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -847,14 +850,26 @@
           <height>201</height>
          </rect>
         </property>
-        <widget class="QLabel" name="Card1_image_2">
+        <property name="minimumSize">
+         <size>
+          <width>361</width>
+          <height>201</height>
+         </size>
+        </property>
+        <widget class="QLabel" name="Card_image">
          <property name="geometry">
           <rect>
            <x>40</x>
            <y>0</y>
-           <width>271</width>
+           <width>274</width>
            <height>161</height>
           </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>271</width>
+           <height>161</height>
+          </size>
          </property>
          <property name="text">
           <string/>
@@ -869,7 +884,7 @@
           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
          </property>
         </widget>
-        <widget class="QLabel" name="Card_Value_2">
+        <widget class="QLabel" name="Card_Value">
          <property name="geometry">
           <rect>
            <x>60</x>
@@ -882,7 +897,7 @@
           <string>card_value</string>
          </property>
         </widget>
-        <widget class="QLabel" name="Card_Value_Type_2">
+        <widget class="QLabel" name="Card_Value_Type">
          <property name="geometry">
           <rect>
            <x>180</x>
@@ -892,10 +907,10 @@
           </rect>
          </property>
          <property name="text">
-          <string>err_card_value_type</string>
+          <string>UAH</string>
          </property>
         </widget>
-        <widget class="QLabel" name="Card_PAN_2">
+        <widget class="QLabel" name="Card_PAN">
          <property name="geometry">
           <rect>
            <x>74</x>
@@ -915,8 +930,11 @@
          <property name="text">
           <string>0000 0000 0000 0000</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
-        <widget class="QLabel" name="Card_BankName_2">
+        <widget class="QLabel" name="Card_BankName">
          <property name="geometry">
           <rect>
            <x>150</x>
@@ -949,7 +967,7 @@
        </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="cardInfoWidget_2" native="true">
+     <widget class="QWidget" name="cardInfoWidget" native="true">
       <property name="geometry">
        <rect>
         <x>390</x>
@@ -958,7 +976,7 @@
         <height>221</height>
        </rect>
       </property>
-      <widget class="QLabel" name="Card_Name_2">
+      <widget class="QLabel" name="Card_Name">
        <property name="geometry">
         <rect>
          <x>80</x>
@@ -971,7 +989,7 @@
         <string>Card_Name</string>
        </property>
       </widget>
-      <widget class="QLabel" name="Card_Status_2">
+      <widget class="QLabel" name="Card_Status">
        <property name="geometry">
         <rect>
          <x>80</x>
@@ -984,7 +1002,7 @@
         <string>err_Card_Status</string>
        </property>
       </widget>
-      <widget class="QLabel" name="Card_MGPM_2">
+      <widget class="QLabel" name="Card_MGPM">
        <property name="geometry">
         <rect>
          <x>80</x>
@@ -997,7 +1015,7 @@
         <string>Card_Description</string>
        </property>
       </widget>
-      <widget class="QLabel" name="Card_expiration_date_2">
+      <widget class="QLabel" name="Card_expiration_date">
        <property name="geometry">
         <rect>
          <x>80</x>
@@ -1010,7 +1028,7 @@
         <string>err_Card_expiration_date</string>
        </property>
       </widget>
-      <widget class="QLabel" name="Card_Iban_2">
+      <widget class="QLabel" name="Card_Iban">
        <property name="geometry">
         <rect>
          <x>80</x>
@@ -1029,7 +1047,7 @@
      <attribute name="title">
       <string>History</string>
      </attribute>
-     <widget class="QScrollArea" name="historyScrollArea_2">
+     <widget class="QScrollArea" name="historyScrollArea">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1038,14 +1056,29 @@
         <height>231</height>
        </rect>
       </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
       <property name="layoutDirection">
        <enum>Qt::LeftToRight</enum>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
       <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAsNeeded</enum>
+       <enum>Qt::ScrollBarAlwaysOff</enum>
       </property>
       <property name="horizontalScrollBarPolicy">
        <enum>Qt::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
@@ -1053,25 +1086,34 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents_5">
+      <property name="LastItem_HorizontalPos" stdset="0">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="HistoryScrollAreaWidgetContents">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>409</width>
-         <height>229</height>
+         <width>411</width>
+         <height>231</height>
         </rect>
        </property>
-       <widget class="QWidget" name="historyEvent1widget_2" native="true">
+       <widget class="QWidget" name="TransactionTemplateWidget" native="true">
         <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
           <width>401</width>
-          <height>51</height>
+          <height>50</height>
          </rect>
         </property>
-        <widget class="QLabel" name="IMG_logo_2">
+        <property name="minimumSize">
+         <size>
+          <width>401</width>
+          <height>50</height>
+         </size>
+        </property>
+        <widget class="QLabel" name="History_IMG_logo">
          <property name="geometry">
           <rect>
            <x>10</x>
@@ -1084,7 +1126,7 @@
           <string>Logo</string>
          </property>
         </widget>
-        <widget class="QLabel" name="ammount_3">
+        <widget class="QLabel" name="History_ammount">
          <property name="geometry">
           <rect>
            <x>240</x>
@@ -1100,7 +1142,7 @@
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
-        <widget class="QLabel" name="value_type_2">
+        <widget class="QLabel" name="History_value_type">
          <property name="geometry">
           <rect>
            <x>340</x>
@@ -1116,14 +1158,19 @@
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
-        <widget class="QLabel" name="ammount_4">
+        <widget class="QLabel" name="History_PAN_from">
          <property name="geometry">
           <rect>
-           <x>90</x>
-           <y>20</y>
-           <width>91</width>
-           <height>20</height>
+           <x>60</x>
+           <y>10</y>
+           <width>181</width>
+           <height>16</height>
           </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
          </property>
          <property name="text">
           <string>err_card_lastPAN</string>
@@ -1132,19 +1179,27 @@
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
-       </widget>
-       <widget class="QPushButton" name="load_more_button_2">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>60</y>
-          <width>141</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>load more...</string>
-        </property>
+        <widget class="QLabel" name="History_PAN_to">
+         <property name="geometry">
+          <rect>
+           <x>60</x>
+           <y>30</y>
+           <width>181</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>7</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>err_card_lastPAN</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </widget>
       </widget>
      </widget>
@@ -1225,6 +1280,19 @@
        </property>
        <property name="text">
         <string>Cards:</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="load_more_button_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>190</y>
+         <width>141</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>load more...</string>
        </property>
       </widget>
      </widget>
@@ -1437,6 +1505,9 @@
      <property name="text">
       <string>Request</string>
      </property>
+     <property name="isIBAN" stdset="0">
+      <bool>false</bool>
+     </property>
     </widget>
     <widget class="QLineEdit" name="PIN_Edit">
      <property name="geometry">
@@ -1446,6 +1517,19 @@
        <width>51</width>
        <height>22</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>180</y>
+       <width>31</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PIN:</string>
      </property>
     </widget>
    </widget>
